@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Grimoire notes</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="/static/format.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div id="header-container"></div>
+        <h1>Grimoire <i class="fa fa-book"></i> Metadata</h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/grimoires">Grimoires</a></li>
+                <li><a href="/index">Index</a></li>
+                <li><a href-"/about">About</a></li>
+                <li><a href="/support">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="content"><div id="content-wrapper">
+        {% block body %}{% endblock %}
+    </div></div>
+
+    <footer>
+        <p>
+            <a href="http://www.mousereeve.com/">Mouse Reeve</a>
+        </p>
+    </footer>
+</body>
+</html>

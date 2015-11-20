@@ -36,10 +36,12 @@ def index():
     return render_template('index.html', grimoires=grimoires)
 
 
-@app.route('/<label>/<item_name>', methods=['GET'])
-def item(label, item_name):
+@app.route('/<label>/<uid>', methods=['GET'])
+def item(label, uid):
     ''' generic page for an item '''
-    return render_template('item.html', data={'label': label, 'item': item_name})
+    #TODO: error handling, sanitization
+    data = graph.get_node(uid)
+    return render_template('item.html', data=data)
 
 
 if __name__ == '__main__':

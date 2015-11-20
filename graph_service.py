@@ -53,10 +53,12 @@ class GraphService(object):
         graph = Graph()
         self.query = graph.cypher.execute
 
+
     def get_labels(self):
         ''' list of all types/labels in the db '''
         data = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         return [l[0][0] for l in data]
+
 
     @serialize
     def get_all(self, label):
@@ -64,10 +66,8 @@ class GraphService(object):
         data = self.query('MATCH (n:%s) RETURN n' % label)
         return data
 
-
     @serialize
-    def get_node(self, node_id):
+    def get_node(self, uid):
         ''' load data '''
-        node = self.query('MATCH n WHERE id(n) = %s OPTIONAL MATCH (n)-[r]-() RETURN n, r' %
-                          node_id)
+        node = self.query('MATCH n WHERE n.uid = "%s" OPTIONAL MATCH (n)-[r]-() RETURN n, r' % uid)
         return node

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{ data.nodes[0].properties.identifier }}</h2>
+
+{% if 'content' in data.nodes[0].properties %}
+<div class="card" id="main">
+    <p>
+        {{ data.nodes[0].properties['content'] }}
+    </p>
+</div>
+
+<div class="divider"></div>
+{% endif %}
+
+<h3>Details</h3>
+<ul>
+{% for field in data.nodes[0].properties %}
+    {% if not field in ['uid', 'identifier', 'content'] %}
+    <li>{{ field }}: {{ data.nodes[0].properties[field] }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+<h3>Connections</h3>
+<ul>
+{% for rel in data.relationships %}
+    <li>
+        <a href="/{{ rel.start.labels[0] }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        {% if rel.start.labels[0] == 'edition' %}
+        ({{ rel.start.labels[0] }})
+        {% endif %}
+        {{ rel.type }}
+        <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
+        {% if rel.end.labels[0] == 'edition' %}
+        ({{ rel.end.labels[0] }})
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
