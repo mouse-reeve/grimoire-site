@@ -1,5 +1,6 @@
 body {
-    background: #fefefe;
+    background: #677077;
+    font-family: georgia;
     margin: 0;
     padding: 0;
 }
@@ -7,9 +8,8 @@ body {
 header {
     background: #252839;
     color: #f2b632;
-    text-transform: uppercase;
     text-align: center;
-    font-family: georgia;
+    text-transform: uppercase;
     width: 100;
 }
 
@@ -21,24 +21,67 @@ h1 {
 }
 
 h1 .fa {
-    color: #677077;
+    color: #b5b5b7;
 }
 
 .divider {
     background: #677077;
+    height: 0.3em;
     margin-right: auto;
     margin-left: auto;
-    height: 0.3em;
     width: 80%;
 }
 
-#navigation {
+nav {
      padding: 1em;
- }
+}
 
-#navigation a {
+nav ul {
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: auto;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    font-family: helvetica, sans-serif;
+    letter-spacing: 0.2em;
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li:after {
+    content: "\f06e";
+    font-family: fontawesome;
+    font-weight: normal;
+    margin: 1em;
+}
+
+nav li:last-child:after {
+    content: none;
+}
+
+nav a {
     color: #b5b5b7;
     text-decoration: none;
-    display: inline-block;
+}
+
+#content {
+    background: #fefefe;
+    margin-bottom: 2em;
+    min-height: 10em;
+}
+
+footer {
     text-align: center;
+    width: 100;
+}
+
+footer a {
+    color: #f2b632;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
 }
