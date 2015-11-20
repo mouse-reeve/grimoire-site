@@ -1,0 +1,44 @@
+body {
+    background: #fefefe;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #252839;
+    color: #f2b632;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: georgia;
+    width: 100;
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    margin: 0;
+    padding: 1em;
+}
+
+h1 .fa {
+    color: #677077;
+}
+
+.divider {
+    background: #677077;
+    margin-right: auto;
+    margin-left: auto;
+    height: 0.3em;
+    width: 80%;
+}
+
+#navigation {
+     padding: 1em;
+ }
+
+#navigation a {
+    color: #b5b5b7;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
