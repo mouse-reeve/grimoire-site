@@ -10,7 +10,7 @@ graph = GraphService()
 @app.route('/', methods=['GET'])
 def index():
     ''' render the basic template for angular '''
-    data = graph.get_all('grimoires')
+    data = graph.get_all('grimoire')
     grimoires = []
     for g in data['nodes']:
         g = g['properties']
@@ -33,7 +33,7 @@ def index():
             'date': date
         })
         grimoires = sorted(grimoires, key=lambda g: g['identifier'])
-    return render_template('index.html', grimoires=grimoires)
+    return render_template('home.html', grimoires=grimoires)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
