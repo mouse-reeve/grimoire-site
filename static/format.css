@@ -7,41 +7,43 @@ body {
 
 header {
     background: #181b2c;
+    background-image: url('/static/images/books-background.jpg');
+    background-position: center;
     color: #f2b632;
+    height: 160px;
+    margin-bottom: 10px;
+    position: relative;
     text-align: center;
     text-transform: uppercase;
     width: 100;
 }
 
-.banner {
-    background-image: url('/static/images/books-background.jpg');
-    background-position: center;
-    height: 150px;
+#header-container {
+    background: #181b2c;
+    opacity: 0.8;
+    height: 160px;
 }
 
 h1 {
     font-weight: normal;
     letter-spacing: 0.3em;
-    margin: 0;
-    padding-bottom: 1em;
     padding-top: 0.5em;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 h1 .fa {
     color: #b5b5b7;
 }
 
-.divider {
-    background: #677077;
-    border-radius: 5px;
-    height: 0.1em;
-    margin-right: auto;
-    margin-left: auto;
-    width: 90%;
-}
-
 nav {
-     padding: 1em;
+    background: #181b2c;
+    opacity: 1;
+    padding: 1em 0;
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
 }
 
 nav ul {
@@ -83,6 +85,7 @@ nav a:hover, nav a:active {
     background: #feffee;
     margin-bottom: 2em;
     min-height: 25em;
+    padding: 1em 5em;
 }
 
 footer {
