@@ -21,7 +21,7 @@ header {
 
 #header-container {
     background: #181b2c;
-    opacity: 0.8;
+    opacity: 0.6;
     height: 160px;
 }
 
@@ -83,7 +83,7 @@ nav a:hover, nav a:active {
 }
 
 #content {
-    background: #feffee;
+    background: #fefefe;
     margin-bottom: 2em;
     min-height: 25em;
     padding: 1em 5em;

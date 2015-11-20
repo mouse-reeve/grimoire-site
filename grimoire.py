@@ -46,4 +46,4 @@ def item(label, uid):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port=4080)
+    app.run(host='0.0.0.0', port=4080)
