@@ -10,7 +10,36 @@ graph = GraphService()
 @app.route('/', methods=['GET'])
 def index():
     ''' render the basic template for angular '''
-    return render_template('index.html')
+    data = graph.get_all('grimoires')
+    grimoires = []
+    for g in data['nodes']:
+        g = g['properties']
+        if 'year' in g and g['year']:
+            date = g['year']
+        elif 'decade' in g and g['decade']:
+            date = '%ss' % g['decade']
+        elif 'century' in g and g['century']:
+            try:
+                cent = int(g['century'][:-2])
+                date = '%dth century' % (cent + 1)
+            except ValueError:
+                date = '%ss' % g['century']
+        else:
+            date = ''
+
+        grimoires.append({
+            'uid': g['uid'],
+            'identifier': g['identifier'],
+            'date': date
+        })
+        grimoires = sorted(grimoires, key=lambda g: g['identifier'])
+    return render_template('index.html', grimoires=grimoires)
+
+
+@app.route('/<label>/<item_name>', methods=['GET'])
+def item(label, item_name):
+    ''' generic page for an item '''
+    return render_template('item.html', data={'label': label, 'item': item_name})
 
 
 if __name__ == '__main__':

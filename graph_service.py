@@ -59,7 +59,7 @@ class GraphService(object):
         return [l[0][0] for l in data]
 
     @serialize
-    def get_all_for_type(self, label):
+    def get_all(self, label):
         ''' load all nodes with a given label '''
         data = self.query('MATCH (n:%s) RETURN n' % label)
         return data
