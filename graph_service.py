@@ -1,5 +1,6 @@
 ''' neo4j logic '''
-from py2neo import Graph
+import os
+from py2neo import authenticate, Graph
 
 def serialize(func):
     ''' serialize neo4j data '''
@@ -50,6 +51,9 @@ class GraphService(object):
     ''' manage neo4j data operations '''
 
     def __init__(self):
+        user = os.environ['NEO4J_USER']
+        password = os.environ['NEO4J_PASS']
+        authenticate('localhost:7474', user, password)
         graph = Graph()
         self.query = graph.cypher.execute
 
