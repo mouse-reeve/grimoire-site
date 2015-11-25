@@ -18,10 +18,14 @@
 <div class="divider"></div>
 
 <h2>Grimoires</h2>
+{% if grimoires %}
 <ul>
     {% for grimoire in grimoires %}
     <li><a href="/grimoires/{{ grimoire.uid }}">{{ grimoire.identifier }}</a> ({{ grimoire.date }})</li>
     {% endfor %}
 </ul>
+{% else %}
+<p>Sorry, we're unable to access the database at this time.</p>
+{% endif %}
 
 {% endblock %}

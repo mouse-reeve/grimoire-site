@@ -1,6 +1,8 @@
 ''' neo4j logic '''
+import logging
 import os
 from py2neo import authenticate, Graph
+from py2neo.packages.httpstream.http import SocketError
 
 def serialize(func):
     ''' serialize neo4j data '''
@@ -9,6 +11,10 @@ def serialize(func):
         data = func(self, label)
         nodes = []
         rels = []
+        try:
+            data.records
+        except AttributeError:
+            return {'nodes': []}
         for item in data.records:
 
             try:
@@ -54,8 +60,12 @@ class GraphService(object):
         user = os.environ['NEO4J_USER']
         password = os.environ['NEO4J_PASS']
         authenticate('localhost:7474', user, password)
-        graph = Graph()
-        self.query = graph.cypher.execute
+        try:
+            graph = Graph()
+            self.query = graph.cypher.execute
+        except SocketError:
+            logging.error('neo4j failed to load')
+            self.query = lambda x: {}
 
 
     def get_labels(self):

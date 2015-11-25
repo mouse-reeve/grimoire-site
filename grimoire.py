@@ -1,6 +1,7 @@
 ''' webserver for grimoire graph data '''
 from flask import Flask, render_template
 from graph_service import GraphService
+import logging
 
 app = Flask(__name__)
 graph = GraphService()
@@ -40,6 +41,7 @@ def index():
 def item(label, uid):
     ''' generic page for an item '''
     #TODO: error handling, sanitization
+    logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
     return render_template('item.html', data=data)
 
