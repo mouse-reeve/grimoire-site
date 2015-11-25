@@ -16,7 +16,7 @@ header {
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    width: 100;
+    width: 100%;
 }
 
 #header-container {
@@ -28,9 +28,8 @@ header {
 h1 {
     font-weight: normal;
     letter-spacing: 0.3em;
-    padding-top: 0.5em;
     position: absolute;
-    top: 0;
+    top: 1em;
     width: 100%;
 }
 
