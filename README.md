@@ -5,9 +5,9 @@ This site, www.grimoire.org, exposes a neo4j graph database of metadata about hi
 
 ## How
 To get an instance running:
-- Clone this repo
+- Fork this repo and clone it to your development environment
 ```bash
-$ git clone https://github.com/mouse-reeve/grimoire-site.git
+$ git clone https://github.com/[your_username]/grimoire-site.git
 ```
 
 - Create a virtual environment and install dependencies
