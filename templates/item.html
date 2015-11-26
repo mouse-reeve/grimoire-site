@@ -7,5 +7,5 @@
 {{ macros.description(data.nodes[0].properties) }}
 
 <h3>Connections</h3>
-{{ macros.list(data) }}
+{{ macros.list(data.nodes[0].id, data) }}
 {% endblock %}

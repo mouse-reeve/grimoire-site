@@ -63,7 +63,7 @@ nav ul {
     margin: 0;
     margin-right: auto;
     margin-left: auto;
-    overflow: auto;
+    overflow: visible;
     padding: 0;
 }
 
@@ -101,6 +101,16 @@ nav a {
 
 nav a:hover, nav a:active {
     color: #677077;
+}
+
+#search-bar {
+    padding: 0.3em;
+    border-radius: 0.6em;
+    border: 2px solid #b5b5b7;
+}
+
+header nav form {
+    display: inline;
 }
 
 #content {

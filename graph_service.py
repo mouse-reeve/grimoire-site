@@ -86,6 +86,7 @@ class GraphService(object):
         data = self.query('MATCH (n:%s) RETURN n' % label)
         return data
 
+
     @serialize
     def get_node(self, uid):
         ''' load data '''
@@ -98,3 +99,11 @@ class GraphService(object):
         ''' select one random node '''
         node = self.query('MATCH n RETURN n, rand() as random ORDER BY random limit 1')
         return node
+
+
+    @serialize
+    def search(self, term):
+        ''' match a search term '''
+        data = self.query('match n where n.identifier =~ {term} return n', term='(?i).*%s.*' % term)
+        return data
+

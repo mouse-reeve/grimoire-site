@@ -1,0 +1,19 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Search Results for "{{ term }}"</h2>
+
+{% if results %}
+<ul>
+    {% for result in results %}
+    <li>
+        <a href="{{ result.link }}">{{ result.properties.identifier }}</a> ({{ result.labels[0] }})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No results found. Sorry about that.</p>
+{% endif %}
+
+{% endblock %}

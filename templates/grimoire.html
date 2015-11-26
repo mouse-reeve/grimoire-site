@@ -22,15 +22,7 @@
 {% if data.relationships %}
 <div class="card">
     <h3>Connections</h3>
-    <ul>
-    {% for rel in data.relationships %}
-        <li>
-            <a href="/{{ rel.start.labels[0] }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
-            {{ rel.type | format }}
-            <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    {{ macros.list(data.id, data) }}
 </div>
 {% endif %}
 

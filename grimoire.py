@@ -1,5 +1,6 @@
 ''' webserver for grimoire graph data '''
-from flask import Flask, redirect, render_template
+from werkzeug.exceptions import BadRequestKeyError
+from flask import Flask, redirect, render_template, request
 from graph_service import GraphService
 import logging
 import re
@@ -56,21 +57,32 @@ def content_index():
         })
     return render_template('index.html', data=data, title='Index')
 
+
 @app.route('/support', methods=['GET'])
 def support():
     ''' the "give me money" page '''
     return render_template('support.html')
 
 
+@app.route('/search', methods=['GET'])
+def search():
+    ''' look up a term '''
+    try:
+        term = sanitize(request.values['term'], allow_spaces=True)
+    except BadRequestKeyError:
+        return redirect('/')
+    data = graph.search(term)
+    return render_template('search.html', results=data['nodes'], term=term)
+
 
 @app.route('/grimoire/<uid>', methods=['GET'])
 def grimoire(uid):
     ''' grimoire page '''
-    #TODO: error handling, sanitization
     logging.info('loading grimoire: %s', uid)
+    uid = sanitize(uid)
     data = graph.get_node(uid)
 
-    grim = {'properties': data['nodes'][0]['properties']}
+    grim = {'properties': data['nodes'][0]['properties'], 'id': data['nodes'][0]['id']}
     grim['editions'] = [r for r in data['relationships']
                         if r['end']['labels'] and r['end']['labels'][0] == 'edition']
 
@@ -118,6 +130,14 @@ def pluralize(text):
         return text[:-1] + 'ies'
     return text + 's'
 
+
+# ----- utilities
+def sanitize(text, allow_spaces=False):
+    ''' don't let any fuckery in to neo4j '''
+    regex = r'[a-zA-z\-\d]'
+    if allow_spaces:
+        regex = r'[a-zA-z\-\s\d]'
+    return ''.join([t.lower() for t in text if re.match(regex, t)])
 
 if __name__ == '__main__':
     app.debug = True
