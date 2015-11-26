@@ -21,7 +21,7 @@
 {% if grimoires %}
 <ul>
     {% for grimoire in grimoires %}
-    <li><a href="/grimoires/{{ grimoire.uid }}">{{ grimoire.identifier }}</a> ({{ grimoire.date }})</li>
+    <li><a href="/grimoire/{{ grimoire.uid }}">{{ grimoire.identifier }}</a> ({{ grimoire.date }})</li>
     {% endfor %}
 </ul>
 {% else %}

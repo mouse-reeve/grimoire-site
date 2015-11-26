@@ -17,7 +17,7 @@
 <ul>
 {% for field in data.nodes[0].properties %}
     {% if not field in ['uid', 'identifier', 'content'] %}
-    <li>{{ field }}: {{ data.nodes[0].properties[field] }}</li>
+    <li>{{ field | capitalize }}: {{ data.nodes[0].properties[field] }}</li>
     {% endif %}
 {% endfor %}
 </ul>
@@ -30,7 +30,7 @@
         {% if rel.start.labels[0] == 'edition' %}
         ({{ rel.start.labels[0] }})
         {% endif %}
-        {{ rel.type }}
+        {{ rel.type | format_rel }}
         <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
         {% if rel.end.labels[0] == 'edition' %}
         ({{ rel.end.labels[0] }})

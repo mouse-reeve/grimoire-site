@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Grimoire notes</title>
+    <title>
+    {% if title %}
+        {{ title }}
+    {% else %}
+        Grimoire notes
+    {% endif %}
+    </title>
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="/static/format.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -25,7 +31,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/index">Index</a></li>
-                <li><a href-"/about">About</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/support">Support</a></li>
             </ul>
         </nav>

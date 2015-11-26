@@ -2,6 +2,7 @@
 from flask import Flask, render_template
 from graph_service import GraphService
 import logging
+import re
 
 app = Flask(__name__)
 graph = GraphService()
@@ -34,7 +35,7 @@ def index():
             'date': date
         })
         grimoires = sorted(grimoires, key=lambda g: g['identifier'])
-    return render_template('home.html', grimoires=grimoires)
+    return render_template('home.html', grimoires=grimoires, title="Grimoire Metadata")
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
@@ -43,7 +44,22 @@ def item(label, uid):
     #TODO: error handling, sanitization
     logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
-    return render_template('item.html', data=data)
+    title = '%s (%s)' % (data['nodes'][0]['properties']['identifier'],
+                         (label[0].upper() + label[1:]))
+    return render_template('item.html', data=data, title=title)
+
+
+# ----- filters
+@app.template_filter('format_rel')
+def format_rel_filter(rel):
+    ''' cleanup _ lines '''
+    return re.sub('_', ' ', rel)
+
+
+@app.template_filter('capitalize')
+def capitalize_filter(text):
+    ''' capitalize words '''
+    return text[0].upper() + text[1:]
 
 
 if __name__ == '__main__':
