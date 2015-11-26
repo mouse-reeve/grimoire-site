@@ -12,6 +12,7 @@
     <ul>
         <li>
             <a href="/{{ edition.end.labels[0] }}/{{ edition.end.properties.uid }}">{{ edition.end.properties.identifier }}</a>
+            {% if edition.end.properties.editor %}({{ edition.end.properties.editor }}){% endif %}
         </li>
     </ul>
     {% endfor %}
