@@ -105,6 +105,8 @@ class GraphService(object):
     @serialize
     def search(self, term):
         ''' match a search term '''
-        data = self.query('match n where n.identifier =~ {term} return n', term='(?i).*%s.*' % term)
+        data = self.query('match n where n.identifier =~ {term} or ' \
+                          'n.alternate_name =~ {term} or ' \
+                          'n.content =~ {term} return n', term='(?i).*%s.*' % term)
         return data
 
