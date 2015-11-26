@@ -37,13 +37,26 @@ h1 .fa {
     color: #b5b5b7;
 }
 
-nav {
+header nav {
     background: #181b2c;
     opacity: 1;
     padding: 1em 0;
     position: absolute;
     bottom: -30px;
     width: 100%;
+}
+
+#content nav {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#content nav h2 {
+    font-size: 1em;
+    float: left;
+    margin: 0;
+    padding: 0;
+    padding-right: 1em;
 }
 
 nav ul {
@@ -62,11 +75,16 @@ nav li {
 }
 
 nav li:after {
-    content: "\f06e";
+    content: ",";
+}
+
+header nav li:after {
     font-family: fontawesome;
     font-weight: normal;
     margin: 1em;
+    content: "\f06e";
 }
+
 
 nav li:last-child:after {
     content: none;
@@ -85,7 +103,7 @@ nav a:hover, nav a:active {
     background: #fefefe;
     margin-bottom: 2em;
     min-height: 25em;
-    padding: 1em 5em;
+    padding: 2em 5em;
 }
 
 #content-wrapper {

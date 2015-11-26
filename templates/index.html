@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<nav>
+    <h2>Categories:</h2>
+    <ul>
+    {% for group in data | sort(attribute="label") %}
+        <li><a href="#{{ group.label }}">{{ group.label | capitalize }}</a></li>
+    {% endfor %}
+    </ul>
+</nav>
+
+{% for group in data | sort(attribute="label") %}
+<div class="index card" id="{{ group.label }}">
+    <h2>{{ group.label }}</h2>
+    <ul>
+        {% for item in group.nodes | sort(attribute="properties.identifier") %}
+        <li>
+            <a href="{{ item.link }}">{{ item.properties.identifier }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+{% endblock %}

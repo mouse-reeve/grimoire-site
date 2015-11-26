@@ -44,9 +44,15 @@ def serialize(func):
             except AttributeError:
                 pass
             else:
+                try:
+                    link = '/%s/%s' % (node.labels.pop(), node.properties['uid'])
+                except KeyError:
+                    link = ''
+
                 nodes.append({
                     'id': node._id,
                     'labels': [l for l in node.labels],
+                    'link': link,
                     'properties': node.properties,
                 })
 

@@ -35,7 +35,19 @@ def index():
             'date': date
         })
         grimoires = sorted(grimoires, key=lambda g: g['identifier'])
-    return render_template('home.html', grimoires=grimoires, title="Grimoire Metadata")
+    return render_template('home.html', grimoires=grimoires, title='Grimoire Metadata')
+
+
+@app.route('/index', methods=['GET'])
+def content_index():
+    ''' list everything available by category '''
+    data = []
+    for label in graph.get_labels():
+        data.append({
+            'label': label,
+            'nodes': graph.get_all(label)['nodes']
+        })
+    return render_template('index.html', data=data, title='Index')
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
