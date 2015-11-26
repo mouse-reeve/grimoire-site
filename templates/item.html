@@ -6,6 +6,9 @@
 
 {{ macros.description(data.nodes[0].properties) }}
 
+{% if data.relationships %}
 <h3>Connections</h3>
 {{ macros.list(data.nodes[0].id, data) }}
+{% endif %}
+
 {% endblock %}
