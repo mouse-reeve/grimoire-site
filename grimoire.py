@@ -1,5 +1,5 @@
 ''' webserver for grimoire graph data '''
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 from graph_service import GraphService
 import logging
 import re
@@ -38,6 +38,13 @@ def index():
     return render_template('home.html', grimoires=grimoires, title='Grimoire Metadata')
 
 
+@app.route('/random', methods=['GET'])
+def random():
+    ''' pick a node, any node '''
+    data = graph.random()
+    return redirect(data['nodes'][0]['link'])
+
+
 @app.route('/index', methods=['GET'])
 def content_index():
     ''' list everything available by category '''
@@ -53,6 +60,31 @@ def content_index():
 def support():
     ''' the "give me money" page '''
     return render_template('support.html')
+
+
+
+@app.route('/grimoire/<uid>', methods=['GET'])
+def grimoire(uid):
+    ''' grimoire page '''
+    #TODO: error handling, sanitization
+    logging.info('loading grimoire: %s', uid)
+    data = graph.get_node(uid)
+
+    grim = {'properties': data['nodes'][0]['properties']}
+    grim['editions'] = [r for r in data['relationships']
+                        if r['end']['labels'] and r['end']['labels'][0] == 'edition']
+
+    grim['entities'] = {}
+    entities = ['angel', 'demon', 'olympian_spirit']
+    for entity in entities:
+        grim['entities'][entity] = [r for r in data['relationships']
+                                    if r['end']['labels'] and r['end']['labels'][0] == entity]
+
+    grim['relationships'] = [r for r in data['relationships']
+                             if not (r['end']['labels']
+                             and r['end']['labels'][0] in (entities + ['edition']))]
+    title = '%s (Grimoire)' % grim['properties']['identifier']
+    return render_template('grimoire.html', data=grim, title=title)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])

@@ -150,12 +150,20 @@ li {
     padding: 0;
 }
 
-.index.card {
+li.list span:after {
+    content: ',';
+}
+
+li.list span:last-child:after {
+    content: '';
+}
+
+.card {
     clear: both;
     overflow: auto;
 }
 
-.index.card .many li {
+.card .many li {
     float: left;
     padding: 0 0.5em;
     width: 10em;

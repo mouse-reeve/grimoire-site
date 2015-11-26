@@ -6,9 +6,9 @@ from py2neo.packages.httpstream.http import SocketError
 
 def serialize(func):
     ''' serialize neo4j data '''
-    def serialize_wrapper(self, label):
+    def serialize_wrapper(self, *args):
         ''' serialize dis '''
-        data = func(self, label)
+        data = func(self, *args)
         nodes = []
         rels = []
         try:
@@ -45,7 +45,7 @@ def serialize(func):
                 pass
             else:
                 try:
-                    link = '/%s/%s' % (node.labels.pop(), node.properties['uid'])
+                    link = '/%s/%s' % (node.labels.copy().pop(), node.properties['uid'])
                 except KeyError:
                     link = ''
 
@@ -90,4 +90,11 @@ class GraphService(object):
     def get_node(self, uid):
         ''' load data '''
         node = self.query('MATCH n WHERE n.uid = "%s" OPTIONAL MATCH (n)-[r]-() RETURN n, r' % uid)
+        return node
+
+
+    @serialize
+    def random(self):
+        ''' select one random node '''
+        node = self.query('MATCH n RETURN n, rand() as random ORDER BY random limit 1')
         return node

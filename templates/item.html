@@ -2,19 +2,10 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ data.nodes[0].properties.identifier }}</h2>
+<h2>{{ data.nodes[0].properties.identifier }} ({{ data.nodes[0].labels[0] | format_rel | capitalize }})</h2>
 
-{{ macros.description(data) }}
+{{ macros.description(data.nodes[0].properties) }}
 
 <h3>Connections</h3>
-<ul>
-{% for rel in data.relationships %}
-    <li>
-        <a href="/{{ rel.start.labels[0] }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
-        {{ rel.type | format_rel }}
-        <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
-    </li>
-{% endfor %}
-</ul>
-
+{{ macros.list(data) }}
 {% endblock %}
