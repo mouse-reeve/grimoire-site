@@ -14,7 +14,7 @@
 <ul>
 {% for field in data %}
     {% if not field in ['uid', 'identifier', 'content'] and data[field]%}
-        {% if data[field] is sequence %}
+        {% if data[field] is sequence and data[field] is not string %}
         <li class="list">{{ field | format_rel | capitalize }}: {% for l in data[field] %}<span>{{ l }}</span>{% endfor %}</li>
         {% else %}
         <li>{{ field | format_rel | capitalize }}: {{ data[field] }}</li>
