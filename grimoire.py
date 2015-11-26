@@ -74,6 +74,12 @@ def capitalize_filter(text):
     return text[0].upper() + text[1:]
 
 
+@app.template_filter('pluralize')
+def pluralize(text):
+    ''' fishs '''
+    return text + 's'
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=4080)

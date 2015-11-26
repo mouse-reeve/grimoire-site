@@ -131,6 +131,11 @@ nav a:hover, nav a:active {
     font-family: fontawesome;
 }
 
+.caption {
+    font-size: 0.75em;
+    font-style: italic;
+}
+
 ul {
     margin: 0;
 }

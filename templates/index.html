@@ -5,14 +5,19 @@
     <h2>Categories:</h2>
     <ul>
     {% for group in data | sort(attribute="label") %}
-        <li><a href="#{{ group.label }}">{{ group.label | capitalize }}</a></li>
+        <li><a href="#{{ group.label }}">{{ group.label | capitalize | pluralize }}</a></li>
     {% endfor %}
     </ul>
 </nav>
 
 {% for group in data | sort(attribute="label") %}
 <div class="index card" id="{{ group.label }}">
-    <h2>{{ group.label }}</h2>
+    <h2>{{ group.label | capitalize | pluralize}}</h2>
+    {% if group.label == 'author' %}
+    <p class="caption">
+        For ours purposes, "author" means someone who either wrote a grimoire that falls within our range of interest, or has one attributed to them. That means that King Solomon qualifies, despite none of these works actually being written by him, and Aleister Crowley does not, despite having authored books of magic.
+    </p>
+    {% endif %}
     <ul>
         {% for item in group.nodes | sort(attribute="properties.identifier") %}
         <li>
