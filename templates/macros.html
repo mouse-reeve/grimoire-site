@@ -1,0 +1,26 @@
+{% macro description(data) %}
+
+{% if 'content' in data.nodes[0].properties %}
+<div class="card" id="main">
+    <p>
+        {{ data.nodes[0].properties['content'] }}
+    </p>
+</div>
+
+<div class="divider"></div>
+{% endif %}
+
+<h3>Details</h3>
+<ul>
+{% for field in data.nodes[0].properties %}
+    {% if not field in ['uid', 'identifier', 'content'] and data.nodes[0].properties[field]%}
+        {% if data.nodes[0].properties[field] is sequence %}
+        <li class="list">{{ field | format_rel | capitalize }}: {% for l in data.nodes[0].properties[field] %}<span>{{ l }}</span>{% endfor %}</li>
+        {% else %}
+        <li>{{ field | format_rel | capitalize }}: {{ data.nodes[0].properties[field] }}</li>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% endmacro %}
