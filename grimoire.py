@@ -49,6 +49,11 @@ def content_index():
         })
     return render_template('index.html', data=data, title='Index')
 
+@app.route('/support', methods=['GET'])
+def support():
+    ''' the "give me money" page '''
+    return render_template('support.html')
+
 
 @app.route('/<label>/<uid>', methods=['GET'])
 def item(label, uid):
