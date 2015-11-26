@@ -5,7 +5,7 @@
     <h2>Categories:</h2>
     <ul class="many">
     {% for group in data | sort(attribute="label") %}
-        <li><a href="#{{ group.label }}">{{ group.label | format_rel | capitalize | pluralize }}</a></li>
+        <li><a href="#{{ group.label }}">{{ group.label | format | capitalize | pluralize }}</a></li>
     {% endfor %}
     </ul>
 </div>
@@ -14,7 +14,7 @@
 
 {% for group in data | sort(attribute="label") %}
 <div class="index card" id="{{ group.label }}">
-    <h3>{{ group.label | capitalize | pluralize}}</h3>
+    <h3>{{ group.label | format | capitalize | pluralize}}</h3>
     <p class="caption">
     {% if group.label == 'author' %}
         For ours purposes, "author" means someone who either wrote a grimoire that falls within our range of interest, or has one attributed to them. That means that King Solomon qualifies, despite none of these works actually being written by him, and Aleister Crowley does not, despite having authored books of magic.
@@ -22,10 +22,10 @@
         This category does not distinguish between editors and translators, for the sake of keeping the number of categories in check.
     {% endif %}
     </p>
-    <ul {% if group.label in ["demon", "olympian_spirit", "angel", "astrological_body", "language"] %} class="many" {% endif %}>
+    <ul {% if group.label in ["demon", "olympian_spirit", "angel", "astrological_body", "language", "creature", "nature"] %} class="many" {% endif %}>
         {% for item in group.nodes | sort(attribute="properties.identifier") %}
         <li>
-            <a href="{{ item.link }}">{{ item.properties.identifier }}</a>
+            <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
         </li>
         {% endfor %}
     </ul>

@@ -26,7 +26,7 @@
     {% for rel in data.relationships %}
         <li>
             <a href="/{{ rel.start.labels[0] }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
-            {{ rel.type | format_rel }}
+            {{ rel.type | format }}
             <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
         </li>
     {% endfor %}
@@ -37,7 +37,7 @@
 {% for type, items in data.entities.items() %}
 {% if items %}
 <div class="card">
-    <h3>{{ type | format_rel | capitalize | pluralize }} ({{ items | length }})</h3>
+    <h3>{{ type | format | capitalize | pluralize }} ({{ items | length }})</h3>
     <ul class="many">
         {% for item in items | sort(attribute="end.properties.identifier") %}
         <li>

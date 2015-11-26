@@ -99,8 +99,8 @@ def item(label, uid):
 
 
 # ----- filters
-@app.template_filter('format_rel')
-def format_rel_filter(rel):
+@app.template_filter('format')
+def format_filter(rel):
     ''' cleanup _ lines '''
     return re.sub('_', ' ', rel)
 
@@ -114,6 +114,8 @@ def capitalize_filter(text):
 @app.template_filter('pluralize')
 def pluralize(text):
     ''' fishs '''
+    if text[-1] == 'y':
+        return text[:-1] + 'ies'
     return text + 's'
 
 

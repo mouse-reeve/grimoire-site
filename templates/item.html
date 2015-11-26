@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ data.nodes[0].properties.identifier }} ({{ data.nodes[0].labels[0] | format_rel | capitalize }})</h2>
+<h2>{{ data.nodes[0].properties.identifier }} ({{ data.nodes[0].labels[0] | format | capitalize }})</h2>
 
 {{ macros.description(data.nodes[0].properties) }}
 
