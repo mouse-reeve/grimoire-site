@@ -90,7 +90,8 @@ class GraphService(object):
     @serialize
     def get_node(self, uid):
         ''' load data '''
-        node = self.query('MATCH n WHERE n.uid = "%s" OPTIONAL MATCH (n)-[r]-() RETURN n, r' % uid)
+        node = self.query('MATCH n WHERE n.uid = {uid} OPTIONAL MATCH (n)-[r]-() RETURN n, r',
+                          uid=uid)
         return node
 
 
