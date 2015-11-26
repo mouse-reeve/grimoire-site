@@ -28,12 +28,12 @@ def serialize(func):
                             'id': rel._id,
                             'start': {
                                 'id': rel.start_node._id,
-                                'labels':  [l for l in rel.start_node.labels],
+                                'label':  [l for l in rel.start_node.labels][0],
                                 'properties': rel.start_node.properties
                             },
                             'end': {
                                 'id': rel.end_node._id,
-                                'labels':  [l for l in rel.end_node.labels],
+                                'label':  [l for l in rel.end_node.labels][0],
                                 'properties': rel.end_node.properties
                             },
                             'type': rel.type,
@@ -51,7 +51,7 @@ def serialize(func):
 
                 nodes.append({
                     'id': node._id,
-                    'labels': [l for l in node.labels],
+                    'label': [l for l in node.labels][0],
                     'link': link,
                     'properties': node.properties,
                 })

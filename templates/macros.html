@@ -35,7 +35,7 @@
         {% if rel.start.id == id %}
         {{ rel.start.properties.identifier }}
         {% else %}
-        <a href="/{{ rel.start.labels[0] }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
         {% endif %}
 
         {{ rel.type | format }}
@@ -43,7 +43,7 @@
         {% if rel.end.id == id %}
         {{ rel.end.properties.identifier }}
         {% else %}
-        <a href="/{{ rel.end.labels[0] }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
+        <a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
         {% endif %}
     </li>
 {% endfor %}

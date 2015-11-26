@@ -84,17 +84,17 @@ def grimoire(uid):
 
     grim = {'properties': data['nodes'][0]['properties'], 'id': data['nodes'][0]['id']}
     grim['editions'] = [r for r in data['relationships']
-                        if r['end']['labels'] and r['end']['labels'][0] == 'edition']
+                        if r['end']['label'] and r['end']['label'] == 'edition']
 
     grim['entities'] = {}
     entities = ['angel', 'demon', 'olympian_spirit']
     for entity in entities:
         grim['entities'][entity] = [r for r in data['relationships']
-                                    if r['end']['labels'] and r['end']['labels'][0] == entity]
+                                    if r['end']['label'] and r['end']['label'] == entity]
 
     grim['relationships'] = [r for r in data['relationships']
-                             if not (r['end']['labels']
-                             and r['end']['labels'][0] in (entities + ['edition']))]
+                             if not (r['end']['label']
+                             and r['end']['label'] in (entities + ['edition']))]
     title = '%s (Grimoire)' % grim['properties']['identifier']
     return render_template('grimoire.html', data=grim, title=title)
 
