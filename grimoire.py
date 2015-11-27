@@ -87,7 +87,7 @@ def grimoire(uid):
                         if r['end']['label'] and r['end']['label'] == 'edition']
 
     grim['entities'] = {}
-    entities = ['angel', 'demon', 'olympian_spirit']
+    entities = ['ingredient', 'angel', 'demon', 'olympian_spirit']
     for entity in entities:
         grim['entities'][entity] = [r for r in data['relationships']
                                     if r['end']['label'] and r['end']['label'] == entity]

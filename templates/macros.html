@@ -33,7 +33,7 @@
 {% for rel in data.relationships %}
     <li>
         {% if rel.start.id == id %}
-        {{ rel.start.properties.identifier }}
+        <strong>{{ rel.start.properties.identifier }}</strong>
         {% else %}
         <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
         {% endif %}
@@ -41,7 +41,7 @@
         {{ rel.type | format }}
 
         {% if rel.end.id == id %}
-        {{ rel.end.properties.identifier }}
+        <strong>{{ rel.end.properties.identifier }}</strong>
         {% else %}
         <a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
         {% endif %}
