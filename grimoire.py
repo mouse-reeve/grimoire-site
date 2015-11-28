@@ -17,18 +17,7 @@ def index():
     grimoires = []
     for g in data['nodes']:
         g = g['properties']
-        if 'year' in g and g['year']:
-            date = g['year']
-        elif 'decade' in g and g['decade']:
-            date = '%ss' % g['decade']
-        elif 'century' in g and g['century']:
-            try:
-                cent = int(g['century'][:-2])
-                date = '%dth century' % (cent + 1)
-            except ValueError:
-                date = '%ss' % g['century']
-        else:
-            date = ''
+        date = grimoire_date(g)
 
         grimoires.append({
             'uid': g['uid'],
@@ -82,12 +71,15 @@ def grimoire(uid):
     uid = sanitize(uid)
     data = graph.get_node(uid)
 
-    grim = {'properties': data['nodes'][0]['properties'], 'id': data['nodes'][0]['id']}
+    node = data['nodes'][0]
+    grim = {'properties': node['properties'], 'id': node['id']}
     grim['editions'] = [r for r in data['relationships']
                         if r['end']['label'] and r['end']['label'] == 'edition']
 
+    grim['date'] = grimoire_date(node['properties'])
+
     grim['entities'] = {}
-    entities = ['ingredient', 'angel', 'demon', 'olympian_spirit']
+    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
     for entity in entities:
         grim['entities'][entity] = [r for r in data['relationships']
                                     if r['end']['label'] and r['end']['label'] == entity]
@@ -97,6 +89,16 @@ def grimoire(uid):
                              and r['end']['label'] in (entities + ['edition']))]
     title = '%s (Grimoire)' % grim['properties']['identifier']
     return render_template('grimoire.html', data=grim, title=title)
+
+
+@app.route('/fairy/<uid>', methods=['GET'])
+def fairy(uid):
+    uid = sanitize(uid)
+    data = graph.get_node(uid)
+    data['relationships'] = [r for r in data['relationships'] if
+                             r['type'] != 'has_sister' or r['end']['id'] != data['nodes'][0]['id']]
+    title = '%s (Fairy)' % data['nodes'][0]['properties']['identifier']
+    return render_template('item.html', data=data, title=title)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
@@ -132,6 +134,23 @@ def pluralize(text):
 
 
 # ----- utilities
+def grimoire_date(props):
+    ''' get a nicely formatted year for a grimoire '''
+    if 'year' in props and props['year']:
+        date = props['year']
+    elif 'decade' in props and props['decade']:
+        date = '%ss' % props['decade']
+    elif 'century' in props and props['century']:
+        try:
+            cent = int(props['century'][:-2])
+            date = '%dth century' % (cent + 1)
+        except ValueError:
+            date = '%ss' % props['century']
+    else:
+        date = ''
+
+    return date
+
 def sanitize(text, allow_spaces=False):
     ''' don't let any fuckery in to neo4j '''
     regex = r'[a-zA-z\-\d]'

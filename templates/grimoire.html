@@ -3,7 +3,13 @@
 {% block body %}
 <h2>{{ data.properties.identifier }} (Grimoire)</h2>
 
-{{ macros.description(data.properties) }}
+{% if data.date %}
+<div class="card">
+    <p><strong>Date:</strong> {{ data.date }}</p>
+</div>
+{% endif %}
+
+<p>{{ data.properties.content }}</p>
 
 {% if data.editions %}
 <div class="card">

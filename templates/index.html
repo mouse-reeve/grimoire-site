@@ -22,7 +22,7 @@
         This category does not distinguish between editors and translators, for the sake of keeping the number of categories in check.
     {% endif %}
     </p>
-    <ul {% if group.label in ["demon", "olympian_spirit", "angel", "astrological_body", "language", "creature", "nature"] %} class="many" {% endif %}>
+    <ul {% if group.label in ["demon", "olympian_spirit", "angel", "angelic_order", "animal", "astrological_body", "language", "creature", "nature", "fairy", "direction"] %} class="many" {% endif %}>
         {% for item in group.nodes | sort(attribute="properties.identifier") %}
         <li>
             <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>

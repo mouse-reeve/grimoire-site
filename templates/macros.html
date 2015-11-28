@@ -35,11 +35,12 @@
         {% if rel.start.id == id %}
         <strong>{{ rel.start.properties.identifier }}</strong>
         {% else %}
-        <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        the {{ rel.start.label }} <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
         {% endif %}
 
         {{ rel.type | format }}
 
+        the {{ rel.end.label }}
         {% if rel.end.id == id %}
         <strong>{{ rel.end.properties.identifier }}</strong>
         {% else %}
