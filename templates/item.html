@@ -4,6 +4,8 @@
 
 <h2>{{ data.nodes[0].properties.identifier }} ({{ data.nodes[0].label | format | capitalize }})</h2>
 
+{{ macros.content(data.nodes[0].properties) }}
+
 {{ macros.description(data.nodes[0].properties) }}
 
 {% if data.relationships %}

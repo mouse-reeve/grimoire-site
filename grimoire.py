@@ -72,11 +72,21 @@ def grimoire(uid):
     data = graph.get_node(uid)
 
     node = data['nodes'][0]
-    grim = {'properties': node['properties'], 'id': node['id']}
+    grim = {'id': node['id']}
+    grim['date'] = grimoire_date(node['properties'])
+
+    props = node['properties']
+    if 'century' in props:
+        del props['century']
+    if 'decade' in props:
+        del props['decade']
+    if 'year' in props:
+        del props['year']
+
+    grim['properties'] = props
     grim['editions'] = [r for r in data['relationships']
                         if r['end']['label'] and r['end']['label'] == 'edition']
 
-    grim['date'] = grimoire_date(node['properties'])
 
     grim['entities'] = {}
     entities = ['angel', 'demon', 'olympian_spirit', 'fairy']

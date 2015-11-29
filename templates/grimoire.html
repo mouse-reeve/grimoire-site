@@ -9,9 +9,9 @@
 </div>
 {% endif %}
 
-{% if data.properties.content %}
-<p>{{ data.properties.content }}</p>
-{% endif %}
+{{ macros.content(data.properties) }}
+
+{{ macros.description(data.properties) }}
 
 {% if data.editions %}
 <div class="card">

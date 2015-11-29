@@ -1,4 +1,4 @@
-{% macro description(data) %}
+{% macro content(data) %}
 
 {% if 'content' in data %}
 <div class="card" id="main">
@@ -10,6 +10,11 @@
 <div class="divider"></div>
 {% endif %}
 
+{% endmacro %}
+
+{% macro description(data) %}
+
+{% if data %}
 <h3>Details</h3>
 <ul>
 {% for field in data %}
@@ -22,6 +27,7 @@
     {% endif %}
 {% endfor %}
 </ul>
+{% endif %}
 
 {% endmacro %}
 
@@ -35,12 +41,12 @@
         {% if rel.start.id == id %}
         <strong>{{ rel.start.properties.identifier | format }}</strong>
         {% else %}
-        the {{ rel.start.label }} <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        the {{ rel.start.label | format }} <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
         {% endif %}
 
         {{ rel.type | format }}
 
-        the {{ rel.end.label }}
+        the {{ rel.end.label | format }}
         {% if rel.end.id == id %}
         <strong>{{ rel.end.properties.identifier | format }}</strong>
         {% else %}
