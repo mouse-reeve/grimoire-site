@@ -139,6 +139,8 @@ def pluralize(text):
     ''' fishs '''
     if text[-1] == 'y':
         return text[:-1] + 'ies'
+    elif text[-1] in ['h', 's']:
+        return text + 'es'
     return text + 's'
 
 
