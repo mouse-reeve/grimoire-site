@@ -101,6 +101,22 @@ def grimoire(uid):
     return render_template('grimoire.html', data=grim, title=title)
 
 
+@app.route('/topic/<uid>', methods=['GET'])
+def topic(uid):
+    logging.info('loading topic: %s', uid)
+    uid = sanitize(uid)
+    data = graph.get_node(uid)
+
+    node = data['nodes'][0]
+    topic_data = {'id': node['id'], 'properties': node['properties']}
+    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
+    topic_data['relationships'] = [r for r in data['relationships'] if not r['start']['label'] == entities]
+    topic_data['teachers'] = [r for r in data['relationships'] if r['start']['label'] == entities]
+
+    title = '%s (Topic)' % node['properties']['identifier']
+    return render_template('topic.html', data=topic_data, title=title)
+
+
 @app.route('/fairy/<uid>', methods=['GET'])
 def fairy(uid):
     uid = sanitize(uid)

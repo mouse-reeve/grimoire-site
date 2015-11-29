@@ -1,0 +1,21 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{ data.properties.identifier }} (Topic/Art)</h2>
+
+{{ macros.content(data.properties) }}
+
+{{ macros.description(data.properties) }}
+
+{% if data.relationships %}
+<div class="card">
+    <h3>Connections</h3>
+    {{ macros.list(data.id, data) }}
+</div>
+{% endif %}
+
+
+{% endblock %}
+
+
