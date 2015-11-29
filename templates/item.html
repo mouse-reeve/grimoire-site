@@ -2,15 +2,17 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ data.nodes[0].properties.identifier }} ({{ data.nodes[0].label | format | capitalize }})</h2>
+<h2>{{ title }}</h2>
 
 {{ macros.content(data.nodes[0].properties) }}
 
-{{ macros.description(data.nodes[0].properties) }}
+{% if data.has_details %}
+{{ macros.details(data.nodes[0].properties) }}
+{% endif %}
 
 {% if data.relationships %}
 <h3>Connections</h3>
-{{ macros.list(data.nodes[0].id, data) }}
+{{ macros.connections(data.nodes[0].id, data) }}
 {% endif %}
 
 {% endblock %}

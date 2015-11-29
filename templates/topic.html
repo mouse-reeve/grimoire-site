@@ -2,16 +2,34 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ data.properties.identifier }} (Topic/Art)</h2>
+<h2>{{ title }}</h2>
 
 {{ macros.content(data.properties) }}
 
-{{ macros.description(data.properties) }}
+{% if data.has_details %}
+{{ macros.details(data.properties) }}
+{% endif %}
+
+
+{% for type, items in data.entities.items() %}
+{% if items %}
+<div class="card">
+    <h3>Associated {{ type | format | capitalize | pluralize }} ({{ items | length }})</h3>
+    <ul class="many">
+        {% for item in items | sort(attribute="start.properties.identifier") %}
+        <li>
+            <a href="/{{ item.start.label }}/{{ item.start.properties.uid }}">{{ item.start.properties.identifier }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endfor %}
 
 {% if data.relationships %}
 <div class="card">
     <h3>Connections</h3>
-    {{ macros.list(data.id, data) }}
+    {{ macros.connections(data.id, data) }}
 </div>
 {% endif %}
 

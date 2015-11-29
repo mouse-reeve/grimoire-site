@@ -12,9 +12,11 @@
 
 {% endmacro %}
 
-{% macro description(data) %}
 
-{% if data %}
+
+
+{% macro details(data) %}
+
 <h3>Details</h3>
 <ul>
 {% for field in data %}
@@ -27,13 +29,13 @@
     {% endif %}
 {% endfor %}
 </ul>
-{% endif %}
 
 {% endmacro %}
 
 
 
-{% macro list(id, data) %}
+
+{% macro connections(id, data) %}
 
 <ul>
 {% for rel in data.relationships %}

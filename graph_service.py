@@ -18,12 +18,18 @@ class GraphService(object):
         except SocketError:
             logging.error('neo4j failed to load')
             self.query = lambda x: {}
-        self.labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
+        labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
+        self.labels = [l[0][0] for l in labels]
 
 
     def get_labels(self):
         ''' list of all types/labels in the db '''
-        return [l[0][0] for l in self.labels]
+        return 
+
+
+    def validate_label(self, label):
+        ''' check if a label is real '''
+        return label in self.labels
 
 
     @serialize
@@ -52,7 +58,7 @@ class GraphService(object):
     def search(self, term):
         ''' match a search term '''
         data = self.query('match n where n.identifier =~ {term} or ' \
-                          'n.alternate_name =~ {term} or ' \
+                          'n.alternate_names =~ {term} or ' \
                           'n.content =~ {term} return n', term='(?i).*%s.*' % term)
         return data
 

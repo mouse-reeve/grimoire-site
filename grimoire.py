@@ -64,84 +64,64 @@ def search():
     return render_template('search.html', results=data['nodes'], term=term)
 
 
-@app.route('/grimoire/<uid>', methods=['GET'])
-def grimoire(uid):
-    ''' grimoire page '''
-    logging.info('loading grimoire: %s', uid)
-    uid = sanitize(uid)
-    data = graph.get_node(uid)
-
-    node = data['nodes'][0]
-    grim = {'id': node['id']}
-    grim['date'] = grimoire_date(node['properties'])
-
-    props = node['properties']
-    if 'century' in props:
-        del props['century']
-    if 'decade' in props:
-        del props['decade']
-    if 'year' in props:
-        del props['year']
-
-    grim['properties'] = props
-    grim['editions'] = [r for r in data['relationships']
-                        if r['end']['label'] and r['end']['label'] == 'edition']
-
-
-    grim['entities'] = {}
-    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
-    for entity in entities:
-        grim['entities'][entity] = [r for r in data['relationships']
-                                    if r['end']['label'] and r['end']['label'] == entity]
-
-    grim['relationships'] = [r for r in data['relationships']
-                             if not (r['end']['label']
-                             and r['end']['label'] in (entities + ['edition']))]
-    title = '%s (Grimoire)' % grim['properties']['identifier']
-    return render_template('grimoire.html', data=grim, title=title)
-
-
-@app.route('/topic/<uid>', methods=['GET'])
-def topic(uid):
-    logging.info('loading topic: %s', uid)
-    uid = sanitize(uid)
-    data = graph.get_node(uid)
-
-    node = data['nodes'][0]
-    topic_data = {'id': node['id'], 'properties': node['properties']}
-    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
-    topic_data['relationships'] = [r for r in data['relationships'] if not r['start']['label'] == entities]
-    topic_data['teachers'] = [r for r in data['relationships'] if r['start']['label'] == entities]
-
-    title = '%s (Topic)' % node['properties']['identifier']
-    return render_template('topic.html', data=topic_data, title=title)
-
-
-@app.route('/fairy/<uid>', methods=['GET'])
-def fairy(uid):
-    uid = sanitize(uid)
-    data = graph.get_node(uid)
-    data['relationships'] = [r for r in data['relationships'] if
-                             r['type'] != 'has_sister' or r['end']['id'] != data['nodes'][0]['id']]
-    title = '%s (Fairy)' % data['nodes'][0]['properties']['identifier']
-    return render_template('item.html', data=data, title=title)
-
-
 @app.route('/<label>/<uid>', methods=['GET'])
 def item(label, uid):
     ''' generic page for an item '''
-    #TODO: error handling, sanitization
+    label = sanitize(label)
+    if not graph.validate_label(label):
+        logging.error('Invalid label %s', label)
+        labels = graph.get_labels()
+        return render_template('label-404.html', labels=labels)
+
     logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
-    title = '%s (%s)' % (data['nodes'][0]['properties']['identifier'],
-                         (label[0].upper() + label[1:]))
-    return render_template('item.html', data=data, title=title)
+    node = data['nodes'][0]
+    rels = data['relationships']
+
+    rel_exclusions = []
+    prop_exclusions = []
+    template = 'item.html'
+
+    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
+    if label == 'grimoire':
+        template = 'grimoire.html'
+        prop_exclusions = ['year', 'decade', 'century']
+        rel_exclusions = ['lists', 'has']
+
+        data['date'] = grimoire_date(node['properties'])
+        data['editions'] = [r for r in rels
+                            if r['end']['label'] and r['end']['label'] == 'edition']
+        data['entities'] = {}
+        for entity in entities:
+            data['entities'][entity] = [r for r in rels
+                                        if r['end']['label'] and r['end']['label'] == entity]
+    elif label == 'topic':
+        template = 'topic.html'
+        data['entities'] = {}
+        rel_exclusions = ['teaches', 'skilled_in']
+        for entity in entities:
+            data['entities'][entity] = [r for r in rels
+                                        if r['start']['label'] and r['start']['label'] == entity]
+    elif label == 'fairy':
+        # removes duplication of two-way sister relationships
+        rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
+
+    data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
+    data['properties'] = {k:v for k, v in node['properties'].items() if not k in prop_exclusions}
+    data['has_details'] = len([k for k in data['properties'].keys()
+                               if not k in ['uid', 'content', 'identifier']]) > 0
+
+    title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(format_filter(label)))
+    return render_template(template, data=data, title=title)
 
 
 @app.route('/<label>', methods=['GET'])
-def list(label):
+def category(label):
     ''' list of entried for a label '''
     label = sanitize(label)
+    if not graph.validate_label(label):
+        labels = graph.get_labels()
+        return render_template('label-404.html', labels=labels)
     data = graph.get_all(label)
     title = 'List of %s' % capitalize_filter(format_filter(label))
     return render_template('list.html', data=data, title=title, label=label)

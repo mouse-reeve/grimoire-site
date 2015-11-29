@@ -1,7 +1,7 @@
 {% import 'macros.html' as macros %}
 {% extends "layout.html" %}
 {% block body %}
-<h2>{{ data.properties.identifier }} (Grimoire)</h2>
+<h2>{{ title }}</h2>
 
 {% if data.date %}
 <div class="card">
@@ -11,7 +11,9 @@
 
 {{ macros.content(data.properties) }}
 
-{{ macros.description(data.properties) }}
+{% if data.has_details %}
+{{ macros.details(data.properties) }}
+{% endif %}
 
 {% if data.editions %}
 <div class="card">
@@ -30,7 +32,7 @@
 {% if data.relationships %}
 <div class="card">
     <h3>Connections</h3>
-    {{ macros.list(data.id, data) }}
+    {{ macros.connections(data.id, data) }}
 </div>
 {% endif %}
 
