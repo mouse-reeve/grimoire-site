@@ -1,7 +1,8 @@
 {% import 'macros.html' as macros %}
 {% extends "layout.html" %}
 {% block body %}
-<h2>{{ title }}</h2>
+
+{{ macros.title(title, label) }}
 
 {% if data.date %}
 <div class="card">

@@ -1,3 +1,11 @@
+{% macro title(title, label) %}
+<h2>{{ title }}</h2>
+<p>List of <a href="/{{ label }}">{{ label | format | pluralize }}</a></p>
+{% endmacro %}
+
+
+
+
 {% macro content(data) %}
 
 {% if 'content' in data %}

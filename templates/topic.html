@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ title }}</h2>
+{{ macros.title(title, label) }}
 
 {{ macros.content(data.properties) }}
 

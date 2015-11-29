@@ -118,7 +118,7 @@ def item(label, uid):
                                if not k in ['uid', 'content', 'identifier']]) > 0
 
     title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(format_filter(label)))
-    return render_template(template, data=data, title=title)
+    return render_template(template, data=data, title=title, label=label)
 
 
 @app.route('/<label>', methods=['GET'])
@@ -137,6 +137,8 @@ def category(label):
 @app.template_filter('format')
 def format_filter(rel):
     ''' cleanup _ lines '''
+    if not rel:
+        return rel
     return re.sub('_', ' ', rel)
 
 
