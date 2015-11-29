@@ -73,8 +73,14 @@ def item(label, uid):
         labels = graph.get_labels()
         return render_template('label-404.html', labels=labels)
 
+    uid = sanitize(uid)
     logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
+    if not data['nodes']:
+        logging.error('Invalid uid %s', uid)
+        items = graph.get_all(label)
+        return render_template('item-404.html', items=items['nodes'], label=label)
+
     node = data['nodes'][0]
     rels = data['relationships']
 
