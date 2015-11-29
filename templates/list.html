@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{ label | format | capitalize | pluralize }}</h2>
+
+<div class="index card" id="{{ label }}">
+    <ul>
+        {% for item in data.nodes | sort(attribute="properties.identifier") %}
+        <li>
+            <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
+

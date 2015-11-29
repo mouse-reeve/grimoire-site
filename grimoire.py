@@ -112,6 +112,15 @@ def item(label, uid):
     return render_template('item.html', data=data, title=title)
 
 
+@app.route('/<label>', methods=['GET'])
+def list(label):
+    ''' list of entried for a label '''
+    label = sanitize(label)
+    data = graph.get_all(label)
+    title = 'List of %s' % capitalize_filter(format_filter(label))
+    return render_template('list.html', data=data, title=title, label=label)
+
+
 # ----- filters
 @app.template_filter('format')
 def format_filter(rel):
