@@ -24,7 +24,7 @@ class GraphService(object):
 
     def get_labels(self):
         ''' list of all types/labels in the db '''
-        return 
+        return self.labels
 
 
     def validate_label(self, label):

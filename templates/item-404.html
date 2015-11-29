@@ -10,7 +10,7 @@
     <h2>{{ label | format | capitalize | pluralize }}</h2>
     <ul>
     {% for item in items | sort %}
-        <li><a href="/{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a></li>
+        <li><a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a></li>
     {% endfor %}
     </ul>
 </div>
