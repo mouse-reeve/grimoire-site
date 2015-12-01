@@ -118,12 +118,12 @@ header nav form {
     background: #fefefe;
     min-height: 25em;
     padding: 2em 5em;
+    overflow: auto;
 }
 
 #content-wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 80%;
+    float: left;
+    max-width: 70%;
 }
 
 #content a {
@@ -177,6 +177,28 @@ li.list span:last-child:after {
     float: left;
     padding: 0 0.5em;
     width: 10em;
+}
+
+#sidebar {
+    float: right;
+    max-width: 30%;
+    background: #b5b5b7;
+    border-radius: 5px;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+#sidebar h3:first-child {
+    margin-top: 0;
+}
+
+#sidebar ul {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar a:active, #sidebar a:hover {
+    color: #f2b632;
 }
 
 footer {

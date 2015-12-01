@@ -43,9 +43,23 @@
         </nav>
     </header>
 
-    <div id="content"><div id="content-wrapper">
-        {% block body %}{% endblock %}
-    </div></div>
+    <div id="content">
+        <div id="content-wrapper">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% if sidebar %}
+        <div id="sidebar">
+            <h3>Similar {{label | format | pluralize | capitalize }}</h3>
+            <ul>
+            {% for item in sidebar %}
+                <li><a href="{{ item.link }}">{{ item.properties.identifier }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+    </div>
 
     <footer>
         <p>

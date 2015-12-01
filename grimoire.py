@@ -118,7 +118,10 @@ def item(label, uid):
                                if not k in ['uid', 'content', 'identifier']]) > 0
 
     title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(format_filter(label)))
-    return render_template(template, data=data, title=title, label=label)
+
+    sidebar = graph.related(uid, label)
+    sidebar = sidebar['nodes']
+    return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
 
 
 @app.route('/<label>', methods=['GET'])

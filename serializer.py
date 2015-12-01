@@ -2,9 +2,9 @@
 
 def serialize(func):
     ''' serialize neo4j data '''
-    def serialize_wrapper(self, *args):
+    def serialize_wrapper(self, *args, **kwargs):
         ''' serialize dis '''
-        data = func(self, *args)
+        data = func(self, *args, **kwargs)
         nodes = []
         rels = []
         try:

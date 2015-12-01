@@ -62,3 +62,11 @@ class GraphService(object):
                           'n.content =~ {term} return n', term='(?i).*%s.*' % term)
         return data
 
+    @serialize
+    def related(self, uid, label, n=2, limit=5):
+        ''' find similar items, based on nth degree relationships '''
+        query = 'match (m)-[r*%d]-(n:%s) where m.uid = {uid} ' \
+                'return distinct n, count(r) order by count(r) desc ' \
+                'limit %d' % (n, label, limit)
+        return self.query(query, uid=uid)
+
