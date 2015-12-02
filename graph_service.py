@@ -11,8 +11,8 @@ class GraphService(object):
 
     def __init__(self):
         try:
-            user = os.environ['NEO4J_USER1']
-            password = os.environ['NEO4J_PASS1']
+            user = os.environ['NEO4J_USER']
+            password = os.environ['NEO4J_PASS']
         except KeyError:
             logging.error('Environment variables for database authentication unavailable')
         else:
