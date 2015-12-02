@@ -2,6 +2,7 @@
 import logging
 import os
 from py2neo import authenticate, Graph
+from py2neo.error import Unauthorized
 from py2neo.packages.httpstream.http import SocketError
 from serializer import serialize
 
@@ -9,15 +10,23 @@ class GraphService(object):
     ''' manage neo4j data operations '''
 
     def __init__(self):
-        user = os.environ['NEO4J_USER']
-        password = os.environ['NEO4J_PASS']
-        authenticate('localhost:7474', user, password)
+        try:
+            user = os.environ['NEO4J_USER1']
+            password = os.environ['NEO4J_PASS1']
+        except KeyError:
+            logging.error('Environment variables for database authentication unavailable')
+        else:
+            authenticate('localhost:7474', user, password)
+
         try:
             graph = Graph()
             self.query = graph.cypher.execute
         except SocketError:
             logging.error('neo4j failed to load')
             self.query = lambda x: {}
+        except Unauthorized:
+            self.query = lambda x: {}
+
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels]
 
