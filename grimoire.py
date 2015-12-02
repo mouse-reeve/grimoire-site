@@ -119,8 +119,34 @@ def item(label, uid):
 
     title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(format_filter(label)))
 
-    sidebar = graph.related(uid, label)
-    sidebar = sidebar['nodes']
+    sidebar = []
+    related = graph.related(uid, label)
+    # similar items of the same type
+    if related['nodes']:
+        sidebar = [{'title': 'Similar %s' % pluralize(capitalize_filter(label)),
+                    'data': related['nodes']}]
+
+    # other items of this type related to some item
+    others = []
+    for rel in data['relationships']:
+        start = rel['start']
+        end = rel['end']
+        # different types of data
+        if start['label'] != end['label'] and \
+                (end['label'] != 'demon' and start['label'] != 'grimoire'):
+            other = start if start['label'] != label else end
+            others.append(other)
+            other_items = graph.others_of_type(label,
+                                               other['properties']['uid'],
+                                               node['properties']['uid'])
+            if other_items['nodes']:
+                sidebar.append({
+                    'title': 'Other %s related to the %s %s' %
+                             (pluralize(label), format_filter(other['label']),
+                              other['properties']['identifier']),
+                    'data': other_items['nodes']
+                })
+
     return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
 
 
@@ -148,12 +174,14 @@ def format_filter(rel):
 @app.template_filter('capitalize')
 def capitalize_filter(text):
     ''' capitalize words '''
+    text = format_filter(text)
     return text[0].upper() + text[1:]
 
 
 @app.template_filter('pluralize')
 def pluralize(text):
     ''' fishs '''
+    text = format_filter(text)
     if text[-1] == 'y':
         return text[:-1] + 'ies'
     elif text[-1] in ['h', 's']:

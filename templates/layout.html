@@ -50,12 +50,14 @@
 
         {% if sidebar %}
         <div id="sidebar">
-            <h3>Similar {{label | format | pluralize | capitalize }}</h3>
+            {% for section in sidebar %}
+            <h3>{{ section.title }}</h3>
             <ul>
-            {% for item in sidebar %}
+            {% for item in section.data %}
                 <li><a href="{{ item.link }}">{{ item.properties.identifier }}</a></li>
             {% endfor %}
             </ul>
+            {% endfor %}
         </div>
         {% endif %}
 

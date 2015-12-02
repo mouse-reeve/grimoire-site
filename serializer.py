@@ -22,22 +22,23 @@ def serialize(func):
             except AttributeError:
                 pass
             else:
-                for rel in item_rels:
-                    rels.append({
-                        'id': rel._id,
-                        'start': {
-                            'id': rel.start_node._id,
-                            'label':  [l for l in rel.start_node.labels][0],
-                            'properties': rel.start_node.properties
-                        },
-                        'end': {
-                            'id': rel.end_node._id,
-                            'label':  [l for l in rel.end_node.labels][0],
-                            'properties': rel.end_node.properties
-                        },
-                        'type': rel.type,
-                        'properties': rel.properties
-                    })
+                if item_rels:
+                    for rel in item_rels:
+                        rels.append({
+                            'id': rel._id,
+                            'start': {
+                                'id': rel.start_node._id,
+                                'label':  [l for l in rel.start_node.labels][0],
+                                'properties': rel.start_node.properties
+                            },
+                            'end': {
+                                'id': rel.end_node._id,
+                                'label':  [l for l in rel.end_node.labels][0],
+                                'properties': rel.end_node.properties
+                            },
+                            'type': rel.type,
+                            'properties': rel.properties
+                        })
             try:
                 node = item['n']
             except AttributeError:

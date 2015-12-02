@@ -71,6 +71,7 @@ class GraphService(object):
                           'n.content =~ {term} return n', term='(?i).*%s.*' % term)
         return data
 
+
     @serialize
     def related(self, uid, label, n=2, limit=5):
         ''' find similar items, based on nth degree relationships '''
@@ -78,4 +79,15 @@ class GraphService(object):
                 'return distinct n, count(r) order by count(r) desc ' \
                 'limit %d' % (n, label, limit)
         return self.query(query, uid=uid)
+
+
+    @serialize
+    def others_of_type(self, label, uid, exclude):
+        ''' get all <blank> related to item <blank> '''
+        query = 'match (n:%s)--(m) ' \
+                'where m.uid = {uid} ' \
+                'and not n.uid = {exclude} ' \
+                'return n limit 5' % (label)
+        return self.query(query, uid=uid, exclude=exclude)
+
 
