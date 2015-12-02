@@ -121,9 +121,16 @@ header nav form {
     overflow: auto;
 }
 
-#content-wrapper {
+#content-wrapper.has-sidebar {
     float: left;
     max-width: 70%;
+    margin: 0;
+}
+
+#content-wrapper {
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #content a {
