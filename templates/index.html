@@ -16,13 +16,11 @@
 <div class="index card" id="{{ group.label }}">
     <h3>{{ group.label | format | capitalize | pluralize}}</h3>
     <p class="caption">
-    {% if group.label == 'author' %}
-        For ours purposes, "author" means someone who either wrote a grimoire that falls within our range of interest, or has one attributed to them. That means that King Solomon qualifies, despite none of these works actually being written by him, and Aleister Crowley does not, despite having authored books of magic.
-    {% elif group.label == 'editor' %}
+    {% if group.label == 'editor' %}
         This category does not distinguish between editors and translators, for the sake of keeping the number of categories in check.
     {% endif %}
     </p>
-    <ul {% if not group.label in ["author", "grimoire", "edition", "editor", "ritual"] %} class="many" {% endif %}>
+    <ul {% if not group.label in ["author", "grimoire", "edition", "editor", "spell"] %} class="many" {% endif %}>
         {% for item in group.nodes | sort(attribute="properties.identifier") %}
         <li>
             <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
