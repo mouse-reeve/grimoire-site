@@ -89,28 +89,31 @@ def item(label, uid):
     template = 'item.html'
 
     entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
+    if label == 'fairy':
+        # removes duplication of two-way sister relationships
+        rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
+
     if label == 'grimoire':
         template = 'grimoire.html'
         prop_exclusions = ['year', 'decade', 'century']
         rel_exclusions = ['lists', 'has']
 
         data['date'] = grimoire_date(node['properties'])
-        data['editions'] = [r for r in rels
-                            if r['end']['label'] and r['end']['label'] == 'edition']
+        data['editions'] = extract_rel_list(rels, 'edition', 'end')
         data['entities'] = {}
         for entity in entities:
-            data['entities'][entity] = [r for r in rels
-                                        if r['end']['label'] and r['end']['label'] == entity]
-    elif label == 'topic':
+            data['entities'][entity] = extract_rel_list(rels, entity, 'end')
+    elif label == 'art':
         template = 'topic.html'
         data['entities'] = {}
         rel_exclusions = ['teaches', 'skilled_in']
         for entity in entities:
-            data['entities'][entity] = [r for r in rels
-                                        if r['start']['label'] and r['start']['label'] == entity]
-    elif label == 'fairy':
-        # removes duplication of two-way sister relationships
-        rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
+            data['entities'][entity] = extract_rel_list(rels, entity, 'start')
+    elif label in entities:
+        template = 'entity.html'
+        rel_exclusions = ['lists', 'teaches', 'skilled_in']
+        data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
+        data['skills'] = extract_rel_list(rels, 'art', 'end')
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
     data['id'] = node['id']
@@ -214,6 +217,12 @@ def sanitize(text, allow_spaces=False):
     if allow_spaces:
         regex = r'[a-zA-z\-\s\d]'
     return ''.join([t.lower() for t in text if re.match(regex, t)])
+
+
+def extract_rel_list(rels, label, position):
+    ''' get all relationships to a node for a given type '''
+    return [r[position] for r in rels
+            if r[position]['label'] and r[position]['label'] == label]
 
 if __name__ == '__main__':
     app.debug = True

@@ -67,3 +67,19 @@
 </ul>
 
 {% endmacro %}
+
+
+
+
+{% macro rel_list(data) %}
+
+<ul>
+{% for rel in data | sort(attribute="properties.identifier")%}
+    <li>
+        <a href="/{{ rel.label }}/{{ rel.properties.uid }}">{{ rel.properties.identifier }}</a>
+        {% if rel.properties.editor %}({{ rel.properties.editor }}){% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+{% endmacro %}

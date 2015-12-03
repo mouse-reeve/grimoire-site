@@ -1,0 +1,36 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+{{ macros.title(title, label) }}
+
+{{ macros.content(data.properties) }}
+
+{% if data.has_details %}
+{{ macros.details(data.properties) }}
+{% endif %}
+
+{% if data.grimoires %}
+<div class="card">
+    <h3>Listed in the Grimoies</h3>
+    {{ macros.rel_list(data.grimoires) }}
+</div>
+{% endif %}
+
+{% if data.skills %}
+<div class="card">
+    <h3>Skills</h3>
+    {{ macros.rel_list(data.skills) }}
+</div>
+{% endif %}
+
+{% if data.relationships %}
+<div class="card">
+    <h3>Connections</h3>
+    {{ macros.connections(data.id, data) }}
+</div>
+{% endif %}
+
+{% endblock %}
+
+

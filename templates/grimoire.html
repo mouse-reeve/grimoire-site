@@ -19,14 +19,7 @@
 {% if data.editions %}
 <div class="card">
     <h3>Editions</h3>
-    {% for edition in data.editions %}
-    <ul>
-        <li>
-            <a href="/{{ edition.end.label }}/{{ edition.end.properties.uid }}">{{ edition.end.properties.identifier }}</a>
-            {% if edition.end.properties.editor %}({{ edition.end.properties.editor }}){% endif %}
-        </li>
-    </ul>
-    {% endfor %}
+    {{ macros.rel_list(data.editions) }}
 </div>
 {% endif %}
 
@@ -42,9 +35,9 @@
 <div class="card">
     <h3>{{ type | format | capitalize | pluralize }} ({{ items | length }})</h3>
     <ul class="many">
-        {% for item in items | sort(attribute="end.properties.identifier") %}
+        {% for item in items | sort(attribute="properties.identifier") %}
         <li>
-            <a href="/{{ item.end.label }}/{{ item.end.properties.uid }}">{{ item.end.properties.identifier }}</a>
+            <a href="/{{ item.label }}/{{ item.properties.uid }}">{{ item.properties.identifier }}</a>
         </li>
         {% endfor %}
     </ul>
