@@ -113,6 +113,7 @@ def item(label, uid):
         rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
+    data['id'] = node['id']
     data['properties'] = {k:v for k, v in node['properties'].items() if not k in prop_exclusions}
     data['has_details'] = len([k for k in data['properties'].keys()
                                if not k in ['uid', 'content', 'identifier']]) > 0
