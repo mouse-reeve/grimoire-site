@@ -16,9 +16,9 @@
 <div class="card">
     <h3>Associated {{ type | format | capitalize | pluralize }} ({{ items | length }})</h3>
     <ul class="many">
-        {% for item in items | sort(attribute="start.properties.identifier") %}
+        {% for item in items | sort(attribute="properties.identifier") %}
         <li>
-            <a href="/{{ item.start.label }}/{{ item.start.properties.uid }}">{{ item.start.properties.identifier }}</a>
+            <a href="/{{ item.label }}/{{ item.properties.uid }}">{{ item.properties.identifier }}</a>
         </li>
         {% endfor %}
     </ul>
