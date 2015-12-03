@@ -19573,3 +19573,66 @@ Storage files: (filename : modification date - size)
 2015-12-03 03:57:35.738+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
 2015-12-03 03:57:38.924+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3085ms.
 2015-12-03 03:57:48.697+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9671ms.
+2015-12-03 03:57:58.798+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:58:01.548+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2649ms.
+2015-12-03 03:58:10.882+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9232ms.
+2015-12-03 03:58:14.885+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3898ms.
+2015-12-03 03:58:24.986+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:58:31.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Starting check pointing...
+2015-12-03 03:58:31.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Starting store flush...
+2015-12-03 03:58:31.407+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1915 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:58:31.415+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1915 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:58:31.424+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Store flush completed
+2015-12-03 03:58:31.424+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Starting appending check point entry into the tx log...
+2015-12-03 03:58:31.427+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Appending check point entry into the tx log completed
+2015-12-03 03:58:31.427+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1915]:  Check pointing completed
+2015-12-03 03:58:31.427+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:58:31.427+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:58:35.087+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:58:45.188+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:58:50.939+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5650ms.
+2015-12-03 03:58:56.531+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:edition) RETURN n
+2015-12-03 03:58:56.532+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(edition)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:58:56.693+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:magic_object) RETURN n
+2015-12-03 03:58:56.693+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(magic_object)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:59:01.040+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:59:06.922+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5781ms.
+2015-12-03 03:59:17.023+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:59:27.124+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:59:37.225+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:59:45.475+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8149ms.
+2015-12-03 03:59:55.777+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:05.877+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:15.978+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:26.079+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:36.180+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:46.231+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 match (n:spell)-[r]-() return n, r
+2015-12-03 04:00:46.231+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,BOTH),NodePattern(Some(Identifier(  UNNAMED21)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(spell)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)), AliasedReturnItem(Identifier(r),Identifier(r)))),None,None,None))))
+2015-12-03 04:00:46.281+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:00:48.839+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2457ms.
+2015-12-03 04:00:50.291+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 match (m)-[r*2]-(n:spell) where m.uid = {uid} return distinct n, count(r) order by count(r) desc limit 5
+2015-12-03 04:00:50.292+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(m)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),Some(Some(Range(Some(UnsignedDecimalIntegerLiteral(2)),Some(UnsignedDecimalIntegerLiteral(2))))),None,BOTH),NodePattern(Some(Identifier(n)),List(),None,false))))),List(),Some(Where(And(HasLabels(Identifier(n),List(LabelName(spell))),Equals(Property(Identifier(m),PropertyKeyName(uid)),Parameter(uid)))))), With(true,ReturnItems(false,Vector(AliasedReturnItem(Identifier(n),Identifier(  FRESHID62)), AliasedReturnItem(FunctionInvocation(FunctionName(count),false,Vector(Identifier(r))),Identifier(  FRESHID65)))),Some(OrderBy(List(DescSortItem(Identifier(  FRESHID65))))),None,Some(Limit(SignedDecimalIntegerLiteral(5))),None), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(  FRESHID62),Identifier(n)), AliasedReturnItem(Identifier(  FRESHID65),Identifier(count(r))))),None,None,None))))
+2015-12-03 04:00:58.940+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:01:00.432+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1390ms.
+2015-12-03 04:01:10.533+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:01:19.636+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 match (m)-[r*2]-(n:spell) where m.uid = {uid} return distinct n, count(r) order by count(r) desc limit 5
+2015-12-03 04:01:19.638+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(m)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),Some(Some(Range(Some(UnsignedDecimalIntegerLiteral(2)),Some(UnsignedDecimalIntegerLiteral(2))))),None,BOTH),NodePattern(Some(Identifier(n)),List(),None,false))))),List(),Some(Where(And(HasLabels(Identifier(n),List(LabelName(spell))),Equals(Property(Identifier(m),PropertyKeyName(uid)),Parameter(uid)))))), With(true,ReturnItems(false,Vector(AliasedReturnItem(Identifier(n),Identifier(  FRESHID62)), AliasedReturnItem(FunctionInvocation(FunctionName(count),false,Vector(Identifier(r))),Identifier(  FRESHID65)))),Some(OrderBy(List(DescSortItem(Identifier(  FRESHID65))))),None,Some(Limit(SignedDecimalIntegerLiteral(5))),None), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(  FRESHID62),Identifier(n)), AliasedReturnItem(Identifier(  FRESHID65),Identifier(count(r))))),None,None,None))))
+2015-12-03 04:01:20.634+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:01:30.735+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 04:01:31.776+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 940ms.
+2015-12-03 04:01:34.788+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2911ms.
+2015-12-03 04:01:35.992+0000 INFO  [o.n.k.i.f.GraphDatabaseFacade] Shutdown started
+2015-12-03 04:01:35.993+0000 INFO  [o.n.k.i.f.CommunityFacadeFactory] Database is now unavailable
+2015-12-03 04:01:36.004+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1918 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 04:01:36.011+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1918 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 04:01:36.018+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Starting check pointing...
+2015-12-03 04:01:36.019+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Starting store flush...
+2015-12-03 04:01:36.019+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Store flush completed
+2015-12-03 04:01:36.019+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Starting appending check point entry into the tx log...
+2015-12-03 04:01:36.022+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Appending check point entry into the tx log completed
+2015-12-03 04:01:36.022+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [1918]:  Check pointing completed
+2015-12-03 04:01:36.022+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 04:01:36.022+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 04:01:36.038+0000 INFO  [o.n.k.NeoStoreDataSource] NeoStores closed
+2015-12-03 04:01:36.039+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics START ---
+2015-12-03 04:01:36.039+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics END ---
