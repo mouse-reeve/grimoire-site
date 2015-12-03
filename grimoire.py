@@ -88,7 +88,7 @@ def item(label, uid):
     prop_exclusions = []
     template = 'item.html'
 
-    entities = ['angel', 'demon', 'olympian_spirit', 'fairy']
+    entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
     if label == 'fairy':
         # removes duplication of two-way sister relationships
         rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
