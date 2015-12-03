@@ -18822,3 +18822,730 @@ Storage files: (filename : modification date - size)
 2015-12-03 02:39:01.804+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4635ms.
 2015-12-03 02:39:11.905+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
 2015-12-03 02:39:18.358+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6351ms.
+2015-12-03 02:39:28.459+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:39:38.560+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:39:39.141+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 479ms.
+2015-12-03 02:39:39.644+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 402ms.
+2015-12-03 02:39:49.745+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:39:50.994+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1148ms.
+2015-12-03 02:40:01.095+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:40:11.196+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:40:21.297+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:40:21.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Starting check pointing...
+2015-12-03 02:40:21.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Starting store flush...
+2015-12-03 02:40:21.358+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1818 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 02:40:21.364+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1818 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 02:40:21.367+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Store flush completed
+2015-12-03 02:40:21.368+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Starting appending check point entry into the tx log...
+2015-12-03 02:40:21.370+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Appending check point entry into the tx log completed
+2015-12-03 02:40:21.370+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1818]:  Check pointing completed
+2015-12-03 02:40:21.371+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 02:40:21.371+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 02:40:31.398+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:40:41.498+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:40:51.599+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:01.700+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:09.679+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7877ms.
+2015-12-03 02:41:19.779+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:29.880+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:39.981+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:50.082+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:41:51.793+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1610ms.
+2015-12-03 02:42:00.563+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7633ms.
+2015-12-03 02:42:10.664+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:42:15.624+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4859ms.
+2015-12-03 02:42:16.194+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 469ms.
+2015-12-03 02:42:16.677+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 382ms.
+2015-12-03 02:42:18.761+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1983ms.
+2015-12-03 02:42:19.526+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 658ms.
+2015-12-03 02:42:29.872+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:42:39.973+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:42:45.267+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5193ms.
+2015-12-03 02:42:46.062+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 695ms.
+2015-12-03 02:42:46.460+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 297ms.
+2015-12-03 02:42:47.116+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 555ms.
+2015-12-03 02:42:51.645+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4428ms.
+2015-12-03 02:42:53.129+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1383ms.
+2015-12-03 02:42:55.396+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2166ms.
+2015-12-03 02:43:02.511+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7012ms.
+2015-12-03 02:43:03.849+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1236ms.
+2015-12-03 02:43:05.215+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 344ms.
+2015-12-03 02:43:15.778+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9645ms.
+2015-12-03 02:43:24.992+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9113ms.
+2015-12-03 02:43:35.093+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:43:45.194+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:43:55.295+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:05.396+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:15.497+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:25.598+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:35.698+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:45.799+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:44:46.126+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 225ms.
+2015-12-03 02:44:56.227+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:01.346+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5017ms.
+2015-12-03 02:45:11.447+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:21.548+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:31.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Starting check pointing...
+2015-12-03 02:45:31.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Starting store flush...
+2015-12-03 02:45:31.364+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1823 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 02:45:31.371+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1823 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 02:45:31.377+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Store flush completed
+2015-12-03 02:45:31.378+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Starting appending check point entry into the tx log...
+2015-12-03 02:45:31.380+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Appending check point entry into the tx log completed
+2015-12-03 02:45:31.380+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1823]:  Check pointing completed
+2015-12-03 02:45:31.380+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 02:45:31.380+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 02:45:31.649+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:41.750+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:51.851+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:45:58.696+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6744ms.
+2015-12-03 02:47:09.309+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1679ms.
+2015-12-03 02:48:45.580+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8239ms.
+2015-12-03 02:49:47.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:49:57.234+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:07.335+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:17.436+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:27.537+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:37.638+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:44.442+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:magic_object) RETURN n
+2015-12-03 02:50:44.443+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(magic_object)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 02:50:47.739+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:50:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Starting check pointing...
+2015-12-03 02:50:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Starting store flush...
+2015-12-03 02:50:51.358+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1830 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 02:50:51.363+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1830 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 02:50:51.373+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Store flush completed
+2015-12-03 02:50:51.373+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Starting appending check point entry into the tx log...
+2015-12-03 02:50:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Appending check point entry into the tx log completed
+2015-12-03 02:50:51.377+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1830]:  Check pointing completed
+2015-12-03 02:50:51.377+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 02:50:51.377+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 02:50:57.840+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:07.941+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:18.042+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:28.142+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:38.243+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:48.344+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:51:54.895+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6450ms.
+2015-12-03 02:52:04.996+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:52:15.097+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:52:25.198+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:52:35.298+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:52:45.399+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:52:55.500+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:05.601+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:15.702+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:25.803+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:35.904+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:46.005+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:53:56.106+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:06.207+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:16.308+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:26.409+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:36.510+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:46.611+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:54:56.712+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:55:06.813+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:55:14.138+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7224ms.
+2015-12-03 02:55:24.418+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:55:34.519+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:55:44.621+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:55:54.722+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:56:01.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Starting check pointing...
+2015-12-03 02:56:01.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Starting store flush...
+2015-12-03 02:56:01.407+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1833 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 02:56:01.413+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1833 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 02:56:01.416+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Store flush completed
+2015-12-03 02:56:01.416+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Starting appending check point entry into the tx log...
+2015-12-03 02:56:01.419+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Appending check point entry into the tx log completed
+2015-12-03 02:56:01.419+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1833]:  Check pointing completed
+2015-12-03 02:56:01.419+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 02:56:01.420+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 02:56:04.823+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:56:14.924+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:56:25.025+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:56:35.126+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:56:44.480+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9253ms.
+2015-12-03 02:56:49.297+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4712ms.
+2015-12-03 02:56:59.398+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:57:09.499+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:57:19.600+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:57:27.108+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7406ms.
+2015-12-03 02:57:37.209+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:57:37.754+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 444ms.
+2015-12-03 02:57:39.225+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1370ms.
+2015-12-03 02:57:49.328+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:57:59.429+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:58:09.530+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:58:19.631+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:58:29.732+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:58:39.833+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:58:49.934+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:00.034+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:10.135+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:20.236+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:30.337+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:40.438+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 02:59:50.539+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:00.640+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:10.741+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:20.842+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:30.942+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:41.043+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:00:51.144+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:01:01.245+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:01:02.047+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 701ms.
+2015-12-03 03:01:12.348+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:01:21.407+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Starting check pointing...
+2015-12-03 03:01:21.407+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Starting store flush...
+2015-12-03 03:01:21.414+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1840 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:01:21.421+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1840 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:01:21.425+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Store flush completed
+2015-12-03 03:01:21.425+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Starting appending check point entry into the tx log...
+2015-12-03 03:01:21.428+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Appending check point entry into the tx log completed
+2015-12-03 03:01:21.428+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1840]:  Check pointing completed
+2015-12-03 03:01:21.428+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:01:21.429+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:01:22.449+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:01:26.456+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3906ms.
+2015-12-03 03:01:32.291+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5734ms.
+2015-12-03 03:01:36.073+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3681ms.
+2015-12-03 03:01:38.173+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:edition) RETURN n
+2015-12-03 03:01:38.174+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(edition)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:01:38.693+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2518ms.
+2015-12-03 03:01:48.794+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:01:58.895+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:08.996+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:19.097+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:21.229+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2031ms.
+2015-12-03 03:02:31.768+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:41.869+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:51.970+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:02:56.614+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4543ms.
+2015-12-03 03:03:06.715+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:03:16.816+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:03:26.917+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:03:37.018+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:03:47.119+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:03:57.220+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:07.321+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:17.422+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:27.524+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:37.624+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:47.725+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:04:57.826+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:05:07.927+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:05:18.028+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:05:27.197+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9068ms.
+2015-12-03 03:05:27.733+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 434ms.
+2015-12-03 03:05:36.631+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8797ms.
+2015-12-03 03:05:38.641+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1909ms.
+2015-12-03 03:05:40.034+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1292ms.
+2015-12-03 03:05:46.877+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6742ms.
+2015-12-03 03:05:56.979+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:06:07.080+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:06:17.181+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:06:27.282+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:06:37.483+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:06:40.328+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Starting check pointing...
+2015-12-03 03:06:40.329+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Starting store flush...
+2015-12-03 03:06:40.332+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1842 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:06:40.332+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2748ms.
+2015-12-03 03:06:40.337+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1842 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:06:40.341+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Store flush completed
+2015-12-03 03:06:40.341+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Starting appending check point entry into the tx log...
+2015-12-03 03:06:40.344+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Appending check point entry into the tx log completed
+2015-12-03 03:06:40.344+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1842]:  Check pointing completed
+2015-12-03 03:06:40.344+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:06:40.344+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:06:48.251+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7663ms.
+2015-12-03 03:06:58.967+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:09.068+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:19.169+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:29.270+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:39.371+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:49.473+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:07:59.577+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10002ms.
+2015-12-03 03:08:09.678+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:08:19.779+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:08:24.229+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4349ms.
+2015-12-03 03:08:34.330+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:08:44.431+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:08:48.949+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4417ms.
+2015-12-03 03:08:50.854+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1804ms.
+2015-12-03 03:08:57.118+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6161ms.
+2015-12-03 03:08:59.270+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2051ms.
+2015-12-03 03:09:00.655+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1281ms.
+2015-12-03 03:09:10.756+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:09:19.233+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8374ms.
+2015-12-03 03:09:29.334+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:09:39.435+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:09:49.536+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:09:57.055+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7417ms.
+2015-12-03 03:10:07.156+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:10:17.257+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:10:27.358+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:10:37.459+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:10:47.559+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:10:57.660+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:11:00.691+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2930ms.
+2015-12-03 03:11:10.792+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:11:13.505+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2612ms.
+2015-12-03 03:11:14.390+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 784ms.
+2015-12-03 03:11:14.927+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 436ms.
+2015-12-03 03:11:15.367+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 339ms.
+2015-12-03 03:11:16.611+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1144ms.
+2015-12-03 03:11:18.889+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2176ms.
+2015-12-03 03:11:21.350+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2359ms.
+2015-12-03 03:11:22.917+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1304ms.
+2015-12-03 03:11:23.276+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 257ms.
+2015-12-03 03:11:33.377+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:11:41.361+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Starting check pointing...
+2015-12-03 03:11:41.361+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Starting store flush...
+2015-12-03 03:11:41.362+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1845 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:11:41.367+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1845 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:11:41.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Store flush completed
+2015-12-03 03:11:41.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Starting appending check point entry into the tx log...
+2015-12-03 03:11:41.379+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Appending check point entry into the tx log completed
+2015-12-03 03:11:41.379+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1845]:  Check pointing completed
+2015-12-03 03:11:41.379+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:11:41.379+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:11:43.478+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:11:46.078+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2499ms.
+2015-12-03 03:11:47.867+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1367ms.
+2015-12-03 03:11:48.376+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 408ms.
+2015-12-03 03:11:50.899+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2422ms.
+2015-12-03 03:11:52.847+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1847ms.
+2015-12-03 03:11:54.161+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 945ms.
+2015-12-03 03:12:04.530+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:12:09.946+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5314ms.
+2015-12-03 03:12:13.203+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3156ms.
+2015-12-03 03:12:23.304+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:12:25.299+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1895ms.
+2015-12-03 03:12:35.400+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:12:45.501+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:12:49.055+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3453ms.
+2015-12-03 03:12:59.156+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:13:09.257+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:13:19.358+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:13:29.459+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:13:36.681+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7121ms.
+2015-12-03 03:13:38.421+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1638ms.
+2015-12-03 03:13:48.522+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:13:54.394+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5770ms.
+2015-12-03 03:14:00.799+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6304ms.
+2015-12-03 03:14:04.175+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3275ms.
+2015-12-03 03:14:04.680+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 402ms.
+2015-12-03 03:14:07.621+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2840ms.
+2015-12-03 03:14:17.965+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:14:26.856+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8790ms.
+2015-12-03 03:14:36.956+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:14:45.920+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8863ms.
+2015-12-03 03:14:48.573+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2551ms.
+2015-12-03 03:14:58.676+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:15:04.336+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5559ms.
+2015-12-03 03:15:14.437+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:15:24.538+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:15:34.639+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:15:44.740+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:15:50.862+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6020ms.
+2015-12-03 03:16:00.963+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:16:11.064+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:16:21.165+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:16:31.266+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:16:41.367+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:16:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Starting check pointing...
+2015-12-03 03:16:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Starting store flush...
+2015-12-03 03:16:51.362+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1850 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:16:51.367+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1850 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:16:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Store flush completed
+2015-12-03 03:16:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Starting appending check point entry into the tx log...
+2015-12-03 03:16:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Appending check point entry into the tx log completed
+2015-12-03 03:16:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1850]:  Check pointing completed
+2015-12-03 03:16:51.376+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:16:51.377+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:16:51.468+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:17:01.569+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:17:11.670+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:17:21.771+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:17:28.262+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6390ms.
+2015-12-03 03:17:36.537+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7696ms.
+2015-12-03 03:17:46.916+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:17:57.017+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:18:02.143+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5026ms.
+2015-12-03 03:18:03.734+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1144ms.
+2015-12-03 03:18:13.835+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:18:23.936+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:18:25.655+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1618ms.
+2015-12-03 03:18:35.756+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:18:45.857+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:18:55.958+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:19:06.059+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:19:16.160+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:19:23.479+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7217ms.
+2015-12-03 03:19:23.867+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 286ms.
+2015-12-03 03:19:29.236+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5268ms.
+2015-12-03 03:19:36.863+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7524ms.
+2015-12-03 03:19:38.137+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1172ms.
+2015-12-03 03:19:39.886+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1385ms.
+2015-12-03 03:19:49.987+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:19:49.999+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:author) RETURN n
+2015-12-03 03:19:50.000+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(author)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:19:58.469+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8382ms.
+2015-12-03 03:20:04.363+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5533ms.
+2015-12-03 03:20:09.317+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4853ms.
+2015-12-03 03:20:10.112+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 693ms.
+2015-12-03 03:20:19.286+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:edition) RETURN n
+2015-12-03 03:20:19.287+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(edition)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:20:19.459+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:magic_object) RETURN n
+2015-12-03 03:20:19.460+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(magic_object)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:20:20.213+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:20:23.663+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3349ms.
+2015-12-03 03:20:33.764+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:20:43.865+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:20:53.966+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:04.067+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:14.168+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:24.269+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:34.370+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:44.471+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:21:54.572+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:01.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Starting check pointing...
+2015-12-03 03:22:01.406+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Starting store flush...
+2015-12-03 03:22:01.414+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1857 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:22:01.421+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1857 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:22:01.431+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Store flush completed
+2015-12-03 03:22:01.431+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Starting appending check point entry into the tx log...
+2015-12-03 03:22:01.434+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Appending check point entry into the tx log completed
+2015-12-03 03:22:01.434+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1857]:  Check pointing completed
+2015-12-03 03:22:01.434+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:22:01.435+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:22:04.672+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:14.773+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:24.874+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:34.975+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:45.076+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:22:55.177+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:23:05.278+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:23:15.379+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:23:25.480+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:23:34.209+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8628ms.
+2015-12-03 03:23:44.310+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:23:54.411+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:24:04.512+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:24:14.613+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:24:24.714+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:24:34.815+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:24:43.095+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8180ms.
+2015-12-03 03:24:53.196+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:03.297+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:13.398+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:23.499+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:33.600+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:43.701+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:25:53.801+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:03.902+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:14.003+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:15.521+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1417ms.
+2015-12-03 03:26:25.622+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:35.723+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:45.824+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:26:55.925+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:06.026+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:16.127+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:21.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Starting check pointing...
+2015-12-03 03:27:21.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Starting store flush...
+2015-12-03 03:27:21.358+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1866 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:27:21.364+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1866 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:27:21.375+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Store flush completed
+2015-12-03 03:27:21.375+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Starting appending check point entry into the tx log...
+2015-12-03 03:27:21.378+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Appending check point entry into the tx log completed
+2015-12-03 03:27:21.379+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1866]:  Check pointing completed
+2015-12-03 03:27:21.379+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:27:21.379+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:27:26.228+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:36.329+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:46.430+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:27:53.020+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6489ms.
+2015-12-03 03:28:03.120+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:28:13.221+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:28:23.322+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:28:33.423+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:28:43.524+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:28:47.784+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4159ms.
+2015-12-03 03:28:50.440+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2554ms.
+2015-12-03 03:29:00.713+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:29:03.563+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2749ms.
+2015-12-03 03:29:04.774+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1109ms.
+2015-12-03 03:29:14.877+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:29:24.981+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:29:35.082+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:29:40.513+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5329ms.
+2015-12-03 03:29:41.587+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 973ms.
+2015-12-03 03:29:42.794+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1101ms.
+2015-12-03 03:29:43.342+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 447ms.
+2015-12-03 03:29:53.163+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9720ms.
+2015-12-03 03:29:56.868+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3598ms.
+2015-12-03 03:30:03.733+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6764ms.
+2015-12-03 03:30:13.835+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:30:23.936+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:30:34.037+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:30:44.138+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:30:54.239+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:04.340+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:14.441+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:24.542+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:34.643+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:44.744+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:31:52.445+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7600ms.
+2015-12-03 03:32:02.546+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:32:12.647+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:32:22.748+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:32:31.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Starting check pointing...
+2015-12-03 03:32:31.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Starting store flush...
+2015-12-03 03:32:31.358+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1870 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:32:31.366+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1870 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:32:31.379+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Store flush completed
+2015-12-03 03:32:31.380+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Starting appending check point entry into the tx log...
+2015-12-03 03:32:31.383+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Appending check point entry into the tx log completed
+2015-12-03 03:32:31.383+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1870]:  Check pointing completed
+2015-12-03 03:32:31.383+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:32:31.383+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:32:32.850+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:32:36.312+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3361ms.
+2015-12-03 03:32:46.713+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:32:49.728+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2915ms.
+2015-12-03 03:32:59.831+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:33:09.931+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:33:20.032+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:33:30.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:33:30.471+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 236ms.
+2015-12-03 03:33:40.572+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:33:50.673+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:34:10.616+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 19842ms.
+2015-12-03 03:34:20.717+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:34:30.818+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:34:40.919+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:34:51.020+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:35:01.121+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:35:11.222+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:35:19.163+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7840ms.
+2015-12-03 03:35:29.264+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:35:32.838+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3472ms.
+2015-12-03 03:35:38.978+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6039ms.
+2015-12-03 03:35:40.255+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1174ms.
+2015-12-03 03:35:50.356+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:36:00.457+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:36:10.558+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:36:14.068+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3409ms.
+2015-12-03 03:36:14.493+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 322ms.
+2015-12-03 03:36:24.594+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:36:34.621+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9923ms.
+2015-12-03 03:36:39.127+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4405ms.
+2015-12-03 03:36:49.234+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:36:59.335+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:09.436+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:19.537+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:29.638+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:39.739+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:49.839+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:37:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Starting check pointing...
+2015-12-03 03:37:51.357+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Starting store flush...
+2015-12-03 03:37:51.361+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1879 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:37:51.365+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1879 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:37:51.373+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Store flush completed
+2015-12-03 03:37:51.373+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Starting appending check point entry into the tx log...
+2015-12-03 03:37:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Appending check point entry into the tx log completed
+2015-12-03 03:37:51.376+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1879]:  Check pointing completed
+2015-12-03 03:37:51.377+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:37:51.377+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:37:59.940+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:38:01.304+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1082ms.
+2015-12-03 03:38:02.289+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 884ms.
+2015-12-03 03:38:03.736+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1346ms.
+2015-12-03 03:38:13.837+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:38:23.938+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:38:26.557+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2519ms.
+2015-12-03 03:38:36.658+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:38:46.759+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:38:56.860+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:39:02.410+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5449ms.
+2015-12-03 03:39:02.729+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 218ms.
+2015-12-03 03:39:03.461+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 631ms.
+2015-12-03 03:39:05.043+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1193ms.
+2015-12-03 03:39:05.411+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 267ms.
+2015-12-03 03:39:06.146+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 634ms.
+2015-12-03 03:39:16.247+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:39:26.348+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:39:36.449+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:39:42.173+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5623ms.
+2015-12-03 03:39:52.273+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:39:56.125+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:day_of_the_week) RETURN n
+2015-12-03 03:39:56.127+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(NodePattern(Some(Identifier(n)),List(),None,false)))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(day_of_the_week)))))), Return(false,ReturnItems(false,List(AliasedReturnItem(Identifier(n),Identifier(n)))),None,None,None))))
+2015-12-03 03:40:02.374+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:40:11.627+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8940ms.
+2015-12-03 03:40:21.728+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:40:25.469+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3640ms.
+2015-12-03 03:40:30.732+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5159ms.
+2015-12-03 03:40:37.395+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6560ms.
+2015-12-03 03:40:42.660+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5163ms.
+2015-12-03 03:40:48.675+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5914ms.
+2015-12-03 03:40:51.838+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2772ms.
+2015-12-03 03:40:57.066+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5126ms.
+2015-12-03 03:41:05.098+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7931ms.
+2015-12-03 03:41:05.499+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 300ms.
+2015-12-03 03:41:08.590+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2989ms.
+2015-12-03 03:41:14.602+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5662ms.
+2015-12-03 03:41:22.629+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7926ms.
+2015-12-03 03:41:22.961+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 229ms.
+2015-12-03 03:41:23.941+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 879ms.
+2015-12-03 03:41:29.681+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5639ms.
+2015-12-03 03:41:32.998+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3216ms.
+2015-12-03 03:41:37.619+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4521ms.
+2015-12-03 03:41:40.948+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3228ms.
+2015-12-03 03:41:42.855+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1806ms.
+2015-12-03 03:41:43.561+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 605ms.
+2015-12-03 03:41:44.589+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 927ms.
+2015-12-03 03:41:45.395+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 705ms.
+2015-12-03 03:41:45.954+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 458ms.
+2015-12-03 03:41:56.055+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:42:00.862+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4706ms.
+2015-12-03 03:42:05.272+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4309ms.
+2015-12-03 03:42:15.373+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:42:25.473+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:42:35.574+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:42:35.901+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 226ms.
+2015-12-03 03:42:37.214+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1211ms.
+2015-12-03 03:42:39.039+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1725ms.
+2015-12-03 03:42:49.141+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10001ms.
+2015-12-03 03:42:53.461+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3919ms.
+2015-12-03 03:43:03.099+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9534ms.
+2015-12-03 03:43:03.105+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Starting check pointing...
+2015-12-03 03:43:03.106+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Starting store flush...
+2015-12-03 03:43:03.116+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1895 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:43:03.123+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1895 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:43:03.141+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Store flush completed
+2015-12-03 03:43:03.153+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Starting appending check point entry into the tx log...
+2015-12-03 03:43:03.163+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Appending check point entry into the tx log completed
+2015-12-03 03:43:03.163+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1895]:  Check pointing completed
+2015-12-03 03:43:03.163+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:43:03.163+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:43:06.249+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3043ms.
+2015-12-03 03:43:10.788+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4438ms.
+2015-12-03 03:43:20.889+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:43:30.990+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:43:41.091+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:43:50.383+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9192ms.
+2015-12-03 03:43:51.602+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1116ms.
+2015-12-03 03:44:01.703+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:44:05.607+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3803ms.
+2015-12-03 03:44:06.161+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 452ms.
+2015-12-03 03:44:06.674+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 410ms.
+2015-12-03 03:44:14.076+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7301ms.
+2015-12-03 03:44:20.984+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6807ms.
+2015-12-03 03:44:28.263+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7178ms.
+2015-12-03 03:44:30.644+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2280ms.
+2015-12-03 03:44:31.141+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 393ms.
+2015-12-03 03:44:41.242+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:44:42.207+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 864ms.
+2015-12-03 03:44:46.516+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4208ms.
+2015-12-03 03:44:48.785+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2168ms.
+2015-12-03 03:44:58.885+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:45:01.749+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2762ms.
+2015-12-03 03:45:11.850+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:45:13.116+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1159ms.
+2015-12-03 03:45:23.217+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:45:33.318+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:45:43.419+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:45:53.520+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:03.621+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:13.722+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:23.823+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:33.924+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:36.659+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2634ms.
+2015-12-03 03:46:37.676+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 913ms.
+2015-12-03 03:46:44.032+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6255ms.
+2015-12-03 03:46:54.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:46:57.050+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2816ms.
+2015-12-03 03:47:01.942+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4791ms.
+2015-12-03 03:47:12.044+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:47:22.145+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:47:29.722+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7477ms.
+2015-12-03 03:47:39.823+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:47:49.924+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:47:51.333+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1308ms.
+2015-12-03 03:48:01.734+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:48:11.403+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Starting check pointing...
+2015-12-03 03:48:11.403+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Starting store flush...
+2015-12-03 03:48:11.412+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1911 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:48:11.419+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1911 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b].
+2015-12-03 03:48:11.425+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Store flush completed
+2015-12-03 03:48:11.425+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Starting appending check point entry into the tx log...
+2015-12-03 03:48:11.429+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Appending check point entry into the tx log completed
+2015-12-03 03:48:11.429+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1911]:  Check pointing completed
+2015-12-03 03:48:11.429+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:48:11.429+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:48:11.835+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:48:16.343+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4406ms.
+2015-12-03 03:48:19.161+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2513ms.
+2015-12-03 03:48:19.811+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 549ms.
+2015-12-03 03:48:24.319+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4126ms.
+2015-12-03 03:48:34.426+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10006ms.
+2015-12-03 03:48:44.527+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:48:54.628+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:49:00.296+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5568ms.
+2015-12-03 03:49:10.513+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10001ms.
+2015-12-03 03:49:13.929+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3315ms.
+2015-12-03 03:49:18.988+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4958ms.
+2015-12-03 03:49:29.089+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:49:39.190+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:49:48.794+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9503ms.
+2015-12-03 03:49:50.152+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1253ms.
+2015-12-03 03:49:51.306+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1052ms.
+2015-12-03 03:49:54.993+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3586ms.
+2015-12-03 03:49:57.132+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2038ms.
+2015-12-03 03:50:07.233+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:50:17.334+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:50:27.435+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:50:37.536+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:50:47.637+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:50:57.738+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:51:07.838+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:51:17.939+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:51:28.040+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:51:32.493+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4352ms.
+2015-12-03 03:51:33.267+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 673ms.
+2015-12-03 03:51:43.369+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:51:53.470+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:52:03.571+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:52:04.707+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1035ms.
+2015-12-03 03:52:14.426+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9617ms.
+2015-12-03 03:52:24.528+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:52:27.850+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3221ms.
+2015-12-03 03:52:28.235+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 284ms.
+2015-12-03 03:52:32.651+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4314ms.
+2015-12-03 03:52:42.752+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:52:52.852+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:53:02.957+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10003ms.
+2015-12-03 03:53:12.720+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9662ms.
+2015-12-03 03:53:12.721+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Starting check pointing...
+2015-12-03 03:53:12.721+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Starting store flush...
+2015-12-03 03:53:12.728+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 1914 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:53:12.734+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 1914 to [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Personal/grimoire-site/database/neostore.counts.db.a].
+2015-12-03 03:53:12.745+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Store flush completed
+2015-12-03 03:53:12.746+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Starting appending check point entry into the tx log...
+2015-12-03 03:53:12.748+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Appending check point entry into the tx log completed
+2015-12-03 03:53:12.749+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [1914]:  Check pointing completed
+2015-12-03 03:53:12.749+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2015-12-03 03:53:12.749+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2015-12-03 03:53:13.032+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 211ms.
+2015-12-03 03:53:23.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:53:33.234+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:53:43.335+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:53:53.436+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:03.537+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:13.638+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:23.738+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:33.839+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:43.940+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2015-12-03 03:54:49.515+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5474ms.
