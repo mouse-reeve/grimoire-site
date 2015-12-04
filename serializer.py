@@ -26,16 +26,8 @@ def serialize(func):
                     for rel in item_rels:
                         rels.append({
                             'id': rel._id,
-                            'start': {
-                                'id': rel.start_node._id,
-                                'label':  [l for l in rel.start_node.labels][0],
-                                'properties': rel.start_node.properties
-                            },
-                            'end': {
-                                'id': rel.end_node._id,
-                                'label':  [l for l in rel.end_node.labels][0],
-                                'properties': rel.end_node.properties
-                            },
+                            'start': serialize_node(rel.start_node),
+                            'end': serialize_node(rel.end_node),
                             'type': rel.type,
                             'properties': rel.properties
                         })
@@ -44,18 +36,18 @@ def serialize(func):
             except AttributeError:
                 pass
             else:
-                try:
-                    link = '/%s/%s' % (node.labels.copy().pop(), node.properties['uid'])
-                except KeyError:
-                    link = ''
-
-                nodes.append({
-                    'id': node._id,
-                    'label': [l for l in node.labels][0],
-                    'link': link,
-                    'properties': node.properties,
-                })
+                nodes.append(serialize_node(node))
 
         return {'nodes': nodes, 'relationships': rels}
     return serialize_wrapper
 
+def serialize_node(node):
+    ''' node contents '''
+    label = [l for l in node.labels][0]
+    link = '/%s/%s' % (label, node.properties['uid'])
+    return {
+        'id': node._id,
+        'label': label,
+        'link': link,
+        'properties': node.properties
+    }
