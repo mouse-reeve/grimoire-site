@@ -1,0 +1,57 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{ label | capitalize | pluralize }}</h2>
+
+{% if grimoires %}
+Show {{ label | pluralize }} listed in
+<form method="get" action="{{ label }}">
+    <select name="i" required>
+        <option></option>
+        {% for grimoire in grimoires %}
+        <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+        {% endfor %}
+    </select>
+
+    <select name="op" required>
+        <option value="and" selected>AND</option>
+        <option value="not">AND NOT</option>
+    </select>
+
+    <select name="j" required>
+        <option></option>
+        {% for grimoire in grimoires %}
+        <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="submit" value="Go">
+</form>
+{% endif %}
+
+{% if filtered %}
+<h3>
+    {{ label | pluralize | capitalize }} in
+    <a href="filtered.item1.link">{{ filtered.item1.properties.identifier }}</a>
+    {% if filtered.operator == 'and' %}
+    and
+    {% else %}
+    and not
+    {% endif %}
+    <a href="filtered.item2.link">{{ filtered.item2.properties.identifier }}</a>
+</h3>
+<a href="{{ label }}">Clear filter</a>
+{% endif %}
+
+{% if items %}
+{{ macros.alpha_list(items) }}
+{% else %}
+<div class="card">
+    No {{ label | pluralize }} found.
+</div>
+{% endif %}
+
+{% endblock %}
+
+

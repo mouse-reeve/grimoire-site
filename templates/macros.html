@@ -83,3 +83,25 @@
 </ul>
 
 {% endmacro %}
+
+
+
+
+{% macro alpha_list(items, many='') %}
+
+<div class="index card">
+    {% for letter, list in items.items() | sort %}
+    <div class="card {{many}}">
+        <h4>{{ letter }}</h4>
+        <ul>
+            {% for item in list | sort(attribute="properties.identifier") %}
+            <li>
+                <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+{% endmacro %}
