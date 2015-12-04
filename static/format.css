@@ -200,7 +200,7 @@ li.list span:last-child:after {
 
 #sidebar {
     float: right;
-    max-width: 30%;
+    width: 25%;
     background: #b5b5b7;
     border-radius: 5px;
     padding: 1em;
