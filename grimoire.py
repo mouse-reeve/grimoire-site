@@ -88,7 +88,7 @@ def table(entity='demon'):
             entity_list[key] = value
 
     return render_template('table.html', entity=entity, grimoires=grimoires,
-                           entities=entity_list)
+                           entities=entity_list, table=True)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])

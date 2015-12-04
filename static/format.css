@@ -138,6 +138,10 @@ header nav form {
     margin-left: auto;
 }
 
+#content-wrapper.has-table {
+    max-width: 100%;
+}
+
 #content a {
     color: #677077;
 }
@@ -198,14 +202,11 @@ li.list span:last-child:after {
     font-size: 1.3em;
 }
 
-table {
-}
-
 td, th {
     max-width: 10em;
+    min-width: 6em;
     overflow: hidden;
     text-align: center;
-    width: 10em;
 }
 
 th {

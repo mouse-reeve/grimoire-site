@@ -44,7 +44,8 @@
     </header>
 
     <div id="content">
-        <div id="content-wrapper" {% if sidebar %}class="has-sidebar"{% endif %}>
+        <div id="content-wrapper"
+             class="{% if table %}has-table{% endif %} {% if sidebar %}has-sidebar{% endif %}">
             {% block body %}{% endblock %}
         </div>
 
