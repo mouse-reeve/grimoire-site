@@ -4,6 +4,10 @@
 
 <h2>{{ label | capitalize | pluralize }}</h2>
 
+{% if label == "demon" %}
+<h3><a href="/table">Table of which demons appear in which grimoires</a></h3>
+{% endif %}
+
 {% if grimoires %}
 Show {{ label | pluralize }} listed in
 <form method="get" action="{{ label }}">
