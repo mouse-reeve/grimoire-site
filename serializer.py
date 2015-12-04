@@ -1,4 +1,5 @@
 ''' process neo4j results '''
+from py2neo import Node, Relationship
 from py2neo.packages.httpstream.http import SocketError
 
 def serialize(func):
@@ -9,37 +10,20 @@ def serialize(func):
             data = func(self, *args, **kwargs)
         except SocketError:
             return {}
-        nodes = []
-        rels = []
-        try:
-            data.records
-        except AttributeError:
-            return {'nodes': []}
 
-        for item in data.records:
-            try:
-                item_rels = item['r']
-            except AttributeError:
-                pass
-            else:
-                if item_rels:
-                    for rel in item_rels:
-                        rels.append({
-                            'id': rel._id,
-                            'start': serialize_node(rel.start_node),
-                            'end': serialize_node(rel.end_node),
-                            'type': rel.type,
-                            'properties': rel.properties
-                        })
-            try:
-                node = item['n']
-            except AttributeError:
-                pass
-            else:
-                nodes.append(serialize_node(node))
+        response = {'nodes': [], 'relationships': []}
 
-        return {'nodes': nodes, 'relationships': rels}
+        for row in data:
+            for column in data.columns:
+                item = row[column]
+                if isinstance(item, Node):
+                    response['nodes'].append(serialize_node(item))
+                elif isinstance(item, Relationship):
+                    response['relationships'].append(serialize_relationship(item))
+
+        return response
     return serialize_wrapper
+
 
 def serialize_node(node):
     ''' node contents '''
@@ -50,4 +34,15 @@ def serialize_node(node):
         'label': label,
         'link': link,
         'properties': node.properties
+    }
+
+
+def serialize_relationship(rel):
+    ''' relationship contents '''
+    return {
+        'id': rel._id,
+        'start': serialize_node(rel.start_node),
+        'end': serialize_node(rel.end_node),
+        'type': rel.type,
+        'properties': rel.properties
     }
