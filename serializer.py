@@ -11,7 +11,7 @@ def serialize(func):
         except SocketError:
             return {}
 
-        response = {'nodes': [], 'relationships': []}
+        response = {'nodes': [], 'relationships': [], 'lists': []}
 
         for row in data:
             for column in data.columns:
@@ -20,6 +20,8 @@ def serialize(func):
                     response['nodes'].append(serialize_node(item))
                 elif isinstance(item, Relationship):
                     response['relationships'].append(serialize_relationship(item))
+                elif isinstance(item, list) and isinstance(item[0], Node):
+                    response['lists'].append([serialize_node(n) for n in item])
 
         return response
     return serialize_wrapper

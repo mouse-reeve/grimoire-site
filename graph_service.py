@@ -54,9 +54,9 @@ class GraphService(object):
     @serialize
     def get_node(self, uid):
         ''' load data '''
-        node = self.query('MATCH n WHERE n.uid = {uid} OPTIONAL MATCH (n)-[r]-() RETURN n, r',
-                          uid=uid)
-        return node
+        query = 'MATCH n WHERE n.uid = {uid} ' \
+                'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
+        return self.query(query, uid=uid)
 
 
     @serialize
@@ -106,3 +106,12 @@ class GraphService(object):
 
         query += '(n)--(p) RETURN n'
         return self.query(query, item1=item1, item2=item2)
+
+    @serialize
+    def get_grimoire_entities(self, entity):
+        ''' get a list of grimoires with a list of their demons '''
+        query = 'MATCH (n:grimoire)-[:lists]-(m:%s) ' \
+                'WITH n, count(m) AS cm, collect(m) as lm ' \
+                'WHERE cm > 2 ' \
+                'RETURN n, lm ORDER BY LENGTH(lm) DESC' % entity
+        return self.query(query)

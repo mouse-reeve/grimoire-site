@@ -1,0 +1,37 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{ entity | capitalize | pluralize }} in Grimoires</h2>
+
+<table>
+    <tr>
+        <th></th>
+        {% for grimoire in grimoires %}
+        <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
+        {% endfor %}
+    </tr>
+    {% for uid, item in entities.items() | sort%}
+    <tr>
+        <th><a href="{{ item.link }}">{{ item.properties.identifier }}</a></th>
+        {% for grimoire in grimoires %}
+        {% if uid in grimoire.entities %}
+        <td class="yes">
+            <i class="fa fa-check"></i>
+        </td>
+        {% else %}
+        <td></td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr>
+        <th></th>
+        {% for grimoire in grimoires %}
+        <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
+        {% endfor %}
+    </tr>
+</table>
+
+{% endblock %}
+

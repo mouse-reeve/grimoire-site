@@ -198,6 +198,43 @@ li.list span:last-child:after {
     font-size: 1.3em;
 }
 
+table {
+}
+
+td, th {
+    max-width: 10em;
+    overflow: hidden;
+    text-align: center;
+    width: 10em;
+}
+
+th {
+    background: #fefefe;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+tr:first-child th {
+    text-align: center;
+}
+
+tr:last-child th {
+    vertical-align: top;
+    text-align: center;
+}
+
+td.yes {
+    background-color: #677077;
+}
+
+td {
+    padding: 0.2em 0;
+}
+
+tr:nth-child(2n) {
+    background: #e0e0e0;
+}
+
 #sidebar {
     float: right;
     width: 25%;

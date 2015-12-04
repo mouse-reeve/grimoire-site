@@ -1,9 +1,10 @@
 ''' webserver for grimoire graph data '''
-from werkzeug.exceptions import BadRequestKeyError
+from collections import defaultdict
 from flask import Flask, redirect, render_template, request
 from graph_service import GraphService
 import logging
 import re
+from werkzeug.exceptions import BadRequestKeyError
 
 app = Flask(__name__)
 graph = GraphService()
@@ -63,6 +64,31 @@ def search():
         return redirect('/')
     data = graph.search(term)
     return render_template('search.html', results=data['nodes'], term=term)
+
+
+@app.route('/table')
+@app.route('/table/<entity>', methods=['GET'])
+def table(entity='demon'):
+    ''' a comparison table for grimoires and entities '''
+    if not entity in entities:
+        return redirect('/table')
+
+    data = graph.get_grimoire_entities(entity)
+    grimoires = data['nodes']
+
+    all_entities = []
+    for i, entity_list in enumerate(data['lists']):
+        grimoires[i]['entities'] = {e['properties']['uid']: e for e in entity_list}
+        all_entities.append(grimoires[i]['entities'])
+
+    entity_list = {}
+
+    for d in all_entities:
+        for key, value in d.items():
+            entity_list[key] = value
+
+    return render_template('table.html', entity=entity, grimoires=grimoires,
+                           entities=entity_list)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
@@ -129,7 +155,7 @@ def item(label, uid):
 
     sidebar += get_others(data['relationships'], node)
 
-    title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(format_filter(label)))
+    title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(label))
 
     return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
 
