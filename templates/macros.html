@@ -30,9 +30,16 @@
 {% for field in data %}
     {% if not field in ['uid', 'identifier', 'content'] and data[field]%}
         {% if data[field] is sequence and data[field] is not string %}
-        <li class="list">{{ field | format | capitalize }}: {% for l in data[field] %}<span>{{ l }}</span>{% endfor %}</li>
+        <li class="list">{{ field | capitalize }}: {% for l in data[field] %}<span>{{ l }}</span>{% endfor %}</li>
         {% else %}
-        <li>{{ field | format | capitalize }}: {{ data[field] }}</li>
+        <li>
+            {{ field | capitalize }}:
+            {% if "http://" in data[field] %}
+            <a href="{{ data[field] }}" target="_blank">{{ data[field] }}</a>
+            {% else %}
+            {{ data[field] }}
+            {% endif %}
+        </li>
         {% endif %}
     {% endif %}
 {% endfor %}
@@ -97,6 +104,7 @@
             {% for item in list | sort(attribute="properties.identifier") %}
             <li>
                 <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
+                {% if item.properties.alternate_names %}({{ item.properties.alternate_names }}){% endif %}
             </li>
             {% endfor %}
         </ul>
