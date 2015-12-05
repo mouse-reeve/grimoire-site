@@ -120,10 +120,11 @@ def item(label, uid):
 
     if label == 'grimoire':
         template = 'grimoire.html'
-        rel_exclusions = ['lists', 'has']
+        rel_exclusions = ['lists', 'has', 'includes']
 
         data['date'] = grimoire_date(node['properties'])
         data['editions'] = extract_rel_list(rels, 'edition', 'end')
+        data['spells'] = extract_rel_list(rels, 'spell', 'end')
         data['entities'] = {}
         for entity in entities:
             data['entities'][entity] = extract_rel_list(rels, entity, 'end')

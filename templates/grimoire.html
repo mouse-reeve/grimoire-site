@@ -45,5 +45,12 @@
 {% endif %}
 {% endfor %}
 
+{% if data.spells %}
+<div class="card">
+    <h3>Spells</h3>
+    {{ macros.rel_list(data.spells) }}
+</div>
+{% endif %}
+
 {% endblock %}
 
