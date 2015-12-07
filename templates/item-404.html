@@ -6,10 +6,24 @@
     <p>The {{ label | format }} you are looking for cannot be found. Try one of the ones below.</p>
 </div>
 
+{% if search %}
+<div class="card">
+    <h2>Possible matches</h2>
+    <ul>
+    {% for item in search | sort(attribute="properties.identifier") %}
+        <li>
+            <a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a>
+            ({{ item.label | format }})
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <div class="card">
     <h2>{{ label | format | capitalize | pluralize }}</h2>
-    <ul>
-    {% for item in items | sort %}
+    <ul {% if not label in ['spells', 'editions', 'grimoires'] %}class="many"{% endif %}>
+    {% for item in items | sort(attribute="properties.identifier") %}
         <li><a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a></li>
     {% endfor %}
     </ul>

@@ -108,7 +108,9 @@ def item(label, uid):
     if not data['nodes']:
         logging.error('Invalid uid %s', uid)
         items = graph.get_all(label)
-        return render_template('item-404.html', items=items['nodes'], label=label)
+        search_items = graph.search(uid)
+        return render_template('item-404.html', items=items['nodes'],
+                               search=search_items['nodes'], label=label)
 
     node = data['nodes'][0]
     rels = data['relationships']
