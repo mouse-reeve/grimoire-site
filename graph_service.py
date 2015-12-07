@@ -111,7 +111,7 @@ class GraphService(object):
     def get_grimoire_entities(self, entity):
         ''' get a list of grimoires with a list of their demons '''
         query = 'MATCH (n:grimoire)-[:lists]-(m:%s) ' \
-                'WITH n, count(m) AS cm, collect(m) as lm ' \
-                'WHERE cm > 2 ' \
-                'RETURN n, lm ORDER BY LENGTH(lm) DESC' % entity
+                'WITH m, COLLECT(n) AS ln ' \
+                'RETURN m, ln ORDER BY SIZE(ln) DESC' % entity
+
         return self.query(query)

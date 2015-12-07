@@ -74,18 +74,18 @@ def table(entity='demon'):
         return redirect('/table')
 
     data = graph.get_grimoire_entities(entity)
-    grimoires = data['nodes']
+    entity_list = data['nodes']
 
-    all_entities = []
-    for i, entity_list in enumerate(data['lists']):
-        grimoires[i]['entities'] = {e['properties']['uid']: e for e in entity_list}
-        all_entities.append(grimoires[i]['entities'])
+    all_grimoires = []
+    for i, grimoire_list in enumerate(data['lists']):
+        entity_list[i]['grimoires'] = {e['properties']['uid']: e for e in grimoire_list}
+        all_grimoires.append(entity_list[i]['grimoires'])
 
-    entity_list = {}
+    grimoires = {}
 
-    for d in all_entities:
+    for d in all_grimoires:
         for key, value in d.items():
-            entity_list[key] = value
+            grimoires[key] = value
 
     return render_template('table.html', entity=entity, grimoires=grimoires,
                            entities=entity_list, table=True)

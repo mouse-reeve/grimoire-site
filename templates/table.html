@@ -7,15 +7,15 @@
 <table>
     <tr>
         <th></th>
-        {% for grimoire in grimoires %}
+        {% for uid, grimoire in grimoires.items() | sort %}
         <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
         {% endfor %}
     </tr>
-    {% for uid, item in entities.items() | sort%}
+    {% for item in entities %}
     <tr>
         <th><a href="{{ item.link }}">{{ item.properties.identifier }}</a></th>
-        {% for grimoire in grimoires %}
-        {% if uid in grimoire.entities %}
+        {% for uid, grimoire in grimoires.items() | sort %}
+        {% if uid in item.grimoires %}
         <td class="yes">
             <i class="fa fa-check"></i>
         </td>
@@ -27,7 +27,7 @@
     {% endfor %}
     <tr>
         <th></th>
-        {% for grimoire in grimoires %}
+        {% for uid, grimoire in grimoires.items() %}
         <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
         {% endfor %}
     </tr>
