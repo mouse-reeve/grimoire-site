@@ -11,7 +11,7 @@ graph = GraphService()
 entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
 
 # ----- routes
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
     ''' render the basic template for angular '''
     data = graph.get_all('grimoire')
@@ -29,14 +29,14 @@ def index():
     return render_template('home.html', grimoires=grimoires, title='Grimoire Metadata')
 
 
-@app.route('/random', methods=['GET'])
+@app.route('/random')
 def random():
     ''' pick a node, any node '''
     data = graph.random()
     return redirect(data['nodes'][0]['link'])
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/index')
 def content_index():
     ''' list everything available by category '''
     data = []
@@ -48,13 +48,13 @@ def content_index():
     return render_template('index.html', data=data, title='Index')
 
 
-@app.route('/support', methods=['GET'])
+@app.route('/support')
 def support():
     ''' the "give me money" page '''
     return render_template('support.html')
 
 
-@app.route('/search', methods=['GET'])
+@app.route('/search')
 def search():
     ''' look up a term '''
     try:
@@ -66,7 +66,7 @@ def search():
 
 
 @app.route('/table')
-@app.route('/table/<entity>', methods=['GET'])
+@app.route('/table/<entity>')
 def table(entity='demon'):
     ''' a comparison table for grimoires and entities '''
     if not entity in entities:
@@ -93,7 +93,7 @@ def table(entity='demon'):
                            entities=entity_list, isolates=isolates, table=True)
 
 
-@app.route('/<label>/<uid>', methods=['GET'])
+@app.route('/<label>/<uid>')
 def item(label, uid):
     ''' generic page for an item '''
     label = sanitize(label)
@@ -194,7 +194,7 @@ def get_others(rels, node):
     return others
 
 
-@app.route('/<label>', methods=['GET'])
+@app.route('/<label>')
 def category(label):
     ''' list of entried for a label '''
     label = sanitize(label)
