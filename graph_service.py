@@ -107,11 +107,23 @@ class GraphService(object):
         query += '(n)--(p) RETURN n'
         return self.query(query, item1=item1, item2=item2)
 
+
     @serialize
     def get_grimoire_entities(self, entity):
         ''' get a list of grimoires with a list of their demons '''
         query = 'MATCH (n:grimoire)-[:lists]-(m:%s) ' \
-                'WITH m, COLLECT(n) AS ln ' \
+                'WITH m, COUNT (n) as cn, COLLECT(n) AS ln ' \
+                'WHERE cn > 1 ' \
                 'RETURN m, ln ORDER BY SIZE(ln) DESC' % entity
+        return self.query(query)
 
+
+    @serialize
+    def get_single_grimoire_entities(self, entity):
+        ''' get a list of entities that only appear in one grimoire, by grimoire '''
+        query = 'MATCH (n:grimoire)-[r:lists]->(m:%s), (p:grimoire) ' \
+                'WITH m, COUNT(r) AS cr, p ' \
+                'WHERE cr = 1 AND (p)-[:lists]->(m) ' \
+                'WITH p, collect(m) as lm ' \
+                'RETURN p, lm' % entity
         return self.query(query)

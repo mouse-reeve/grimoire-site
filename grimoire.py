@@ -1,5 +1,4 @@
 ''' webserver for grimoire graph data '''
-from collections import defaultdict
 from flask import Flask, redirect, render_template, request
 from graph_service import GraphService
 import logging
@@ -87,8 +86,11 @@ def table(entity='demon'):
         for key, value in d.items():
             grimoires[key] = value
 
+    isolates_data = graph.get_single_grimoire_entities(entity)
+    isolates = zip(isolates_data['nodes'], isolates_data['lists'])
+
     return render_template('table.html', entity=entity, grimoires=grimoires,
-                           entities=entity_list, table=True)
+                           entities=entity_list, isolates=isolates, table=True)
 
 
 @app.route('/<label>/<uid>', methods=['GET'])
@@ -280,6 +282,7 @@ def grimoire_date(props):
 
     return date
 
+
 def sanitize(text, allow_spaces=False):
     ''' don't let any fuckery in to neo4j '''
     regex = r'[a-zA-z\-\d]'
@@ -292,6 +295,7 @@ def extract_rel_list(rels, label, position):
     ''' get all relationships to a node for a given type '''
     return [r[position] for r in rels
             if r[position]['label'] and r[position]['label'] == label]
+
 
 if __name__ == '__main__':
     app.debug = True

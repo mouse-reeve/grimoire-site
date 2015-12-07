@@ -33,5 +33,18 @@
     </tr>
 </table>
 
+<h2>{{ entity | pluralize | capitalize }} that appear in only one grimoire</h2>
+
+{% for grimoire, entities in isolates %}
+<div class="card">
+    <h3><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></h3>
+    <ul class="many">
+        {% for entity in entities %}
+        <li><a href="{{ entity.link }}">{{ entity.properties.identifier }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
 {% endblock %}
 
