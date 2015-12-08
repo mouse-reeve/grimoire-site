@@ -58,12 +58,13 @@
         {% if rel.start.id == id %}
         <strong>{{ rel.start.properties.identifier | format }}</strong>
         {% else %}
-        the {{ rel.start.label | format }} <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        {% if not rel.start.label in ['practitioner', 'author'] %}The {{ rel.start.label | format }}{% endif %}
+        <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
         {% endif %}
 
         {{ rel.type | format }}
 
-        the {{ rel.end.label | format }}
+        {% if not rel.end.label in ['practitioner', 'author'] %}the {{ rel.end.label | format }}{% endif %}
         {% if rel.end.id == id %}
         <strong>{{ rel.end.properties.identifier | format }}</strong>
         {% else %}
