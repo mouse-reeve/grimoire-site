@@ -24,6 +24,21 @@
 </div>
 {% endif %}
 
+{% if data.serves or data.servants %}
+<div class="card">
+    <h3>Heirarchy</h3>
+    {% if data.serves %}
+    <h4>Serves</h4>
+    {{ macros.rel_list(data.serves) }}
+    {% endif %}
+
+    {% if data.servants %}
+    <h4>Servants</h4>
+    {{ macros.rel_list(data.servants) }}
+    {% endif %}
+</div>
+{% endif %}
+
 {% if data.relationships %}
 <div class="card">
     <h3>Connections</h3>

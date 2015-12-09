@@ -120,7 +120,7 @@ def item(label, uid):
 
     if label == 'fairy':
         # removes duplication of two-way sister relationships
-        rels = [r for r in rels if r['type'] != 'has_sister' or r['end']['id'] != node['id']]
+        rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
     if label == 'grimoire':
         template = 'grimoire.html'
@@ -131,7 +131,7 @@ def item(label, uid):
         data['spells'] = extract_rel_list(rels, 'spell', 'end')
         data['entities'] = {}
         for entity in entities:
-            data['entities'][entity] = extract_rel_list(rels, entity, 'end')
+            data['entities'][entity] = extract_rel_list_by_type(rels, 'lists', entity, 'end')
     elif label == 'art':
         template = 'topic.html'
         data['entities'] = {}
@@ -140,9 +140,15 @@ def item(label, uid):
             data['entities'][entity] = extract_rel_list(rels, entity, 'start')
     elif label in entities:
         template = 'entity.html'
-        rel_exclusions = ['lists', 'teaches', 'skilled_in']
+        rel_exclusions = ['lists', 'teaches', 'skilled_in', 'serves']
         data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
         data['skills'] = extract_rel_list(rels, 'art', 'end')
+        data['serves'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
+        data['serves'] = [s for s in data['serves'] if
+                          not s['properties']['uid'] == node['properties']['uid']]
+        data['servants'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
+        data['servants'] = [s for s in data['servants'] if
+                            not s['properties']['uid'] == node['properties']['uid']]
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
     data['id'] = node['id']
@@ -294,9 +300,16 @@ def sanitize(text, allow_spaces=False):
 
 
 def extract_rel_list(rels, label, position):
-    ''' get all relationships to a node for a given type '''
+    ''' get all relationships to a node for a given label '''
     return [r[position] for r in rels
             if r[position]['label'] and r[position]['label'] == label]
+
+
+def extract_rel_list_by_type(rels, rel_type, label, position):
+    ''' get all relationships to a node for a given label and type '''
+    return [r[position] for r in rels
+            if r[position]['label'] and r[position]['label'] == label
+            and r['type'] == rel_type]
 
 
 if __name__ == '__main__':
