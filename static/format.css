@@ -150,6 +150,14 @@ header nav form {
     color: #b5b5b7;
 }
 
+.comma-separated *:after {
+    content: ",";
+}
+
+.comma-separated *:last-child:after {
+    content: "";
+}
+
 .divider {
     margin-right: auto;
     margin-left: auto;

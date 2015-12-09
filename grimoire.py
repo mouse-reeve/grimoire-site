@@ -153,6 +153,12 @@ def item(label, uid):
         template = 'language.html'
         rel_exclusions = ['was_written_in']
         data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
+    elif label == 'edition':
+        template = 'edition.html'
+        rel_exclusions = ['published', 'edited', 'has']
+        data['publisher'] = extract_rel_list(rels, 'publisher', 'start')
+        data['editors'] = extract_rel_list(rels, 'editor', 'start')
+        data['grimoire'] = extract_rel_list(rels, 'grimoire', 'start')[0]
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
     data['id'] = node['id']
