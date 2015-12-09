@@ -51,6 +51,13 @@ nav li {
     padding: 0.7rem 0;
 }
 
+nav .show-for-small li {
+    text-align: left;
+    margin-left: 0.3em;
+    display: block;
+    float: left;
+}
+
 header nav li span:after {
     font-family: fontawesome;
     font-weight: normal;
@@ -137,7 +144,7 @@ li {
 
 #main {
     background: #fefefe;
-    padding: 1em 3em;
+    padding: 1em 0.5em;
     width: 100%;
     margin: 0;
     padding-bottom: 4em;
