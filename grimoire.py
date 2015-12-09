@@ -149,6 +149,10 @@ def item(label, uid):
         data['servants'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
         data['servants'] = [s for s in data['servants'] if
                             not s['properties']['uid'] == node['properties']['uid']]
+    elif label == 'language':
+        template = 'language.html'
+        rel_exclusions = ['was_written_in']
+        data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
     data['id'] = node['id']
