@@ -4,7 +4,7 @@
 
 <h2>{{ entity | capitalize | pluralize }} in Grimoires</h2>
 
-<table>
+<table class="scroll">
     <tr>
         <th></th>
         {% for uid, grimoire in grimoires.items() | sort %}
