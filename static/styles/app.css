@@ -193,6 +193,10 @@ blockquote {
     padding: 1em;
 }
 
+#sidebar a:hover {
+    color: #222;
+}
+
 table {
     border-collapse: inherit;
     border-spacing: 2px;
