@@ -99,8 +99,7 @@ def item(label, uid):
     label = sanitize(label)
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
-        labels = graph.get_labels()
-        return render_template('label-404.html', labels=labels)
+        return render_template('label-404.html', labels=graph.get_labels())
 
     uid = sanitize(uid)
     logging.info('loading %s: %s', label, uid)
@@ -108,9 +107,8 @@ def item(label, uid):
     if not data['nodes']:
         logging.error('Invalid uid %s', uid)
         items = graph.get_all(label)
-        search_items = graph.search(uid)
         return render_template('item-404.html', items=items['nodes'],
-                               search=search_items['nodes'], label=label)
+                               search=graph.search(uid)['nodes'], label=label)
 
     node = data['nodes'][0]
     rels = data['relationships']
@@ -125,13 +123,8 @@ def item(label, uid):
     if label == 'grimoire':
         template = 'grimoire.html'
         rel_exclusions = ['lists', 'has', 'includes']
+        data = grimoire_item(data, node, rels)
 
-        data['date'] = grimoire_date(node['properties'])
-        data['editions'] = extract_rel_list(rels, 'edition', 'end')
-        data['spells'] = extract_rel_list(rels, 'spell', 'end')
-        data['entities'] = {}
-        for entity in entities:
-            data['entities'][entity] = extract_rel_list_by_type(rels, 'lists', entity, 'end')
     elif label == 'art':
         template = 'topic.html'
         data['entities'] = {}
@@ -140,15 +133,8 @@ def item(label, uid):
             data['entities'][entity] = extract_rel_list(rels, entity, 'start')
     elif label in entities:
         template = 'entity.html'
+        data = entity_item(data, node, rels)
         rel_exclusions = ['lists', 'teaches', 'skilled_in', 'serves']
-        data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
-        data['skills'] = extract_rel_list(rels, 'art', 'end')
-        data['serves'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
-        data['serves'] = [s for s in data['serves'] if
-                          not s['properties']['uid'] == node['properties']['uid']]
-        data['servants'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
-        data['servants'] = [s for s in data['servants'] if
-                            not s['properties']['uid'] == node['properties']['uid']]
     elif label == 'language':
         template = 'language.html'
         rel_exclusions = ['was_written_in']
@@ -179,6 +165,31 @@ def item(label, uid):
     title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(label))
 
     return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
+
+
+def grimoire_item(data, node, rels):
+    ''' format data for grimoires '''
+    data['date'] = grimoire_date(node['properties'])
+    data['editions'] = extract_rel_list(rels, 'edition', 'end')
+    data['spells'] = extract_rel_list(rels, 'spell', 'end')
+    data['entities'] = {}
+    for entity in entities:
+        data['entities'][entity] = extract_rel_list_by_type(rels, 'lists', entity, 'end')
+
+    return data
+
+
+def entity_item(data, node, rels):
+    ''' format data for entities '''
+    data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
+    data['skills'] = extract_rel_list(rels, 'art', 'end')
+    data['serves'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
+    data['serves'] = [s for s in data['serves'] if
+                      not s['properties']['uid'] == node['properties']['uid']]
+    data['servants'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
+    data['servants'] = [s for s in data['servants'] if
+                        not s['properties']['uid'] == node['properties']['uid']]
+    return data
 
 
 def get_others(rels, node):
@@ -275,6 +286,8 @@ def capitalize_filter(text):
 def pluralize(text):
     ''' fishs '''
     text = format_filter(text)
+    if text == 'person':
+        return 'people'
     if text[-1] == 'y':
         return text[:-1] + 'ies'
     elif text[-1] in ['h', 's']:
