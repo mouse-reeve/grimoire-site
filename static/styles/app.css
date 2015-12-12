@@ -104,6 +104,10 @@ nav form div:first-child {
     font-family: fontawesome;
 }
 
+.divider.minor:after {
+    content: "\f068";
+    font-family: fontawesome;
+}
 
 h2, h3, h4, h5, h6 {
     font-family: georgia, serif;
