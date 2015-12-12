@@ -59,7 +59,7 @@ def support():
 def search():
     ''' look up a term '''
     try:
-        term = helpers.helpers.sanitize(request.values['term'], allow_spaces=True)
+        term = helpers.sanitize(request.values['term'], allow_spaces=True)
     except BadRequestKeyError:
         return redirect('/')
     data = graph.search(term)

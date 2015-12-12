@@ -39,7 +39,7 @@
         {% else %}
         <li>
             {{ field | capitalize }}:
-            {% if "http://" in data[field] %}
+            {% if "http" in data[field] %}
             <a href="{{ data[field] }}" target="_blank">{{ data[field] }}</a>
             {% else %}
             {{ data[field] }}
