@@ -9,7 +9,7 @@
 {% macro content(data) %}
 
 {% if 'content' in data %}
-<div class="card" id="main">
+<div class="card">
     <p>
         {{ data['content'] }}
     </p>
@@ -30,7 +30,12 @@
 {% for field in data %}
     {% if not field in ['uid', 'identifier', 'content'] and data[field]%}
         {% if data[field] is sequence and data[field] is not string %}
-        <li class="list">{{ field | capitalize }}: {% for l in data[field] %}<span>{{ l }}</span>{% endfor %}</li>
+        <li class="list">
+            {{ field | capitalize }}:
+            <ul>
+                {% for l in data[field] %}<li><span>{{ l }}</span></li>{% endfor %}
+            </ul>
+        </li>
         {% else %}
         <li>
             {{ field | capitalize }}:
