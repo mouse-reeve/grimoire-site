@@ -61,19 +61,19 @@
 {% for rel in data.relationships %}
     <li>
         {% if rel.start.id == id %}
-        <strong>{{ rel.start.properties.identifier | format }}</strong>
+        this {{ rel.start.label | format }}
         {% else %}
-        {% if not rel.start.label in ['practitioner', 'author'] %}The {{ rel.start.label | format }}{% endif %}
-        <a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a>
+        {% if not rel.start.label in ['person', 'author'] %}The {{ rel.start.label | format }}{% endif %}
+        <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a></strong>
         {% endif %}
 
         {{ rel.type | format }}
 
-        {% if not rel.end.label in ['practitioner', 'author'] %}the {{ rel.end.label | format }}{% endif %}
         {% if rel.end.id == id %}
-        <strong>{{ rel.end.properties.identifier | format }}</strong>
+        this {{ rel.end.label | format }}
         {% else %}
-        <a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a>
+        {% if not rel.end.label in ['person', 'author'] %}the {{ rel.end.label | format }}{% endif %}
+        <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a></strong>
         {% endif %}
     </li>
 {% endfor %}

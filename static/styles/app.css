@@ -129,8 +129,12 @@ ul {
 
 li {
     list-style-type: none;
-    margin: 0.7em 2em;
+    margin: 0.7em 2.5em;
     padding: 0;
+}
+
+.list li {
+    list-style-type: disc;
 }
 
 .comma-separated *:after {
