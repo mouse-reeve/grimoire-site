@@ -1,6 +1,7 @@
 ''' webserver for grimoire graph data '''
 from flask import Flask, redirect, render_template, request
 from graph_service import GraphService
+import helpers
 import logging
 import re
 from werkzeug.exceptions import BadRequestKeyError
@@ -18,7 +19,7 @@ def index():
     grimoires = []
     for g in data['nodes']:
         g = g['properties']
-        date = grimoire_date(g)
+        date = helpers.grimoire_date(g)
 
         grimoires.append({
             'uid': g['uid'],
@@ -58,7 +59,7 @@ def support():
 def search():
     ''' look up a term '''
     try:
-        term = sanitize(request.values['term'], allow_spaces=True)
+        term = helpers.helpers.sanitize(request.values['term'], allow_spaces=True)
     except BadRequestKeyError:
         return redirect('/')
     data = graph.search(term)
@@ -96,12 +97,12 @@ def table(entity='demon'):
 @app.route('/<label>/<uid>')
 def item(label, uid):
     ''' generic page for an item '''
-    label = sanitize(label)
+    label = helpers.sanitize(label)
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
         return render_template('label-404.html', labels=graph.get_labels())
 
-    uid = sanitize(uid)
+    uid = helpers.sanitize(uid)
     logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
     if not data['nodes']:
@@ -130,7 +131,7 @@ def item(label, uid):
         data['entities'] = {}
         rel_exclusions = ['teaches', 'skilled_in']
         for entity in entities:
-            data['entities'][entity] = extract_rel_list(rels, entity, 'start')
+            data['entities'][entity] = helpers.extract_rel_list(rels, entity, 'start')
     elif label in entities:
         template = 'entity.html'
         data = entity_item(data, node, rels)
@@ -138,13 +139,13 @@ def item(label, uid):
     elif label == 'language':
         template = 'language.html'
         rel_exclusions = ['was_written_in']
-        data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
+        data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
     elif label == 'edition':
         template = 'edition.html'
         rel_exclusions = ['published', 'edited', 'has']
-        data['publisher'] = extract_rel_list(rels, 'publisher', 'start')
-        data['editors'] = extract_rel_list(rels, 'editor', 'start')
-        data['grimoire'] = extract_rel_list(rels, 'grimoire', 'start')[0]
+        data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
+        data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
+        data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
 
     data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
     data['id'] = node['id']
@@ -169,24 +170,24 @@ def item(label, uid):
 
 def grimoire_item(data, node, rels):
     ''' format data for grimoires '''
-    data['date'] = grimoire_date(node['properties'])
-    data['editions'] = extract_rel_list(rels, 'edition', 'end')
-    data['spells'] = extract_rel_list(rels, 'spell', 'end')
+    data['date'] = helpers.grimoire_date(node['properties'])
+    data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
+    data['spells'] = helpers.extract_rel_list(rels, 'spell', 'end')
     data['entities'] = {}
     for entity in entities:
-        data['entities'][entity] = extract_rel_list_by_type(rels, 'lists', entity, 'end')
+        data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
 
     return data
 
 
 def entity_item(data, node, rels):
     ''' format data for entities '''
-    data['grimoires'] = extract_rel_list(rels, 'grimoire', 'start')
-    data['skills'] = extract_rel_list(rels, 'art', 'end')
-    data['serves'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
+    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    data['skills'] = helpers.extract_rel_list(rels, 'art', 'end')
+    data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
     data['serves'] = [s for s in data['serves'] if
                       not s['properties']['uid'] == node['properties']['uid']]
-    data['servants'] = extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
+    data['servants'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
     data['servants'] = [s for s in data['servants'] if
                         not s['properties']['uid'] == node['properties']['uid']]
     return data
@@ -224,16 +225,16 @@ def get_others(rels, node):
 @app.route('/<label>')
 def category(label):
     ''' list of entried for a label '''
-    label = sanitize(label)
+    label = helpers.sanitize(label)
     if not graph.validate_label(label):
         labels = graph.get_labels()
         return render_template('label-404.html', labels=labels)
 
     filtered = None
     try:
-        item1 = sanitize(request.values['i'])
-        item2 = sanitize(request.values['j'])
-        operator = sanitize(request.values['op'])
+        item1 = helpers.sanitize(request.values['i'])
+        item2 = helpers.sanitize(request.values['j'])
+        operator = helpers.sanitize(request.values['op'])
         if not operator in ['and', 'not']:
             raise BadRequestKeyError
     except (KeyError, BadRequestKeyError):
@@ -293,46 +294,6 @@ def pluralize(text):
     elif text[-1] in ['h', 's']:
         return text + 'es'
     return text + 's'
-
-
-# ----- utilities
-def grimoire_date(props):
-    ''' get a nicely formatted year for a grimoire '''
-    if 'year' in props and props['year']:
-        date = props['year']
-    elif 'decade' in props and props['decade']:
-        date = '%ss' % props['decade']
-    elif 'century' in props and props['century']:
-        try:
-            cent = int(props['century'][:-2])
-            date = '%dth century' % (cent + 1)
-        except ValueError:
-            date = '%ss' % props['century']
-    else:
-        date = ''
-
-    return date
-
-
-def sanitize(text, allow_spaces=False):
-    ''' don't let any fuckery in to neo4j '''
-    regex = r'[a-zA-z\-\d]'
-    if allow_spaces:
-        regex = r'[a-zA-z\-\s\d]'
-    return ''.join([t.lower() for t in text if re.match(regex, t)])
-
-
-def extract_rel_list(rels, label, position):
-    ''' get all relationships to a node for a given label '''
-    return [r[position] for r in rels
-            if r[position]['label'] and r[position]['label'] == label]
-
-
-def extract_rel_list_by_type(rels, rel_type, label, position):
-    ''' get all relationships to a node for a given label and type '''
-    return [r[position] for r in rels
-            if r[position]['label'] and r[position]['label'] == label
-            and r['type'] == rel_type]
 
 
 if __name__ == '__main__':
