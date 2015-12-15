@@ -8,6 +8,8 @@ import grimoire.helpers as helpers
 @app.route('/<label>/<uid>')
 def item(label, uid):
     ''' generic page for an item '''
+
+    # load and validate url data
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
@@ -25,76 +27,76 @@ def item(label, uid):
     node = data['nodes'][0]
     rels = data['relationships']
 
-    rel_exclusions = []
-    template = 'item.html'
+    # ----- page header/metadata
+    title = '%s (%s)' % (node['properties']['identifier'], helpers.capitalize_filter(label))
 
-    if label == 'fairy':
-        # removes duplication of two-way sister relationships
-        rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
+    # ----- formatted data
+    switch = {
+        'default': ('item.html', generic_item),
+        'grimoire': ('grimoire.html', grimoire_item),
+        'fairy': ('entity.html', entity_item),
+        'demon': ('entity.html', entity_item),
+        'angel': ('entity.html', entity_item),
+        'aerial_spirit': ('entity.html', entity_item),
+        'olympian_spirit': ('entity.html', entity_item),
+        'art': ('topic.html', art_item),
+        'language': ('language.html', language_item),
+        'edition': ('edition.html', edition_item)
+    }
 
-    if label == 'grimoire':
-        template = 'grimoire.html'
-        rel_exclusions = ['lists', 'has', 'includes']
-        data = grimoire_item(data, node, rels)
+    key = label if label in switch else 'default'
+    template = switch[key][0]
+    item_data = switch[key][1](node, rels)
 
-    elif label == 'art':
-        template = 'topic.html'
-        data['entities'] = {}
-        rel_exclusions = ['teaches', 'skilled_in']
-        for entity in entities:
-            data['entities'][entity] = helpers.extract_rel_list(rels, entity, 'start')
-    elif label in entities:
-        template = 'entity.html'
-        data = entity_item(data, node, rels)
-        rel_exclusions = ['lists', 'teaches', 'skilled_in', 'serves']
-    elif label == 'language':
-        template = 'language.html'
-        rel_exclusions = ['was_written_in']
-        data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
-    elif label == 'edition':
-        template = 'edition.html'
-        rel_exclusions = ['published', 'edited', 'has']
-        node['properties'] = {k:v for k, v in node['properties'].items() if
-                              not k == 'editor'}
-        data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
-        data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
-        data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
-
-    data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
-    data['id'] = node['id']
-    data['properties'] = {k:v for k, v in node['properties'].items() if
-                          not k in ['year', 'decade', 'century']}
-    data['has_details'] = len([k for k in data['properties'].keys()
-                               if not k in ['uid', 'content', 'identifier']]) > 0
-
+    # ----- sidebar
     sidebar = []
     related = graph.related(uid, label)
-    # similar items of the same type
     if related['nodes']:
         sidebar = [{'title': 'Similar %s' % helpers.pluralize(helpers.capitalize_filter(label)),
                     'data': related['nodes']}]
-
     sidebar += get_others(data['relationships'], node)
 
-    title = '%s (%s)' % (node['properties']['identifier'], helpers.capitalize_filter(label))
+    return render_template(template,
+                           data=item_data,
+                           title=title,
+                           label=label,
+                           sidebar=sidebar)
 
-    return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
+def generic_item(node, rels):
+    ''' no special template data formatting here '''
+    return {
+        'id': node['id'],
+        'properties': node['properties'],
+        'relationships': rels,
+        'has_details': len([k for k in node['properties'].keys()
+                            if not k in ['uid', 'content', 'identifier']]) > 0
+    }
 
+def grimoire_item(node, rels):
+    ''' grimoire item page '''
+    data = generic_item(node, rels)
 
-def grimoire_item(data, node, rels):
-    ''' format data for grimoires '''
+    data['properties'] = {k:v for k, v in data['properties'].items() if
+                          not k in ['year', 'decade', 'century']}
+    data['relationships'] = exclude_rels(rels, ['lists', 'has', 'includes'])
+
     data['date'] = helpers.grimoire_date(node['properties'])
     data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
     data['spells'] = helpers.extract_rel_list(rels, 'spell', 'end')
     data['entities'] = {}
     for entity in entities:
         data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
-
     return data
 
 
-def entity_item(data, node, rels):
-    ''' format data for entities '''
+def entity_item(node, rels):
+    ''' entity item page '''
+    data = generic_item(node, rels)
+
+    # removes duplication of two-way sister relationships
+    rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
+
+    data['relationships'] = exclude_rels(rels, ['lists', 'teaches', 'skilled_in', 'serves'])
     data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
     data['skills'] = helpers.extract_rel_list(rels, 'art', 'end')
     data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
@@ -104,6 +106,41 @@ def entity_item(data, node, rels):
     data['servants'] = [s for s in data['servants'] if
                         not s['properties']['uid'] == node['properties']['uid']]
     return data
+
+
+def art_item(node, rels):
+    ''' art/topic item page '''
+    data = generic_item(node, rels)
+    data['entities'] = {}
+    for entity in entities:
+        data['entities'][entity] = helpers.extract_rel_list(rels, entity, 'start')
+    data['relationships'] = exclude_rels(rels, ['teaches', 'skilled_in'])
+    return data
+
+
+def language_item(node, rels):
+    ''' language item page '''
+    data = generic_item(node, rels)
+    data['relationships'] = exclude_rels(rels, ['was_written_in'])
+    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    return data
+
+
+def edition_item(node, rels):
+    ''' edition of a grimoire item page '''
+    data = generic_item(node, rels)
+    data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
+    node['properties'] = {k:v for k, v in node['properties'].items() if
+                          not k == 'editor'}
+    data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
+    data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
+    data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
+    return data
+
+
+def exclude_rels(rels, exclusions):
+    ''' remove relationships for a list of types '''
+    return [r for r in rels if not r['type'] in exclusions]
 
 
 def get_others(rels, node):
@@ -133,5 +170,3 @@ def get_others(rels, node):
                     'data': other_items['nodes']
                 })
     return others
-
-
