@@ -9,6 +9,9 @@
     {% endfor %}
     </ul>
 </div>
+
+<div class="divider"></div>
+
 {% for group in data | sort(attribute="label") %}
 <div class="index card" id="{{ group.label }}">
     <h3>{{ group.label | pluralize| capitalize }}</h3>

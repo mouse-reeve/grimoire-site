@@ -13,7 +13,7 @@ Show {{ label | pluralize }} listed in
 <form method="get" action="{{ label }}">
     <select name="i" required>
         <option></option>
-        {% for grimoire in grimoires %}
+        {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
         <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
         {% endfor %}
     </select>
@@ -25,7 +25,7 @@ Show {{ label | pluralize }} listed in
 
     <select name="j" required>
         <option></option>
-        {% for grimoire in grimoires %}
+        {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
         <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
         {% endfor %}
     </select>

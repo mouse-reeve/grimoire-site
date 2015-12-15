@@ -1,12 +1,13 @@
-''' webserver for grimoire graph data '''
-from flask import Flask, redirect, render_template, request
-from graph_service import GraphService
-import helpers
+''' views '''
+from flask import redirect, render_template, request
+from grimoire.graph_service import GraphService
+import grimoire.helpers as helpers
 import logging
 import re
 from werkzeug.exceptions import BadRequestKeyError
 
-app = Flask(__name__)
+from grimoire import app
+
 graph = GraphService()
 
 entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
@@ -143,6 +144,8 @@ def item(label, uid):
     elif label == 'edition':
         template = 'edition.html'
         rel_exclusions = ['published', 'edited', 'has']
+        node['properties'] = {k:v for k, v in node['properties'].items() if
+                              not k == 'editor'}
         data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
         data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
         data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
@@ -299,3 +302,4 @@ def pluralize(text):
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=4080)
+
