@@ -5,6 +5,7 @@ import logging
 from grimoire import app, graph, entities
 import grimoire.helpers as helpers
 
+
 @app.route('/<label>/<uid>')
 def item(label, uid):
     ''' generic page for an item '''
@@ -62,6 +63,7 @@ def item(label, uid):
                            label=label,
                            sidebar=sidebar)
 
+
 def generic_item(node, rels):
     ''' no special template data formatting here '''
     return {
@@ -71,6 +73,7 @@ def generic_item(node, rels):
         'has_details': len([k for k in node['properties'].keys()
                             if not k in ['uid', 'content', 'identifier']]) > 0
     }
+
 
 def grimoire_item(node, rels):
     ''' grimoire item page '''
