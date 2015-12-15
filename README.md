@@ -1,7 +1,9 @@
 # Grimoire Site
 
 ## What
-This site, www.grimoire.org, exposes a neo4j graph database of metadata about historical grimoires. The goal is to look at the connections between different texts, find overlapping content, and provide a reference point for information about the books and their contents.
+This site, www.grimoire.org, exposes a neo4j graph database of metadata about historical grimoires.
+The goal is to look at the connections between different texts, find overlapping content,
+and provide a reference point for information about the books and their contents.
 
 ## How
 To get an instance running:

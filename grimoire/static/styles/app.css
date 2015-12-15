@@ -94,7 +94,7 @@ nav form div:first-child {
     color: #f2b632;
 }
 
-#search-bar {
+#search-bar, #m-search-bar {
     padding: 0.3em;
     border-radius: 0.6em;
     border: 2px solid #b5b5b7;

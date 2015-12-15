@@ -4,10 +4,14 @@ from py2neo.packages.httpstream.http import SocketError
 
 
 def serialize(func):
-    """ serialize neo4j data """
+    """ serialize neo4j data
+    :param func:
+    """
 
     def serialize_wrapper(self, *args, **kwargs):
-        """ serialize dis """
+        """ serialize dis
+        :param self:
+        """
         try:
             data = func(self, *args, **kwargs)
         except SocketError:
@@ -31,7 +35,9 @@ def serialize(func):
 
 
 def serialize_node(node):
-    """ node contents """
+    """ node contents
+    :param node:
+    """
     label = [l for l in node.labels][0]
     link = '/%s/%s' % (label, node.properties['uid'])
     return {
@@ -43,7 +49,9 @@ def serialize_node(node):
 
 
 def serialize_relationship(rel):
-    """ relationship contents """
+    """ relationship contents
+    :param rel:
+    """
     return {
         'id': rel._id,
         'start': serialize_node(rel.start_node),

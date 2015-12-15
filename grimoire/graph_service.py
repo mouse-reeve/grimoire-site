@@ -1,11 +1,12 @@
 """ neo4j logic """
 import logging
-
 import os
-from grimoire.serializer import serialize
+
 from py2neo import authenticate, Graph
 from py2neo.error import Unauthorized
 from py2neo.packages.httpstream.http import SocketError
+
+from grimoire.serializer import serialize
 
 
 class GraphService(object):
@@ -33,16 +34,28 @@ class GraphService(object):
         self.labels = [l[0][0] for l in labels]
 
     def get_labels(self):
-        """ list of all types/labels in the db """
+        """
+        list of all types/labels in the db
+        :return:
+        """
         return self.labels
 
     def validate_label(self, label):
-        """ check if a label is real """
+        """
+        check if a label is real
+        :param label:
+        :return:
+        """
         return label in self.labels
 
     @serialize
     def get_all(self, label, with_connection_label=None):
-        """ load all nodes with a given label """
+        """
+        load all nodes with a given label
+        :param label:
+        :param with_connection_label:
+        :return:
+        """
         query = 'MATCH (n:%s) ' % label
         if with_connection_label:
             query += ' -- (m:%s) ' % with_connection_label
@@ -51,47 +64,78 @@ class GraphService(object):
 
     @serialize
     def get_node(self, uid):
-        """ load data """
+        """
+        load data
+        :param uid:
+        :return:
+        """
         query = 'MATCH n WHERE n.uid = {uid} ' \
                 'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
         return self.query(query, uid=uid)
 
     @serialize
     def random(self):
-        """ select one random node """
+        """
+        select one random node
+        :return:
+        """
         node = self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
         return node
 
     @serialize
     def search(self, term):
-        """ match a search term """
+        """
+        match a search term
+        :param term:
+        :return:
+        """
         if not term:
             return []
-        data = self.query('MATCH n WHERE n.identifier =~ {term} OR ' \
-                          'n.alternate_names =~ {term} OR ' \
+        data = self.query('MATCH n WHERE n.identifier =~ {term} OR '
+                          'n.alternate_names =~ {term} OR '
                           'n.content =~ {term} RETURN n', term='(?i).*%s.*' % term)
         return data
 
     @serialize
-    def related(self, uid, label, n=2, LIMIT=5):
-        """ find similar items, based on nth degree relationships """
+    def related(self, uid, label, n=2, limit=5):
+        """
+        find similar items, based on nth degree relationships
+        :param uid:
+        :param label:
+        :param n:
+        :param limit:
+        :return:
+        """
         query = 'MATCH (m)-[r*%d]-(n:%s) WHERE m.uid = {uid} ' \
                 'RETURN DISTINCT n, count(r) ORDER BY count(r) desc ' \
-                'LIMIT %d' % (n, label, LIMIT)
+                'LIMIT %d' % (n, label, limit)
         return self.query(query, uid=uid)
 
     @serialize
     def others_of_type(self, label, uid, exclude):
-        """ get all <blank> related to item <blank> """
+        """
+        get all <blank> related to item <blank>
+        :param label:
+        :param uid:
+        :param exclude:
+        :return:
+        """
         query = 'MATCH (n:%s)--(m) ' \
                 'WHERE m.uid = {uid} ' \
                 'AND NOT n.uid = {exclude} ' \
-                'RETURN n LIMIT 5' % (label)
+                'RETURN n LIMIT 5' % label
         return self.query(query, uid=uid, exclude=exclude)
 
     @serialize
     def get_filtered(self, label, item1, item2, operator):
-        """ items that connect to nodes """
+        """
+        items that connect to nodes
+        :param label:
+        :param item1:
+        :param item2:
+        :param operator:
+        :return:
+        """
         query = 'MATCH (n:%s)--m, p ' \
                 'WHERE m.uid={item1} AND p.uid={item2} ' \
                 'AND ' % label
@@ -104,7 +148,11 @@ class GraphService(object):
 
     @serialize
     def get_grimoire_entities(self, entity):
-        """ get a list of grimoires with a list of their demons """
+        """
+        get a list of grimoires with a list of their demons
+        :param entity:
+        :return:
+        """
         query = 'MATCH (n:grimoire)-[:lists]-(m:%s) ' \
                 'WITH m, COUNT (n) as cn, COLLECT(n) AS ln ' \
                 'WHERE cn > 1 ' \
@@ -113,7 +161,11 @@ class GraphService(object):
 
     @serialize
     def get_single_grimoire_entities(self, entity):
-        """ get a list of entities that only appear in one grimoire, by grimoire """
+        """
+        get a list of entities that only appear in one grimoire, by grimoire
+        :param entity:
+        :return:
+        """
         query = 'MATCH (n:grimoire)-[r:lists]->(m:%s), (p:grimoire) ' \
                 'WITH m, COUNT(r) AS cr, p ' \
                 'WHERE cr = 1 AND (p)-[:lists]->(m) ' \

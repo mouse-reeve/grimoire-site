@@ -21,8 +21,7 @@
         categories in check.
         {% endif %}
     </p>
-    <ul {% if not group.label in [
-    "author", "grimoire", "edition", "editor", "spell"] %} class="many" {% endif %}>
+    <ul {% if not group.label in ["author", "grimoire", "edition", "editor", "spell"] %} class="many" {% endif %}>
     {% for item in group.nodes | sort(attribute="properties.identifier") %}
     <li>
         <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>

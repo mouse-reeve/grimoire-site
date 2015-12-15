@@ -1,10 +1,9 @@
 """ misc views """
-import grimoire.helpers as helpers
 from flask import redirect, render_template, request
-from grimoire import app, graph, entities
 from werkzeug.exceptions import BadRequestKeyError
 
-entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
+import grimoire.helpers as helpers
+from grimoire import app, graph, entities
 
 
 @app.route('/')
@@ -21,7 +20,7 @@ def index():
             'identifier': g['identifier'],
             'date': date
         })
-        grimoires = sorted(grimoires, key=lambda g: g['identifier'])
+        grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     return render_template('home.html', grimoires=grimoires, title='Grimoire Metadata')
 
 
@@ -68,7 +67,7 @@ def search():
 @app.route('/table/<entity>')
 def table(entity='demon'):
     """ a comparison table for grimoires and entities """
-    if not entity in entities:
+    if entity not in entities:
         return redirect('/table')
 
     data = graph.get_grimoire_entities(entity)
@@ -105,7 +104,7 @@ def category(label):
         item1 = helpers.sanitize(request.values['i'])
         item2 = helpers.sanitize(request.values['j'])
         operator = helpers.sanitize(request.values['op'])
-        if not operator in ['and', 'not']:
+        if operator not in ['and', 'not']:
             raise BadRequestKeyError
     except (KeyError, BadRequestKeyError):
         data = graph.get_all(label)
@@ -120,7 +119,7 @@ def category(label):
     items = {}
     for node in data['nodes']:
         letter = node['properties']['identifier'][0].upper()
-        items[letter] = [node] if not letter in items else items[letter] + [node]
+        items[letter] = [node] if letter not in items else items[letter] + [node]
 
     template = 'list.html'
     title = 'List of %s' % helpers.capitalize_filter(label)
