@@ -39,7 +39,6 @@ def item(label, uid):
 
     # ----- formatted data
     switch = {
-        'default': ('item.html', generic_item),
         'grimoire': ('grimoire.html', grimoire_item),
         'fairy': ('entity.html', entity_item),
         'demon': ('entity.html', entity_item),
@@ -48,7 +47,9 @@ def item(label, uid):
         'olympian_spirit': ('entity.html', entity_item),
         'art': ('topic.html', art_item),
         'language': ('language.html', language_item),
-        'edition': ('edition.html', edition_item)
+        'edition': ('edition.html', edition_item),
+        'editor': ('editor.html', editor_item),
+        'default': ('item.html', generic_item)
     }
 
     key = label if label in switch else 'default'
@@ -69,7 +70,6 @@ def item(label, uid):
                            label=label,
                            sidebar=sidebar)
 
-
 def generic_item(node, rels):
     """
     no special template data formatting here
@@ -82,9 +82,9 @@ def generic_item(node, rels):
         'properties': node['properties'],
         'relationships': rels,
         'has_details': len([k for k in node['properties'].keys()
-                            if k not in ['uid', 'content', 'identifier']]) > 0
+                            if k not in ['uid', 'content', 'identifier'] and
+                            node['properties'][k]]) > 0
     }
-
 
 def grimoire_item(node, rels):
     """
@@ -107,7 +107,6 @@ def grimoire_item(node, rels):
     for entity in entities:
         data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
     return data
-
 
 def entity_item(node, rels):
     """
@@ -132,10 +131,8 @@ def entity_item(node, rels):
                         not s['properties']['uid'] == node['properties']['uid']]
     return data
 
-
 def art_item(node, rels):
-    """
-    art/topic item page
+    """ art/topic item page
     :param node:
     :param rels:
     :return:
@@ -147,10 +144,8 @@ def art_item(node, rels):
     data['relationships'] = exclude_rels(rels, ['teaches', 'skilled_in'])
     return data
 
-
 def language_item(node, rels):
-    """
-    language item page
+    """ language item page
     :param node:
     :param rels:
     :return:
@@ -162,31 +157,38 @@ def language_item(node, rels):
 
 
 def edition_item(node, rels):
-    """
-    edition of a grimoire item page
+    """ edition of a grimoire item page
     :param node:
     :param rels:
     :return:
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
-    node['properties'] = {k: v for k, v in node['properties'].items() if
+    data['properties'] = {k: v for k, v in node['properties'].items() if
                           not k == 'editor'}
     data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
     data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
     data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
     return data
 
+def editor_item(node, rels):
+    """ editor of a grimoire item page
+    :param node:
+    :param rels:
+    :return:
+    """
+    data = generic_item(node, rels)
+    data['relationships'] = exclude_rels(rels, ['edited'])
+    data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
+    return data
 
 def exclude_rels(rels, exclusions):
-    """
-    remove relationships for a list of types
+    """ remove relationships for a list of types
     :param rels:
     :param exclusions:
     :return:
     """
     return [r for r in rels if not r['type'] in exclusions]
-
 
 def get_others(rels, node):
     """
@@ -218,3 +220,4 @@ def get_others(rels, node):
                     'data': other_items['nodes']
                 })
     return others
+
