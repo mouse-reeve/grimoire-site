@@ -22,5 +22,5 @@ $ pip install -r requirements.txt
 - Set the environment variables `NEO4J_USER` and `NEO4J_PASS` to the Neo4j user and password
 - Run the application
 ```bash
-$ python grimoire.py
+$ python runserver.py
 ```
