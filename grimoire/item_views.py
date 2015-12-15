@@ -57,7 +57,7 @@ def item(label, uid):
                     'data': related['nodes']}]
     sidebar += get_others(data['relationships'], node)
 
-    return render_template(template,
+    return render_template('items/%s' % template,
                            data=item_data,
                            title=title,
                            label=label,
