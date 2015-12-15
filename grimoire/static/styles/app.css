@@ -47,15 +47,26 @@ header nav > .row {
     color: #f2b632;
 }
 
+header div.menu-button {
+    margin: 0.5em 0;
+}
+
+#mobileMenu {
+    margin-top: 3em;
+}
+
+#mobileMenu li {
+    padding: 0.2em;
+    margin: 0em;
+    text-align: left;
+}
+
 nav li {
     padding: 0.7rem 0;
 }
 
-nav .show-for-small li {
-    text-align: left;
-    margin-left: 0.3em;
-    display: block;
-    float: left;
+nav.show-for-small form {
+    float: right;
 }
 
 header nav li span:after {
@@ -65,7 +76,7 @@ header nav li span:after {
     content: "\f06e";
 }
 
-nav li:last-child span:after {
+header nav li:last-child span:after {
     content: none;
 }
 
