@@ -4,7 +4,8 @@ import os
 from py2neo import authenticate, Graph
 from py2neo.error import Unauthorized
 from py2neo.packages.httpstream.http import SocketError
-from serializer import serialize
+
+from grimoire.serializer import serialize
 
 class GraphService(object):
     ''' manage neo4j data operations '''
@@ -69,6 +70,8 @@ class GraphService(object):
     @serialize
     def search(self, term):
         ''' match a search term '''
+        if not term:
+            return []
         data = self.query('MATCH n WHERE n.identifier =~ {term} OR ' \
                           'n.alternate_names =~ {term} OR ' \
                           'n.content =~ {term} RETURN n', term='(?i).*%s.*' % term)

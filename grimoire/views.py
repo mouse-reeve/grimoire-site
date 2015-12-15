@@ -58,6 +58,9 @@ def search():
         term = helpers.sanitize(request.values['term'], allow_spaces=True)
     except BadRequestKeyError:
         return redirect('/')
+
+    if not term:
+        return redirect('/')
     data = graph.search(term)
     return render_template('search.html', results=data['nodes'], term=term)
 
