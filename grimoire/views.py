@@ -1,18 +1,13 @@
-''' views '''
+''' misc views '''
 from flask import redirect, render_template, request
-from grimoire.graph_service import GraphService
-import grimoire.helpers as helpers
-import logging
-import re
 from werkzeug.exceptions import BadRequestKeyError
 
-from grimoire import app
-
-graph = GraphService()
+from grimoire import app, graph, entities
+import grimoire.helpers as helpers
 
 entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
 
-# ----- routes
+
 @app.route('/')
 def index():
     ''' render the basic template for angular '''
@@ -95,136 +90,6 @@ def table(entity='demon'):
                            entities=entity_list, isolates=isolates, table=True)
 
 
-@app.route('/<label>/<uid>')
-def item(label, uid):
-    ''' generic page for an item '''
-    label = helpers.sanitize(label)
-    if not graph.validate_label(label):
-        logging.error('Invalid label %s', label)
-        return render_template('label-404.html', labels=graph.get_labels())
-
-    uid = helpers.sanitize(uid)
-    logging.info('loading %s: %s', label, uid)
-    data = graph.get_node(uid)
-    if not data['nodes']:
-        logging.error('Invalid uid %s', uid)
-        items = graph.get_all(label)
-        return render_template('item-404.html', items=items['nodes'],
-                               search=graph.search(uid)['nodes'], label=label)
-
-    node = data['nodes'][0]
-    rels = data['relationships']
-
-    rel_exclusions = []
-    template = 'item.html'
-
-    if label == 'fairy':
-        # removes duplication of two-way sister relationships
-        rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
-
-    if label == 'grimoire':
-        template = 'grimoire.html'
-        rel_exclusions = ['lists', 'has', 'includes']
-        data = grimoire_item(data, node, rels)
-
-    elif label == 'art':
-        template = 'topic.html'
-        data['entities'] = {}
-        rel_exclusions = ['teaches', 'skilled_in']
-        for entity in entities:
-            data['entities'][entity] = helpers.extract_rel_list(rels, entity, 'start')
-    elif label in entities:
-        template = 'entity.html'
-        data = entity_item(data, node, rels)
-        rel_exclusions = ['lists', 'teaches', 'skilled_in', 'serves']
-    elif label == 'language':
-        template = 'language.html'
-        rel_exclusions = ['was_written_in']
-        data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
-    elif label == 'edition':
-        template = 'edition.html'
-        rel_exclusions = ['published', 'edited', 'has']
-        node['properties'] = {k:v for k, v in node['properties'].items() if
-                              not k == 'editor'}
-        data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
-        data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
-        data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
-
-    data['relationships'] = [r for r in rels if not r['type'] in rel_exclusions]
-    data['id'] = node['id']
-    data['properties'] = {k:v for k, v in node['properties'].items() if
-                          not k in ['year', 'decade', 'century']}
-    data['has_details'] = len([k for k in data['properties'].keys()
-                               if not k in ['uid', 'content', 'identifier']]) > 0
-
-    sidebar = []
-    related = graph.related(uid, label)
-    # similar items of the same type
-    if related['nodes']:
-        sidebar = [{'title': 'Similar %s' % pluralize(capitalize_filter(label)),
-                    'data': related['nodes']}]
-
-    sidebar += get_others(data['relationships'], node)
-
-    title = '%s (%s)' % (node['properties']['identifier'], capitalize_filter(label))
-
-    return render_template(template, data=data, title=title, label=label, sidebar=sidebar)
-
-
-def grimoire_item(data, node, rels):
-    ''' format data for grimoires '''
-    data['date'] = helpers.grimoire_date(node['properties'])
-    data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
-    data['spells'] = helpers.extract_rel_list(rels, 'spell', 'end')
-    data['entities'] = {}
-    for entity in entities:
-        data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
-
-    return data
-
-
-def entity_item(data, node, rels):
-    ''' format data for entities '''
-    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
-    data['skills'] = helpers.extract_rel_list(rels, 'art', 'end')
-    data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
-    data['serves'] = [s for s in data['serves'] if
-                      not s['properties']['uid'] == node['properties']['uid']]
-    data['servants'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
-    data['servants'] = [s for s in data['servants'] if
-                        not s['properties']['uid'] == node['properties']['uid']]
-    return data
-
-
-def get_others(rels, node):
-    '''
-    other items of the node's type related to something it is related to.
-    For example: "Other editions by the editor Joseph H. Peterson"
-    '''
-    label = node['label']
-    others = []
-    for rel in rels:
-        start = rel['start']
-        end = rel['end']
-
-        # must be different types of data, and not entities in a grimoire
-        if start['label'] != end['label'] and \
-                (end['label'] != 'demon' and start['label'] != 'grimoire'):
-            # other = "editions"
-            other = start if start['label'] != label else end
-            other_items = graph.others_of_type(label,
-                                               other['properties']['uid'],
-                                               node['properties']['uid'])
-            if other_items['nodes']:
-                others.append({
-                    'title': 'Other %s related to the %s %s' %
-                             (pluralize(label), format_filter(other['label']),
-                              other['properties']['identifier']),
-                    'data': other_items['nodes']
-                })
-    return others
-
-
 @app.route('/<label>')
 def category(label):
     ''' list of entried for a label '''
@@ -256,7 +121,7 @@ def category(label):
         items[letter] = [node] if not letter in items else items[letter] + [node]
 
     template = 'list.html'
-    title = 'List of %s' % capitalize_filter(format_filter(label))
+    title = 'List of %s' % helpers.capitalize_filter(label)
 
     grimoires = []
     if label in entities:
@@ -268,38 +133,3 @@ def category(label):
     return render_template(template, items=items,
                            title=title, label=label,
                            grimoires=grimoires, filtered=filtered)
-
-
-# ----- filters
-@app.template_filter('format')
-def format_filter(rel):
-    ''' cleanup _ lines '''
-    if not rel:
-        return rel
-    return re.sub('_', ' ', rel)
-
-
-@app.template_filter('capitalize')
-def capitalize_filter(text):
-    ''' capitalize words '''
-    text = format_filter(text)
-    return text[0].upper() + text[1:]
-
-
-@app.template_filter('pluralize')
-def pluralize(text):
-    ''' fishs '''
-    text = format_filter(text)
-    if text == 'person':
-        return 'people'
-    if text[-1] == 'y':
-        return text[:-1] + 'ies'
-    elif text[-1] in ['h', 's']:
-        return text + 'es'
-    return text + 's'
-
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0', port=4080)
-
