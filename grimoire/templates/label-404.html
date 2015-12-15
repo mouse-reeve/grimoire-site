@@ -9,9 +9,9 @@
 <div class="card">
     <h2>Categories:</h2>
     <ul class="many">
-    {% for label in labels | sort %}
+        {% for label in labels | sort %}
         <li><a href="/{{ label }}">{{ label | format | capitalize | pluralize }}</a></li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </div>
 

@@ -10,21 +10,22 @@
 <div class="card">
     <h2>Possible matches</h2>
     <ul>
-    {% for item in search | sort(attribute="properties.identifier") %}
+        {% for item in search | sort(attribute="properties.identifier") %}
         <li>
             <a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a>
             ({{ item.label | format }})
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </div>
 {% endif %}
 
 <div class="card">
     <h2>{{ label | format | capitalize | pluralize }}</h2>
-    <ul {% if not label in ['spells', 'editions', 'grimoires'] %}class="many"{% endif %}>
+    <ul {% if not label in [
+    'spells', 'editions', 'grimoires'] %}class="many"{% endif %}>
     {% for item in items | sort(attribute="properties.identifier") %}
-        <li><a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a></li>
+    <li><a href="{{ item.link }}">{{ item.properties.identifier | format | capitalize }}</a></li>
     {% endfor %}
     </ul>
 </div>

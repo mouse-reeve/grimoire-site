@@ -1,14 +1,14 @@
-''' views for the item type pages '''
-from flask import render_template
+""" views for the item type pages """
 import logging
 
-from grimoire import app, graph, entities
 import grimoire.helpers as helpers
+from flask import render_template
+from grimoire import app, graph, entities
 
 
 @app.route('/<label>/<uid>')
 def item(label, uid):
-    ''' generic page for an item '''
+    """ generic page for an item """
 
     # load and validate url data
     label = helpers.sanitize(label)
@@ -65,7 +65,7 @@ def item(label, uid):
 
 
 def generic_item(node, rels):
-    ''' no special template data formatting here '''
+    """ no special template data formatting here """
     return {
         'id': node['id'],
         'properties': node['properties'],
@@ -76,10 +76,10 @@ def generic_item(node, rels):
 
 
 def grimoire_item(node, rels):
-    ''' grimoire item page '''
+    """ grimoire item page """
     data = generic_item(node, rels)
 
-    data['properties'] = {k:v for k, v in data['properties'].items() if
+    data['properties'] = {k: v for k, v in data['properties'].items() if
                           not k in ['year', 'decade', 'century']}
     data['relationships'] = exclude_rels(rels, ['lists', 'has', 'includes'])
 
@@ -93,7 +93,7 @@ def grimoire_item(node, rels):
 
 
 def entity_item(node, rels):
-    ''' entity item page '''
+    """ entity item page """
     data = generic_item(node, rels)
 
     # removes duplication of two-way sister relationships
@@ -112,7 +112,7 @@ def entity_item(node, rels):
 
 
 def art_item(node, rels):
-    ''' art/topic item page '''
+    """ art/topic item page """
     data = generic_item(node, rels)
     data['entities'] = {}
     for entity in entities:
@@ -122,7 +122,7 @@ def art_item(node, rels):
 
 
 def language_item(node, rels):
-    ''' language item page '''
+    """ language item page """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['was_written_in'])
     data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
@@ -130,10 +130,10 @@ def language_item(node, rels):
 
 
 def edition_item(node, rels):
-    ''' edition of a grimoire item page '''
+    """ edition of a grimoire item page """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
-    node['properties'] = {k:v for k, v in node['properties'].items() if
+    node['properties'] = {k: v for k, v in node['properties'].items() if
                           not k == 'editor'}
     data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
     data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
@@ -142,15 +142,15 @@ def edition_item(node, rels):
 
 
 def exclude_rels(rels, exclusions):
-    ''' remove relationships for a list of types '''
+    """ remove relationships for a list of types """
     return [r for r in rels if not r['type'] in exclusions]
 
 
 def get_others(rels, node):
-    '''
+    """
     other items of the node's type related to something it is related to.
     For example: "Other editions by the editor Joseph H. Peterson"
-    '''
+    """
     label = node['label']
     others = []
     for rel in rels:

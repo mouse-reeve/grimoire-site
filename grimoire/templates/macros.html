@@ -4,8 +4,6 @@
 {% endmacro %}
 
 
-
-
 {% macro content(data) %}
 
 {% if 'content' in data %}
@@ -21,50 +19,49 @@
 {% endmacro %}
 
 
-
-
 {% macro details(data) %}
 
 <h3>Details</h3>
 <ul>
-{% for field in data %}
+    {% for field in data %}
     {% if not field in ['uid', 'identifier', 'content'] and data[field]%}
-        {% if data[field] is sequence and data[field] is not string %}
-        <li class="list">
-            {{ field | capitalize }}:
-            <ul>
-                {% for l in data[field] %}<li><span>{{ l }}</span></li>{% endfor %}
-            </ul>
-        </li>
+    {% if data[field] is sequence and data[field] is not string %}
+    <li class="list">
+        {{ field | capitalize }}:
+        <ul>
+            {% for l in data[field] %}
+            <li><span>{{ l }}</span></li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% else %}
+    <li>
+        {{ field | capitalize }}:
+        {% if "http" in data[field] %}
+        <a href="{{ data[field] }}" target="_blank">{{ data[field] }}</a>
         {% else %}
-        <li>
-            {{ field | capitalize }}:
-            {% if "http" in data[field] %}
-            <a href="{{ data[field] }}" target="_blank">{{ data[field] }}</a>
-            {% else %}
-            {{ data[field] }}
-            {% endif %}
-        </li>
+        {{ data[field] }}
         {% endif %}
+    </li>
     {% endif %}
-{% endfor %}
+    {% endif %}
+    {% endfor %}
 </ul>
 
 {% endmacro %}
 
 
-
-
 {% macro connections(id, data) %}
 
 <ul>
-{% for rel in data.relationships %}
+    {% for rel in data.relationships %}
     <li>
         {% if rel.start.id == id %}
         this {{ rel.start.label | format }}
         {% else %}
         {% if not rel.start.label in ['person', 'author'] %}The {{ rel.start.label | format }}{% endif %}
-        <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier }}</a></strong>
+        <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier
+            }}</a></strong>
         {% endif %}
 
         {{ rel.type | format }}
@@ -73,31 +70,28 @@
         this {{ rel.end.label | format }}
         {% else %}
         {% if not rel.end.label in ['person', 'author'] %}the {{ rel.end.label | format }}{% endif %}
-        <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier }}</a></strong>
+        <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier
+            }}</a></strong>
         {% endif %}
     </li>
-{% endfor %}
+    {% endfor %}
 </ul>
 
 {% endmacro %}
-
-
 
 
 {% macro rel_list(data) %}
 
 <ul>
-{% for rel in data | sort(attribute="properties.identifier")%}
+    {% for rel in data | sort(attribute="properties.identifier")%}
     <li>
         <a href="/{{ rel.label }}/{{ rel.properties.uid }}">{{ rel.properties.identifier }}</a>
         {% if rel.properties.editor %}({{ rel.properties.editor }}){% endif %}
     </li>
-{% endfor %}
+    {% endfor %}
 </ul>
 
 {% endmacro %}
-
-
 
 
 {% macro alpha_list(items, many='') %}

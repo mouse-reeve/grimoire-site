@@ -1,14 +1,15 @@
-''' neo4j logic '''
+""" neo4j logic """
 import logging
+
 import os
+from grimoire.serializer import serialize
 from py2neo import authenticate, Graph
 from py2neo.error import Unauthorized
 from py2neo.packages.httpstream.http import SocketError
 
-from grimoire.serializer import serialize
 
 class GraphService(object):
-    ''' manage neo4j data operations '''
+    """ manage neo4j data operations """
 
     def __init__(self):
         try:
@@ -31,45 +32,39 @@ class GraphService(object):
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels]
 
-
     def get_labels(self):
-        ''' list of all types/labels in the db '''
+        """ list of all types/labels in the db """
         return self.labels
 
-
     def validate_label(self, label):
-        ''' check if a label is real '''
+        """ check if a label is real """
         return label in self.labels
-
 
     @serialize
     def get_all(self, label, with_connection_label=None):
-        ''' load all nodes with a given label '''
+        """ load all nodes with a given label """
         query = 'MATCH (n:%s) ' % label
         if with_connection_label:
             query += ' -- (m:%s) ' % with_connection_label
         query += 'RETURN DISTINCT n'
         return self.query(query)
 
-
     @serialize
     def get_node(self, uid):
-        ''' load data '''
+        """ load data """
         query = 'MATCH n WHERE n.uid = {uid} ' \
                 'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
         return self.query(query, uid=uid)
 
-
     @serialize
     def random(self):
-        ''' select one random node '''
+        """ select one random node """
         node = self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
         return node
 
-
     @serialize
     def search(self, term):
-        ''' match a search term '''
+        """ match a search term """
         if not term:
             return []
         data = self.query('MATCH n WHERE n.identifier =~ {term} OR ' \
@@ -77,29 +72,26 @@ class GraphService(object):
                           'n.content =~ {term} RETURN n', term='(?i).*%s.*' % term)
         return data
 
-
     @serialize
     def related(self, uid, label, n=2, LIMIT=5):
-        ''' find similar items, based on nth degree relationships '''
+        """ find similar items, based on nth degree relationships """
         query = 'MATCH (m)-[r*%d]-(n:%s) WHERE m.uid = {uid} ' \
                 'RETURN DISTINCT n, count(r) ORDER BY count(r) desc ' \
                 'LIMIT %d' % (n, label, LIMIT)
         return self.query(query, uid=uid)
 
-
     @serialize
     def others_of_type(self, label, uid, exclude):
-        ''' get all <blank> related to item <blank> '''
+        """ get all <blank> related to item <blank> """
         query = 'MATCH (n:%s)--(m) ' \
                 'WHERE m.uid = {uid} ' \
                 'AND NOT n.uid = {exclude} ' \
                 'RETURN n LIMIT 5' % (label)
         return self.query(query, uid=uid, exclude=exclude)
 
-
     @serialize
     def get_filtered(self, label, item1, item2, operator):
-        ''' items that connect to nodes '''
+        """ items that connect to nodes """
         query = 'MATCH (n:%s)--m, p ' \
                 'WHERE m.uid={item1} AND p.uid={item2} ' \
                 'AND ' % label
@@ -110,20 +102,18 @@ class GraphService(object):
         query += '(n)--(p) RETURN n'
         return self.query(query, item1=item1, item2=item2)
 
-
     @serialize
     def get_grimoire_entities(self, entity):
-        ''' get a list of grimoires with a list of their demons '''
+        """ get a list of grimoires with a list of their demons """
         query = 'MATCH (n:grimoire)-[:lists]-(m:%s) ' \
                 'WITH m, COUNT (n) as cn, COLLECT(n) AS ln ' \
                 'WHERE cn > 1 ' \
                 'RETURN m, ln ORDER BY SIZE(ln) DESC' % entity
         return self.query(query)
 
-
     @serialize
     def get_single_grimoire_entities(self, entity):
-        ''' get a list of entities that only appear in one grimoire, by grimoire '''
+        """ get a list of entities that only appear in one grimoire, by grimoire """
         query = 'MATCH (n:grimoire)-[r:lists]->(m:%s), (p:grimoire) ' \
                 'WITH m, COUNT(r) AS cr, p ' \
                 'WHERE cr = 1 AND (p)-[:lists]->(m) ' \

@@ -1,16 +1,15 @@
-''' misc views '''
-from flask import redirect, render_template, request
-from werkzeug.exceptions import BadRequestKeyError
-
-from grimoire import app, graph, entities
+""" misc views """
 import grimoire.helpers as helpers
+from flask import redirect, render_template, request
+from grimoire import app, graph, entities
+from werkzeug.exceptions import BadRequestKeyError
 
 entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
 
 
 @app.route('/')
 def index():
-    ''' render the basic template for angular '''
+    """ render the basic template for angular """
     data = graph.get_all('grimoire')
     grimoires = []
     for g in data['nodes']:
@@ -28,14 +27,14 @@ def index():
 
 @app.route('/random')
 def random():
-    ''' pick a node, any node '''
+    """ pick a node, any node """
     data = graph.random()
     return redirect(data['nodes'][0]['link'])
 
 
 @app.route('/index')
 def content_index():
-    ''' list everything available by category '''
+    """ list everything available by category """
     data = []
     for label in graph.get_labels():
         data.append({
@@ -47,13 +46,13 @@ def content_index():
 
 @app.route('/support')
 def support():
-    ''' the "give me money" page '''
+    """ the "give me money" page """
     return render_template('support.html')
 
 
 @app.route('/search')
 def search():
-    ''' look up a term '''
+    """ look up a term """
     try:
         term = helpers.sanitize(request.values['term'], allow_spaces=True)
     except BadRequestKeyError:
@@ -68,7 +67,7 @@ def search():
 @app.route('/table')
 @app.route('/table/<entity>')
 def table(entity='demon'):
-    ''' a comparison table for grimoires and entities '''
+    """ a comparison table for grimoires and entities """
     if not entity in entities:
         return redirect('/table')
 
@@ -95,7 +94,7 @@ def table(entity='demon'):
 
 @app.route('/<label>')
 def category(label):
-    ''' list of entried for a label '''
+    """ list of entried for a label """
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         labels = graph.get_labels()
