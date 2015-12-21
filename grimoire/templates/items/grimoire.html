@@ -10,6 +10,8 @@
 </div>
 {% endif %}
 
+{{ macros.worldcat(data.properties.identifier) }}
+
 {{ macros.content(data.properties) }}
 
 {% if data.has_details %}

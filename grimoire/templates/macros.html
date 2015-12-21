@@ -113,3 +113,12 @@
 </div>
 
 {% endmacro %}
+
+
+
+{% macro worldcat(term) %}
+<p>
+    Find a copy on
+    <a href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ term }}" target="_blank">WorldCat</a>
+</p>
+{% endmacro %}
