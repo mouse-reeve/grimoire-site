@@ -273,3 +273,25 @@ footer a {
     text-transform: uppercase;
     font-size: 0.8em;
 }
+
+.timeline {
+    margin-left: 5em;
+    padding-left: 1em;
+    border-left: 1px solid black;
+}
+
+.timeline .date {
+    height: 0;
+    overflow: visible;
+    position: relative;
+    right: 4em;
+    clear: left;
+    margin: 0;
+}
+
+.timeline div {
+    min-height: 0.1em;
+}
+
+.year {
+}

@@ -16,7 +16,7 @@ def grimoire_date(props):
         date = '%ss' % props['decade']
     elif 'century' in props and props['century']:
         try:
-            cent = int(props['century'][:-2])
+            cent = props['century']/100
             date = '%dth century' % (cent + 1)
         except ValueError:
             date = '%ss' % props['century']

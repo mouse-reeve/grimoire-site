@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ label | format | capitalize | pluralize }}</h2>
+<h2>{{ label | capitalize | pluralize }}</h2>
 
 {{ macros.alpha_list(items) }}
 

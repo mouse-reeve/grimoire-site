@@ -1,4 +1,5 @@
 """ misc views """
+import copy
 from flask import redirect, render_template, request
 from werkzeug.exceptions import BadRequestKeyError
 
@@ -134,3 +135,56 @@ def category(label):
     return render_template(template, items=items,
                            title=title, label=label,
                            grimoires=grimoires, filtered=filtered)
+
+@app.route('/timeline')
+def timeline_page():
+    """ timeline data display """
+    grimoires = graph.get_all('grimoire')['nodes']
+    centuries = [int(t['properties']['century'])
+                 if t['properties']['century'] else 0 for t in grimoires]
+    end = reduce(lambda x, y: x if x > y else y, centuries)
+    start = reduce(lambda x, y: x if x < y else y, centuries)
+    timeline = {}
+
+    for grim in grimoires:
+        century = grim['properties']['century']
+        decade = grim['properties']['decade']
+        year = grim['properties']['year']
+        timeline = add_to_timeline(timeline, century, grim, decade=decade, year=year)
+
+    # people's birth/death
+    people = graph.get_all('person')['nodes']
+    for person in people:
+        for event in ['born', 'died']:
+            if event in person['properties']:
+                year = person['properties'][event]
+                decade = year - year % 10
+                century = year - year % 100
+
+                timeline = add_to_timeline(timeline, century, person, decade=decade,
+                                           year=year, note=event)
+
+    return render_template('timeline.html', data=timeline, start=start, end=end)
+
+
+def add_to_timeline(timeline, century, node, note=None, decade=None, year=None):
+    """ put a date on it """
+    new_node = copy.copy(node)
+    if note:
+        new_node['note'] = note
+
+    if not century in timeline:
+        timeline[century] = {'decades': {}, 'items': []}
+    if decade and not decade in timeline[century]['decades']:
+        timeline[century]['decades'][decade] = {'years': {}, 'items': []}
+    if year and not year in timeline[century]['decades'][decade]['years']:
+        timeline[century]['decades'][decade]['years'][year] = {'items': []}
+
+    if year:
+        timeline[century]['decades'][decade]['years'][year]['items'] += [new_node]
+    elif decade:
+        timeline[century]['decades'][decade]['items'] += [new_node]
+    else:
+        timeline[century]['items'] += [new_node]
+
+    return timeline
