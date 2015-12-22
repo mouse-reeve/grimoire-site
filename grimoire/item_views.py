@@ -25,7 +25,7 @@ def item(label, uid):
     uid = helpers.sanitize(uid)
     logging.info('loading %s: %s', label, uid)
     data = graph.get_node(uid)
-    if not data['nodes']:
+    if 'nodes' not in data or not data['nodes']:
         logging.error('Invalid uid %s', uid)
         items = graph.get_all(label)
         return render_template('item-404.html', items=items['nodes'],
