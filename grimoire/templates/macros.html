@@ -1,7 +1,7 @@
 {% macro title(title, label) %}
-<h2>{{ title }}</h2>
+<h2>{{ title | unthe }}{% if label %} ({{ label | capitalize }}){% endif%}</h2>
 {% if label %}
-<p>List of <a href="/{{ label }}">{{ label | format | pluralize }}</a></p>
+<p>List of <a href="/{{ label }}">{{ label | pluralize }}</a></p>
 {% endif %}
 {% endmacro %}
 
@@ -62,8 +62,7 @@
         this {{ rel.start.label | format }}
         {% else %}
         {% if not rel.start.label in ['person', 'author'] %}The {{ rel.start.label | format }}{% endif %}
-        <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier
-            }}</a></strong>
+        <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier | unthe }}</a></strong>
         {% endif %}
 
         {{ rel.type | format }}
@@ -72,8 +71,7 @@
         this {{ rel.end.label | format }}
         {% else %}
         {% if not rel.end.label in ['person', 'author'] %}the {{ rel.end.label | format }}{% endif %}
-        <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier
-            }}</a></strong>
+        <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier | unthe }}</a></strong>
         {% endif %}
     </li>
     {% endfor %}
@@ -88,7 +86,7 @@
     {% for rel in data | sort(attribute="properties.identifier")%}
     <li>
         <a href="/{{ rel.label }}/{{ rel.properties.uid }}">{{ rel.properties.identifier }}</a>
-        {% if rel.properties.editor %}({{ rel.properties.editor }}){% endif %}
+        {% if rel.properties.editor %}({{ rel.properties.editor | unthe }}){% endif %}
     </li>
     {% endfor %}
 </ul>

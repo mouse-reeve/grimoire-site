@@ -7,8 +7,8 @@ from grimoire import app
 def grimoire_date(props):
     """
     get a nicely formatted year for a grimoire
-    :param props:
-    :return:
+    :param props: all the properties for a grimoire node
+    :return: a string formatted date ("2015", "2010s", or "20th century")
     """
     if 'year' in props and props['year']:
         date = props['year']
@@ -27,11 +27,10 @@ def grimoire_date(props):
 
 
 def sanitize(text, allow_spaces=False):
-    """
-    don't let any fuckery in to neo4j
-    :param text:
-    :param allow_spaces:
-    :return:
+    """ don't let any fuckery in to neo4j
+    :param text: a string to be used in a neo4j query
+    :param allow_spaces: prevents removing spaces (eg, for search)
+    :return: the white-list characters from the input text
     """
     regex = r'[a-zA-z\-\d]'
     if allow_spaces:
@@ -40,25 +39,23 @@ def sanitize(text, allow_spaces=False):
 
 
 def extract_rel_list(rels, label, position):
-    """
-    get all relationships to a node for a given label
-    :param rels:
-    :param label:
-    :param position:
-    :return:
+    """ get all relationships to a node for a given label
+    :param rels: the serialized rels object
+    :param label: the neo4j label string of the desired items
+    :param position: "start" or "end" - the position in the relationship
+    :return: a list of nodes
     """
     return [r[position] for r in rels
             if r[position]['label'] and r[position]['label'] == label]
 
 
 def extract_rel_list_by_type(rels, rel_type, label, position):
-    """
-    get all relationships to a node for a given label and type
-    :param rels:
-    :param rel_type:
-    :param label:
-    :param position:
-    :return:
+    """ get all relationships to a node for a given label and type
+    :param rels: the serialized rels object from neo4j
+    :param rel_type: specify a rel type ([r:lists], for example)
+    :param label: the neo4j label string of the desired items
+    :param position: "start" or "end" - the position in the relationship
+    :return:a list of nodes
     """
     return [r[position] for r in rels
             if r[position]['label'] and r[position]['label'] == label and
@@ -67,23 +64,21 @@ def extract_rel_list_by_type(rels, rel_type, label, position):
 
 # ----- filters
 @app.template_filter('format')
-def format_filter(rel):
+def format_filter(text):
+    """ cleanup _ lines
+    :param text: a relationship or category, or whatever contains an _
+    :return: a string with _ replaced with a space
     """
-    cleanup _ lines
-    :param rel:
-    :return:
-    """
-    if not rel:
-        return rel
-    return re.sub('_', ' ', rel)
+    if not text:
+        return text
+    return re.sub('_', ' ', text)
 
 
 @app.template_filter('capitalize')
 def capitalize_filter(text):
-    """
-    capitalize words
-    :param text:
-    :return:
+    """ capitalize words
+    :param text: a string
+    :return: that string with the first letter only capitalized
     """
     text = format_filter(text)
     return text[0].upper() + text[1:]
@@ -91,10 +86,9 @@ def capitalize_filter(text):
 
 @app.template_filter('pluralize')
 def pluralize(text):
-    """
-    fishs
-    :param text:
-    :return:
+    """ fishs
+    :param text: a singular english word
+    :return: that world, algorithmically pluralized
     """
     text = format_filter(text)
     if text == 'person':
@@ -104,3 +98,18 @@ def pluralize(text):
     elif text[-1] in ['h', 's']:
         return text + 'es'
     return text + 's'
+
+
+@app.template_filter('unthe')
+def unthe(text):
+    """ Re-orders "Book, The" and "Last, First" names
+    :param text: the comma-containing string
+    :return: an untangled string, or the original if there isn't 1 comma
+    """
+    text = format_filter(text)
+    pieces = text.split(', ')
+    if not len(pieces) == 2:
+        return text
+
+    return '%s %s' % (pieces[1], pieces[0])
+

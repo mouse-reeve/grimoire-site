@@ -80,7 +80,7 @@
             <h3>{{ section.title }}</h3>
             <ul>
                 {% for item in section.data %}
-                <li><a href="{{ item.link }}">{{ item.properties.identifier }}</a></li>
+                <li><a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a></li>
                 {% endfor %}
             </ul>
             {% endfor %}

@@ -35,7 +35,7 @@ def item(label, uid):
     rels = data['relationships']
 
     # ----- page header/metadata
-    title = '%s (%s)' % (node['properties']['identifier'], helpers.capitalize_filter(label))
+    title = node['properties']['identifier']
 
     # ----- formatted data
     switch = {

@@ -15,7 +15,7 @@
             <span class="comma-separated">
                 {% for item in data[c]['items'] %}
                 <span>
-                    <a href="{{ item.link }}">{{ item.properties.identifier }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+                    <a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
                 {% endfor %}
             </span>
         </div>
@@ -29,7 +29,7 @@
                 <span class="comma-separated">
                     {% for item in data[c].decades[c+d]['items'] %}
                     <span>
-                        <a href="{{ item.link }}">{{ item.properties.identifier }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+                        <a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
                     {% endfor %}
                 </span>
             </div>
@@ -42,7 +42,7 @@
                 <span class="comma-separated">
                     {% for item in data[c].decades[c+d].years[c+d+y]['items'] %}
                     <span>
-                        <a href="{{item.link}}">{{ item.properties.identifier }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+                        <a href="{{item.link}}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
                     {% endfor %}
                 </span>
                 {% endif %}
