@@ -155,7 +155,7 @@ def timeline_page():
     # people's birth/death
     people = graph.get_all('person')['nodes']
     for person in people:
-        for event in ['born', 'died']:
+        for event in ['born', 'died', 'crowned']:
             if event in person['properties']:
                 year = person['properties'][event]
                 decade = year - year % 10
