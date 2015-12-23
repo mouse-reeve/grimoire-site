@@ -139,7 +139,7 @@ def category(label):
 @app.route('/timeline')
 def timeline_page():
     """ timeline data display """
-    grimoires = graph.get_all('grimoire')['nodes']
+    grimoires = graph.get_all('grimoire')['nodes'] + graph.get_all('book')['nodes']
     centuries = [int(t['properties']['century'])
                  if t['properties']['century'] else 0 for t in grimoires]
     end = reduce(lambda x, y: x if x > y else y, centuries)

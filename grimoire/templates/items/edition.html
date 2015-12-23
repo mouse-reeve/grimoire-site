@@ -11,6 +11,13 @@
 </div>
 {% endif %}
 
+{% if data.book %}
+<div class="card">
+    <p><strong>Book:</strong> <a href="{{ data.book.link }}">
+        {{ data.book.properties.identifier }}</a></p>
+</div>
+{% endif %}
+
 {{ macros.worldcat(data.properties.identifier) }}
 
 {{ macros.content(data.properties) }}

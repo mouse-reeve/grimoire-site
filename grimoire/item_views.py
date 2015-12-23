@@ -39,6 +39,7 @@ def item(label, uid):
 
     # ----- formatted data
     switch = {
+        'book': ('grimoire.html', grimoire_item),
         'grimoire': ('grimoire.html', grimoire_item),
         'fairy': ('entity.html', entity_item),
         'demon': ('entity.html', entity_item),
@@ -168,7 +169,13 @@ def edition_item(node, rels):
                           not k == 'editor'}
     data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
     data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
-    data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')[0]
+
+    data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    if data['grimoire']:
+        data['grimoire'] = data['grimoire'][0]
+    data['book'] = helpers.extract_rel_list(rels, 'book', 'start')
+    if data['book']:
+        data['book'] = data['book'][0]
     return data
 
 def editor_item(node, rels):
