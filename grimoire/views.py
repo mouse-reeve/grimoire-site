@@ -175,6 +175,16 @@ def timeline_page():
                 timeline = add_to_timeline(timeline, century, item, decade=decade,
                                            year=year, note=event)
 
+    # misc things with a date fields
+    items = graph.get_with_param('date')['nodes']
+    for item in items:
+        year = item['properties']['date']
+        decade = year - year % 10
+        century = year - year % 100
+
+        timeline = add_to_timeline(timeline, century, item, decade=decade,
+                                   year=year)
+
 
     return render_template('timeline.html', data=timeline, start=start, end=end)
 

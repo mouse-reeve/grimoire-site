@@ -81,6 +81,8 @@ def capitalize_filter(text):
     :return: that string with the first letter only capitalized
     """
     text = format_filter(text)
+    if not text:
+        return text
     return text[0].upper() + text[1:]
 
 

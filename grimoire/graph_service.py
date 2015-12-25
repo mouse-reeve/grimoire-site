@@ -64,10 +64,9 @@ class GraphService(object):
 
     @serialize
     def get_node(self, uid):
-        """
-        load data
-        :param uid:
-        :return:
+        """ load data for a node by uid
+        :param uid: the human-readable uid string
+        :return: serialized neo4j nodes
         """
         query = 'MATCH n WHERE n.uid = {uid} ' \
                 'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
@@ -75,19 +74,17 @@ class GraphService(object):
 
     @serialize
     def random(self):
-        """
-        select one random node
-        :return:
+        """ select one random node
+        :return: the serialized neo4j nodelist
         """
         node = self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
         return node
 
     @serialize
     def search(self, term):
-        """
-        match a search term
-        :param term:
-        :return:
+        """ match a search term
+        :param term: the keyword to search on
+        :return: serialized neo4j results
         """
         if not term:
             return []
@@ -98,8 +95,7 @@ class GraphService(object):
 
     @serialize
     def related(self, uid, label, n=2, limit=5):
-        """
-        find similar items, based on nth degree relationships
+        """ find similar items, based on nth degree relationships
         :param uid:
         :param label:
         :param n:
@@ -171,4 +167,13 @@ class GraphService(object):
                 'WHERE cr = 1 AND (p)-[:lists]->(m) ' \
                 'WITH p, collect(m) as lm ' \
                 'RETURN p, lm' % entity
+        return self.query(query)
+
+    @serialize
+    def get_with_param(self, param):
+        """ get all nodes with a param of given name
+        :param param: the field to find on nodes
+        :return: serialized list of nodes
+        """
+        query = "MATCH (n) WHERE HAS(n.%s) RETURN n" % param
         return self.query(query)
