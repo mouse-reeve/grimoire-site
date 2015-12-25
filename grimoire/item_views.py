@@ -49,6 +49,7 @@ def item(label, uid):
         'art': ('topic.html', art_item),
         'language': ('language.html', language_item),
         'edition': ('edition.html', edition_item),
+        'publisher': ('publisher.html', publisher_item),
         'editor': ('editor.html', editor_item),
         'default': ('item.html', generic_item)
     }
@@ -176,6 +177,14 @@ def edition_item(node, rels):
     data['book'] = helpers.extract_rel_list(rels, 'book', 'start')
     if data['book']:
         data['book'] = data['book'][0]
+    return data
+
+def publisher_item(node, rels):
+    """ publisher item page
+    """
+    data = generic_item(node, rels)
+    data['relationships'] = exclude_rels(rels, ['published'])
+    data['books'] = helpers.extract_rel_list(rels, 'edition', 'end')
     return data
 
 def editor_item(node, rels):
