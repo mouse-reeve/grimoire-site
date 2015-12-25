@@ -122,7 +122,7 @@ def entity_item(node, rels):
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
     data['relationships'] = exclude_rels(rels, ['lists', 'teaches', 'skilled_in', 'serves'])
-    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start') + helpers.extract_rel_list(rels, 'book', 'start')
     data['skills'] = helpers.extract_rel_list(rels, 'art', 'end')
     data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
     data['serves'] = [s for s in data['serves'] if

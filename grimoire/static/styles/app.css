@@ -216,6 +216,10 @@ blockquote {
     color: #222;
 }
 
+#sidebar li {
+    margin: 0.4em 0;
+}
+
 table {
     border-collapse: inherit;
     border-spacing: 2px;

@@ -27,7 +27,7 @@
     {% endfor %}
     <tr>
         <th></th>
-        {% for uid, grimoire in grimoires.items() %}
+        {% for uid, grimoire in grimoires.items() | sort %}
         <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
         {% endfor %}
     </tr>
