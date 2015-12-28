@@ -13,7 +13,7 @@ def item(label, uid):
     generic page for an item
     :param label:
     :param uid:
-    :return: rendered item page template
+    :return: customized data for this label rendered item page template
     """
 
     # load and validate url data
@@ -75,9 +75,9 @@ def item(label, uid):
 def generic_item(node, rels):
     """
     no special template data formatting here
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     return {
         'id': node['id'],
@@ -91,9 +91,9 @@ def generic_item(node, rels):
 def grimoire_item(node, rels):
     """
     grimoire item page
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
 
     data = generic_item(node, rels)
@@ -111,20 +111,29 @@ def grimoire_item(node, rels):
     return data
 
 def entity_item(node, rels):
-    """
-     entity item page
-    :param node:
-    :param rels:
-    :return:
+    """ entity item page
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     data = generic_item(node, rels)
 
     # removes duplication of two-way sister relationships
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
-    data['relationships'] = exclude_rels(rels, ['lists', 'teaches', 'skilled_in', 'serves'])
-    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start') + helpers.extract_rel_list(rels, 'book', 'start')
-    data['skills'] = helpers.extract_rel_list(rels, 'art', 'end')
+    data['relationships'] = exclude_rels(rels,
+                                         ['lists',
+                                          'teaches',
+                                          'skilled_in',
+                                          'serves',
+                                          'facilitates',
+                                          'appears_like'])
+    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
+                        helpers.extract_rel_list(rels, 'book', 'start')
+    data['skills'] = helpers.extract_rel_list(rels, 'art', 'end') + \
+                     helpers.extract_rel_list(rels, 'outcome', 'end')
+    data['appearance'] = helpers.extract_rel_list(rels, 'animal', 'end') + \
+                         helpers.extract_rel_list(rels, 'human_form', 'end')
     data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
     data['serves'] = [s for s in data['serves'] if
                       not s['properties']['uid'] == node['properties']['uid']]
@@ -135,9 +144,9 @@ def entity_item(node, rels):
 
 def art_item(node, rels):
     """ art/topic item page
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     data = generic_item(node, rels)
     data['entities'] = {}
@@ -148,21 +157,20 @@ def art_item(node, rels):
 
 def language_item(node, rels):
     """ language item page
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['was_written_in'])
     data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
     return data
 
-
 def edition_item(node, rels):
     """ edition of a grimoire item page
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
@@ -189,9 +197,9 @@ def publisher_item(node, rels):
 
 def editor_item(node, rels):
     """ editor of a grimoire item page
-    :param node:
-    :param rels:
-    :return:
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['edited'])
@@ -200,9 +208,9 @@ def editor_item(node, rels):
 
 def exclude_rels(rels, exclusions):
     """ remove relationships for a list of types
-    :param rels:
+    :param rels: default relationship list
     :param exclusions:
-    :return:
+    :return: customized data for this label
     """
     return [r for r in rels if not r['type'] in exclusions]
 
@@ -210,9 +218,9 @@ def get_others(rels, node):
     """
     other items of the node's type related to something it is related to.
     For example: "Other editions by the editor Joseph H. Peterson"
-    :param rels:
-    :param node:
-    :return:
+    :param rels: default relationship list
+    :param node: the item node
+    :return: customized data for this label
     """
     label = node['label']
     others = []

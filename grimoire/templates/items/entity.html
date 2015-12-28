@@ -39,6 +39,13 @@
 </div>
 {% endif %}
 
+{% if data.appearance %}
+<div class="card">
+    <h3>Appearance aspects</h3>
+    {{ macros.rel_list(data.appearance) }}
+</div>
+{% endif %}
+
 {% if data.relationships %}
 <div class="card">
     <h3>Connections</h3>
