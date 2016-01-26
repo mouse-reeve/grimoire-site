@@ -9,10 +9,9 @@ from grimoire import app, graph, entities
 
 @app.route('/<label>/<uid>')
 def item(label, uid):
-    """
-    generic page for an item
-    :param label:
-    :param uid:
+    """ generic page for an item
+    :param label: the desired neo4j label
+    :param uid: the human-readable uid of the node
     :return: customized data for this label rendered item page template
     """
 
@@ -73,8 +72,7 @@ def item(label, uid):
                            sidebar=sidebar)
 
 def generic_item(node, rels):
-    """
-    no special template data formatting here
+    """ no special template data formatting here
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
@@ -89,8 +87,7 @@ def generic_item(node, rels):
     }
 
 def grimoire_item(node, rels):
-    """
-    grimoire item page
+    """ grimoire item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
@@ -132,8 +129,7 @@ def entity_item(node, rels):
                         helpers.extract_rel_list(rels, 'book', 'start')
     data['skills'] = helpers.extract_rel_list(rels, 'art', 'end') + \
                      helpers.extract_rel_list(rels, 'outcome', 'end')
-    data['appearance'] = helpers.extract_rel_list(rels, 'animal', 'end') + \
-                         helpers.extract_rel_list(rels, 'human_form', 'end')
+    data['appearance'] = helpers.extract_rel_list(rels, 'creature', 'end')
     data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
     data['serves'] = [s for s in data['serves'] if
                       not s['properties']['uid'] == node['properties']['uid']]
@@ -188,8 +184,7 @@ def edition_item(node, rels):
     return data
 
 def publisher_item(node, rels):
-    """ publisher item page
-    """
+    """ publisher item page """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published'])
     data['books'] = helpers.extract_rel_list(rels, 'edition', 'end')
@@ -215,8 +210,7 @@ def exclude_rels(rels, exclusions):
     return [r for r in rels if not r['type'] in exclusions]
 
 def get_others(rels, node):
-    """
-    other items of the node's type related to something it is related to.
+    """ other items of the node's type related to something it is related to.
     For example: "Other editions by the editor Joseph H. Peterson"
     :param rels: default relationship list
     :param node: the item node
