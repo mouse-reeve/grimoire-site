@@ -61,6 +61,11 @@ def search():
     if not term:
         return redirect('/')
     data = graph.search(term)
+
+    # if there's only one result, redirect
+    if len(data['nodes']) == 1:
+        item = data['nodes'][0]
+        return redirect('/%s/%s' % (item['label'], item['properties']['uid']))
     return render_template('search.html', results=data['nodes'], term=term)
 
 
