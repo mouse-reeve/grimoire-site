@@ -71,6 +71,7 @@ def item(label, uid):
                            label=label,
                            sidebar=sidebar)
 
+
 def generic_item(node, rels):
     """ no special template data formatting here
     :param node: the item node
@@ -85,6 +86,7 @@ def generic_item(node, rels):
                             if k not in ['uid', 'content', 'identifier'] and
                             node['properties'][k]]) > 0
     }
+
 
 def grimoire_item(node, rels):
     """ grimoire item page
@@ -106,6 +108,7 @@ def grimoire_item(node, rels):
     for entity in entities:
         data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
     return data
+
 
 def entity_item(node, rels):
     """ entity item page
@@ -138,6 +141,7 @@ def entity_item(node, rels):
                         not s['properties']['uid'] == node['properties']['uid']]
     return data
 
+
 def art_item(node, rels):
     """ art/topic item page
     :param node: the item node
@@ -151,6 +155,7 @@ def art_item(node, rels):
     data['relationships'] = exclude_rels(rels, ['teaches', 'skilled_in'])
     return data
 
+
 def language_item(node, rels):
     """ language item page
     :param node: the item node
@@ -161,6 +166,7 @@ def language_item(node, rels):
     data['relationships'] = exclude_rels(rels, ['was_written_in'])
     data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
     return data
+
 
 def edition_item(node, rels):
     """ edition of a grimoire item page
@@ -183,12 +189,18 @@ def edition_item(node, rels):
         data['book'] = data['book'][0]
     return data
 
+
 def publisher_item(node, rels):
-    """ publisher item page """
+    """ publisher item page
+    :param node: the publisher item node
+    :param rels: default relationship list
+    :return: customized data for this label
+    """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published'])
     data['books'] = helpers.extract_rel_list(rels, 'edition', 'end')
     return data
+
 
 def editor_item(node, rels):
     """ editor of a grimoire item page
@@ -201,6 +213,7 @@ def editor_item(node, rels):
     data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
     return data
 
+
 def exclude_rels(rels, exclusions):
     """ remove relationships for a list of types
     :param rels: default relationship list
@@ -208,6 +221,7 @@ def exclude_rels(rels, exclusions):
     :return: customized data for this label
     """
     return [r for r in rels if not r['type'] in exclusions]
+
 
 def get_others(rels, node):
     """ other items of the node's type related to something it is related to.

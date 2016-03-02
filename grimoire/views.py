@@ -72,7 +72,10 @@ def search():
 @app.route('/table')
 @app.route('/table/<entity>')
 def table(entity='demon'):
-    """ a comparison table for grimoires and entities """
+    """ a comparison table for grimoires and entities
+    :param entity: the type of creature (default is demon)
+    :return: the rendered table page
+    """
     if entity not in entities:
         return redirect('/table')
 
@@ -99,7 +102,10 @@ def table(entity='demon'):
 
 @app.route('/<label>')
 def category(label):
-    """ list of entried for a label """
+    """ list of entries for a label
+    :param label: the type of data to list out
+    :return: rendered list page
+    """
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         labels = graph.get_labels()
@@ -141,9 +147,12 @@ def category(label):
                            title=title, label=label,
                            grimoires=grimoires, filtered=filtered)
 
+
 @app.route('/timeline')
 def timeline_page():
-    """ timeline data display """
+    """ timeline data display
+    :return: rednered timeline page
+    """
     grimoires = graph.get_all('grimoire')['nodes'] + graph.get_all('book')['nodes']
     centuries = [int(t['properties']['century'])
                  if t['properties']['century'] else 0 for t in grimoires]
@@ -194,16 +203,24 @@ def timeline_page():
 
 
 def add_to_timeline(timeline, century, node, note=None, decade=None, year=None):
-    """ put a date on it """
+    """ put a date on it
+    :param timeline: the existing timeline object
+    :param century: the century from which the node dates
+    :param node: the node
+    :param note: display text to go along with the node
+    :param decade: decade of the node (if available)
+    :param year: year of the node (if available)
+    :return: updated timeline object
+    """
     new_node = copy.copy(node)
     if note:
         new_node['note'] = note
 
-    if not century in timeline:
+    if century not in timeline:
         timeline[century] = {'decades': {}, 'items': []}
-    if decade and not decade in timeline[century]['decades']:
+    if decade and decade not in timeline[century]['decades']:
         timeline[century]['decades'][decade] = {'years': {}, 'items': []}
-    if year and not year in timeline[century]['decades'][decade]['years']:
+    if year and year not in timeline[century]['decades'][decade]['years']:
         timeline[century]['decades'][decade]['years'][year] = {'items': []}
 
     if year:
