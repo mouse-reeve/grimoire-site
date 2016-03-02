@@ -190,7 +190,6 @@ def timeline_page():
         timeline = add_to_timeline(timeline, century, item, decade=decade,
                                    year=year)
 
-
     return render_template('timeline.html', data=timeline, start=start, end=end)
 
 
