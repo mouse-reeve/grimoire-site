@@ -4,16 +4,17 @@
 
 <h2>Search Results for "{{ term }}"</h2>
 
-{% if results %}
-<ul>
-    {% for result in results %}
-    <li>
-        <a href="{{ result.link }}">{{ result.properties.identifier }}</a> ({{ result.label | format }})
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No results found. Sorry about that.</p>
-{% endif %}
-
+<div id="content">
+    {% if results %}
+    <ul>
+        {% for result in results %}
+        <li>
+            <a href="{{ result.link }}">{{ result.properties.identifier }}</a> ({{ result.label | format }})
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found. Sorry about that.</p>
+    {% endif %}
+</div>
 {% endblock %}

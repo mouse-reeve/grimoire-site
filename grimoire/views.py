@@ -47,7 +47,7 @@ def content_index():
 @app.route('/support')
 def support():
     """ the "give me money" page """
-    return render_template('support.html')
+    return render_template('support.html', title='Support Grimoire dot Org')
 
 
 @app.route('/search')

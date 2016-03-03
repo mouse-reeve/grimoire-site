@@ -1,0 +1,120 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="medium-12 columns">
+    {% if label %}
+    <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+        <li><a href="/{{ label }}">{{ label | pluralize }}</a></li>
+        <li class="current"><a href="#">{{ title | unthe }}</a></li>
+    </ul>
+
+    {% endif %}
+
+    <h2>
+        {{ title | unthe }}{% if label %} ({{ label | capitalize }}){% endif%}
+    </h2>
+</div>
+
+<div id="content" class="medium-8 columns">
+
+    <!-- Text description, if available -->
+    {% if data.content %}
+    <div class="card">
+        <p>
+            {{ data.content }}
+        </p>
+        {% if label in ['book', 'grimoire', 'edition'] %}
+        <p>Find a copy on <a href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ title }}" target="_blank">WorldCat</a></p>
+        {% endif %}
+    </div>
+
+
+    <div class="divider"></div>
+    {% endif %}
+
+    <!-- Graph connections -->
+    {% if data.relationships %}
+    <div class="card">
+        {% for rel in data.relationships %}
+        <p>
+            {% if rel.start.id == data.id %}
+            This {{ rel.start.label | format }}
+            {% else %}
+            {% if not rel.start.label in ['person', 'author'] %}The {{ rel.start.label | format }}{% endif %}
+            <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier | unthe }}</a></strong>
+            {% endif %}
+
+            {{ rel.type | format }}
+
+            {% if rel.end.id == data.id %}
+            this {{ rel.end.label | format }}.
+            {% else %}
+            {% if not rel.end.label in ['person', 'author'] %}the {{ rel.end.label | format }}{% endif %}
+            <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier | unthe }}</a>.</strong>
+            {% endif %}
+        </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.main %}
+    <div class="card">
+        {% for section in data.main %}
+        <h3>{{ section.title | capitalize }}</h3>
+        {{ macros.rel_list(section.data, section.many) }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+<div id="sidebar" class="medium-4 columns">
+    <!-- Details box -->
+    {% if data.has_details %}
+    <div class="detail-box">
+        <h3>Details</h3>
+        <table>
+            {% for field in data.details | sort %}
+            <tr>
+                <th>
+                    {{ field | capitalize }}
+                </th>
+                <td class="comma-separated">
+                    {% for item in data.details[field] %}
+                    {% if item.link %}
+                    <span><a href="{{ item.link }}">{{ item.text }}</a></span>
+                    {% elif not item.text is number and "http" in item.text %}
+                    <span><a href="{{ item.text }}" target="_blank">{{ item.text }}</a></span>
+                    {% else %}
+                    <span>{{ item.text }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+
+    {% for section in data.sidebar %}
+    <div class="detail-box">
+        <h3>{{ section.title | capitalize }}</h3>
+        {{ macros.rel_list(section.data) }}
+    </div>
+    {% endfor %}
+
+    {% for section in sidebar %}
+    <div class="detail-box">
+        <h3>{{ section.title }}</h3>
+        <ul>
+            {% for item in section.data %}
+            <li><a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,37 +1,38 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div class="card">
-    <h2>Categories:</h2>
-    <ul class="many">
-        {% for group in data | sort(attribute="label") %}
-        <li><a href="#{{ group.label }}">{{ group.label | pluralize | capitalize }}</a></li>
+<div id="content">
+    <div class="card">
+        <h2>Categories:</h2>
+        <ul class="many">
+            {% for group in data | sort(attribute="label") %}
+            <li><a href="#{{ group.label }}">{{ group.label | pluralize | capitalize }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    {% for group in data | sort(attribute="label") %}
+    <div class="index card" id="{{ group.label }}">
+        <h3>{{ group.label | pluralize| capitalize }}</h3>
+        <p class="caption">
+            {% if group.label == 'editor' %}
+            This category does not distinguish between editors and translators, for the sake of keeping the number of
+            categories in check.
+            {% endif %}
+        </p>
+        <ul {% if not group.label in ["author", "grimoire", "edition", "editor", "spell"] %} class="many" {% endif %}>
+        {% for item in group.nodes | sort(attribute="properties.identifier") %}
+        <li>
+            <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
+        </li>
         {% endfor %}
-    </ul>
-</div>
+        </ul>
+    </div>
 
-<div class="divider"></div>
+    <div class="divider minor"></div>
 
-{% for group in data | sort(attribute="label") %}
-<div class="index card" id="{{ group.label }}">
-    <h3>{{ group.label | pluralize| capitalize }}</h3>
-    <p class="caption">
-        {% if group.label == 'editor' %}
-        This category does not distinguish between editors and translators, for the sake of keeping the number of
-        categories in check.
-        {% endif %}
-    </p>
-    <ul {% if not group.label in ["author", "grimoire", "edition", "editor", "spell"] %} class="many" {% endif %}>
-    {% for item in group.nodes | sort(attribute="properties.identifier") %}
-    <li>
-        <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
-    </li>
     {% endfor %}
-    </ul>
 </div>
-
-<div class="divider minor"></div>
-
-{% endfor %}
-
 {% endblock %}

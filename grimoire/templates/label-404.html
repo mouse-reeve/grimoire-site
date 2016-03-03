@@ -6,13 +6,14 @@
     <p>The category you are looking for cannot be found. Try one of the ones below.</p>
 </div>
 
-<div class="card">
-    <h2>Categories:</h2>
-    <ul class="many">
-        {% for label in labels | sort %}
-        <li><a href="/{{ label }}">{{ label | format | capitalize | pluralize }}</a></li>
-        {% endfor %}
-    </ul>
+<div id="content">
+    <div class="card">
+        <h2>Categories:</h2>
+        <ul class="many">
+            {% for label in labels | sort %}
+            <li><a href="/{{ label }}">{{ label | format | capitalize | pluralize }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
-
 {% endblock %}

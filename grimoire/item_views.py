@@ -38,34 +38,36 @@ def item(label, uid):
 
     # ----- formatted data
     switch = {
-        'book': ('grimoire.html', grimoire_item),
-        'grimoire': ('grimoire.html', grimoire_item),
-        'fairy': ('entity.html', entity_item),
-        'demon': ('entity.html', entity_item),
-        'angel': ('entity.html', entity_item),
-        'aerial_spirit': ('entity.html', entity_item),
-        'olympian_spirit': ('entity.html', entity_item),
-        'art': ('topic.html', art_item),
-        'language': ('language.html', language_item),
-        'edition': ('edition.html', edition_item),
-        'publisher': ('publisher.html', publisher_item),
-        'editor': ('editor.html', editor_item),
-        'default': ('item.html', generic_item)
+        'book': grimoire_item,
+        'grimoire': grimoire_item,
+        'fairy': entity_item,
+        'demon': entity_item,
+        'angel': entity_item,
+        'aerial_spirit': entity_item,
+        'olympian_spirit': entity_item,
+        'art': art_item,
+        'language': language_item,
+        'edition': edition_item,
+        'publisher': publisher_item,
+        'editor': editor_item,
+        'default': generic_item
     }
 
     key = label if label in switch else 'default'
-    template = switch[key][0]
-    item_data = switch[key][1](node, rels)
+    item_data = switch[key](node, rels)
 
     # ----- sidebar
     sidebar = []
     related = graph.related(uid, label)
     if related['nodes']:
-        sidebar = [{'title': 'Similar %s' % helpers.pluralize(helpers.capitalize_filter(label)),
+        sidebar = [{'title': 'Similar %s' % helpers.capitalize_filter(helpers.pluralize(label)),
                     'data': related['nodes']}]
     sidebar += get_others(data['relationships'], node)
 
-    return render_template('items/%s' % template,
+    if not item_data['content']:
+        item_data['content'] = 'The %s %s.' % (helpers.format_filter(label), helpers.unthe(title))
+
+    return render_template('item.html',
                            data=item_data,
                            title=title,
                            label=label,
@@ -78,13 +80,20 @@ def generic_item(node, rels):
     :param rels: default relationship list
     :return: customized data for this label
     """
+    content = node['properties']['content']
+    details = {k: [{'text': node['properties'][k]}] for k in node['properties'] if
+               k not in ['content', 'uid', 'identifier', 'year', 'decade', 'century', 'owned']}
+    details['Name'] = [{'text': node['properties']['identifier']}]
+
     return {
         'id': node['id'],
+        'content': content,
+        'details': details,
         'properties': node['properties'],
         'relationships': rels,
-        'has_details': len([k for k in node['properties'].keys()
-                            if k not in ['uid', 'content', 'identifier'] and
-                            node['properties'][k]]) > 0
+        'sidebar': [],
+        'main': [],
+        'has_details': len([d for d in details if details[d]]) > 0
     }
 
 
@@ -94,19 +103,47 @@ def grimoire_item(node, rels):
     :param rels: default relationship list
     :return: customized data for this label
     """
-
     data = generic_item(node, rels)
 
-    data['properties'] = {k: v for k, v in data['properties'].items() if
-                          k not in ['year', 'decade', 'century']}
-    data['relationships'] = exclude_rels(rels, ['lists', 'has', 'includes'])
+    data['relationships'] = exclude_rels(rels, [
+        'lists', 'has', 'includes', 'wrote', 'was_written_in'])
 
-    data['date'] = helpers.grimoire_date(node['properties'])
-    data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
-    data['spells'] = helpers.extract_rel_list(rels, 'spell', 'end')
-    data['entities'] = {}
+    data['details']['date'] = [{'text': helpers.grimoire_date(node['properties'])}]
+
+    authors = helpers.extract_rel_list_by_type(rels, 'wrote', 'person', 'start')
+    authors = [{'text': a['properties']['identifier'], 'link': a['link']}
+               for a in authors]
+    if authors:
+        data['details']['author'] = authors
+
+    languages = helpers.extract_rel_list_by_type(rels, 'was_written_in', 'language', 'end')
+    if languages:
+        data['details']['language'] = [{'text': a['properties']['identifier'], 'link': a['link']}
+                                       for a in languages]
+
+    editions = helpers.extract_rel_list(rels, 'edition', 'end')
+    if editions:
+        data['sidebar'].append({
+            'title': 'Editions',
+            'data': editions
+        })
+
     for entity in entities:
-        data['entities'][entity] = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
+        items = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
+        if len(items):
+            data['main'].append({
+                'title': helpers.pluralize(entity),
+                'data': items,
+                'many': True
+            })
+
+    spells = helpers.extract_rel_list(rels, 'spell', 'end')
+    if len(spells):
+        data['main'].append({
+            'title': 'Spells',
+            'data': spells,
+            'many': False
+        })
     return data
 
 
@@ -121,24 +158,36 @@ def entity_item(node, rels):
     # removes duplication of two-way sister relationships
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
-    data['relationships'] = exclude_rels(rels,
-                                         ['lists',
-                                          'teaches',
-                                          'skilled_in',
-                                          'serves',
-                                          'facilitates',
-                                          'appears_like'])
-    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
-                        helpers.extract_rel_list(rels, 'book', 'start')
-    data['skills'] = helpers.extract_rel_list(rels, 'art', 'end') + \
-                     helpers.extract_rel_list(rels, 'outcome', 'end')
-    data['appearance'] = helpers.extract_rel_list(rels, 'creature', 'end')
-    data['serves'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
-    data['serves'] = [s for s in data['serves'] if
-                      not s['properties']['uid'] == node['properties']['uid']]
-    data['servants'] = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
-    data['servants'] = [s for s in data['servants'] if
-                        not s['properties']['uid'] == node['properties']['uid']]
+    data['relationships'] = exclude_rels(rels, [
+        'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like'])
+    grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
+                helpers.extract_rel_list(rels, 'book', 'start')
+    if grimoires:
+        data['sidebar'].append({
+            'title': 'Grimoires',
+            'data': grimoires
+        })
+
+    skills = helpers.extract_rel_list(rels, 'art', 'end') + \
+             helpers.extract_rel_list(rels, 'outcome', 'end')
+    if skills:
+        data['main'].append({'title': 'Skills', 'data': skills, 'many': True})
+
+    appearance = helpers.extract_rel_list(rels, 'creature', 'end')
+    if appearance:
+        data['main'].append({'title': 'Appearance', 'data': appearance, 'many': True})
+
+    serves = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
+    serves = [s for s in serves if
+              not s['properties']['uid'] == node['properties']['uid']]
+    if serves:
+        data['main'].append({'title': 'Serves', 'data': serves})
+
+    servants = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
+    servants = [s for s in servants if
+                not s['properties']['uid'] == node['properties']['uid']]
+    if servants:
+        data['main'].append({'title': 'Servans', 'data': servants})
     return data
 
 
@@ -151,7 +200,13 @@ def art_item(node, rels):
     data = generic_item(node, rels)
     data['entities'] = {}
     for entity in entities:
-        data['entities'][entity] = helpers.extract_rel_list(rels, entity, 'start')
+        items = helpers.extract_rel_list(rels, entity, 'start')
+        if len(items):
+            data['main'].append({
+                'title': helpers.pluralize(entity),
+                'data': items,
+                'many': True
+            })
     data['relationships'] = exclude_rels(rels, ['teaches', 'skilled_in'])
     return data
 
@@ -164,7 +219,11 @@ def language_item(node, rels):
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['was_written_in'])
-    data['grimoires'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    data['main'].append({
+        'title': 'Grimoires Written in this Langage',
+        'data': grimoires
+    })
     return data
 
 
@@ -176,17 +235,23 @@ def edition_item(node, rels):
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
-    data['properties'] = {k: v for k, v in node['properties'].items() if
-                          not k == 'editor'}
-    data['publisher'] = helpers.extract_rel_list(rels, 'publisher', 'start')
-    data['editors'] = helpers.extract_rel_list(rels, 'editor', 'start')
+    publisher = helpers.extract_rel_list(rels, 'publisher', 'start')
+    if publisher:
+        data['details']['publisher'] = [{'text': k['properties']['identifier'], 'link': k['link']}
+                                        for k in publisher]
+    editors = helpers.extract_rel_list(rels, 'editor', 'start')
+    if editors:
+        data['details']['editor'] = [{'text': k['properties']['identifier'], 'link': k['link']}
+                                     for k in editors]
 
-    data['grimoire'] = helpers.extract_rel_list(rels, 'grimoire', 'start')
-    if data['grimoire']:
-        data['grimoire'] = data['grimoire'][0]
-    data['book'] = helpers.extract_rel_list(rels, 'book', 'start')
-    if data['book']:
-        data['book'] = data['book'][0]
+    grimoire = helpers.extract_rel_list(rels, 'grimoire', 'start')
+    if grimoire:
+        data['details']['grimoire'] = [{'text': k['properties']['identifier'], 'link': k['link']}
+                                       for k in grimoire]
+    book = helpers.extract_rel_list(rels, 'book', 'start')
+    if book:
+        data['details']['book'] = [{'text': k['properties']['identifier'], 'link': k['link']}
+                                   for k in book]
     return data
 
 
@@ -198,7 +263,9 @@ def publisher_item(node, rels):
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published'])
-    data['books'] = helpers.extract_rel_list(rels, 'edition', 'end')
+    books = helpers.extract_rel_list(rels, 'edition', 'end')
+    if books:
+        data['main'].append({'title': 'Books', 'data': books})
     return data
 
 
@@ -210,7 +277,9 @@ def editor_item(node, rels):
     """
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['edited'])
-    data['editions'] = helpers.extract_rel_list(rels, 'edition', 'end')
+    editions = helpers.extract_rel_list(rels, 'edition', 'end')
+    if editions:
+        data['main'].append({'title': 'Editions', 'data': editions})
     return data
 
 

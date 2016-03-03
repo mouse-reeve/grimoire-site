@@ -86,23 +86,10 @@
     </nav>
 </header>
 <div id="main">
-    <div class="row{% if table %} has-table{% endif %}" id="content">
-        <div id="content-wrapper" {% if sidebar %}class="medium-9 columns" {% endif %}>
+    <div class="row{% if table %} has-table{% endif %}">
+        <div id="content-wrapper">
             {% block body %}{% endblock %}
         </div>
-
-        {% if sidebar %}
-        <div id="sidebar" class="medium-3 columns">
-            {% for section in sidebar %}
-            <h3>{{ section.title }}</h3>
-            <ul>
-                {% for item in section.data %}
-                <li><a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a></li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-        </div>
-        {% endif %}
     </div>
 </div>
 
