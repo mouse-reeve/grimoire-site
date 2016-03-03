@@ -2,9 +2,18 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>{{ label | capitalize | pluralize }}</h2>
+<div class="medium-12 columns">
+    {% if label %}
+    <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+        <li class="current"><a href="/{{ label }}">{{ label | pluralize }}</a></li>
+    </ul>
+    {% endif %}
 
-<div id="content">
+    <h2>{{ label | capitalize | pluralize }}</h2>
+</div>
+
+<div id="content" class="medium-12 columns">
 {{ macros.alpha_list(items) }}
 </div>
 
