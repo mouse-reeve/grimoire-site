@@ -187,7 +187,7 @@ def entity_item(node, rels):
     servants = [s for s in servants if
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
-        data['main'].append({'title': 'Servans', 'data': servants})
+        data['main'].append({'title': 'Servants', 'data': servants})
     return data
 
 
