@@ -1,0 +1,16 @@
+.divider {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-bottom: 1em;
+
+    &:after {
+        content: "\f084";
+        font-family: fontawesome;
+    }
+
+    &.minor:after {
+        content: "\f068";
+        font-family: fontawesome;
+    }
+}

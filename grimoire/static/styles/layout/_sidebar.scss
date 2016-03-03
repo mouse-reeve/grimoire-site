@@ -1,0 +1,38 @@
+#sidebar {
+    border: 1px solid #aaa;
+    background: $sidebar-background;
+    padding: 1em;
+}
+
+#sidebar a:hover {
+    color: #222;
+}
+
+#sidebar li {
+    margin: 0.4em 0;
+}
+
+#sidebar h3 {
+    border-bottom: 1px solid #222;
+}
+
+.detail-box {
+    margin-bottom: 2em;
+}
+
+#sidebar table {
+    width: 100%;
+}
+
+#sidebar th {
+    width: 6em;
+}
+
+#sidebar th, #sidebar td {
+    background-color: $sidebar-background;
+    text-align: left;
+    vertical-align: top;
+    margin: 0.2em 0;
+    line-height: 1.2em;
+}
+

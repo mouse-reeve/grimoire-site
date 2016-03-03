@@ -1,0 +1,100 @@
+header {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#title {
+    background-image: url('/static/images/books-background.jpg');
+    background-position: center;
+}
+
+#header-container {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    padding-top: 1.5em;
+    padding-bottom: 0.2em;
+    margin: 0;
+}
+
+h1 .fa {
+    color: #b5b5b7;
+}
+
+h1 a, h1 a:hover {
+    color: $text-highlight;
+}
+
+header label {
+    color: $text-highlight;
+}
+
+header nav {
+    background: #181b2c;
+    color: $text-highlight;
+}
+
+header nav > .row {
+    padding: 0.6em;
+    color: $text-highlight;
+}
+
+header div.menu-button {
+    margin: 0.5em 0;
+}
+
+#mobileMenu {
+    margin-top: 3em;
+}
+
+#mobileMenu li {
+    padding: 0.2em;
+    margin: 0em;
+    text-align: left;
+}
+
+nav li {
+    padding: 0.7rem 0;
+}
+
+nav.show-for-small form {
+    float: right;
+}
+
+header nav li span:after {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin: 1.5em;
+    content: "\f06e";
+}
+
+header nav li:last-child span:after {
+    content: none;
+}
+
+nav a {
+    color: #b5b5b7;
+    text-decoration: none;
+}
+
+nav a:hover, nav a:active {
+    color: #677077;
+}
+
+nav form div:first-child {
+    padding: 0.7rem 0;
+}
+
+#search-bar, #m-search-bar {
+    padding: 0.3em;
+    border-radius: 0.6em;
+    border: 2px solid #b5b5b7;
+    margin: 0;
+    margin-top: 0.3em;
+    color: #222;
+}
+
+
