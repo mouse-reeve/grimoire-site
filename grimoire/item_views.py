@@ -80,8 +80,14 @@ def generic_item(node, rels):
     :param rels: default relationship list
     :return: customized data for this label
     """
+    def format_field(field):
+        ''' deal with array data '''
+        if isinstance(field, list):
+            return [{'text': i} for i in field]
+        return [{'text': field}]
+
     content = node['properties']['content']
-    details = {k: [{'text': node['properties'][k]}] for k in node['properties'] if
+    details = {k: format_field(node['properties'][k]) for k in node['properties'] if
                k not in ['content', 'uid', 'identifier', 'year', 'decade', 'century', 'owned']}
     details['Name'] = [{'text': node['properties']['identifier']}]
 
