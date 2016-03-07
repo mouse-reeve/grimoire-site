@@ -88,8 +88,10 @@ def generic_item(node, rels):
 
     content = node['properties']['content']
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
-               k not in ['content', 'uid', 'identifier', 'year', 'decade', 'century', 'owned']}
+               k not in ['content', 'uid', 'identifier', 'year', 'decade', 'century', 'owned', 'buy']}
     details['Name'] = [{'text': node['properties']['identifier']}]
+
+    buy = node['properties']['buy'] if 'buy' in node['properties'] else None
 
     return {
         'id': node['id'],
@@ -97,6 +99,7 @@ def generic_item(node, rels):
         'details': details,
         'properties': node['properties'],
         'relationships': rels,
+        'buy': buy,
         'sidebar': [],
         'main': [],
         'has_details': len([d for d in details if details[d]]) > 0

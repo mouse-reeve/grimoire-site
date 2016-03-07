@@ -20,19 +20,26 @@
 <div id="content" class="medium-8 columns">
 
     <!-- Text description, if available -->
-    {% if data.content %}
     <div class="card">
         <p>
             {{ data.content }}
         </p>
-        {% if label in ['book', 'grimoire', 'edition'] %}
-        <p>Find a copy on <a href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ title }}" target="_blank">WorldCat</a></p>
-        {% endif %}
+
+        <div class="find-book">
+            {% if data.buy %}
+            <strong><a href="{{ data.buy }}" target="_blank">Purchase this {{ label }}</a></strong>
+            {% endif %}
+
+            {% if data.buy and label in ['book', 'grimoire', 'edition'] %} <em>- or -</em> {% endif %}
+
+            {% if label in ['book', 'grimoire', 'edition'] %}
+            Find a library copy on <strong><a href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ title }}" target="_blank">WorldCat</a></strong>
+            {% endif %}
+        </div>
     </div>
 
 
     <div class="divider"></div>
-    {% endif %}
 
     <!-- Graph connections -->
     {% if data.relationships %}
