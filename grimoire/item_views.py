@@ -38,13 +38,8 @@ def item(label, uid):
 
     # ----- formatted data
     switch = {
-        'book': grimoire_item,
-        'grimoire': grimoire_item,
-        'fairy': entity_item,
-        'demon': entity_item,
-        'angel': entity_item,
-        'aerial_spirit': entity_item,
-        'olympian_spirit': entity_item,
+        'parent:book': grimoire_item,
+        'parent:entity': entity_item,
         'art': art_item,
         'language': language_item,
         'edition': edition_item,
@@ -53,7 +48,8 @@ def item(label, uid):
         'default': generic_item
     }
 
-    key = label if label in switch else 'default'
+    key = node['parent_label'] if node['parent_label'] in switch else \
+          (label if label in switch else 'default')
     item_data = switch[key](node, rels)
 
     # ----- sidebar
@@ -88,7 +84,8 @@ def generic_item(node, rels):
 
     content = node['properties']['content']
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
-               k not in ['content', 'uid', 'identifier', 'year', 'decade', 'century', 'owned', 'buy']}
+               k not in ['content', 'uid', 'identifier', 'year',
+                         'decade', 'century', 'owned', 'buy']}
     details['Name'] = [{'text': node['properties']['identifier']}]
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None

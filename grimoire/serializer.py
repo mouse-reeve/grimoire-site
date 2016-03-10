@@ -38,11 +38,15 @@ def serialize_node(node):
     """ node contents
     :param node:
     """
-    label = [l for l in node.labels][0]
-    link = '/%s/%s' % (label, node.properties['uid'])
+    labels = [l for l in node.labels]
+    parent_label = [l for l in labels if 'parent' in l]
+    parent_label = parent_label[0] if len(parent_label) > 0 else None
+    main_label = [l for l in labels if not 'parent' in l][0]
+    link = '/%s/%s' % (main_label, node.properties['uid'])
     return {
         'id': node._id,
-        'label': label,
+        'parent_label': parent_label,
+        'label': main_label,
         'link': link,
         'properties': node.properties
     }

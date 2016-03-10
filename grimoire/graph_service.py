@@ -31,7 +31,7 @@ class GraphService(object):
             self.query = lambda x: {}
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
-        self.labels = [l[0][0] for l in labels]
+        self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
 
     def get_labels(self):
         """
