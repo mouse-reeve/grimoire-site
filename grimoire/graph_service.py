@@ -33,6 +33,7 @@ class GraphService(object):
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
 
+
     def get_labels(self):
         ''' list of all types/labels in the db
         :return: an array of text labels
@@ -45,12 +46,14 @@ class GraphService(object):
         labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)')
         return [l[0][0] for l in labels if not 'parent' in l[0][0]]
 
+
     def validate_label(self, label):
         ''' check if a label is real
         :param label: the label in question
         :return: boolean value
         '''
         return label in self.labels
+
 
     @serialize
     def get_all(self, label, with_connection_label=None):
@@ -66,6 +69,7 @@ class GraphService(object):
         query += 'RETURN DISTINCT n'
         return self.query(query)
 
+
     @serialize
     def get_node(self, uid):
         ''' load data for a node by uid
@@ -76,6 +80,7 @@ class GraphService(object):
                 'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
         return self.query(query, uid=uid)
 
+
     @serialize
     def random(self):
         ''' select one random node
@@ -83,6 +88,7 @@ class GraphService(object):
         '''
         node = self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
         return node
+
 
     @serialize
     def search(self, term):
@@ -96,6 +102,7 @@ class GraphService(object):
                           'n.alternate_names =~ {term} OR '
                           'n.content =~ {term} RETURN n', term='(?i).*%s.*' % term)
         return data
+
 
     @serialize
     def related(self, uid, label, n=2, limit=5):
@@ -111,6 +118,7 @@ class GraphService(object):
                 'LIMIT %d' % (n, label, limit)
         return self.query(query, uid=uid)
 
+
     @serialize
     def others_of_type(self, label, uid, exclude):
         ''' get all <blank> related to item <blank>
@@ -124,6 +132,7 @@ class GraphService(object):
                 'AND NOT n.uid = {exclude} ' \
                 'RETURN n LIMIT 5' % label
         return self.query(query, uid=uid, exclude=exclude)
+
 
     @serialize
     def get_filtered(self, label, item1, item2, operator):
@@ -144,6 +153,7 @@ class GraphService(object):
         query += '(n)--(p) RETURN n'
         return self.query(query, item1=item1, item2=item2)
 
+
     @serialize
     def get_grimoire_entities(self, entity):
         ''' get a list of grimoires with a list of their demons
@@ -155,6 +165,7 @@ class GraphService(object):
                 'WHERE cn > 1 ' \
                 'RETURN m, ln ORDER BY SIZE(ln) DESC' % entity
         return self.query(query)
+
 
     @serialize
     def get_single_grimoire_entities(self, entity):
@@ -168,6 +179,7 @@ class GraphService(object):
                 'WITH p, collect(m) as lm ' \
                 'RETURN p, lm' % entity
         return self.query(query)
+
 
     @serialize
     def get_with_param(self, param):
