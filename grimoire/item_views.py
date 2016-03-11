@@ -45,7 +45,8 @@ def item(label, uid):
         'edition': edition_item,
         'publisher': publisher_item,
         'editor': editor_item,
-        'default': generic_item
+        'default': generic_item,
+        'spell': spell_item
     }
 
     key = node['parent_label'] if node['parent_label'] in switch else \
@@ -286,6 +287,21 @@ def editor_item(node, rels):
     editions = helpers.extract_rel_list(rels, 'edition', 'end')
     if editions:
         data['main'].append({'title': 'Editions', 'data': editions})
+    return data
+
+
+def spell_item(node, rels):
+    """ spell item page
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
+    """
+    data = generic_item(node, rels)
+    grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
+                helpers.extract_rel_list(rels, 'book', 'start')
+    data['details']['grimoire'] = [{'text': k['properties']['identifier'], 'link': k['link']}
+                                   for k in grimoires]
+
     return data
 
 
