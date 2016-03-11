@@ -22,7 +22,7 @@
     <!-- Text description, if available -->
     <div class="card">
         <p>
-            {{ data.content }}
+            {{ data.content | breaker | safe }}
         </p>
 
         <div class="find-book">
