@@ -1,4 +1,4 @@
-""" views for the item type pages """
+''' views for the item type pages '''
 import logging
 
 from flask import render_template
@@ -9,11 +9,11 @@ from grimoire import app, graph, entities
 
 @app.route('/<label>/<uid>')
 def item(label, uid):
-    """ generic page for an item
+    ''' generic page for an item
     :param label: the desired neo4j label
     :param uid: the human-readable uid of the node
     :return: customized data for this label rendered item page template
-    """
+    '''
 
     # load and validate url data
     label = helpers.sanitize(label)
@@ -72,11 +72,11 @@ def item(label, uid):
 
 
 def generic_item(node, rels):
-    """ no special template data formatting here
+    ''' standard item processing
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     def format_field(field):
         ''' deal with array data '''
         if isinstance(field, list):
@@ -105,11 +105,11 @@ def generic_item(node, rels):
 
 
 def grimoire_item(node, rels):
-    """ grimoire item page
+    ''' grimoire item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
 
     data['relationships'] = exclude_rels(rels, [
@@ -118,15 +118,14 @@ def grimoire_item(node, rels):
     data['details']['date'] = [{'text': helpers.grimoire_date(node['properties'])}]
 
     authors = helpers.extract_rel_list_by_type(rels, 'wrote', 'person', 'start')
-    authors = [{'text': a['properties']['identifier'], 'link': a['link']}
-               for a in authors]
+    authors = extract_details(authors)
+
     if authors:
         data['details']['author'] = authors
 
     languages = helpers.extract_rel_list_by_type(rels, 'was_written_in', 'language', 'end')
     if languages:
-        data['details']['language'] = [{'text': a['properties']['identifier'], 'link': a['link']}
-                                       for a in languages]
+        data['details']['language'] = extract_details(languages)
 
     editions = helpers.extract_rel_list(rels, 'edition', 'end')
     if editions:
@@ -155,11 +154,11 @@ def grimoire_item(node, rels):
 
 
 def entity_item(node, rels):
-    """ entity item page
+    ''' entity item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
 
     # removes duplication of two-way sister relationships
@@ -170,10 +169,7 @@ def entity_item(node, rels):
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
     if grimoires:
-        data['sidebar'].append({
-            'title': 'Grimoires',
-            'data': grimoires
-        })
+        data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
 
     skills = helpers.extract_rel_list(rels, 'art', 'end') + \
              helpers.extract_rel_list(rels, 'outcome', 'end')
@@ -199,11 +195,11 @@ def entity_item(node, rels):
 
 
 def art_item(node, rels):
-    """ art/topic item page
+    ''' art/topic item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     data['entities'] = {}
     for entity in entities:
@@ -219,11 +215,11 @@ def art_item(node, rels):
 
 
 def language_item(node, rels):
-    """ language item page
+    ''' language item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['was_written_in'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start')
@@ -235,39 +231,38 @@ def language_item(node, rels):
 
 
 def edition_item(node, rels):
-    """ edition of a grimoire item page
+    ''' edition of a grimoire item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published', 'edited', 'has'])
     publisher = helpers.extract_rel_list(rels, 'publisher', 'start')
     if publisher:
-        data['details']['publisher'] = [{'text': k['properties']['identifier'], 'link': k['link']}
-                                        for k in publisher]
+        data['details']['publisher'] = extract_details(publisher)
+
     editors = helpers.extract_rel_list(rels, 'editor', 'start')
     if editors:
-        data['details']['editor'] = [{'text': k['properties']['identifier'], 'link': k['link']}
-                                     for k in editors]
+        data['details']['editor'] = extract_details(editors)
 
     grimoire = helpers.extract_rel_list(rels, 'grimoire', 'start')
     if grimoire:
-        data['details']['grimoire'] = [{'text': k['properties']['identifier'], 'link': k['link']}
-                                       for k in grimoire]
+        data['details']['grimoire'] = extract_details(grimoire)
+
     book = helpers.extract_rel_list(rels, 'book', 'start')
     if book:
-        data['details']['book'] = [{'text': k['properties']['identifier'], 'link': k['link']}
-                                   for k in book]
+        data['details']['book'] = extract_details(book)
+
     return data
 
 
 def publisher_item(node, rels):
-    """ publisher item page
+    ''' publisher item page
     :param node: the publisher item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['published'])
     books = helpers.extract_rel_list(rels, 'edition', 'end')
@@ -277,11 +272,11 @@ def publisher_item(node, rels):
 
 
 def editor_item(node, rels):
-    """ editor of a grimoire item page
+    ''' editor of a grimoire item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['edited'])
     editions = helpers.extract_rel_list(rels, 'edition', 'end')
@@ -291,36 +286,35 @@ def editor_item(node, rels):
 
 
 def spell_item(node, rels):
-    """ spell item page
+    ''' spell item page
     :param node: the item node
     :param rels: default relationship list
     :return: customized data for this label
-    """
+    '''
     data = generic_item(node, rels)
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
-    data['details']['grimoire'] = [{'text': k['properties']['identifier'], 'link': k['link']}
-                                   for k in grimoires]
+    data['details']['grimoire'] = extract_details(grimoires)
 
     return data
 
 
 def exclude_rels(rels, exclusions):
-    """ remove relationships for a list of types
+    ''' remove relationships for a list of types
     :param rels: default relationship list
     :param exclusions:
     :return: customized data for this label
-    """
+    '''
     return [r for r in rels if not r['type'] in exclusions]
 
 
 def get_others(rels, node):
-    """ other items of the node's type related to something it is related to.
+    ''' other items of the node's type related to something it is related to.
     For example: "Other editions by the editor Joseph H. Peterson"
     :param rels: default relationship list
     :param node: the item node
     :return: customized data for this label
-    """
+    '''
     label = node['label']
     others = []
     for rel in rels:
@@ -344,3 +338,11 @@ def get_others(rels, node):
                 })
     return others
 
+
+def extract_details(items):
+    ''' format the details object
+    :param items: the extracted rel list for the category
+    :return: array in the format [{'text': 'John Constantine', 'link': '/person/constantine'}]
+    '''
+    return [{'text': i['properties']['identifier'], 'link': i['link']}
+            for i in items]
