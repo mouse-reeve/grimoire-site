@@ -39,6 +39,12 @@ class GraphService(object):
         '''
         return self.labels
 
+
+    def get_entity_labels(self):
+        ''' get a list of all the supernatural entities '''
+        labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)')
+        return [l[0][0] for l in labels if not 'parent' in l[0][0]]
+
     def validate_label(self, label):
         ''' check if a label is real
         :param label: the label in question

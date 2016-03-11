@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 graph = GraphService()
-entities = ['angel', 'demon', 'olympian_spirit', 'fairy', 'aerial_spirit']
+entities = graph.get_entity_labels()
 
 import grimoire.views
 import grimoire.item_views
