@@ -1,4 +1,4 @@
-""" webserver for grimoire graph data """
+''' webserver for grimoire graph data '''
 from flask import Flask
 
 from grimoire.graph_service import GraphService

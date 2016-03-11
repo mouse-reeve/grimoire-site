@@ -1,17 +1,13 @@
-""" process neo4j results """
+''' process neo4j results '''
 from py2neo import Node, Relationship
 from py2neo.packages.httpstream.http import SocketError
 
 
 def serialize(func):
-    """ serialize neo4j data
-    :param func:
-    """
+    ''' serialize neo4j data '''
 
     def serialize_wrapper(self, *args, **kwargs):
-        """ serialize dis
-        :param self:
-        """
+        ''' serialize dis '''
         try:
             data = func(self, *args, **kwargs)
         except SocketError:
@@ -35,9 +31,10 @@ def serialize(func):
 
 
 def serialize_node(node):
-    """ node contents
-    :param node:
-    """
+    ''' node contents
+    :param node: the node to serialize
+    :return: a json object representing the node
+    '''
     labels = [l for l in node.labels]
     parent_label = [l for l in labels if 'parent' in l]
     parent_label = parent_label[0] if len(parent_label) > 0 else None
@@ -53,9 +50,10 @@ def serialize_node(node):
 
 
 def serialize_relationship(rel):
-    """ relationship contents
-    :param rel:
-    """
+    ''' relationship contents
+    :param rel: the relationship to serialize
+    :return: a json object representing the relationship
+    '''
     return {
         'id': rel._id,
         'start': serialize_node(rel.start_node),
