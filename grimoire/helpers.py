@@ -119,6 +119,10 @@ def unthe(text):
 def shortlink(url):
     ''' create shorter text for parsed urls in templates '''
     try:
-        return url.split('/')[2]
+        parts = url.split('/')
+        domain = parts[2]
+        if url.split('.')[-1] == 'pdf':
+            domain += ' (pdf)'
+        return domain
     except IndexError:
         return url
