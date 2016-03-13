@@ -92,7 +92,7 @@
                     {% if item.link %}
                     <span><a href="{{ item.link }}">{{ item.text }}</a></span>
                     {% elif not item.text is number and "http" in item.text %}
-                    <span><a href="{{ item.text }}" target="_blank">{{ item.text }}</a></span>
+                    <span><a href="{{ item.text }}" target="_blank">{{ item.text | shortlink }}</a></span>
                     {% else %}
                     <span>{{ item.text }}</span>
                     {% endif %}

@@ -114,3 +114,11 @@ def unthe(text):
         return text
 
     return '%s %s' % (pieces[1], pieces[0])
+
+@app.template_filter('shortlink')
+def shortlink(url):
+    ''' create shorter text for parsed urls in templates '''
+    try:
+        return url.split('/')[2]
+    except IndexError:
+        return url
