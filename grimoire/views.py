@@ -22,7 +22,7 @@ def index():
             'date': date
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
-    return render_template('home.html', grimoires=grimoires, title='Grimoire Metadata')
+    return render_template('home.html', grimoires=grimoires, title='Grimoire Encyclopedia')
 
 
 @app.route('/random')
