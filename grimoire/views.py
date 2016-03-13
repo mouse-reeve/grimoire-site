@@ -134,7 +134,7 @@ def category(label):
         items[letter] = [node] if letter not in items else items[letter] + [node]
 
     template = 'list.html'
-    title = 'List of %s' % helpers.capitalize_filter(label)
+    title = 'List of %s' % helpers.capitalize_filter(helpers.pluralize(label))
 
     grimoires = []
     if label in entities:
