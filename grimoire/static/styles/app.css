@@ -164,10 +164,21 @@ nav form div:first-child {
   font-size: 0.75em;
   font-style: italic; }
 
+.item-content blockquote {
+  border-left: 5px solid #efefef;
+  padding: 0 1em;
+  margin: 0 1em;
+  color: black; }
+  .item-content blockquote li {
+    margin: 0 1em !important;
+    list-style-type: auto; }
+
 blockquote {
-  color: black;
   border: 0;
   padding: 1em 2em; }
+
+blockquote p {
+  color: #000; }
 
 .card {
   clear: both;

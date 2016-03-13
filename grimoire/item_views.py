@@ -168,7 +168,7 @@ def entity_item(node, rels):
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
     data['relationships'] = exclude_rels(rels, [
-        'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like'])
+        'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like', 'can'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
     if grimoires:
