@@ -298,7 +298,12 @@ def spell_item(node, rels):
     data['relationships'] = exclude_rels(rels, ['for'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
-    data['details']['grimoire'] = extract_details(grimoires)
+
+    grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
+                helpers.extract_rel_list(rels, 'book', 'start')
+    if grimoires:
+        data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
+
 
     outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
     if outcomes:
