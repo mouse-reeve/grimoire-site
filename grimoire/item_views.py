@@ -119,7 +119,6 @@ def grimoire_item(node, rels):
 
     authors = helpers.extract_rel_list_by_type(rels, 'wrote', 'person', 'start')
     authors = extract_details(authors)
-
     if authors:
         data['details']['author'] = authors
 
@@ -292,9 +291,14 @@ def spell_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
+    data['relationships'] = exclude_rels(rels, ['for'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
     data['details']['grimoire'] = extract_details(grimoires)
+
+    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
+    if outcomes:
+        data['details']['Outcome'] = extract_details(outcomes)
 
     return data
 
