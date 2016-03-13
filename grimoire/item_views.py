@@ -2,6 +2,7 @@
 import logging
 
 from flask import render_template
+import markdown
 
 import grimoire.helpers as helpers
 from grimoire import app, graph, entities
@@ -83,7 +84,7 @@ def generic_item(node, rels):
             return [{'text': i} for i in field]
         return [{'text': field}]
 
-    content = node['properties']['content']
+    content = markdown.markdown(node['properties']['content'])
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
                k not in ['content', 'uid', 'identifier', 'year',
                          'decade', 'century', 'owned', 'buy']}

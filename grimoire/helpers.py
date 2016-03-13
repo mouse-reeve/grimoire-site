@@ -114,8 +114,3 @@ def unthe(text):
         return text
 
     return '%s %s' % (pieces[1], pieces[0])
-
-@app.template_filter('breaker')
-def breaker(text):
-    ''' replace linebreaks with br tags '''
-    return text.replace('\n', '<br>')
