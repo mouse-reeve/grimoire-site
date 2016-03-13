@@ -84,7 +84,10 @@ def generic_item(node, rels):
             return [{'text': i} for i in field]
         return [{'text': field}]
 
-    content = markdown.markdown(node['properties']['content'])
+    try:
+        content = markdown.markdown(node['properties']['content'])
+    except AttributeError:
+        content = ''
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
                k not in ['content', 'uid', 'identifier', 'year',
                          'decade', 'century', 'owned', 'buy']}
