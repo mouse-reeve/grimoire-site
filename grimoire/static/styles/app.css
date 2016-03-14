@@ -155,7 +155,7 @@ nav form div:first-child {
     color: #b5b5b7; }
 
 .comma-separated *:after {
-  content: ","; }
+  content: ", "; }
 
 .comma-separated *:last-child:after {
   content: ""; }

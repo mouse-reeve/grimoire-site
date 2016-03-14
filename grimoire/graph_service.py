@@ -187,5 +187,13 @@ class GraphService(object):
         :param param: the field to find on nodes
         :return: serialized list of nodes
         '''
-        query = "MATCH (n) WHERE HAS(n.%s) RETURN n" % param
+        query = 'MATCH (n) WHERE HAS(n.%s) RETURN n' % param
+        return self.query(query)
+
+    @serialize
+    def get_spells_by_outcome(self):
+        ''' get a list of spells organized by outcome
+        :return: serialized list of outcomes and spells
+        '''
+        query = 'MATCH (n:outcome)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
         return self.query(query)

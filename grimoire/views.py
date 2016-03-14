@@ -100,6 +100,13 @@ def table(entity='demon'):
                            entities=entity_list, isolates=isolates, table=True)
 
 
+@app.route('/spell')
+def spell():
+    ''' custom page for spells '''
+    data = graph.get_spells_by_outcome()
+    spells = {k['properties']['identifier']: v for k, v in zip(data['nodes'], data['lists'])}
+    return render_template('spells.html', spells=spells, title='List of Spells')
+
 @app.route('/<label>')
 def category(label):
     ''' list of entries for a label

@@ -296,6 +296,7 @@ def spell_item(node, rels):
     '''
     data = generic_item(node, rels)
     data['relationships'] = exclude_rels(rels, ['for'])
+    del data['details']['grimoire']
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
 

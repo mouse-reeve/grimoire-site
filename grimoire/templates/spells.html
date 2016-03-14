@@ -1,0 +1,29 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="medium-12 columns">
+    <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+        <li class="current"><a href="/spell">Spells</a></li>
+    </ul>
+
+    <h2>Spells</h2>
+</div>
+
+<div id="content" class="medium-12 columns">
+    {% for outcome, spell_list in spells.items() | sort %}
+    <div>
+        <h3>{{outcome}}</h3>
+
+        <ul>
+            {% for spell in spell_list | sort(attribute='properties.identifier') %}
+            <li><a href="{{ spell.link }}">{{ spell.properties.identifier }}</a> (<span class="comma-separated">{% for grim in spell.properties.grimoire %}<span>{{ grim | unthe }}</span>{% endfor %}</span>)</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
