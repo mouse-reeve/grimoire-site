@@ -1,11 +1,12 @@
 ''' webserver for grimoire graph data '''
 from flask import Flask
+import os
 
 from grimoire.graph_service import GraphService
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/temporospatial'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['PSQL_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 graph = GraphService()
