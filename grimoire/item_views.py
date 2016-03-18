@@ -47,7 +47,8 @@ def item(label, uid):
         'publisher': publisher_item,
         'editor': editor_item,
         'default': generic_item,
-        'spell': spell_item
+        'spell': spell_item,
+        'outcome': outcome_item
     }
 
     key = node['parent_label'] if node['parent_label'] in switch else \
@@ -168,16 +169,15 @@ def entity_item(node, rels):
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
     data['relationships'] = exclude_rels(rels, [
-        'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like', 'can'])
+        'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like', 'can', 'for'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
     if grimoires:
         data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
 
-    skills = helpers.extract_rel_list(rels, 'art', 'end') + \
-             helpers.extract_rel_list(rels, 'outcome', 'end')
-    if skills:
-        data['main'].append({'title': 'Skills', 'data': skills, 'many': True})
+    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
+    if outcomes:
+        data['main'].append({'title': 'Powers', 'data': outcomes})
 
     appearance = helpers.extract_rel_list(rels, 'creature', 'end')
     if appearance:
@@ -307,6 +307,28 @@ def spell_item(node, rels):
     outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
     if outcomes:
         data['details']['Outcome'] = extract_details(outcomes)
+
+    return data
+
+
+def outcome_item(node, rels):
+    ''' spell item page
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
+    '''
+    data = generic_item(node, rels)
+
+    spells = helpers.extract_rel_list(rels, 'spell', 'start')
+    if spells:
+        data['main'].append({'title': 'Spells', 'data': spells})
+
+    for entity in entities:
+        items = helpers.extract_rel_list(rels, entity, 'start')
+        if items:
+            data['main'].append({'title': helpers.pluralize(entity), 'data': items})
+
+    data['relationships'] = exclude_rels(rels, ['for'])
 
     return data
 
