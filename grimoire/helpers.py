@@ -46,7 +46,8 @@ def extract_rel_list(rels, label, position):
     :return: a list of nodes
     '''
     return [r[position] for r in rels
-            if r[position]['label'] and r[position]['label'] == label]
+            if r[position]['label'] and r[position]['label'] == label
+            or r[position]['parent_label'] and r[position]['parent_label'] == label]
 
 
 def extract_rel_list_by_type(rels, rel_type, label, position):
@@ -57,8 +58,9 @@ def extract_rel_list_by_type(rels, rel_type, label, position):
     :param position: "start" or "end" - the position in the relationship
     :return:a list of nodes
     '''
-    return [r[position] for r in rels
-            if r[position]['label'] and r[position]['label'] == label and
+    return [r[position] for r in rels if
+            (r[position]['label'] and r[position]['label'] == label or
+             r[position]['parent_label'] and r[position]['parent_label'] == label) and
             r['type'] == rel_type]
 
 

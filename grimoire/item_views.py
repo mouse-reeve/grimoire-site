@@ -183,13 +183,13 @@ def entity_item(node, rels):
     if appearance:
         data['main'].append({'title': 'Appearance', 'data': appearance, 'many': True})
 
-    serves = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'end')
+    serves = helpers.extract_rel_list_by_type(rels, 'serves', 'parent:entity', 'end')
     serves = [s for s in serves if
               not s['properties']['uid'] == node['properties']['uid']]
     if serves:
         data['main'].append({'title': 'Serves', 'data': serves})
 
-    servants = helpers.extract_rel_list_by_type(rels, 'serves', 'demon', 'start')
+    servants = helpers.extract_rel_list_by_type(rels, 'serves', 'parent:entity', 'start')
     servants = [s for s in servants if
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
