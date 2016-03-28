@@ -33,10 +33,18 @@ class Temporospatial(db.Model):
 
     # Content
     node_id = db.Column(db.Integer, nullable=False)
+    event_type = db.Column(db.Enum('publication',
+                                   'birth',
+                                   'death',
+                                   'coronation',
+                                   'edition',
+                                   'law',
+                                   'trial',
+                                   'other', name='event_type'), nullable=False)
     description = db.Column(db.Text, nullable=False)
 
     def __init__(self, latitude, longitude, loc_precision,
-                 loc_name, date, date_precision, node, description):
+                 loc_name, date, date_precision, node, event_type, description):
         ''' Create a temporospatial node '''
         self.latitude = latitude
         self.longitude = longitude
@@ -45,7 +53,9 @@ class Temporospatial(db.Model):
 
         self.date = date
         self.date_precision = date_precision
+
         self.node_id = node
+        self.event_type = event_type
         self.description = description
 
     def serialize(self):

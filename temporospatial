@@ -54,6 +54,23 @@ CREATE TYPE location_precision AS ENUM (
 );
 
 
+ALTER TYPE event_type OWNER TO mouse;
+
+--
+-- Name: event_type; Type: TYPE; Schema: public; Owner: mouse
+--
+
+CREATE TYPE location_precision AS ENUM (
+    'publication',
+   'birth',
+   'death',
+   'coronation',
+   'edition',
+   'law',
+   'trial',
+   'other'
+);
+
 ALTER TYPE location_precision OWNER TO mouse;
 
 SET default_tablespace = '';
@@ -75,6 +92,7 @@ CREATE TABLE temporospatial (
     date timestamp without time zone NOT NULL,
     date_precision date_precision NOT NULL,
     node_id integer NOT NULL,
+    event_type event_type NOT NULL,
     description text NOT NULL
 );
 
@@ -113,8 +131,10 @@ ALTER TABLE ONLY temporospatial ALTER COLUMN id SET DEFAULT nextval('temporospat
 -- Data for Name: temporospatial; Type: TABLE DATA; Schema: public; Owner: mouse
 --
 
-COPY temporospatial (id, created, updated, latitude, longitude, location_precision, location_name, date, date_precision, node_id, description) FROM stdin;
-1	2016-03-14 16:34:10.142951	2016-03-14 16:34:10.142951	40.3358399999999975	-75.9287369999999981	city	Reading, Pennsylvania, USA	1820-01-01 00:00:00	year	962	Hohmann's "Long Lost Friend" is first published.
+COPY temporospatial (id, created, updated, latitude, longitude, location_precision, location_name, date, date_precision, node_id, event_type, description) FROM stdin;
+1	2016-03-14 16:34:10.142951	2016-03-14 16:34:10.142951	40.3358399999999975	-75.9287369999999981	city	Reading, Pennsylvania, USA	1820-01-01 00:00:00	year	962	publication	Publication of Hohmann's "Long Lost Friend"
+2	2016-03-28 15:37:28.034667	2016-03-28 15:37:28.034667	52.4937460000000016	-1.88469099999999989	country	England	1641-01-01 00:00:00	year	0	publication	Publication of the Lesser Key of Solomon
+3	2016-03-28 15:43:56.950889	2016-03-28 15:43:56.950889	52.4937460000000016	-1.88469099999999989	country	England	1536-01-01 00:00:00	year	1	publication	Publication of De praestigiis daemonum
 \.
 
 
@@ -122,7 +142,7 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 -- Name: temporospatial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mouse
 --
 
-SELECT pg_catalog.setval('temporospatial_id_seq', 1, true);
+SELECT pg_catalog.setval('temporospatial_id_seq', 3, true);
 
 
 --
