@@ -42,6 +42,24 @@ CREATE TYPE date_precision AS ENUM (
 ALTER TYPE date_precision OWNER TO mouse;
 
 --
+-- Name: event_type; Type: TYPE; Schema: public; Owner: mouse
+--
+
+CREATE TYPE event_type AS ENUM (
+    'publication',
+    'birth',
+    'death',
+    'coronation',
+    'edition',
+    'law',
+    'trial',
+    'other'
+);
+
+
+ALTER TYPE event_type OWNER TO mouse;
+
+--
 -- Name: location_precision; Type: TYPE; Schema: public; Owner: mouse
 --
 
@@ -53,23 +71,6 @@ CREATE TYPE location_precision AS ENUM (
     'continent'
 );
 
-
-ALTER TYPE event_type OWNER TO mouse;
-
---
--- Name: event_type; Type: TYPE; Schema: public; Owner: mouse
---
-
-CREATE TYPE location_precision AS ENUM (
-    'publication',
-   'birth',
-   'death',
-   'coronation',
-   'edition',
-   'law',
-   'trial',
-   'other'
-);
 
 ALTER TYPE location_precision OWNER TO mouse;
 
@@ -135,6 +136,10 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 1	2016-03-14 16:34:10.142951	2016-03-14 16:34:10.142951	40.3358399999999975	-75.9287369999999981	city	Reading, Pennsylvania, USA	1820-01-01 00:00:00	year	962	publication	Publication of Hohmann's "Long Lost Friend"
 2	2016-03-28 15:37:28.034667	2016-03-28 15:37:28.034667	52.4937460000000016	-1.88469099999999989	country	England	1641-01-01 00:00:00	year	0	publication	Publication of the Lesser Key of Solomon
 3	2016-03-28 15:43:56.950889	2016-03-28 15:43:56.950889	52.4937460000000016	-1.88469099999999989	country	England	1536-01-01 00:00:00	year	1	publication	Publication of De praestigiis daemonum
+6	2016-03-28 17:00:02.191999	2016-03-28 17:00:02.191999	52.4937460000000016	-1.88469099999999989	country	England	1577-01-01 00:00:00	year	3	publication	Publication of the Book of Oberon
+5	2016-03-28 16:54:20.561881	2016-03-28 16:54:20.561881	41.9025740000000013	12.4961169999999999	city	Rome, Italy	1817-01-01 00:00:00	year	2	publication	Publication of Grimorium Verum
+7	2016-03-28 17:03:14.399926	2016-03-28 17:03:14.399926	47.5594589999999968	7.58724699999999963	city	Basel, Switzerland	1575-01-01 00:00:00	year	4	publication	Publication of the Arbatel of Magic
+8	2016-03-28 17:09:15.047823	2016-03-28 17:09:15.047823	51.5060870000000008	-0.134610000000000007	city	London, England	1583-01-01 00:00:00	year	5	publication	John Dee completed his Five Books of Mystery
 \.
 
 
@@ -142,7 +147,7 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 -- Name: temporospatial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mouse
 --
 
-SELECT pg_catalog.setval('temporospatial_id_seq', 3, true);
+SELECT pg_catalog.setval('temporospatial_id_seq', 8, true);
 
 
 --
