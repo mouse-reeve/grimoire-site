@@ -140,6 +140,11 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 5	2016-03-28 16:54:20.561881	2016-03-28 16:54:20.561881	41.9025740000000013	12.4961169999999999	city	Rome, Italy	1817-01-01 00:00:00	year	2	publication	Publication of Grimorium Verum
 7	2016-03-28 17:03:14.399926	2016-03-28 17:03:14.399926	47.5594589999999968	7.58724699999999963	city	Basel, Switzerland	1575-01-01 00:00:00	year	4	publication	Publication of the Arbatel of Magic
 8	2016-03-28 17:09:15.047823	2016-03-28 17:09:15.047823	51.5060870000000008	-0.134610000000000007	city	London, England	1583-01-01 00:00:00	year	5	publication	John Dee completed his Five Books of Mystery
+9	2016-03-28 17:13:08.99792	2016-03-28 17:13:08.99792	48.8556110000000032	2.35303599999999991	city	Paris, France	1670-01-01 00:00:00	year	6	publication	Publication of the Grimoire of Pope Honrious
+10	2016-03-28 17:18:53.400617	2016-03-28 17:18:53.400617	50.8242839999999987	7.02251699999999968	city	Cologn or Bonn, Germany	1531-01-01 00:00:00	year	7	publication	Publication of Agrippa's Three Books of Occult Philosophy
+11	2016-03-28 17:27:08.489434	2016-03-28 17:27:08.489434	50.8016890000000032	8.7668330000000001	city	Marburg, Germany	1559-01-01 00:00:00	year	8	publication	Publication of The Fourth Book of Occult Philosophy
+12	2016-03-28 17:31:15.542032	2016-03-28 17:31:15.542032	46.6187669999999983	2.60761300000000018	country	France	1700-01-01 00:00:00	century	9	publication	Publication of the Black Pullet
+13	2016-03-28 17:34:01.464271	2016-03-28 17:34:01.464271	46.6187669999999983	2.60761300000000018	country	France	1706-01-01 00:00:00	year	10	publication	Publication of Petit Albert
 \.
 
 
@@ -147,7 +152,7 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 -- Name: temporospatial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mouse
 --
 
-SELECT pg_catalog.setval('temporospatial_id_seq', 8, true);
+SELECT pg_catalog.setval('temporospatial_id_seq', 13, true);
 
 
 --
