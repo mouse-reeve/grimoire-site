@@ -145,6 +145,18 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 11	2016-03-28 17:27:08.489434	2016-03-28 17:27:08.489434	50.8016890000000032	8.7668330000000001	city	Marburg, Germany	1559-01-01 00:00:00	year	8	publication	Publication of The Fourth Book of Occult Philosophy
 12	2016-03-28 17:31:15.542032	2016-03-28 17:31:15.542032	46.6187669999999983	2.60761300000000018	country	France	1700-01-01 00:00:00	century	9	publication	Publication of the Black Pullet
 13	2016-03-28 17:34:01.464271	2016-03-28 17:34:01.464271	46.6187669999999983	2.60761300000000018	country	France	1706-01-01 00:00:00	year	10	publication	Publication of Petit Albert
+14	2016-04-01 14:15:52.459527	2016-04-01 14:15:52.459527	43.7645089000000027	-13.1130267000000007	continent	Europe	1200-01-01 00:00:00	century	11	publication	Publication of the Sworn Book of Honorious
+15	2016-04-01 14:19:48.08893	2016-04-01 14:19:48.08893	50.8186061999999978	1.47538729999999996	country	Germany	1608-01-01 00:00:00	year	12	publication	Publication of the Book of Abramelin
+16	2016-04-01 14:23:26.504625	2016-04-01 14:23:26.504625	43.7645089000000027	-13.1130267000000007	continent	Europe	1200-01-01 00:00:00	century	13	publication	Publication of Ars Notoria
+17	2016-04-01 14:30:02.804062	2016-04-01 14:30:02.804062	43.7645089000000027	-13.1130267000000007	continent	Europe	1572-01-01 00:00:00	year	14	publication	Publication of the Key of Solomon
+18	2016-04-01 14:33:23.28943	2016-04-01 14:33:23.28943	41.6387090999999998	-6.67048349999999957	country	Castile (Spain)	1256-01-01 00:00:00	year	15	publication	Publication of the Latin translation of the Picatrix
+19	2016-04-01 14:35:42.532661	2016-04-01 14:35:42.532661	51.5240786999999969	-0.117796899999999996	city	London, England	1630-01-01 00:00:00	decade	16	publication	Publication of the Grimoire of Arthur Gauntlet
+20	2016-04-01 14:38:17.672209	2016-04-01 14:38:17.672209	45.8616616999999991	-6.7839476000000003	country	France	1600-01-01 00:00:00	century	17	publication	Publication of the Grimoire of Armadel
+21	2016-04-01 14:40:36.210448	2016-04-01 14:40:36.210448	45.4053749999999994	12.1015443000000005	city	Venice, Italy	1496-01-01 00:00:00	year	18	publication	Publication of the Heptameron
+22	2016-04-01 14:43:02.584197	2016-04-01 14:43:02.584197	50.8186061999999978	1.47538729999999996	country	Germany	1700-01-01 00:00:00	century	57	publication	Publication of the Sixth and Seventh Books of Moses
+23	2016-04-01 14:44:54.948732	2016-04-01 14:44:54.948732	45.8616616999999991	-6.7839476000000003	country	France	1821-01-01 00:00:00	year	58	publication	Publication of the Grand Grimoire
+24	2016-04-01 14:46:52.358504	2016-04-01 14:46:52.358504	43.7645089000000027	-13.1130267000000007	continent	Europe	1300-01-01 00:00:00	century	59	publication	Publication of the Magical Treatise of Solomon
+25	2016-04-01 14:48:12.52609	2016-04-01 14:48:12.52609	38.1890810000000016	19.3148409000000001	country	Greece	0300-01-01 00:00:00	century	155	publication	Publication of Cyranides
 \.
 
 
@@ -152,7 +164,7 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 -- Name: temporospatial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mouse
 --
 
-SELECT pg_catalog.setval('temporospatial_id_seq', 13, true);
+SELECT pg_catalog.setval('temporospatial_id_seq', 25, true);
 
 
 --
