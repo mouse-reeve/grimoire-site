@@ -42,6 +42,24 @@ CREATE TYPE date_precision AS ENUM (
 ALTER TYPE date_precision OWNER TO mouse;
 
 --
+-- Name: event_type; Type: TYPE; Schema: public; Owner: mouse
+--
+
+CREATE TYPE event_type AS ENUM (
+    'publication',
+    'birth',
+    'death',
+    'coronation',
+    'edition',
+    'law',
+    'trial',
+    'other'
+);
+
+
+ALTER TYPE event_type OWNER TO mouse;
+
+--
 -- Name: location_precision; Type: TYPE; Schema: public; Owner: mouse
 --
 
@@ -75,6 +93,7 @@ CREATE TABLE temporospatial (
     date timestamp without time zone NOT NULL,
     date_precision date_precision NOT NULL,
     node_id integer NOT NULL,
+    event_type event_type NOT NULL,
     description text NOT NULL
 );
 
@@ -113,8 +132,31 @@ ALTER TABLE ONLY temporospatial ALTER COLUMN id SET DEFAULT nextval('temporospat
 -- Data for Name: temporospatial; Type: TABLE DATA; Schema: public; Owner: mouse
 --
 
-COPY temporospatial (id, created, updated, latitude, longitude, location_precision, location_name, date, date_precision, node_id, description) FROM stdin;
-1	2016-03-14 16:34:10.142951	2016-03-14 16:34:10.142951	40.3358399999999975	-75.9287369999999981	city	Reading, Pennsylvania, USA	1820-01-01 00:00:00	year	962	Hohmann's "Long Lost Friend" is first published.
+COPY temporospatial (id, created, updated, latitude, longitude, location_precision, location_name, date, date_precision, node_id, event_type, description) FROM stdin;
+1	2016-03-14 16:34:10.142951	2016-03-14 16:34:10.142951	40.3358399999999975	-75.9287369999999981	city	Reading, Pennsylvania, USA	1820-01-01 00:00:00	year	962	publication	Publication of Hohmann's "Long Lost Friend"
+2	2016-03-28 15:37:28.034667	2016-03-28 15:37:28.034667	52.4937460000000016	-1.88469099999999989	country	England	1641-01-01 00:00:00	year	0	publication	Publication of the Lesser Key of Solomon
+3	2016-03-28 15:43:56.950889	2016-03-28 15:43:56.950889	52.4937460000000016	-1.88469099999999989	country	England	1536-01-01 00:00:00	year	1	publication	Publication of De praestigiis daemonum
+6	2016-03-28 17:00:02.191999	2016-03-28 17:00:02.191999	52.4937460000000016	-1.88469099999999989	country	England	1577-01-01 00:00:00	year	3	publication	Publication of the Book of Oberon
+5	2016-03-28 16:54:20.561881	2016-03-28 16:54:20.561881	41.9025740000000013	12.4961169999999999	city	Rome, Italy	1817-01-01 00:00:00	year	2	publication	Publication of Grimorium Verum
+7	2016-03-28 17:03:14.399926	2016-03-28 17:03:14.399926	47.5594589999999968	7.58724699999999963	city	Basel, Switzerland	1575-01-01 00:00:00	year	4	publication	Publication of the Arbatel of Magic
+8	2016-03-28 17:09:15.047823	2016-03-28 17:09:15.047823	51.5060870000000008	-0.134610000000000007	city	London, England	1583-01-01 00:00:00	year	5	publication	John Dee completed his Five Books of Mystery
+9	2016-03-28 17:13:08.99792	2016-03-28 17:13:08.99792	48.8556110000000032	2.35303599999999991	city	Paris, France	1670-01-01 00:00:00	year	6	publication	Publication of the Grimoire of Pope Honrious
+10	2016-03-28 17:18:53.400617	2016-03-28 17:18:53.400617	50.8242839999999987	7.02251699999999968	city	Cologn or Bonn, Germany	1531-01-01 00:00:00	year	7	publication	Publication of Agrippa's Three Books of Occult Philosophy
+11	2016-03-28 17:27:08.489434	2016-03-28 17:27:08.489434	50.8016890000000032	8.7668330000000001	city	Marburg, Germany	1559-01-01 00:00:00	year	8	publication	Publication of The Fourth Book of Occult Philosophy
+12	2016-03-28 17:31:15.542032	2016-03-28 17:31:15.542032	46.6187669999999983	2.60761300000000018	country	France	1700-01-01 00:00:00	century	9	publication	Publication of the Black Pullet
+13	2016-03-28 17:34:01.464271	2016-03-28 17:34:01.464271	46.6187669999999983	2.60761300000000018	country	France	1706-01-01 00:00:00	year	10	publication	Publication of Petit Albert
+14	2016-04-01 14:15:52.459527	2016-04-01 14:15:52.459527	43.7645089000000027	-13.1130267000000007	continent	Europe	1200-01-01 00:00:00	century	11	publication	Publication of the Sworn Book of Honorious
+15	2016-04-01 14:19:48.08893	2016-04-01 14:19:48.08893	50.8186061999999978	1.47538729999999996	country	Germany	1608-01-01 00:00:00	year	12	publication	Publication of the Book of Abramelin
+16	2016-04-01 14:23:26.504625	2016-04-01 14:23:26.504625	43.7645089000000027	-13.1130267000000007	continent	Europe	1200-01-01 00:00:00	century	13	publication	Publication of Ars Notoria
+17	2016-04-01 14:30:02.804062	2016-04-01 14:30:02.804062	43.7645089000000027	-13.1130267000000007	continent	Europe	1572-01-01 00:00:00	year	14	publication	Publication of the Key of Solomon
+18	2016-04-01 14:33:23.28943	2016-04-01 14:33:23.28943	41.6387090999999998	-6.67048349999999957	country	Castile (Spain)	1256-01-01 00:00:00	year	15	publication	Publication of the Latin translation of the Picatrix
+19	2016-04-01 14:35:42.532661	2016-04-01 14:35:42.532661	51.5240786999999969	-0.117796899999999996	city	London, England	1630-01-01 00:00:00	decade	16	publication	Publication of the Grimoire of Arthur Gauntlet
+20	2016-04-01 14:38:17.672209	2016-04-01 14:38:17.672209	45.8616616999999991	-6.7839476000000003	country	France	1600-01-01 00:00:00	century	17	publication	Publication of the Grimoire of Armadel
+21	2016-04-01 14:40:36.210448	2016-04-01 14:40:36.210448	45.4053749999999994	12.1015443000000005	city	Venice, Italy	1496-01-01 00:00:00	year	18	publication	Publication of the Heptameron
+22	2016-04-01 14:43:02.584197	2016-04-01 14:43:02.584197	50.8186061999999978	1.47538729999999996	country	Germany	1700-01-01 00:00:00	century	57	publication	Publication of the Sixth and Seventh Books of Moses
+23	2016-04-01 14:44:54.948732	2016-04-01 14:44:54.948732	45.8616616999999991	-6.7839476000000003	country	France	1821-01-01 00:00:00	year	58	publication	Publication of the Grand Grimoire
+24	2016-04-01 14:46:52.358504	2016-04-01 14:46:52.358504	43.7645089000000027	-13.1130267000000007	continent	Europe	1300-01-01 00:00:00	century	59	publication	Publication of the Magical Treatise of Solomon
+25	2016-04-01 14:48:12.52609	2016-04-01 14:48:12.52609	38.1890810000000016	19.3148409000000001	country	Greece	0300-01-01 00:00:00	century	155	publication	Publication of Cyranides
 \.
 
 
@@ -122,7 +164,7 @@ COPY temporospatial (id, created, updated, latitude, longitude, location_precisi
 -- Name: temporospatial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mouse
 --
 
-SELECT pg_catalog.setval('temporospatial_id_seq', 1, true);
+SELECT pg_catalog.setval('temporospatial_id_seq', 25, true);
 
 
 --
