@@ -295,7 +295,7 @@ def spell_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(rels, ['for'])
+    data['relationships'] = exclude_rels(rels, ['for', 'uses'])
     del data['details']['grimoire']
 
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
@@ -303,6 +303,9 @@ def spell_item(node, rels):
     if grimoires:
         data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
 
+    ingredients = helpers.extract_rel_list(rels, 'ingredient', 'end')
+    if ingredients:
+        data['main'].append({'title': 'Ingredients', 'data': ingredients})
 
     outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
     if outcomes:
