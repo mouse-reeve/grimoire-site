@@ -3,13 +3,14 @@
 {% block body %}
 
 <div class="medium-12 columns">
+    <div class="flag" data-open="feedback"><i class="fa fa-comment"></i></div>
+
     {% if label %}
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
         <li><a href="/{{ label }}">{{ label | pluralize }}</a></li>
-        <li class="current"><a href="#">{{ title | unthe }}</a></li>
+        <li class="current">{{ title | unthe }}</li>
     </ul>
-
     {% endif %}
 
     <h2>
@@ -123,4 +124,11 @@
     {% endfor %}
 </div>
 
+<div id="feedback" class="reveal" data-reveal>
+    <h2>Provide feedback on the page</h2>
+    <form action="mailto:mousereeve+grimoire@riseup.net">
+        <input type="hidden" name="subject" value="Grimoire.org&nbsp;feedback:&nbsp{{ request.url }}">
+        <button>Email <i class="fa fa-paper-plane-o"></i></button>
+    </form>
+</div>
 {% endblock %}
