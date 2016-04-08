@@ -90,8 +90,7 @@ def generic_item(node, rels):
     except AttributeError:
         content = ''
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
-               k not in ['content', 'uid', 'identifier', 'year',
-                         'decade', 'century', 'owned', 'buy']}
+               k not in ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
     details['Name'] = [{'text': node['properties']['identifier']}]
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None

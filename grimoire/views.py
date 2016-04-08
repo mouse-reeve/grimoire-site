@@ -157,18 +157,12 @@ def timeline_page():
     ''' timeline data display
     :return: rendered timeline page
     '''
-    grimoires = graph.get_all('grimoire')['nodes'] + graph.get_all('book')['nodes']
-    centuries = [int(t['properties']['century'])
-                 if t['properties']['century'] else 0 for t in grimoires]
-    end = reduce(lambda x, y: x if x > y else y, centuries)
-    start = reduce(lambda x, y: x if x < y else y, centuries)
+    grimoires = graph.get_all('`parent:book`')['nodes']
+    dates = [int(t['properties']['date']) / 100 * 100
+             if t['properties']['date'] else 0 for t in grimoires]
+    end = reduce(lambda x, y: x if x > y else y, dates)
+    start = reduce(lambda x, y: x if x < y else y, dates)
     timeline = {}
-
-    for grim in grimoires:
-        century = grim['properties']['century']
-        decade = grim['properties']['decade']
-        year = grim['properties']['year']
-        timeline = add_to_timeline(timeline, century, grim, decade=decade, year=year)
 
     # people's birth/death
     people = graph.get_all('person')['nodes']
@@ -176,49 +170,50 @@ def timeline_page():
         for event in ['born', 'died', 'crowned']:
             if event in person['properties']:
                 year = person['properties'][event]
-                decade = year - year % 10
-                century = year - year % 100
 
-                timeline = add_to_timeline(timeline, century, person, decade=decade,
-                                           year=year, note=event)
+                timeline = add_to_timeline(timeline, person, year, 'year', note=event)
 
+    # startings and endings
     events = graph.get_all('historical_event')['nodes']
     for item in events:
         for event in ['began', 'ended']:
             if event in item['properties']:
                 year = item['properties'][event]
-                decade = year - year % 10
-                century = year - year % 100
 
-                timeline = add_to_timeline(timeline, century, item, decade=decade,
-                                           year=year, note=event)
+                timeline = add_to_timeline(timeline, item, year, 'year', note=event)
 
     # misc things with a date fields
     items = graph.get_with_param('date')['nodes']
     for item in items:
-        year = item['properties']['date']
-        decade = year - year % 10
-        century = year - year % 100
+        date = item['properties']['date']
+        date_precision = item['properties']['date_precision']
 
-        timeline = add_to_timeline(timeline, century, item, decade=decade,
-                                   year=year)
+        timeline = add_to_timeline(timeline, item, date, date_precision)
 
     return render_template('timeline.html', data=timeline, start=start, end=end)
 
 
-def add_to_timeline(timeline, century, node, note=None, decade=None, year=None):
+def add_to_timeline(timeline, node, date, date_precision, note=None):
     ''' put a date on it
     :param timeline: the existing timeline object
-    :param century: the century from which the node dates
+    :param date: the year/decade/century of origin
+    :param date_precision: how precide the date is (year/decade/century)
     :param node: the node
-    :param note: display text to go along with the node
-    :param decade: decade of the node (if available)
-    :param year: year of the node (if available)
+    :param note: display text to go along with the node (if available)
     :return: updated timeline object
     '''
     new_node = copy.copy(node)
     if note:
         new_node['note'] = note
+
+    try:
+        date = int(date)
+    except ValueError:
+        return timeline
+
+    century = date / 100 * 100
+    decade = date / 10 * 10 if date_precision != 'century' else None
+    year = date if date_precision == 'year' else None
 
     if century not in timeline:
         timeline[century] = {'decades': {}, 'items': []}
