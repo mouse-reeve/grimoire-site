@@ -135,10 +135,7 @@ def category(label):
             'item2': graph.get_node(item2)['nodes'][0]
         }
 
-    items = {}
-    for node in data['nodes']:
-        letter = node['properties']['identifier'][0].upper()
-        items[letter] = [node] if letter not in items else items[letter] + [node]
+    items = data['nodes']
 
     template = 'list.html'
     title = 'List of %s' % helpers.capitalize_filter(helpers.pluralize(label))

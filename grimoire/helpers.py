@@ -128,3 +128,13 @@ def shortlink(url):
         return domain
     except IndexError:
         return url
+
+@app.template_filter('alphabuckets')
+def alphabuckets(items):
+    ''' sort items into letter "buckets" for alphabetizing '''
+    buckets = {}
+    for node in items:
+        letter = node['properties']['identifier'][0].upper()
+        buckets[letter] = [node] if letter not in buckets else buckets[letter] + [node]
+
+    return buckets
