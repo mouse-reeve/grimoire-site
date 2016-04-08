@@ -44,7 +44,7 @@
     <!-- Graph connections -->
     {% if data.relationships %}
     <div class="card">
-        {% for rel in data.relationships %}
+        {% for rel in data.relationships | sort(attribute="type") %}
         <p>
             {% if rel.start.id == data.id %}
             This {{ rel.start.label | format }}
