@@ -64,7 +64,7 @@ def item(label, uid):
     sidebar += get_others(data['relationships'], node)
 
     if not item_data['content']:
-        item_data['content'] = 'The %s %s.' % (helpers.format_filter(label), helpers.unthe(title))
+        item_data['content'] = 'The %s "%s."' % (helpers.format_filter(label), helpers.unthe(title))
 
     return render_template('item.html',
                            data=item_data,
@@ -193,6 +193,15 @@ def entity_item(node, rels):
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
         data['main'].append({'title': 'Servants', 'data': servants})
+
+    if not data['content']:
+        grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
+        content = 'The %s %s appears in the grimoire%s _%s_.' % \
+                  (node['label'],
+                   node['properties']['identifier'],
+                   's' if len(grimoires) > 1 else '',
+                   '_, _'.join(grimoire_names))
+        data['content'] = markdown.markdown(content)
     return data
 
 
