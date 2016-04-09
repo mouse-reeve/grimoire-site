@@ -139,10 +139,27 @@
 </div>
 
 <div id="feedback" class="reveal" data-reveal>
-    <h2>Provide feedback on the page</h2>
-    <form action="mailto:mousereeve+grimoire@riseup.net">
-        <input type="hidden" name="subject" value="Grimoire.org&nbsp;feedback:&nbsp{{ request.url }}">
-        <button>Email <i class="fa fa-paper-plane-o"></i></button>
+    <h2>Provide feedback on "{{ title | unthe }}"</h2>
+    <form action="/feedback" method="post">
+        <label for="topic">Topic</label>
+        <select name="topic" required>
+            <option></option>
+            <option value="comment">Comment or question</option>
+            <option value="incomplete">This page is incomplete</option>
+            <option value="wrong">There are error on this page</option>
+            <option value="typo">There are spelling or grammar errors</option>
+            <option value="great">This page is great</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="comments">Comments</label>
+        <textarea name="comments" required></textarea>
+        <label for="email">Email (optional - include if you would like a response)</label>
+        <input type="text" name="email">
+        <input type="submit" value="Submit">
+
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </form>
 </div>
 {% endblock %}

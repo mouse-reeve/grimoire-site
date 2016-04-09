@@ -59,6 +59,12 @@ h2, h3, h4, h5, h6 {
 .timeline div {
   min-height: 0.1em; }
 
+#feedback {
+  background: #eee;
+  border: 3px solid #2c181b;
+  padding: 1em;
+  margin: 1em; }
+
 header {
   text-align: center; }
 
