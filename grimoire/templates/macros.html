@@ -14,7 +14,7 @@
 
 {% macro alpha_list(items, many='') %}
 <div class="index card">
-    {% for letter, list in items.items() | sort %}
+    {% for letter, list in (items | alphabuckets).items() | sort %}
     <div class="card {{many}}">
         <h4>{{ letter }}</h4>
         <ul>

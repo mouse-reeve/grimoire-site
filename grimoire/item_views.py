@@ -55,6 +55,8 @@ def item(label, uid):
           (label if label in switch else 'default')
     item_data = switch[key](node, rels)
 
+    item_data['relationships'] = combine_rels(item_data['relationships'])
+
     # ----- sidebar
     sidebar = []
     related = graph.related(uid, label)
@@ -64,7 +66,7 @@ def item(label, uid):
     sidebar += get_others(data['relationships'], node)
 
     if not item_data['content']:
-        item_data['content'] = 'The %s %s.' % (helpers.format_filter(label), helpers.unthe(title))
+        item_data['content'] = 'The %s "%s."' % (helpers.format_filter(label), helpers.unthe(title))
 
     return render_template('item.html',
                            data=item_data,
@@ -90,8 +92,7 @@ def generic_item(node, rels):
     except AttributeError:
         content = ''
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
-               k not in ['content', 'uid', 'identifier', 'year',
-                         'decade', 'century', 'owned', 'buy']}
+               k not in ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
     details['Name'] = [{'text': node['properties']['identifier']}]
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None
@@ -194,6 +195,15 @@ def entity_item(node, rels):
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
         data['main'].append({'title': 'Servants', 'data': servants})
+
+    if not data['content']:
+        grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
+        content = 'The %s %s appears in the grimoire%s _%s_.' % \
+                  (node['label'],
+                   node['properties']['identifier'],
+                   's' if len(grimoires) > 1 else '',
+                   '_, _'.join(grimoire_names))
+        data['content'] = markdown.markdown(content)
     return data
 
 
@@ -386,3 +396,24 @@ def extract_details(items):
     '''
     return [{'text': i['properties']['identifier'], 'link': i['link']}
             for i in items]
+
+def combine_rels(rels):
+    ''' merge relationships of the same type, for better readability
+    :param rels: the relationships remaining after the item is processed
+    :return: list of rels containing lists and start/ends
+    '''
+    print len(rels)
+    types = {}
+    for rel in rels:
+        key = rel['start']['label'] + rel['type']
+        types[key] = types[key] + [rel] if key in types else [rel]
+
+    result = []
+    for rels in types.values():
+        result.append({
+            'start': [r['start'] for r in rels],
+            'end': [r['end'] for r in rels],
+            'type': rels[0]['type']
+        })
+    print len(result)
+    return result

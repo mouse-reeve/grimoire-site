@@ -26,11 +26,17 @@
     }
 }
 
-.comma-separated *:after {
+.comma-separated > *:after {
     content: ", ";
 }
 
-.comma-separated *:last-child:after {
+.comma-separated > *:last-child:after {
+    content: "";
+}
+.comma-and > *:last-child:before {
+    content: "and ";
+}
+.comma-and > *:first-child:before {
     content: "";
 }
 

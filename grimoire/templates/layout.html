@@ -6,7 +6,7 @@
     </title>
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Grimoire.org - History of Magical Texts">
+    <meta name="twitter:title" content="Grimoire.org - {% if title %} {{ title }} {% else %}History of Magical Texts{% endif %}">
     <meta name="twitter:description" content="An index of information on grimoires, magical texts, and their historical contexts.">
     <meta name="twitter:creator" content="@tripofmice">
     <meta name="twitter:site" content="@tripofmice">
@@ -17,6 +17,7 @@
     <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/static/styles/foundation.min.css">
     <link type="text/css" rel="stylesheet" href="/static/styles/app.css">
+    <link href='https://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
 
     <!-- Piwik -->
     <script type="text/javascript">
@@ -40,7 +41,7 @@
 <header>
     <div id="title">
         <div id="header-container">
-            <h1><a href="/">Grimoire <i class="fa fa-book"></i> Encyclop&aelig;dia</a></h1>
+            <h1><a href="/">Grimoire <i class="fa fa-key"></i> Encyclop&aelig;dia</a></h1>
         </div>
     </div>
 
@@ -75,7 +76,7 @@
             <div class="menu-button small-2 columns" data-responsive-toggle="mobileMenu">
                 <button class="menu-icon" type="button" data-toggle></button>
             </div>
-            <div class="small-10 columns">
+            <div class="small-10 columns" id="m-search">
                 <form method="get" action="/search">
                     <input type="text" name="term" id="m-search-bar" placeholder="Search">
                     <button action="submit"><i class="fa fa-search"></i></button>
@@ -86,8 +87,8 @@
                     <li><a href="/grimoire">Grimoires</a></li>
                     <li><a href="/demon">Demons</a></li>
                     <li><a href="/angel">Angels</a></li>
+                    <li><a href="/spell">Spells</a></li>
                     <li><a href="/index">Index</a></li>
-                    <li><a href="/random">Random</a></li>
                 </ul>
             </div>
         </div>

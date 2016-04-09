@@ -10,18 +10,17 @@ def grimoire_date(props):
     :param props: all the properties for a grimoire node
     :return: a string formatted date ("2015", "2010s", or "20th century")
     '''
-    if 'year' in props and props['year']:
-        date = props['year']
-    elif 'decade' in props and props['decade']:
-        date = '%ss' % props['decade']
-    elif 'century' in props and props['century']:
-        try:
-            cent = int(props['century'])/100
-            date = '%dth century' % (cent + 1)
-        except ValueError:
-            date = '%ss' % props['century']
-    else:
-        date = ''
+    try:
+        date = int(props['date'])
+    except ValueError:
+        return date
+
+    precision = props['date_precision']
+
+    if precision == 'decade':
+        return '%ds' % date
+    elif precision == 'century':
+        return '%dth century' % (date / 100 + 1)
 
     return date
 
@@ -128,3 +127,13 @@ def shortlink(url):
         return domain
     except IndexError:
         return url
+
+@app.template_filter('alphabuckets')
+def alphabuckets(items):
+    ''' sort items into letter "buckets" for alphabetizing '''
+    buckets = {}
+    for node in items:
+        letter = node['properties']['identifier'][0].upper()
+        buckets[letter] = [node] if letter not in buckets else buckets[letter] + [node]
+
+    return buckets

@@ -26,7 +26,7 @@ body {
   font-family: "Georgia", serif; }
 
 h1 {
-  font-family: Brandon; }
+  font-family: "UnifrakturMaguntia", "Serif"; }
 
 h2, h3, h4, h5, h6 {
   font-family: "Georgia", serif; }
@@ -60,21 +60,14 @@ h2, h3, h4, h5, h6 {
   min-height: 0.1em; }
 
 header {
-  text-align: center;
-  text-transform: uppercase; }
-
-#title {
-  background-image: url("/static/images/books-background.jpg");
-  background-position: center; }
+  text-align: center; }
 
 #header-container {
-  background: rgba(0, 0, 0, 0.5); }
+  background: #2c181b; }
 
 h1 {
   font-weight: normal;
-  letter-spacing: 0.2em;
-  padding-top: 1.5em;
-  padding-bottom: 0.2em;
+  padding: 0.2em;
   margin: 0; }
 
 h1 .fa {
@@ -138,6 +131,13 @@ nav form div:first-child {
   margin-top: 0.3em;
   color: #222; }
 
+#m-search input {
+  width: 80%;
+  float: left; }
+#m-search button {
+  float: right;
+  height: 3em; }
+
 .flag {
   float: right; }
 
@@ -160,10 +160,16 @@ nav form div:first-child {
   #main a:hover, #main a:active {
     color: #b5b5b7; }
 
-.comma-separated *:after {
+.comma-separated > *:after {
   content: ", "; }
 
-.comma-separated *:last-child:after {
+.comma-separated > *:last-child:after {
+  content: ""; }
+
+.comma-and > *:last-child:before {
+  content: "and "; }
+
+.comma-and > *:first-child:before {
   content: ""; }
 
 .caption {
