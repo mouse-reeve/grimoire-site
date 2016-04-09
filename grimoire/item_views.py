@@ -48,6 +48,7 @@ def item(label, uid):
         'editor': editor_item,
         'default': generic_item,
         'spell': spell_item,
+        'talisman': spell_item,
         'outcome': outcome_item
     }
 
@@ -153,6 +154,14 @@ def grimoire_item(node, rels):
         data['main'].append({
             'title': 'Spells',
             'data': spells,
+            'many': False
+        })
+
+    talisman = helpers.extract_rel_list(rels, 'talisman', 'end')
+    if len(talisman):
+        data['main'].append({
+            'title': 'Talismans',
+            'data': talisman,
             'many': False
         })
     return data
@@ -321,7 +330,7 @@ def spell_item(node, rels):
     if grimoires:
         data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
 
-    ingredients = helpers.extract_rel_list(rels, 'ingredient', 'end')
+    ingredients = helpers.extract_rel_list(rels, 'parent:ingredient', 'end')
     if ingredients:
         data['main'].append({'title': 'Ingredients', 'data': ingredients})
 
