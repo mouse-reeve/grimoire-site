@@ -198,11 +198,16 @@ def entity_item(node, rels):
 
     if not data['content']:
         grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
-        content = 'The %s %s appears in the grimoire%s _%s_.' % \
+        if len(grimoire_names) > 1:
+            grimoire_names = '_%s_, and _%s_' % \
+                    ('_, _'.join(grimoire_names[0:-1]), grimoire_names[-1])
+        else:
+            grimoire_names = '_%s_' % grimoire_names[0]
+        content = 'The %s %s appears in the grimoire%s %s.' % \
                   (node['label'],
                    node['properties']['identifier'],
                    's' if len(grimoires) > 1 else '',
-                   '_, _'.join(grimoire_names))
+                   grimoire_names)
         data['content'] = markdown.markdown(content)
     return data
 
