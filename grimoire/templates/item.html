@@ -46,21 +46,35 @@
     <div class="card">
         {% for rel in data.relationships | sort(attribute="type") %}
         <p>
-            {% if rel.start.id == data.id %}
-            This {{ rel.start.label | format }}
-            {% else %}
-            {% if not rel.start.label in ['person', 'author'] %}The {{ rel.start.label | format }}{% endif %}
-            <strong><a href="/{{ rel.start.label }}/{{ rel.start.properties.uid }}">{{ rel.start.properties.identifier | unthe }}</a></strong>
+        {% if rel.start[0].id == data.id %}
+            This {{ rel.start[0].label | format }}
+        {% else %}
+            {% if not rel.start[0].label in ['person', 'author'] %}
+            The
+            {% if rel.start | count > 1 %}{{ rel.start[0].label | pluralize }}{% else %}{{ rel.start[0].label | format }}{% endif %}
             {% endif %}
+            <span class="comma-separated comma-and">
+            {% for s in rel.start %}
+                <span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>
+            {% endfor %}
+            </span>
+        {% endif %}
 
             {{ rel.type | format }}
 
-            {% if rel.end.id == data.id %}
-            this {{ rel.end.label | format }}.
-            {% else %}
-            {% if not rel.end.label in ['person', 'author'] %}the {{ rel.end.label | format }}{% endif %}
-            <strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier | unthe }}</a>.</strong>
+        {% if rel.end[0].id == data.id %}
+            this {{ rel.end[0].label | format }}.
+        {% else %}
+            {% if not rel.end[0].label in ['person', 'author'] %}
+            the
+            {% if rel.end | count > 1 %}{{ rel.end[0].label | pluralize }}{% else %}{{ rel.end[0].label | format }}{% endif %}
             {% endif %}
+            <span class="comma-separated comma-and">
+            {% for e in rel.end %}
+                <span><strong><a href="/{{ e.label }}/{{ e.properties.uid }}">{{ e.properties.identifier | unthe }}</a></strong></span>
+            {% endfor %}
+            </span>
+        {% endif %}
         </p>
         {% endfor %}
     </div>

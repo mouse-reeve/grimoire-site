@@ -55,6 +55,8 @@ def item(label, uid):
           (label if label in switch else 'default')
     item_data = switch[key](node, rels)
 
+    item_data['relationships'] = combine_rels(item_data['relationships'])
+
     # ----- sidebar
     sidebar = []
     related = graph.related(uid, label)
@@ -394,3 +396,24 @@ def extract_details(items):
     '''
     return [{'text': i['properties']['identifier'], 'link': i['link']}
             for i in items]
+
+def combine_rels(rels):
+    ''' merge relationships of the same type, for better readability
+    :param rels: the relationships remaining after the item is processed
+    :return: list of rels containing lists and start/ends
+    '''
+    print len(rels)
+    types = {}
+    for rel in rels:
+        key = rel['start']['label'] + rel['type']
+        types[key] = types[key] + [rel] if key in types else [rel]
+
+    result = []
+    for rels in types.values():
+        result.append({
+            'start': [r['start'] for r in rels],
+            'end': [r['end'] for r in rels],
+            'type': rels[0]['type']
+        })
+    print len(result)
+    return result
