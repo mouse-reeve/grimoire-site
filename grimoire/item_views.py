@@ -213,7 +213,7 @@ def entity_item(node, rels):
         else:
             grimoire_names = '_%s_' % grimoire_names[0]
         content = 'The %s %s appears in the grimoire%s %s.' % \
-                  (node['label'],
+                  (helpers.format_filter(node['label']),
                    node['properties']['identifier'],
                    's' if len(grimoires) > 1 else '',
                    grimoire_names)
