@@ -206,17 +206,10 @@ def entity_item(node, rels):
         data['main'].append({'title': 'Servants', 'data': servants})
 
     if not data['content']:
-        grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
-        if len(grimoire_names) > 1:
-            grimoire_names = '_%s_, and _%s_' % \
-                    ('_, _'.join(grimoire_names[0:-1]), grimoire_names[-1])
-        else:
-            grimoire_names = '_%s_' % grimoire_names[0]
-        content = 'The %s %s appears in the grimoire%s %s.' % \
+        content = 'The %s %s appears in %s' % \
                   (helpers.format_filter(node['label']),
                    node['properties']['identifier'],
-                   's' if len(grimoires) > 1 else '',
-                   grimoire_names)
+                   format_list(grimoires))
         data['content'] = markdown.markdown(content)
     return data
 
@@ -338,6 +331,23 @@ def spell_item(node, rels):
     if outcomes:
         data['details']['Outcome'] = extract_details(outcomes)
 
+    if not data['content']:
+        grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
+        if len(grimoire_names) > 1:
+            grimoire_names = '_%s_, and _%s_' % \
+                    ('_, _'.join(grimoire_names[0:-1]), grimoire_names[-1])
+        else:
+            grimoire_names = '_%s_' % grimoire_names[0]
+        content = 'This %s appears in %s, and you can find the full text there. ' % \
+                (node['label'], format_list(grimoires))
+        if outcomes:
+            content += 'It is used for %s' % format_list(outcomes, italics=False).lower()
+            if ingredients:
+                content += ' and calls for %s' % \
+                           format_list(ingredients, italics=False, show_label=False).lower()
+            content += '. '
+
+        data['content'] = markdown.markdown(content)
     return data
 
 
@@ -431,3 +441,26 @@ def combine_rels(rels):
         })
     print len(result)
     return result
+
+
+def format_list(nodes, italics=True, show_label=True):
+    ''' add "and" and commas to a list '''
+    items = [helpers.unthe(n['properties']['identifier']) for n in nodes]
+    if len(items) == 2:
+        if italics:
+            result = '_%s_ and _%s_' % (items[0], items[1])
+        else:
+            result = '%s and %s' % (items[0], items[1])
+    elif len(items) > 1:
+        if italics:
+            result = '_%s_, and _%s_' % \
+                    ('_, _'.join(items[0:-1]), items[-1])
+        else:
+            result = '%s, and %s' % \
+                    (', '.join(items[0:-1]), items[-1])
+    else:
+        result = '_%s_' % items[0] if italics else '%s' % items[0]
+
+    label = helpers.pluralize(nodes[0]['label']) if len(items) > 1 else nodes[0]['label']
+
+    return 'the %s %s' % (label, result) if show_label else result
