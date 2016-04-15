@@ -1,0 +1,32 @@
+.accordion, .accordion-content {
+    border: 0;
+}
+
+#item-lists a.accordion-title {
+    color: $text-color;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid $link-hover-color;
+    margin-bottom: 1em;
+}
+
+#item-lists .accordion-item {
+    margin: 0;
+}
+
+#item-lists .rel-list li {
+    margin: 0.2em 0;
+}
+
+#item-lists h3 {
+    font-size: 1.5em;
+}
+
+.is-active > .accordion-title::before {
+    content: "(hide)";
+}
+
+.accordion-title::before {
+    font-size: 1em;
+    content: "(show)";
+}

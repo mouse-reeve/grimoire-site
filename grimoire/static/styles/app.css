@@ -31,6 +31,32 @@ h1 {
 h2, h3, h4, h5, h6 {
   font-family: "Georgia", serif; }
 
+.accordion, .accordion-content {
+  border: 0; }
+
+#item-lists a.accordion-title {
+  color: #000;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #b5b5b7;
+  margin-bottom: 1em; }
+
+#item-lists .accordion-item {
+  margin: 0; }
+
+#item-lists .rel-list li {
+  margin: 0.2em 0; }
+
+#item-lists h3 {
+  font-size: 1.5em; }
+
+.is-active > .accordion-title::before {
+  content: "(hide)"; }
+
+.accordion-title::before {
+  font-size: 1em;
+  content: "(show)"; }
+
 .divider {
   margin-right: auto;
   margin-left: auto;
@@ -186,7 +212,7 @@ nav form div:first-child {
   border-left: 5px solid #efefef;
   padding: 0 1em;
   margin: 0 1em;
-  color: black; }
+  color: #000; }
   .item-content blockquote li {
     margin: 0 1em !important;
     list-style-type: auto; }

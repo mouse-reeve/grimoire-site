@@ -81,12 +81,19 @@
     </div>
     {% endif %}
 
+    <!-- lists -->
     {% if data.main %}
-    <div class="card">
-        {% for section in data.main %}
-        <h3>{{ section.title | capitalize }}</h3>
-        {{ macros.rel_list(section.data, section.many) }}
-        {% endfor %}
+    <div id="item-lists">
+        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
+            {% for section in data.main %}
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title"><h3>{{ section.title | capitalize }} ({{ section.data | count }})</h3></a>
+                <div class="accordion-content" data-tab-content>
+                    {{ macros.rel_list(section.data, section.many) }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     {% endif %}
 

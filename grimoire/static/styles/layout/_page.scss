@@ -20,9 +20,9 @@
 }
 
 #main a {
-    color: #677077;
+    color: $link-color;
     &:hover, &:active {
-        color: #b5b5b7;
+        color: $link-hover-color;
     }
 }
 
@@ -49,7 +49,7 @@
     border-left: 5px solid $background-color+1;
     padding: 0 1em;
     margin: 0 1em;
-    color: black;
+    color: $text-color;
 
     li {
         margin: 0 1em !important;
@@ -63,7 +63,7 @@ blockquote {
 }
 
 blockquote p {
-    color: #000;
+    color: $text-color;
 }
 
 .card {

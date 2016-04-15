@@ -1,6 +1,6 @@
 {% macro rel_list(data, many='') %}
 <div class="card">
-    <ul{% if many %} class="many"{% endif %}>
+    <ul class="rel-list {% if many %} many{% endif %}">
         {% for rel in data | sort(attribute="properties.identifier")%}
         <li>
             <a href="/{{ rel.label }}/{{ rel.properties.uid }}">{{ rel.properties.identifier }}</a>
