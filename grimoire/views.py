@@ -34,18 +34,6 @@ def random():
     return redirect(data['nodes'][0]['link'])
 
 
-@app.route('/index')
-def content_index():
-    ''' list everything available by category '''
-    data = []
-    for label in graph.get_labels():
-        data.append({
-            'label': label,
-            'nodes': graph.get_all(label)['nodes']
-        })
-    return render_template('index.html', data=data, title='Index')
-
-
 @app.route('/support')
 def support():
     ''' the "give me money" page '''

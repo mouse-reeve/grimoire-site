@@ -18,7 +18,7 @@
 
         <ul>
             {% for spell in spell_list | sort(attribute='properties.identifier') %}
-            <li><a href="{{ spell.link }}">{{ spell.properties.identifier }}</a> (<span class="comma-separated">{% for grim in spell.properties.grimoire %}<span>{{ grim | unthe }}</span>{% endfor %}</span>)</li>
+            <li><a href="{{ spell.link }}">{{ spell.properties.identifier }}</a>{% if spell.properties.grimoire %} (<span class="comma-separated">{% for grim in spell.properties.grimoire %}<span>{{ grim | unthe }}</span>{% endfor %}</span>){% endif %}</li>
             {% endfor %}
         </ul>
     </div>
