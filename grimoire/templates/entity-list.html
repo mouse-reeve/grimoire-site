@@ -28,12 +28,13 @@
             {% endfor %}
         </select>
 
-        <select name="op" required>
-            <option value="and" selected>AND</option>
+        <select name="op">
+            <option selected></option>
+            <option value="and">AND</option>
             <option value="not">AND NOT</option>
         </select>
 
-        <select name="j" required>
+        <select name="j">
             <option></option>
             {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
             <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
@@ -48,12 +49,14 @@
     <h3>
         {{ label | pluralize | capitalize }} in
         <a href="{{ filtered.item1.link }}">{{ filtered.item1.properties.identifier }}</a>
-        {% if filtered.operator == 'and' %}
-        and
-        {% else %}
-        and not
+        {% if filtered.operator and filtered.item2 %}
+            {% if filtered.operator == 'and' %}
+            and
+            {% else %}
+            and not
+            {% endif %}
+            <a href="{{ filtered.item2.link }}">{{ filtered.item2.properties.identifier }}</a>
         {% endif %}
-        <a href="{{ filtered.item2.link }}">{{ filtered.item2.properties.identifier }}</a>
     </h3>
     <a href="{{ label }}">Clear filter</a>
     {% endif %}

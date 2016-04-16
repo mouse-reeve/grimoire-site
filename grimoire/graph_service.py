@@ -134,7 +134,7 @@ class GraphService(object):
 
 
     @serialize
-    def get_filtered(self, label, item1, item2, operator):
+    def get_filtered(self, label, item1, item2=None, operator=None):
         ''' items that connect to nodes
         :param label: the type of the desired items
         :param item1: the first node the items must be connected to
@@ -142,12 +142,15 @@ class GraphService(object):
         :param operator: type of connection
         :return: a list of nodes that are/are not connected to both items
         '''
-        query = 'MATCH (n:%s)--m, p ' \
-                'WHERE m.uid={item1} AND p.uid={item2} ' \
-                'AND ' % label
+        if item2 and operator:
+            query = 'MATCH (n:%s)--m, p ' \
+                    'WHERE m.uid={item1} AND p.uid={item2} ' \
+                    'AND ' % label
 
-        if operator == 'not':
-            query += 'NOT '
+            if operator == 'not':
+                query += 'NOT '
+        else:
+            query = 'MATCH (n:%s)--p  WHERE p.uid={item1} AND ' % label
 
         query += '(n)--(p) RETURN n'
         return self.query(query, item1=item1, item2=item2)

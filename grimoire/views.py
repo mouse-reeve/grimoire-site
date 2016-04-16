@@ -111,19 +111,26 @@ def category(label):
     filtered = None
     try:
         item1 = helpers.sanitize(request.values['i'])
-        item2 = helpers.sanitize(request.values['j'])
-        operator = helpers.sanitize(request.values['op'])
-        if operator not in ['and', 'not']:
-            raise BadRequestKeyError
-    except (KeyError, BadRequestKeyError):
+    except KeyError:
         data = graph.get_all(label)
     else:
-        data = graph.get_filtered(label, item1, item2, operator)
-        filtered = {
-            'operator': operator,
-            'item1': graph.get_node(item1)['nodes'][0],
-            'item2': graph.get_node(item2)['nodes'][0]
-        }
+        try:
+            item2 = helpers.sanitize(request.values['j'])
+            operator = helpers.sanitize(request.values['op'])
+            if operator not in ['and', 'not']:
+                raise BadRequestKeyError
+        except (KeyError, BadRequestKeyError):
+            data = graph.get_filtered(label, item1)
+            filtered = {
+                'item1': graph.get_node(item1)['nodes'][0],
+            }
+        else:
+            data = graph.get_filtered(label, item1, item2, operator)
+            filtered = {
+                'operator': operator,
+                'item1': graph.get_node(item1)['nodes'][0],
+                'item2': graph.get_node(item2)['nodes'][0]
+            }
 
     items = data['nodes']
 
