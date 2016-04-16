@@ -99,8 +99,7 @@ class GraphService(object):
         if not term:
             return []
         data = self.query('MATCH n WHERE n.identifier =~ {term} OR '
-                          'n.alternate_names =~ {term} OR '
-                          'n.content =~ {term} RETURN n', term='(?i)(?s).*%s.*' % term)
+                          'n.alternate_names =~ {term} RETURN n', term='(?i)(?s).*%s.*' % term)
         return data
 
 
