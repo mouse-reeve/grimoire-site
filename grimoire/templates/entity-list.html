@@ -6,7 +6,7 @@
     {% if label %}
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
-        <li class="current"><a href="/{{ label }}">{{ label | pluralize }}</a></li>
+        <li class="current">{{ label | pluralize }}</li>
     </ul>
     {% endif %}
 
