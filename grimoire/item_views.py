@@ -49,6 +49,7 @@ def item(label, uid):
         'default': generic_item,
         'spell': spell_item,
         'talisman': spell_item,
+        'ingredient': ingredient_item,
         'outcome': outcome_item
     }
 
@@ -69,11 +70,15 @@ def item(label, uid):
     if not item_data['content']:
         item_data['content'] = 'The %s "%s."' % (helpers.format_filter(label), helpers.unthe(title))
 
+    max_main_length = max([len(i['data']) for i in item_data['main']])
+    default_collapse = len(item_data['main']) > 2 or max_main_length > 30
+
     return render_template('item.html',
                            data=item_data,
                            title=title,
                            label=label,
-                           sidebar=sidebar)
+                           sidebar=sidebar,
+                           default_collapse=default_collapse)
 
 
 def generic_item(node, rels):
@@ -348,6 +353,28 @@ def spell_item(node, rels):
             content += '. '
 
         data['content'] = markdown.markdown(content)
+    return data
+
+
+def ingredient_item(node, rels):
+    ''' ingredient item page
+    :param node: the item node
+    :param rels: default relationship list
+    :return: customized data for this label
+    '''
+    data = generic_item(node, rels)
+
+    spells = helpers.extract_rel_list(rels, 'spell', 'start')
+    if spells:
+        data['main'].append({'title': 'Spells', 'data': spells})
+
+    for entity in entities:
+        items = helpers.extract_rel_list(rels, entity, 'start')
+        if items:
+            data['main'].append({'title': helpers.pluralize(entity), 'data': items})
+
+    data['relationships'] = exclude_rels(rels, ['uses'])
+
     return data
 
 
