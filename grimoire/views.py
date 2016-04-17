@@ -1,5 +1,6 @@
 ''' misc views '''
 import copy
+from datetime import date
 from email.mime.text import MIMEText
 from flask import redirect, render_template, request
 from subprocess import Popen, PIPE
@@ -16,12 +17,12 @@ def index():
     grimoires = []
     for g in data['nodes']:
         g = g['properties']
-        date = helpers.grimoire_date(g)
+        year = helpers.grimoire_date(g)
 
         grimoires.append({
             'uid': g['uid'],
             'identifier': g['identifier'],
-            'date': date
+            'date': year
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     return render_template('home.html', grimoires=grimoires, title='Grimoire Encyclopedia')
@@ -173,29 +174,42 @@ def timeline_page():
     '''
 
     nodes = graph.timeline()['nodes']
+    if graph.timeline_labels == []:
+        graph.timeline_labels = set([n['label'] for n in nodes])
+
+    show = [l for l in graph.timeline_labels \
+            if request.args.has_key(l) and request.values[l] == 'on']
+
+    if show:
+        nodes = [n for n in nodes if n['label'] in show]
+    else:
+        show = graph.timeline_labels
 
     timeline = {}
     for node in nodes:
         for event in date_params:
-            if event in node['properties']:
-                try:
-                    year = int(node['properties'][event])
-                except ValueError:
-                    continue
+            if not event in node['properties']:
+                continue
+            try:
+                year = int(node['properties'][event])
+            except ValueError:
+                continue
 
-                date_precision = node['date_precision'] if 'date_precision' in node else 'year'
-                note = event if not event in ['year', 'date'] else None
+            date_precision = node['properties']['date_precision'] \
+                             if 'date_precision' in node['properties'] else 'year'
+            note = event if not event in ['year', 'date'] else None
 
-                timeline = add_to_timeline(timeline, node, year, date_precision, note=note)
+            timeline = add_to_timeline(timeline, node, year, date_precision, note=note)
 
-    labels = set([n['label'] for n in nodes])
-    return render_template('timeline.html', data=timeline, start=200, end=2016, labels=labels)
+    end = date.today().year
+    return render_template('timeline.html', data=timeline, end=end,
+                           labels=graph.timeline_labels, show=show)
 
 
-def add_to_timeline(timeline, node, date, date_precision, note=None):
+def add_to_timeline(timeline, node, year, date_precision, note=None):
     ''' put a date on it
     :param timeline: the existing timeline object
-    :param date: the year/decade/century of origin
+    :param year: the year/decade/century of origin
     :param date_precision: how precide the date is (year/decade/century)
     :param node: the node
     :param note: display text to go along with the node (if available)
@@ -206,13 +220,13 @@ def add_to_timeline(timeline, node, date, date_precision, note=None):
         new_node['note'] = note
 
     try:
-        date = int(date)
+        year = int(year)
     except ValueError:
         return timeline
 
-    century = date / 100 * 100
-    decade = date / 10 * 10 if date_precision != 'century' else None
-    year = date if date_precision == 'year' else None
+    century = year / 100 * 100
+    decade = year / 10 * 10 if date_precision != 'century' else None
+    year = year if date_precision == 'year' else None
 
     if century not in timeline:
         timeline[century] = {'decades': {}, 'items': []}
@@ -223,6 +237,7 @@ def add_to_timeline(timeline, node, date, date_precision, note=None):
 
     if year:
         timeline[century]['decades'][decade]['years'][year]['items'] += [new_node]
+
     elif decade:
         timeline[century]['decades'][decade]['items'] += [new_node]
     else:

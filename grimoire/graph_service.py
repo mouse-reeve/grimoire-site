@@ -34,6 +34,7 @@ class GraphService(object):
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
         self.date_params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
+        self.timeline_labels = []
         self.timeline_data = []
 
 

@@ -69,6 +69,28 @@ h2, h3, h4, h5, h6 {
     content: "\f068";
     font-family: fontawesome; }
 
+#feedback {
+  background: #eee;
+  border: 3px solid #2c181b;
+  padding: 1em;
+  margin: 1em; }
+
+.filter {
+  overflow: auto;
+  padding: 0.5em;
+  background-color: #ededed;
+  margin: 0 3em 1em 3em; }
+
+.filter label {
+  float: left;
+  margin-right: 2em;
+  min-width: 9em; }
+
+.filter input[type="submit"] {
+  display: block;
+  float: none;
+  clear: both; }
+
 .timeline {
   margin-left: 5em;
   padding-left: 1em;
@@ -84,12 +106,6 @@ h2, h3, h4, h5, h6 {
 
 .timeline div {
   min-height: 0.1em; }
-
-#feedback {
-  background: #eee;
-  border: 3px solid #2c181b;
-  padding: 1em;
-  margin: 1em; }
 
 header {
   text-align: center; }
@@ -274,6 +290,10 @@ tr:nth-child(2n) {
 input, select {
   display: inline;
   width: inherit; }
+
+.button {
+  background-color: #677077;
+  padding: 0.5em 1em; }
 
 #sidebar {
   border: 1px solid #aaa;

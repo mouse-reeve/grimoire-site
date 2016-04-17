@@ -4,8 +4,22 @@
 
 <h2>Timeline</h2>
 
+<div class="filter">
+    <h3>Show only events related to:</h3>
+    <form method="get" action="/timeline">
+    {% for label in labels %}
+        <label for="{{ label }}">
+            <input type="checkbox" name="{{ label }}" {% if label in show %}checked{% endif %}>
+            {{ label | pluralize }}
+        </label>
+    {% endfor %}
+    <input class="button" type="submit" value="Filter">
+    <a href="/timeline">Clear filter</a>
+    </form>
+</div>
+
 <div id="content" class="timeline">
-    {% for c in range(start, end+100, 100) %}
+    {% for c in range(0, end, 100) %}
     <div class="century">
         {% if c in data %}
         <h3 class="date">{{ c }}</h3>
