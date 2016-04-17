@@ -12,6 +12,7 @@ from grimoire.serializer import serialize
 class GraphService(object):
     ''' manage neo4j data operations '''
 
+
     def __init__(self):
         try:
             user = os.environ['NEO4J_USER']
@@ -32,6 +33,7 @@ class GraphService(object):
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
+        self.timeline_data = []
 
 
     def get_labels(self):
@@ -192,6 +194,7 @@ class GraphService(object):
         query = 'MATCH (n) WHERE HAS(n.%s) RETURN n' % param
         return self.query(query)
 
+
     @serialize
     def get_spells_by_outcome(self):
         ''' get a list of spells organized by outcome
@@ -199,3 +202,24 @@ class GraphService(object):
         '''
         query = 'MATCH (n:outcome)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
         return self.query(query)
+
+
+    @serialize
+    def timeline(self):
+        ''' get all the requested items to populate the timeline
+        :show: an array of labels that should be included
+        :return: an array of nodes with date params
+        '''
+        if len(self.timeline_data):
+            return self.timeline_data
+
+        params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
+        query = 'MATCH n WHERE '
+
+        checks = ['HAS(n.%s)' % param for param in params]
+
+        query += ' OR '.join(checks)
+        query += ' RETURN n'
+
+        self.timeline_data = self.query(query)
+        return self.timeline_data

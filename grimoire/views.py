@@ -171,40 +171,24 @@ def timeline_page():
     ''' timeline data display
     :return: rendered timeline page
     '''
-    grimoires = graph.get_all('`parent:book`')['nodes']
-    dates = [int(t['properties']['date']) / 100 * 100
-             if t['properties']['date'] else 0 for t in grimoires]
-    end = reduce(lambda x, y: x if x > y else y, dates)
-    start = reduce(lambda x, y: x if x < y else y, dates)
+
+    nodes = graph.timeline()['nodes']
+
     timeline = {}
+    for node in nodes:
+        for event in ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']:
+            if event in node['properties']:
+                try:
+                    year = int(node['properties'][event])
+                except ValueError:
+                    continue
 
-    # people's birth/death
-    people = graph.get_all('person')['nodes']
-    for person in people:
-        for event in ['born', 'died', 'crowned']:
-            if event in person['properties']:
-                year = person['properties'][event]
+                date_precision = node['date_precision'] if 'date_precision' in node else 'year'
+                note = event if not event in ['year', 'date'] else None
 
-                timeline = add_to_timeline(timeline, person, year, 'year', note=event)
+                timeline = add_to_timeline(timeline, node, year, date_precision, note=note)
 
-    # startings and endings
-    events = graph.get_all('historical_event')['nodes']
-    for item in events:
-        for event in ['began', 'ended']:
-            if event in item['properties']:
-                year = item['properties'][event]
-
-                timeline = add_to_timeline(timeline, item, year, 'year', note=event)
-
-    # misc things with a date fields
-    items = graph.get_with_param('date')['nodes']
-    for item in items:
-        date = item['properties']['date']
-        date_precision = item['properties']['date_precision']
-
-        timeline = add_to_timeline(timeline, item, date, date_precision)
-
-    return render_template('timeline.html', data=timeline, start=start, end=end)
+    return render_template('timeline.html', data=timeline, start=200, end=2016)
 
 
 def add_to_timeline(timeline, node, date, date_precision, note=None):

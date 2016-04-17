@@ -70,7 +70,7 @@ def item(label, uid):
     if not item_data['content']:
         item_data['content'] = 'The %s "%s."' % (helpers.format_filter(label), helpers.unthe(title))
 
-    max_main_length = max([len(i['data']) for i in item_data['main']])
+    max_main_length = max([len(i['data']) for i in item_data['main']] + [0])
     default_collapse = len(item_data['main']) > 2 or max_main_length > 30
 
     return render_template('item.html',
