@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 graph = GraphService()
 entities = graph.get_entity_labels()
+date_params = graph.date_params
 
 import grimoire.models as temporospatial
 temporospatial.db.init_app(app)

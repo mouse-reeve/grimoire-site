@@ -4,6 +4,15 @@
 
 <h2>Timeline</h2>
 
+<div class="filter">
+    <h3>Filter</h3>
+    <form method="post" action="/timeline">
+    {% for label in labels %}
+        <label for="{{ label }}"><input type="checkbox" name="{{ label }}">{{ label }}</label>
+    {% endfor %}
+    </form>
+</div>
+
 <div id="content" class="timeline">
     {% for c in range(start, end+100, 100) %}
     <div class="century">
@@ -38,7 +47,9 @@
             {% for y in range(0, 10) %}
             <div class="year">
                 {% if c in data and c+d in data[c].decades and c+d+y in data[c].decades[c+d].years and data[c].decades[c+d].years[c+d+y]['items'] %}
+                {% if not c+d+y == c %}
                 <p class="date">{{ c+d+y }}</p>
+                {% endif %}
                 <span class="comma-separated">
                     {% for item in data[c].decades[c+d].years[c+d+y]['items'] %}
                     <span>

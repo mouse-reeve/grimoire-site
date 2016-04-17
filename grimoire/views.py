@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
 import grimoire.helpers as helpers
-from grimoire import app, graph, entities
+from grimoire import app, graph, entities, date_params
 
 
 @app.route('/')
@@ -176,7 +176,7 @@ def timeline_page():
 
     timeline = {}
     for node in nodes:
-        for event in ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']:
+        for event in date_params:
             if event in node['properties']:
                 try:
                     year = int(node['properties'][event])
@@ -188,7 +188,8 @@ def timeline_page():
 
                 timeline = add_to_timeline(timeline, node, year, date_precision, note=note)
 
-    return render_template('timeline.html', data=timeline, start=200, end=2016)
+    labels = set([n['label'] for n in nodes])
+    return render_template('timeline.html', data=timeline, start=200, end=2016, labels=labels)
 
 
 def add_to_timeline(timeline, node, date, date_precision, note=None):

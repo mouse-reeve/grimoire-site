@@ -33,6 +33,7 @@ class GraphService(object):
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
+        self.date_params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
         self.timeline_data = []
 
 
@@ -213,13 +214,9 @@ class GraphService(object):
         if len(self.timeline_data):
             return self.timeline_data
 
-        params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
         query = 'MATCH n WHERE '
-
-        checks = ['HAS(n.%s)' % param for param in params]
-
-        query += ' OR '.join(checks)
-        query += ' RETURN n'
+        checks = ['HAS(n.%s)' % param for param in self.date_params]
+        query += ' OR '.join(checks) + ' RETURN n'
 
         self.timeline_data = self.query(query)
         return self.timeline_data
