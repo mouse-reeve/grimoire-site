@@ -4,15 +4,6 @@
 
 <h2>Timeline</h2>
 
-<div class="filter">
-    <h3>Filter</h3>
-    <form method="post" action="/timeline">
-    {% for label in labels %}
-        <label for="{{ label }}"><input type="checkbox" name="{{ label }}">{{ label }}</label>
-    {% endfor %}
-    </form>
-</div>
-
 <div id="content" class="timeline">
     {% for c in range(start, end+100, 100) %}
     <div class="century">
