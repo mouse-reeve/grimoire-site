@@ -52,9 +52,7 @@
             {% for y in range(0, 10) %}
             <div class="year">
                 {% if c in data and c+d in data[c].decades and c+d+y in data[c].decades[c+d].years and data[c].decades[c+d].years[c+d+y]['items'] %}
-                {% if not c+d+y == c %}
                 <p class="date">{{ c+d+y }}</p>
-                {% endif %}
                 <span class="comma-separated">
                     {% for item in data[c].decades[c+d].years[c+d+y]['items'] %}
                     <span>
