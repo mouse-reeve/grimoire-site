@@ -8,8 +8,8 @@
     <h3>Show only events related to:</h3>
     <form method="get" action="/timeline">
     {% for label in labels %}
-        <label for="{{ label }}">
-            <input type="checkbox" name="{{ label }}" {% if label in show %}checked{% endif %}>
+        <label for="{{ label }}-checkbox">
+            <input type="checkbox" name="{{ label }}" id="{{ label }}-checkbox" {% if label in show %}checked{% endif %}>
             {{ label | pluralize }}
         </label>
     {% endfor %}
