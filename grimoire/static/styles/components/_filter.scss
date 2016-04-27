@@ -1,0 +1,18 @@
+.filter {
+    overflow: auto;
+    padding: 0.5em;
+    background-color: $inset-color;
+    margin: 0 3em 1em 3em;
+}
+
+.filter label {
+    float: left;
+    margin-right: 2em;
+    min-width: 9em;
+}
+
+.filter input[type="submit"] {
+    display: block;
+    float: none;
+    clear: both;
+}
