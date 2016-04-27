@@ -69,6 +69,11 @@ h2, h3, h4, h5, h6 {
     content: "\f068";
     font-family: fontawesome; }
 
+.flag {
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  cursor: pointer; }
+
 #feedback {
   background: #eee;
   border: 3px solid #2c181b;
