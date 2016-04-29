@@ -453,7 +453,6 @@ def combine_rels(rels):
     :param rels: the relationships remaining after the item is processed
     :return: list of rels containing lists and start/ends
     '''
-    print len(rels)
     types = {}
     for rel in rels:
         key = rel['start']['label'] + rel['type']
@@ -466,7 +465,6 @@ def combine_rels(rels):
             'end': [r['end'] for r in rels],
             'type': rels[0]['type']
         })
-    print len(result)
     return result
 
 

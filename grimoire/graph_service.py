@@ -23,18 +23,27 @@ class GraphService(object):
 
         try:
             graph = Graph()
-            self.query = graph.cypher.execute
+            self.query_method = graph.cypher.execute
         except SocketError:
             logging.error('neo4j failed to load')
-            self.query = lambda x: {}
+            self.query_method = lambda x: {}
         except Unauthorized:
-            self.query = lambda x: {}
+            self.query_method = lambda x: {}
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
         self.date_params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
         self.timeline_labels = []
         self.timeline_data = []
+
+
+    def query(self, query_string, **kwargs):
+        ''' wrapper around the neo4j query
+        :param query_string: a complete neo4j cypher query
+        :return: the results of the neo4j query
+        '''
+        logging.info('Running query %s', query_string)
+        return self.query_method(query_string, **kwargs)
 
 
     def get_labels(self):
@@ -45,7 +54,9 @@ class GraphService(object):
 
 
     def get_entity_labels(self):
-        ''' get a list of all the supernatural entities '''
+        ''' get a list of all the supernatural entities
+        :return: a list of labels under the parent label "entity"
+        '''
         labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)')
         return [l[0][0] for l in labels if not 'parent' in l[0][0]]
 

@@ -1,4 +1,4 @@
-"""App settings """
+''' App settings '''
 import os
 
 # Statement for enabling the development environment
