@@ -67,7 +67,7 @@ def table(entity='demon'):
     :param entity: the type of creature (default is demon)
     :return: the rendered table page
     '''
-    if entity not in entities:
+    if entity not in entities + ['spell']:
         return redirect('/table')
 
     data = graph.get_grimoire_entities(entity)
@@ -75,14 +75,15 @@ def table(entity='demon'):
 
     all_grimoires = []
     for i, grimoire_list in enumerate(data['lists']):
-        entity_list[i]['grimoires'] = {e['properties']['uid']: e for e in grimoire_list}
+        entity_list[i]['grimoires'] = {g['properties']['uid']: g for g in grimoire_list}
         all_grimoires.append(entity_list[i]['grimoires'])
 
     grimoires = {}
-
     for d in all_grimoires:
         for key, value in d.items():
             grimoires[key] = value
+    grimoires = grimoires.values()
+    grimoires = sorted(grimoires, key=lambda g: g['properties']['date'])
 
     isolates_data = graph.get_single_grimoire_entities(entity)
     isolates = zip(isolates_data['nodes'], isolates_data['lists'])

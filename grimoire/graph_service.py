@@ -12,7 +12,6 @@ from grimoire.serializer import serialize
 class GraphService(object):
     ''' manage neo4j data operations '''
 
-
     def __init__(self):
         try:
             user = os.environ['NEO4J_USER']

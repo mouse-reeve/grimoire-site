@@ -8,15 +8,15 @@
     <table class="scroll">
         <tr>
             <th></th>
-            {% for uid, grimoire in grimoires.items() | sort %}
-            <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
+            {% for grimoire in grimoires %}
+            <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a> ({{ grimoire.properties.date }})</th>
             {% endfor %}
         </tr>
         {% for item in entities %}
         <tr>
             <th><a href="{{ item.link }}">{{ item.properties.identifier }}</a></th>
-            {% for uid, grimoire in grimoires.items() | sort %}
-            {% if uid in item.grimoires %}
+            {% for grimoire in grimoires %}
+            {% if grimoire.properties.uid in item.grimoires %}
             <td class="yes">
                 <i class="fa fa-check"></i>
             </td>
@@ -28,7 +28,7 @@
         {% endfor %}
         <tr>
             <th></th>
-            {% for uid, grimoire in grimoires.items() | sort %}
+            {% for grimoire in grimoires %}
             <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
             {% endfor %}
         </tr>
