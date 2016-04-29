@@ -21,6 +21,7 @@ class GraphService(object):
         else:
             authenticate('localhost:7474', user, password)
 
+        self.query_cache = {}
         try:
             graph = Graph()
             self.query_method = graph.cypher.execute
@@ -37,11 +38,15 @@ class GraphService(object):
         self.timeline_data = []
 
 
-    def query(self, query_string, **kwargs):
+    def query(self, query_string, cache=False, **kwargs):
         ''' wrapper around the neo4j query
         :param query_string: a complete neo4j cypher query
         :return: the results of the neo4j query
         '''
+        if cache:
+            if not query_string in self.query_cache:
+                self.query_cache[query_string] = self.query_method(query_string, **kwargs)
+            return self.query_cache[query_string]
         logging.info('Running query %s', query_string)
         return self.query_method(query_string, **kwargs)
 
@@ -57,7 +62,7 @@ class GraphService(object):
         ''' get a list of all the supernatural entities
         :return: a list of labels under the parent label "entity"
         '''
-        labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)')
+        labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)', cache=True)
         return [l[0][0] for l in labels if not 'parent' in l[0][0]]
 
 
@@ -81,7 +86,7 @@ class GraphService(object):
         if with_connection_label:
             query += ' -- (m:%s) ' % with_connection_label
         query += 'RETURN DISTINCT n'
-        return self.query(query)
+        return self.query(query, cache=True)
 
 
     @serialize
@@ -100,8 +105,7 @@ class GraphService(object):
         ''' select one random node
         :return: the serialized neo4j nodelist
         '''
-        node = self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
-        return node
+        return self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
 
 
     @serialize
@@ -112,9 +116,8 @@ class GraphService(object):
         '''
         if not term:
             return []
-        data = self.query('MATCH n WHERE n.identifier =~ {term} OR '
+        return self.query('MATCH n WHERE n.identifier =~ {term} OR '
                           'n.alternate_names =~ {term} RETURN n', term='(?i)(?s).*%s.*' % term)
-        return data
 
 
     @serialize
@@ -180,7 +183,7 @@ class GraphService(object):
                 'WITH m, COUNT (n) as cn, COLLECT(n) AS ln ' \
                 'WHERE cn > 1 ' \
                 'RETURN m, ln ORDER BY SIZE(ln) DESC' % entity
-        return self.query(query)
+        return self.query(query, cache=True)
 
 
     @serialize
@@ -194,7 +197,7 @@ class GraphService(object):
                 'WHERE cr = 1 AND (p)-[:lists]->(m) ' \
                 'WITH p, collect(m) as lm ' \
                 'RETURN p, lm' % entity
-        return self.query(query)
+        return self.query(query, cache=True)
 
 
     @serialize
@@ -204,7 +207,7 @@ class GraphService(object):
         :return: serialized list of nodes
         '''
         query = 'MATCH (n) WHERE HAS(n.%s) RETURN n' % param
-        return self.query(query)
+        return self.query(query, cache=True)
 
 
     @serialize
@@ -213,7 +216,7 @@ class GraphService(object):
         :return: serialized list of outcomes and spells
         '''
         query = 'MATCH (n:outcome)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
-        return self.query(query)
+        return self.query(query, cache=True)
 
 
     @serialize
