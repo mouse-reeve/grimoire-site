@@ -137,3 +137,10 @@ def alphabuckets(items):
         buckets[letter] = [node] if letter not in buckets else buckets[letter] + [node]
 
     return buckets
+
+@app.template_filter('trim')
+def trim_filter(text):
+    ''' shorten text for breadcrumbs '''
+    shorter = ' '.join(text.split(' ')[:4])
+    shorter += '...' if len(shorter) < len(text) else ''
+    return shorter

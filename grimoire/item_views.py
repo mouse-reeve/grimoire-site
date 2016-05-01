@@ -327,6 +327,8 @@ def spell_item(node, rels):
                 helpers.extract_rel_list(rels, 'book', 'start')
     if grimoires:
         data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
+        if len(grimoires) == 1:
+            data['parent_label'] = grimoires[0]
 
     ingredients = helpers.extract_rel_list(rels, 'parent:ingredient', 'end')
     if ingredients:

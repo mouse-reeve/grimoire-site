@@ -8,8 +8,12 @@
     {% if label %}
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
+        {% if data.parent_label %}
+        <li><a href="{{ data.parent_label.link }}">{{ data.parent_label.properties.identifier | unthe }}</a></li>
+        {% else %}
         <li><a href="/{{ label }}">{{ label | pluralize }}</a></li>
-        <li class="current">{{ title | unthe }}</li>
+        {% endif %}
+        <li class="current">{{ title | unthe | trim }}</li>
     </ul>
     {% endif %}
 
