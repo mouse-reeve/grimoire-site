@@ -64,10 +64,10 @@ h2, h3, h4, h5, h6 {
   padding-bottom: 1em; }
   .divider:after {
     content: "\f084";
-    font-family: fontawesome; }
+    font-family: "fontawesome"; }
   .divider.minor:after {
     content: "\f068";
-    font-family: fontawesome; }
+    font-family: "fontawesome"; }
 
 .flag {
   text-transform: uppercase;
@@ -112,6 +112,22 @@ h2, h3, h4, h5, h6 {
 
 .timeline div {
   min-height: 0.1em; }
+
+.update {
+  margin-bottom: 1em; }
+  .update .meta {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-left: 1em; }
+  .update time {
+    color: #677077;
+    margin-right: 0.6em; }
+  .update .meta span::before {
+    content: "~";
+    font-style: normal;
+    margin-right: 0.6em; }
 
 header {
   text-align: center; }
@@ -159,7 +175,7 @@ nav.show-for-small form {
   float: right; }
 
 header nav li span:after {
-  font-family: fontawesome;
+  font-family: "fontawesome";
   font-weight: normal;
   margin: 1.5em;
   content: "\f06e"; }
@@ -209,9 +225,10 @@ nav form div:first-child {
 #main div.has-table {
   max-width: 100%; }
 
-#main a {
-  color: #677077; }
-  #main a:hover, #main a:active {
+#main a, #main .link {
+  color: #677077;
+  cursor: pointer; }
+  #main a:hover, #main a:active, #main .link:hover, #main .link:active {
     color: #b5b5b7; }
 
 .comma-separated > *:after {
@@ -341,5 +358,17 @@ footer a {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 0.8em; }
+
+.infopanel h3 {
+  text-align: center;
+  border-bottom: 1px solid #b5b5b7;
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto; }
+.infopanel blockquote {
+  padding-top: 0;
+  padding-bottom: 0; }
+.infopanel a {
+  font-weight: bold; }
 
 /*# sourceMappingURL=app.css.map */

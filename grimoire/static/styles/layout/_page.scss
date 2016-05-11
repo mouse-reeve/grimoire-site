@@ -19,11 +19,12 @@
     max-width: 100%;
 }
 
-#main a {
+#main a, #main .link {
     color: $link-color;
     &:hover, &:active {
         color: $link-hover-color;
     }
+    cursor: pointer;
 }
 
 .comma-separated > *:after {

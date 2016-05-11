@@ -6,11 +6,11 @@
 
     &:after {
         content: "\f084";
-        font-family: fontawesome;
+        font-family: $icon;
     }
 
     &.minor:after {
         content: "\f068";
-        font-family: fontawesome;
+        font-family: $icon;
     }
 }

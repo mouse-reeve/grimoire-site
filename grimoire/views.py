@@ -3,6 +3,7 @@ import copy
 from datetime import date
 from email.mime.text import MIMEText
 from flask import redirect, render_template, request
+import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
@@ -25,7 +26,10 @@ def index():
             'date': year
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
-    return render_template('home.html', grimoires=grimoires, title='Grimoire Encyclopedia')
+    daily = graph.get_frontpage_random('spell')['nodes'][0]
+    daily['properties']['content'] = markdown.markdown(daily['properties']['content'])
+    return render_template('home.html', grimoires=grimoires,
+                           title='Grimoire Encyclopedia', daily=daily)
 
 
 @app.route('/random')
