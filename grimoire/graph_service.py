@@ -222,7 +222,6 @@ class GraphService(object):
     @serialize
     def timeline(self):
         ''' get all the requested items to populate the timeline
-        :show: an array of labels that should be included
         :return: an array of nodes with date params
         '''
         if len(self.timeline_data):
@@ -234,3 +233,17 @@ class GraphService(object):
 
         self.timeline_data = self.query(query)
         return self.timeline_data
+
+    @serialize
+    def get_frontpage_random(self, label, min_content=60, max_content=500):
+        ''' get a random node to display on the front page
+        :param label: the DB label indicating the type of data desired
+        :param min_content: the min length of the text of the node's content (default 20 chars)
+        :param max_content: the max length of the text of the node's content (default 800 chars)
+        :return: a serialized node of the given type
+        '''
+        query = 'MATCH (n:%s) ' \
+                'WHERE SIZE(n.content) > %d ' \
+                'AND SIZE(n.content) < %d ' \
+                'RETURN n ORDER BY rand() LIMIT 1' % (label, min_content, max_content)
+        return self.query(query)

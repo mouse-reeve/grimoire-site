@@ -1,0 +1,22 @@
+.update {
+    margin-bottom: 1em;
+
+    .meta {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        font-style: italic;
+        font-size: 0.9em;
+        margin-left: 1em;
+    }
+
+    time {
+        color: $link-color;
+        margin-right: 0.6em;
+    }
+
+    .meta span::before {
+        content: "~";
+        font-style: normal;
+        margin-right: 0.6em;
+    }
+}

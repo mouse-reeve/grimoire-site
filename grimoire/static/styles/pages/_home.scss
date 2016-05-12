@@ -1,0 +1,18 @@
+.infopanel {
+    h3 {
+        text-align: center;
+        border-bottom: 1px solid $link-hover-color;
+        width: 75%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    blockquote {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    a {
+        font-weight: bold;
+    }
+}

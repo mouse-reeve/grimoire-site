@@ -57,7 +57,7 @@ nav.show-for-small form {
 }
 
 header nav li span:after {
-    font-family: fontawesome;
+    font-family: $icon;
     font-weight: normal;
     margin: 1.5em;
     content: "\f06e";

@@ -30,3 +30,12 @@
 </div>
 {% endmacro %}
 
+
+{% macro update(date, type, message) %}
+<div class="update">
+    <p class="meta"><time datetime="{{ date }}">{{ date }}</time> <span>{{ type }}</span></p>
+    <p>
+        {{ caller() }}
+    </p>
+</div>
+{% endmacro %}

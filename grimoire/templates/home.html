@@ -1,3 +1,4 @@
+{% import 'macros.html' as macros %}
 {% extends "layout.html" %}
 {% block body %}
 
@@ -10,14 +11,59 @@
             Dictionary</a></em>
     </blockquote>
 
-    <div class="divider"></div>
-
     <p>
         This site is a collection of linked pieces of information about grimoires, focusing (with some distraction), on
         early modern Western European texts from the Christan tradition.
         The goal is to look at the connections and relationships within the metadata and subject matter of these grimoires,
         and attempt to collect factual information about their provenance and historical context.
     </p>
+
+    <div class="divider"></div>
+
+    <div class="row infopanel">
+        <div class="column medium-4">
+            <h3>Updates</h3>
+            {% call macros.update("2016-05-11", "events") %}
+            I've been in Berlin, giving a talk about grimoires as data for <a href="http://csvconf.com/" target="_blank">CSV Conference</a>.
+            Slides are <a href="https://www.mousereeve.com/static/csvconf-2016-grimoires.pdf" target="_blank">available online</a> and video is TBA.
+            {% endcall %}
+
+            {% call macros.update("2016-04-29", "new") %}
+            Added <a href="/table/spell">a table of spells</a> that appear in multiple grimoires.
+            {% endcall %}
+
+            {% call macros.update("2016-04-23", "new") %}
+            Identified six spells found in other grimoires that appear in <em><a href="/grimoire/petit-albert">Petit Albert</a></em>.
+            A complete list of spells awaits translation.
+            {% endcall %}
+        </div>
+        <div class="column medium-4">
+            <h3>Random Spell</h3>
+            <a href="{{ daily.link }}">
+                {{ daily.properties.identifier | unthe }}
+            </a>
+            <p>{{ daily.properties.content | safe }}</p>
+            <a href="/spell">More spells</a>
+        </div>
+        <div class="column medium-4">
+            <h3>Resources</h3>
+            <p>If you can't find what you are looking for here, leave <span class="link" data-open="feedback">feedback</span>, or try some of these sites:</p>
+            <p>
+                <a href="http://esotericarchives.com/" target="_blank">Twilit Grotto</a>:
+                the best resource for full texts of grimoires, with excellent scholarship.
+            </p>
+            <p>
+                <a href="https://danharms.wordpress.com/" target="_blank">Dan Harms' blog</a>:
+                well-researched articles on magical topics, and critical reviews of grimoire publications.</a>
+            </p>
+            <p>
+                <a href="http://www.sacred-texts.com/" target="_blank">Sacred Texts</a>,
+                <a href="http://www.hermetics.org/home.html" target="_blank">Hermetics.org</a>,
+                and the <a href="https://archive.org/details/fav-tripofmice" target="_blank">Internet Archive</a>
+                host a number of texts in the public domain.
+            </p>
+        </div>
+    </div>
 
     <div class="divider"></div>
 
@@ -31,5 +77,20 @@
     {% else %}
     <p>Sorry, we're unable to access the database at this time.</p>
     {% endif %}
+</div>
+
+<div id="feedback" class="reveal" data-reveal>
+    <h2>Feedback</h2>
+    <form action="/feedback" method="post">
+        <label for="comments">Comments</label>
+        <textarea name="comments" required></textarea>
+        <label for="email">Email (optional - include if you would like a response)</label>
+        <input type="text" name="email">
+        <input type="submit" value="Submit">
+
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </form>
 </div>
 {% endblock %}
