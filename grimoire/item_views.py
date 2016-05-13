@@ -67,7 +67,7 @@ def item(label, uid):
                     'data': related['nodes']}]
     sidebar += get_others(data['relationships'], node)
 
-    if not item_data['content']:
+    if not item_data['content'] and not item_data['excerpts']:
         item_data['content'] = 'The %s "%s."' % (helpers.format_filter(label), helpers.unthe(title))
 
     max_main_length = max([len(i['data']) for i in item_data['main']] + [0])
@@ -99,6 +99,11 @@ def generic_item(node, rels):
         content = ''
 
     excerpts = helpers.extract_rel_list(rels, 'excerpt', 'end')
+    for excerpt in excerpts:
+        try:
+            excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
+        except AttributeError:
+            pass
     rels = exclude_rels(rels, ['excerpt'])
 
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
@@ -343,7 +348,7 @@ def spell_item(node, rels):
     if outcomes:
         data['details']['Outcome'] = extract_details(outcomes)
 
-    if not data['content']:
+    if not data['content'] and not data['excerpts']:
         grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
         if len(grimoire_names) > 1:
             grimoire_names = '_%s_, and _%s_' % \

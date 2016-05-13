@@ -37,7 +37,7 @@
                 {{ excerpt.properties.editor }} edition</a>
             {% if excerpt.properties.source_year %}({{ excerpt.properties.source_year }}){% endif %}:
             <blockquote>
-                {{ excerpt.properties.content }}
+                {{ excerpt.properties.content | safe }}
             </blockquote>
         </p>
         {% endfor %}
