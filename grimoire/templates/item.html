@@ -32,10 +32,8 @@
         {% if data.excerpts %}
         {% for excerpt in data.excerpts %}
         <p>
-            From <em>{{ excerpt.properties.source_title }}</em></a>,
-            <a href="{{ excerpt.properties.source_url }}" target="_blank">
-                {{ excerpt.properties.editor }} edition</a>
-            {% if excerpt.properties.source_year %}({{ excerpt.properties.source_year }}){% endif %}:
+        From {% if excerpt.properties.source_url and not excerpt.properties.editor %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}
+            <em>{{ excerpt.properties.source_title }}</em>{% if excerpt.properties.source_url and not excerpt.properties.editor %}</a>{% endif %}{% if excerpt.properties.editor %}{% if excerpt.properties.source_url %}, <a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}{{ excerpt.properties.editor }}{% if excerpt.properties.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.properties.source_year %} ({{ excerpt.properties.source_year }}){% endif %}:
             <blockquote>
                 {{ excerpt.properties.content | safe }}
             </blockquote>
