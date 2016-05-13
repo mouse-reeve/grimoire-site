@@ -29,6 +29,19 @@
         <p>
             {{ data.content | safe }}
         </p>
+        {% if data.excerpts %}
+        {% for excerpt in data.excerpts %}
+        <p>
+            From <em>{{ excerpt.properties.source_title }}</em></a>,
+            <a href="{{ excerpt.properties.source_url }}" target="_blank">
+                {{ excerpt.properties.editor }} edition</a>
+            {% if excerpt.properties.source_year %}({{ excerpt.properties.source_year }}){% endif %}:
+            <blockquote>
+                {{ excerpt.properties.content }}
+            </blockquote>
+        </p>
+        {% endfor %}
+        {% endif %}
 
         <div class="find-book">
             {% if data.buy %}
