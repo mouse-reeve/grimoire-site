@@ -172,6 +172,12 @@ def feedback():
     return redirect(referer)
 
 
+@app.route('/updates')
+def updates():
+    ''' Simple page of updates I've posted '''
+    return render_template('updates.html', title="News & Updates")
+
+
 @app.route('/timeline')
 def timeline_page():
     ''' timeline data display

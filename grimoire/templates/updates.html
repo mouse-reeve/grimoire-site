@@ -1,0 +1,8 @@
+{% import 'updates-macro.html' as updates %}
+{% extends "layout.html" %}
+{% block body %}
+<h2>Updates</h2>
+<div id="content">
+    {{ updates.update_content(show_all=True) }}
+</div>
+{% endblock %}

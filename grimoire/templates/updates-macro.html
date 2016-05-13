@@ -1,0 +1,51 @@
+{% macro update_content(show_all=False) %}
+
+    {% call update("2016-05-13", "new") %}
+    The <a href="/magic_object/pentagram-of-solomon">Pentragram of Solomon</a>, which is used in the <a href="/spell/goetia-summoning-ritual">summoning ritual</a>
+    found in the <a href="/grimoire/lesser-key"><em>Lesser Key of Solomon</em></a>, is also described in the 14th century epic poem
+    <a href="/book/sir-gawain-the-green-knight">Sir Gawain and the Green Knight</a>.
+    {% endcall %}
+
+    {% call update("2016-05-11", "events") %}
+    I've been in Berlin, giving a talk about grimoires as data for <a href="http://csvconf.com/" target="_blank">CSV Conference</a>.
+    Slides are <a href="https://www.mousereeve.com/static/csvconf-2016-grimoires.pdf" target="_blank">available online</a> and video is TBA.
+    {% endcall %}
+
+    {% call update("2016-04-29", "new") %}
+    Added <a href="/table/spell">a table of spells</a> that appear in multiple grimoires.
+    {% endcall %}
+
+{% if show_all %}
+    {% call update("2016-04-23", "new") %}
+    Identified six spells found in other grimoires that appear in <em><a href="/grimoire/petit-albert">Petit Albert</a></em>.
+    A complete list of spells awaits translation.
+    {% endcall %}
+
+    {% call update("2016-04-16", "new") %}
+    Added a <a href="/timeline">timeline</a> page that can be filtered based on the type of data shown.
+    {% endcall %}
+
+    {% call update("2016-04-13", "new") %}
+    The <a href="/grimoire/clavicula-salomonis"><em>Key of Solomon</em></a> now has an index of spells and demons that appear in the grimoire.
+    {% endcall %}
+
+    {% call update("2016-04-09", "new") %}
+    List of talismans describes in the  <a href="/grimoire/black-pullet"><em>Black Pullet</em></a>.
+    {% endcall %}
+
+    {% call update("2016-04-05", "new") %}
+    Spells appearing in the <a href="/grimoire/grimorium-verum"><em>Grimorium Verum</em></a> now indexed, with full text where available.
+    {% endcall %}
+{% endif %}
+
+{% endmacro %}
+
+{% macro update(date, type, message) %}
+<div class="update">
+    <p class="meta"><time datetime="{{ date }}">{{ date }}</time> <span>{{ type }}</span></p>
+    <p>
+        {{ caller() }}
+    </p>
+</div>
+{% endmacro %}
+

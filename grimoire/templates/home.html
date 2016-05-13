@@ -1,4 +1,4 @@
-{% import 'macros.html' as macros %}
+{% import 'updates-macro.html' as updates %}
 {% extends "layout.html" %}
 {% block body %}
 
@@ -23,19 +23,8 @@
     <div class="row infopanel">
         <div class="column medium-4">
             <h3>Updates</h3>
-            {% call macros.update("2016-05-11", "events") %}
-            I've been in Berlin, giving a talk about grimoires as data for <a href="http://csvconf.com/" target="_blank">CSV Conference</a>.
-            Slides are <a href="https://www.mousereeve.com/static/csvconf-2016-grimoires.pdf" target="_blank">available online</a> and video is TBA.
-            {% endcall %}
-
-            {% call macros.update("2016-04-29", "new") %}
-            Added <a href="/table/spell">a table of spells</a> that appear in multiple grimoires.
-            {% endcall %}
-
-            {% call macros.update("2016-04-23", "new") %}
-            Identified six spells found in other grimoires that appear in <em><a href="/grimoire/petit-albert">Petit Albert</a></em>.
-            A complete list of spells awaits translation.
-            {% endcall %}
+            {{ updates.update_content() }}
+            <a href="/updates">Full history</a>
         </div>
         <div class="column medium-4">
             <h3>Random Spell</h3>
