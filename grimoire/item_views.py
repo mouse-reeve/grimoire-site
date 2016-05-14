@@ -376,7 +376,8 @@ def ingredient_item(node, rels):
     '''
     data = generic_item(node, rels)
 
-    spells = helpers.extract_rel_list(rels, 'spell', 'start')
+    spells = helpers.extract_rel_list(rels, 'spell', 'start') + \
+             helpers.extract_rel_list(rels, 'talisman', 'start')
     if spells:
         data['main'].append({'title': 'Spells', 'data': spells})
 
