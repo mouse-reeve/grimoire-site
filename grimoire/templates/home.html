@@ -29,7 +29,14 @@
         </div>
         <div class="column medium-4">
             <h3>Random Spell</h3>
-            {{ macros.excerpt(excerpt) }}
+            <p>
+                <a href="{{excerpt.link}}"><strong>{{ excerpt.properties.identifier }}</strong></a>
+                <blockquote>
+                    <p>{{ excerpt.properties.content | safe }}</p>
+                </blockquote>
+            </p>
+                From {% if excerpt.properties.source_url and not excerpt.properties.editor %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}
+                <em>{{ excerpt.properties.source_title }}</em>{% if excerpt.properties.source_url and not excerpt.properties.editor %}</a>{% endif %}{% if excerpt.properties.editor %}, {% if excerpt.properties.source_url %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}{{ excerpt.properties.editor }}{% if excerpt.properties.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.properties.source_year %} ({{ excerpt.properties.source_year }}){% endif %}:
             <a href="/spell">More spells</a>
         </div>
         <div class="column medium-4">
