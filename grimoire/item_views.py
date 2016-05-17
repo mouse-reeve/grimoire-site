@@ -49,7 +49,7 @@ def item(label, uid):
         'default': generic_item,
         'spell': spell_item,
         'talisman': spell_item,
-        'ingredient': ingredient_item,
+        'parent:ingredient': ingredient_item,
         'outcome': outcome_item
     }
 
