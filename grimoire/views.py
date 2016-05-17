@@ -26,10 +26,10 @@ def index():
             'date': year
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
-    daily = graph.get_frontpage_random('spell')['nodes'][0]
-    daily['properties']['content'] = markdown.markdown(daily['properties']['content'])
+    excerpt = graph.get_frontpage_random()['nodes'][0]
+    excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
     return render_template('home.html', grimoires=grimoires,
-                           title='Grimoire Encyclopedia', daily=daily)
+                           title='Grimoire Encyclopedia', excerpt=excerpt)
 
 
 @app.route('/random')

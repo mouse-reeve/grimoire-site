@@ -111,8 +111,11 @@ class GraphService(object):
         '''
         if not term:
             return []
-        return self.query('MATCH n WHERE n.identifier =~ {term} OR '
-                          'n.alternate_names =~ {term} RETURN n', term='(?i)(?s).*%s.*' % term)
+        query = 'MATCH n WHERE (n.identifier =~ {term} OR ' \
+                'n.alternate_names =~ {term}) ' \
+                'AND NOT n:excerpt RETURN n'
+
+        return self.query(query, term='(?i)(?s).*%s.*' % term)
 
 
     @serialize
@@ -230,15 +233,13 @@ class GraphService(object):
         return self.timeline_data
 
     @serialize
-    def get_frontpage_random(self, label, min_content=60, max_content=500):
+    def get_frontpage_random(self):
         ''' get a random node to display on the front page
-        :param label: the DB label indicating the type of data desired
-        :param min_content: the min length of the text of the node's content (default 20 chars)
-        :param max_content: the max length of the text of the node's content (default 800 chars)
         :return: a serialized node of the given type
         '''
-        query = 'MATCH (n:%s) ' \
-                'WHERE SIZE(n.content) > %d ' \
-                'AND SIZE(n.content) < %d ' \
-                'RETURN n ORDER BY rand() LIMIT 1' % (label, min_content, max_content)
+        query = 'MATCH (n:excerpt) ' \
+                'WHERE SIZE(n.content) < 500 ' \
+                'AND SIZE(n.identifier) < 140 ' \
+                'RETURN n ORDER BY rand() LIMIT 1'
+
         return self.query(query)

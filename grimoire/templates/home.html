@@ -1,4 +1,5 @@
 {% import 'updates-macro.html' as updates %}
+{% import 'macros.html' as macros %}
 {% extends "layout.html" %}
 {% block body %}
 
@@ -28,10 +29,7 @@
         </div>
         <div class="column medium-4">
             <h3>Random Spell</h3>
-            <a href="{{ daily.link }}">
-                {{ daily.properties.identifier | unthe }}
-            </a>
-            <p>{{ daily.properties.content | safe }}</p>
+            {{ macros.excerpt(excerpt) }}
             <a href="/spell">More spells</a>
         </div>
         <div class="column medium-4">
