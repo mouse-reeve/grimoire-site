@@ -2,7 +2,7 @@
 import copy
 from datetime import date
 from email.mime.text import MIMEText
-from flask import redirect, request
+from flask import redirect, request, render_template as flask_render_template
 import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
@@ -18,6 +18,7 @@ def before_request():
     url = request.url
     if url in templates:
         return templates[url]
+
 
 @app.route('/')
 def index():
@@ -36,15 +37,8 @@ def index():
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
     excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
-    return render_template(request.url, 'home.html', grimoires=grimoires,
-                           title='Grimoire Encyclopedia', excerpt=excerpt)
-
-
-@app.route('/random')
-def random():
-    ''' pick a node, any node '''
-    data = graph.random()
-    return redirect(data['nodes'][0]['link'])
+    return flask_render_template('home.html', grimoires=grimoires,
+                                 title='Grimoire Encyclopedia', excerpt=excerpt)
 
 
 @app.route('/support')
