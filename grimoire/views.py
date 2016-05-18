@@ -2,14 +2,22 @@
 import copy
 from datetime import date
 from email.mime.text import MIMEText
-from flask import redirect, render_template, request
+from flask import redirect, request
 import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
 import grimoire.helpers as helpers
-from grimoire import app, graph, entities, date_params
+from grimoire.helpers import render_template
+from grimoire import app, graph, entities, date_params, templates
 
+
+@app.before_request
+def before_request():
+    ''' check rendered template cache '''
+    url = request.url
+    if url in templates:
+        return templates[url]
 
 @app.route('/')
 def index():
@@ -28,7 +36,7 @@ def index():
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
     excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
-    return render_template('home.html', grimoires=grimoires,
+    return render_template(request.url, 'home.html', grimoires=grimoires,
                            title='Grimoire Encyclopedia', excerpt=excerpt)
 
 
@@ -42,7 +50,7 @@ def random():
 @app.route('/support')
 def support():
     ''' the "give me money" page '''
-    return render_template('support.html', title='Support Grimoire dot org')
+    return render_template(request.url, 'support.html', title='Support Grimoire dot org')
 
 
 @app.route('/search')
@@ -61,7 +69,7 @@ def search():
     if len(data['nodes']) == 1:
         item = data['nodes'][0]
         return redirect('/%s/%s' % (item['label'], item['properties']['uid']))
-    return render_template('search.html', results=data['nodes'], term=term)
+    return render_template(request.url, 'search.html', results=data['nodes'], term=term)
 
 
 @app.route('/table')
@@ -92,7 +100,7 @@ def table(entity='demon'):
     isolates_data = graph.get_single_grimoire_entities(entity)
     isolates = zip(isolates_data['nodes'], isolates_data['lists'])
 
-    return render_template('table.html', entity=entity, grimoires=grimoires,
+    return render_template(request.url, 'table.html', entity=entity, grimoires=grimoires,
                            entities=entity_list, isolates=isolates, table=True)
 
 
@@ -101,7 +109,7 @@ def spell():
     ''' custom page for spells '''
     data = graph.get_spells_by_outcome()
     spells = {k['properties']['identifier']: v for k, v in zip(data['nodes'], data['lists'])}
-    return render_template('spells.html', spells=spells, title='List of Spells')
+    return render_template(request.url, 'spells.html', spells=spells, title='List of Spells')
 
 @app.route('/<label>')
 def category(label):
@@ -112,7 +120,7 @@ def category(label):
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         labels = graph.get_labels()
-        return render_template('label-404.html', labels=labels)
+        return render_template(request.url, 'label-404.html', labels=labels)
 
     filtered = None
     try:
@@ -150,7 +158,7 @@ def category(label):
         if len(grimoires) < 2:
             grimoires = None
 
-    return render_template(template, items=items,
+    return render_template(request.url, template, items=items,
                            title=title, label=label,
                            grimoires=grimoires, filtered=filtered)
 
@@ -175,7 +183,7 @@ def feedback():
 @app.route('/updates')
 def updates():
     ''' Simple page of updates I've posted '''
-    return render_template('updates.html', title="News & Updates")
+    return render_template(request.url, 'updates.html', title="News & Updates")
 
 
 @app.route('/timeline')
@@ -213,7 +221,7 @@ def timeline_page():
             timeline = add_to_timeline(timeline, node, year, date_precision, note=note)
 
     end = date.today().year
-    return render_template('timeline.html', data=timeline, end=end,
+    return render_template(request.url, 'timeline.html', data=timeline, end=end,
                            labels=graph.timeline_labels, show=show)
 
 

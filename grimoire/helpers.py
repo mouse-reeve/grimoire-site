@@ -1,7 +1,8 @@
 ''' data formatting helper functions '''
 import re
+from flask import render_template as flask_render_template
 
-from grimoire import app
+from grimoire import app, templates
 
 
 def grimoire_date(props):
@@ -144,3 +145,14 @@ def trim_filter(text):
     shorter = ' '.join(text.split(' ')[:4])
     shorter += '...' if len(shorter) < len(text) else ''
     return shorter
+
+
+def load_cached_template(url):
+    ''' render a template if necessary '''
+    return templates[url] or None
+
+
+def render_template(url, template, **kwargs):
+    ''' store a rendered template '''
+    templates[url] = flask_render_template(template, **kwargs)
+    return templates[url]

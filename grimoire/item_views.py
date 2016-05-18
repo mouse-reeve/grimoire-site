@@ -1,12 +1,12 @@
 ''' views for the item type pages '''
 import logging
 
-from flask import render_template
+from flask import request
 import markdown
 
 import grimoire.helpers as helpers
+from grimoire.helpers import render_template
 from grimoire import app, graph, entities
-
 
 @app.route('/<label>/<uid>')
 def item(label, uid):
@@ -20,7 +20,7 @@ def item(label, uid):
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
-        return render_template('label-404.html', labels=graph.get_labels())
+        return render_template(request.url, 'label-404.html', labels=graph.get_labels())
 
     uid = helpers.sanitize(uid)
     logging.info('loading %s: %s', label, uid)
@@ -28,7 +28,7 @@ def item(label, uid):
     if 'nodes' not in data or not data['nodes']:
         logging.error('Invalid uid %s', uid)
         items = graph.get_all(label)
-        return render_template('item-404.html', items=items['nodes'],
+        return render_template(request.url, 'item-404.html', items=items['nodes'],
                                search=graph.search(uid)['nodes'], label=label)
 
     node = data['nodes'][0]
@@ -73,7 +73,7 @@ def item(label, uid):
     max_main_length = max([len(i['data']) for i in item_data['main']] + [0])
     default_collapse = len(item_data['main']) > 2 or max_main_length > 30
 
-    return render_template('item.html',
+    return render_template(request.url, 'item.html',
                            data=item_data,
                            title=title,
                            label=label,

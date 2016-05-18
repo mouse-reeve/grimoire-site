@@ -13,6 +13,8 @@ graph = GraphService()
 entities = graph.get_entity_labels()
 date_params = graph.date_params
 
+templates = {}
+
 import grimoire.models as temporospatial
 temporospatial.db.init_app(app)
 
