@@ -1,12 +1,32 @@
 ''' views for the item type pages '''
 import logging
 
-from flask import request
+from flask import redirect, request
 import markdown
 
 import grimoire.helpers as helpers
 from grimoire.helpers import render_template
 from grimoire import app, graph, entities
+
+@app.route('/excerpt/<uid>')
+def redirect_excerpts(uid):
+    ''' Re-route anyone who lands on an excerpt page to the proper node
+    :param uid: the excerpt's identifier
+    :return: a redirect to the linked content node
+    '''
+    print 'hi'
+
+    data = graph.get_node(uid)
+    source = helpers.extract_rel_list_by_type(data['relationships'], 'excerpt', 'start')
+    try:
+        print source
+        source = source[0]
+    except IndexError:
+        return render_template(request.url, 'label-404.html', labels=graph.get_labels())
+
+    return redirect(source['link'])
+
+
 
 @app.route('/<label>/<uid>')
 def item(label, uid):
@@ -139,12 +159,12 @@ def grimoire_item(node, rels):
 
     data['details']['date'] = [{'text': helpers.grimoire_date(node['properties'])}]
 
-    authors = helpers.extract_rel_list_by_type(rels, 'wrote', 'person', 'start')
+    authors = helpers.extract_rel_list_by_type(rels, 'wrote', 'start')
     authors = extract_details(authors)
     if authors:
         data['details']['author'] = authors
 
-    languages = helpers.extract_rel_list_by_type(rels, 'was_written_in', 'language', 'end')
+    languages = helpers.extract_rel_list_by_type(rels, 'was_written_in', 'end')
     if languages:
         data['details']['language'] = extract_details(languages)
 
@@ -156,7 +176,7 @@ def grimoire_item(node, rels):
         })
 
     for entity in entities:
-        items = helpers.extract_rel_list_by_type(rels, 'lists', entity, 'end')
+        items = helpers.extract_rel_list_by_type(rels, 'lists', 'end', label=entity)
         if len(items):
             data['main'].append({
                 'title': helpers.pluralize(entity),
@@ -200,7 +220,7 @@ def entity_item(node, rels):
     if grimoires:
         data['sidebar'].append({'title': 'Grimoires', 'data': grimoires})
 
-    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
+    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'end')
     if outcomes:
         data['main'].append({'title': 'Powers', 'data': outcomes})
 
@@ -208,13 +228,13 @@ def entity_item(node, rels):
     if appearance:
         data['main'].append({'title': 'Appearance', 'data': appearance, 'many': True})
 
-    serves = helpers.extract_rel_list_by_type(rels, 'serves', 'parent:entity', 'end')
+    serves = helpers.extract_rel_list_by_type(rels, 'serves', 'end')
     serves = [s for s in serves if
               not s['properties']['uid'] == node['properties']['uid']]
     if serves:
         data['main'].append({'title': 'Serves', 'data': serves})
 
-    servants = helpers.extract_rel_list_by_type(rels, 'serves', 'parent:entity', 'start')
+    servants = helpers.extract_rel_list_by_type(rels, 'serves', 'start')
     servants = [s for s in servants if
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
@@ -344,7 +364,7 @@ def spell_item(node, rels):
     if ingredients:
         data['main'].append({'title': 'Ingredients', 'data': ingredients})
 
-    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'outcome', 'end')
+    outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'end')
     if outcomes:
         data['details']['Outcome'] = extract_details(outcomes)
 

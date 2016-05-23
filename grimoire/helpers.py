@@ -50,17 +50,18 @@ def extract_rel_list(rels, label, position):
             or r[position]['parent_label'] and r[position]['parent_label'] == label]
 
 
-def extract_rel_list_by_type(rels, rel_type, label, position):
+def extract_rel_list_by_type(rels, rel_type, position, label=None):
     ''' get all relationships to a node for a given label and type
     :param rels: the serialized rels object from neo4j
     :param rel_type: specify a rel type ([r:lists], for example)
     :param label: the neo4j label string of the desired items
     :param position: "start" or "end" - the position in the relationship
-    :return:a list of nodes
+    :return: a list of nodes
     '''
     return [r[position] for r in rels if
-            (r[position]['label'] and r[position]['label'] == label or
-             r[position]['parent_label'] and r[position]['parent_label'] == label) and
+            (not label or
+             (r[position]['label'] and r[position]['label'] == label or
+              r[position]['parent_label'] and r[position]['parent_label'] == label)) and
             r['type'] == rel_type]
 
 
