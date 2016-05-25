@@ -14,12 +14,10 @@ def redirect_excerpts(uid):
     :param uid: the excerpt's identifier
     :return: a redirect to the linked content node
     '''
-    print 'hi'
 
     data = graph.get_node(uid)
     source = helpers.extract_rel_list_by_type(data['relationships'], 'excerpt', 'start')
     try:
-        print source
         source = source[0]
     except IndexError:
         return render_template(request.url, 'label-404.html', labels=graph.get_labels())
