@@ -69,10 +69,11 @@ h2, h3, h4, h5, h6 {
     content: "\f068";
     font-family: "fontawesome"; }
 
-.excerpt blockquote {
-  border: 0; }
 .excerpt li {
   list-style-type: inherit; }
+
+.item-content blockquote blockquote {
+  border: 0; }
 
 .flag {
   text-transform: uppercase;

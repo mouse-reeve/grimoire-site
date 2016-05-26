@@ -1,9 +1,7 @@
-.excerpt {
-    blockquote {
-        border: 0;
-    }
+.excerpt li {
+    list-style-type: inherit;
+}
 
-    li {
-        list-style-type: inherit;
-    }
+.item-content blockquote blockquote {
+    border: 0;
 }
