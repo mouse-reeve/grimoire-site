@@ -35,7 +35,7 @@
 <p>
     From {% if excerpt.properties.source_url and not excerpt.properties.editor %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}
     <em>{{ excerpt.properties.source_title }}</em>{% if excerpt.properties.source_url and not excerpt.properties.editor %}</a>{% endif %}{% if excerpt.properties.editor %}, {% if excerpt.properties.source_url %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}{{ excerpt.properties.editor }}{% if excerpt.properties.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.properties.source_year %} ({{ excerpt.properties.source_year }}){% endif %}:
-    <blockquote>
+    <blockquote class="excerpt">
         <p><strong>{{ excerpt.properties.identifier }}</strong></p>
         <p>{{ excerpt.properties.content | safe }}</p>
     </blockquote>
