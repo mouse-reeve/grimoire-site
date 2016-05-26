@@ -25,7 +25,6 @@ def redirect_excerpts(uid):
     return redirect(source['link'])
 
 
-
 @app.route('/<label>/<uid>')
 def item(label, uid):
     ''' generic page for an item
@@ -40,16 +39,14 @@ def item(label, uid):
         logging.error('Invalid label %s', label)
         return render_template(request.url, 'label-404.html', labels=graph.get_labels())
 
-    uid = helpers.sanitize(uid)
-    logging.info('loading %s: %s', label, uid)
-    data = graph.get_node(uid)
-    if 'nodes' not in data or not data['nodes']:
-        logging.error('Invalid uid %s', uid)
+    try:
+        data = helpers.get_node(uid)
+    except NameError:
         items = graph.get_all(label)
         return render_template(request.url, 'item-404.html', items=items['nodes'],
                                search=graph.search(uid)['nodes'], label=label)
 
-    node = data['nodes'][0]
+    node = data['node']
     rels = data['relationships']
 
     # ----- page header/metadata

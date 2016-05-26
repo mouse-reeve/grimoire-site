@@ -1,8 +1,9 @@
 ''' data formatting helper functions '''
 import re
 from flask import render_template as flask_render_template
+import logging
 
-from grimoire import app, templates
+from grimoire import app, graph, templates
 
 
 def grimoire_date(props):
@@ -157,3 +158,19 @@ def render_template(url, template, **kwargs):
     ''' store a rendered template '''
     templates[url] = flask_render_template(template, **kwargs)
     return templates[url]
+
+
+def get_node(uid):
+    ''' get a node or return an error '''
+    logging.info('loading %s', uid)
+    uid = sanitize(uid)
+    result = graph.get_node(uid)
+
+    if 'nodes' not in result or not result['nodes']:
+        logging.error('Invalid uid %s', uid)
+        raise NameError('node not found')
+
+    return {
+        'node': result['nodes'][0],
+        'relationships': result['relationships']
+    }
