@@ -3,10 +3,15 @@
 {% block body %}
 
 <div class="medium-12 columns">
-    <div class="flag" data-open="feedback"><i class="fa fa-comment"></i> Leave feedback on this page</div>
-
     <h2>
-        Comparing {{ item_1.properties.uid | unthe }} and {{ item_2.properties.uid | unthe }}
+        Comparing
+        <a href="{{ item_1.link }}">
+            <em>{{ item_1.properties.identifier | unthe }}</em>
+        </a>
+        and
+        <a href="{{ item_2.link }}">
+            <em>{{ item_2.properties.identifier | unthe }}</em>
+        </a>
     </h2>
 </div>
 
