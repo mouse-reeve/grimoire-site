@@ -477,6 +477,15 @@ def compare(uid_1, uid_2):
     title = '"%s" vs "%s"' % (nodes[0]['properties']['identifier'],
                               nodes[1]['properties']['identifier'])
 
+    # ----- Properties table
+    grim_items = [grimoire_item(nodes[i], rels[i]) for i in range(2)]
+    details = [g['details'] for g in grim_items]
+    for d in details:
+        d['author'] = [{'text': 'Unknown'}] if not 'author' in d else d['author']
+    keys = list(set(details[0].keys()) & set(details[1].keys()))
+    keys = [k for k in keys if not k in ['Name', 'online_edition']]
+    props = {k: [details[0][k], details[1][k]] for k in keys}
+
     # ----- compare remaining relationships
     exclude = ['lists', 'wrote', 'was_written_in']
     rels = [helpers.exclude_rels(rel_list, exclude) for rel_list in rels]
@@ -514,15 +523,6 @@ def compare(uid_1, uid_2):
     same_start = [s for s in same if s['start'][0]['id'] == -1]
     same_end = [s for s in same if s['end'][0]['id'] == -1]
     same = {'start': same_start, 'end': same_end}
-
-    # ----- Properties table
-    grim_items = [grimoire_item(nodes[i], rels[i]) for i in range(2)]
-    details = [g['details'] for g in grim_items]
-    for d in details:
-        d['author'] = [{'text': 'Unknown'}] if not 'author' in d else d['author']
-    keys = list(set(details[0].keys()) & set(details[1].keys()))
-    keys = [k for k in keys if not k in ['Name', 'online_edition']]
-    props = {k: [details[0][k], details[1][k]] for k in keys}
 
     default_collapse = max_list_size > 20
     return render_template(request.url, 'compare.html', title=title, same=same, props=props,
