@@ -183,3 +183,23 @@ def exclude_rels(rels, exclusions):
     :return: customized data for this label
     '''
     return [r for r in rels if not r['type'] in exclusions]
+
+
+def combine_rels(rels):
+    ''' merge relationships of the same type, for better readability
+    :param rels: the relationships remaining after the item is processed
+    :return: list of rels containing lists and start/ends
+    '''
+    types = {}
+    for rel in rels:
+        key = rel['start']['label'] + rel['type']
+        types[key] = types[key] + [rel] if key in types else [rel]
+
+    result = []
+    for rels in types.values():
+        result.append({
+            'start': [r['start'] for r in rels],
+            'end': [r['end'] for r in rels],
+            'type': rels[0]['type']
+        })
+    return result

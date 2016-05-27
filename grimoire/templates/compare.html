@@ -6,48 +6,104 @@
     <div class="flag" data-open="feedback"><i class="fa fa-comment"></i> Leave feedback on this page</div>
 
     <h2>
-        {{ title }}
+        Comparing {{ item_1.properties.uid | unthe }} and {{ item_2.properties.uid | unthe }}
     </h2>
 </div>
 
 <div id="content" class="medium-12 columns">
 
     <!-- Graph connections -->
-    {% if same %}
-    <h3>Samesies</h3>
     <div class="card">
-        {% for rel in same | sort(attribute="type") %}
         <p>
-           Each {{ item_1.label }}
-
-            {{ rel.type | format }}
-
-            {% if not rel.end.label in ['person', 'author'] %}
-            the {{ rel.end.label | format }}
-            {% endif %}
-            <span><strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier | unthe }}</a></strong></span>
+        {% set rels = same['start'] %}
+        {% if rels and rels[0]['start'][0].id == -1 %}
+            Each {{ rels[0]['start'][0].label | format }}
+        {% endif %}
+        {% if rels and rels[0]['start'][0].id == -1 %}
+            <span class="comma-separated comma-and">
+            {% for rel in rels | sort(attribute="type") %}
+                <span>
+                {{ rel.type | format }}
+                {% if not rel['end'].label in ['person', 'author'] %}the{% endif %}
+                {% if rel['end'] | count > 1 %}{{ rel['end'][0].label | pluralize }}{% else %}{{ rel['end'][0].label | format }}{% endif %}
+                <span class="comma-separated comma-and">
+                {% for s in rel['end'] %}<span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>{% endfor %}</span></span>{% endfor %}</span>
+        {% endif %}
         </p>
-        {% endfor %}
+
+        <p>
+        {% set rels = same['end'] %}
+        {% if rels and rels[0]['end'][0].id == -1 %}
+            <span class="comma-separated comma-and">
+            {% for rel in rels | sort(attribute="type") %}
+                <span>
+                {% if not rel['end'].label in ['person', 'author'] %}The{% endif %}
+                {% if rel['start'] | count > 1 %}{{ rel['start'][0].label | pluralize }}{% else %}{{ rel['start'][0].label | format }}{% endif %}
+                <span class="comma-separated comma-and">
+                {% for s in rel['start'] %}
+                    <span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>
+                {% endfor %}
+                </span>
+                {{ rel.type | format }}</span>{% endfor %}</span>
+        {% endif %}
+        {% if rels and rels[0]['end'][0].id == -1 %}
+            each {{ rels[0]['end'][0].label | format }}
+        {% endif %}
+        </p>
     </div>
-    {% endif %}
+
+    <div class="divider"></div>
 
     <!-- lists -->
     {% if shared_lists %}
-    <div id="item-lists">
-        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
+    <div class="card">
+        <div id="item-lists">
+            <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
             {% for (section, items) in shared_lists.items() %}
-            {% if items | count %}
-            <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
-                <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} that appear in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
-                <div class="accordion-content" data-tab-content>
-                    {{ macros.rel_list(items) }}
-                </div>
-            </li>
-            {% endif %}
+                {% if items | count %}
+                <li class="accordion-item medium-5 columns {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
+                    <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} that appear in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
+                    <div class="accordion-content" data-tab-content>
+                        {{ macros.rel_list(items) }}
+                    </div>
+                </li>
+                {% endif %}
             {% endfor %}
-        </ul>
+            </ul>
+        </div>
     </div>
     {% endif %}
+
+    <!-- properties -->
+    <div class="card">
+        <h3>Properties Comparison</h3>
+        <table>
+            <tr>
+                <td></td>
+                <th>{{ item_1.properties.identifier | unthe }}</th>
+                <th>{{ item_2.properties.identifier | unthe }}</th>
+            </tr>
+            {% for prop in props %}
+            <tr>
+                <td>{{ prop | capitalize }}</td>
+                {% for i in [0, 1] %}
+                <td class="comma-separated">
+                    {% for item in props[prop][i] %}
+                    {% if item.link %}
+                    <span><a href="{{ item.link }}">{{ item.text }}</a></span>
+                    {% elif not item.text is number and "http" in item.text %}
+                    <span><a href="{{ item.text }}" target="_blank">{{ item.text | shortlink }}</a></span>
+                    {% else %}
+                    <span>{{ item.text }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
 </div>
 {% endblock %}
 

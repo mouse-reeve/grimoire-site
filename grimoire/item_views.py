@@ -72,7 +72,7 @@ def item(label, uid):
           (label if label in switch else 'default')
     item_data = switch[key](node, rels)
 
-    item_data['relationships'] = combine_rels(item_data['relationships'])
+    item_data['relationships'] = helpers.combine_rels(item_data['relationships'])
 
     # ----- sidebar
     sidebar = []
@@ -287,7 +287,8 @@ def edition_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = helpers.exclude_rels(data['relationships'], ['published', 'edited', 'has'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'],
+                                                 ['published', 'edited', 'has'])
     publisher = helpers.extract_rel_list(rels, 'publisher', 'start')
     if publisher:
         data['details']['publisher'] = extract_details(publisher)
@@ -428,6 +429,90 @@ def outcome_item(node, rels):
     return data
 
 
+@app.route('/compare/<uid_1>/<uid_2>')
+def compare(uid_1, uid_2):
+    ''' compare two items of the same type '''
+    try:
+        data = (helpers.get_node(uid_1), helpers.get_node(uid_2))
+    except NameError:
+        return redirect('/')
+
+    nodes = [d['node'] for d in data]
+    rels = [d['relationships'] for d in data]
+
+    # ----- check that item 1 and item 2 are both grimoires
+    if not nodes[0]['label'] == nodes[1]['label'] and nodes[0]['label'] == 'grimoire':
+        return render_template(request.url, 'compare-failure.html',
+                               title='Oops: Invalid Comparison')
+
+    # ----- get all shared items to list out
+    max_list_size = 0
+    # keeps track of the biggest list
+    shared_list = {}
+
+    for entity in entities + ['spell']:
+        entity_lists = [helpers.extract_rel_list_by_type(rel_list, 'lists', 'end', label=entity)
+                        for rel_list in rels]
+        shared_list[entity] = intersection(entity_lists[0], entity_lists[1])
+        max_list_size = max_list_size if len(shared_list[entity]) < max_list_size \
+                        else len(shared_list[entity])
+
+    title = '"%s" vs "%s"' % (nodes[0]['properties']['identifier'],
+                              nodes[1]['properties']['identifier'])
+
+    # ----- compare remaining relationships
+    exclude = ['lists', 'wrote', 'was_written_in']
+    rels = [helpers.exclude_rels(rel_list, exclude) for rel_list in rels]
+    # make a dictionary for each relationship type with an empty array value
+    # ie: {'wrote': [[], []], 'influenced': [[], []]}
+    types = {t: [[], []] for t in list(set([r['type'] for r in rels[0] + rels[1]]))}
+
+    # populate types dictionary with every relationship of that type
+    for (i, rel_list) in enumerate(rels):
+        for rel in rel_list:
+            types[rel['type']][i] += [rel]
+
+    # remove types that only exist for one item or the other
+    types = {k:v for (k, v) in types.items() if v[0] and v[1]}
+
+    same = []
+
+    for rel_type in types:
+        relset = types[rel_type]
+        direction = 'end' if \
+                    relset[0][0]['start']['properties']['uid'] == nodes[0]['properties']['uid'] \
+                    else 'start'
+        origin = 'start' if direction == 'end' else 'end'
+
+        subjects = [[rel[direction] for rel in r] for r in relset]
+        same_uids = [i['properties']['uid'] for i in intersection(subjects[0], subjects[1])]
+        same_rels = [rel for rel in relset[0] if rel[direction]['properties']['uid'] in same_uids]
+
+        # mark which end of the relationship is one of the two "origin" nodes for formatting
+        for rel in same_rels:
+            rel[origin]['id'] = -1
+        same += same_rels
+
+    same = helpers.combine_rels(same)
+    same_start = [s for s in same if s['start'][0]['id'] == -1]
+    same_end = [s for s in same if s['end'][0]['id'] == -1]
+    same = {'start': same_start, 'end': same_end}
+
+    # ----- Properties table
+    grim_items = [grimoire_item(nodes[i], rels[i]) for i in range(2)]
+    details = [g['details'] for g in grim_items]
+    for d in details:
+        d['author'] = [{'text': 'Unknown'}] if not 'author' in d else d['author']
+    keys = list(set(details[0].keys()) & set(details[1].keys()))
+    keys = [k for k in keys if not k in ['Name', 'online_edition']]
+    props = {k: [details[0][k], details[1][k]] for k in keys}
+
+    default_collapse = max_list_size > 20
+    return render_template(request.url, 'compare.html', title=title, same=same, props=props,
+                           shared_lists=shared_list, item_1=nodes[0], item_2=nodes[1],
+                           default_collapse=default_collapse)
+
+
 def get_others(rels, node):
     ''' other items of the node's type related to something it is related to.
     For example: "Other editions by the editor Joseph H. Peterson"
@@ -467,25 +552,6 @@ def extract_details(items):
     return [{'text': i['properties']['identifier'], 'link': i['link']}
             for i in items]
 
-def combine_rels(rels):
-    ''' merge relationships of the same type, for better readability
-    :param rels: the relationships remaining after the item is processed
-    :return: list of rels containing lists and start/ends
-    '''
-    types = {}
-    for rel in rels:
-        key = rel['start']['label'] + rel['type']
-        types[key] = types[key] + [rel] if key in types else [rel]
-
-    result = []
-    for rels in types.values():
-        result.append({
-            'start': [r['start'] for r in rels],
-            'end': [r['end'] for r in rels],
-            'type': rels[0]['type']
-        })
-    return result
-
 
 def format_list(nodes, italics=True, show_label=True):
     ''' add "and" and commas to a list '''
@@ -508,3 +574,19 @@ def format_list(nodes, italics=True, show_label=True):
     label = helpers.pluralize(nodes[0]['label']) if len(items) > 1 else nodes[0]['label']
 
     return 'the %s %s' % (label, result) if show_label else result
+
+
+def difference(nodes_1, nodes_2):
+    ''' find all the shared nodes between two lists '''
+    keys = [[n['properties']['uid'] for n in nodes_1],
+            [n['properties']['uid'] for n in nodes_2]]
+    shared_uids = list(set(keys[0]) & set(keys[1]))
+    return [n for n in nodes_1 + nodes_2 if not n['properties']['uid'] in shared_uids]
+
+
+def intersection(nodes_1, nodes_2):
+    ''' find all the shared nodes between two lists '''
+    keys = [[n['properties']['uid'] for n in nodes_1],
+            [n['properties']['uid'] for n in nodes_2]]
+    shared_uids = list(set(keys[0]) & set(keys[1]))
+    return [n for n in nodes_1 if n['properties']['uid'] in shared_uids]
