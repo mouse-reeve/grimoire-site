@@ -157,6 +157,83 @@ def category(label):
                            grimoires=grimoires, filtered=filtered)
 
 
+@app.route('/compare/<uid_1>/<uid_2>')
+def compare(uid_1, uid_2):
+    ''' compare two items of the same type '''
+    data = (helpers.get_node(uid_1), helpers.get_node(uid_2))
+    nodes = [d['node'] for d in data]
+    rels = [d['relationships'] for d in data]
+
+    # ----- check that item 1 and item 2 are of the same type
+    if not nodes[0]['label'] == nodes[1]['label']:
+        return render_template(request.url, 'compare-failure.html',
+                               title='Oops: Invalid Comparison')
+
+    # ----- get all shared items to list out
+    shared_list = {}
+
+    # entities (demon/angel/fairy/whatever)
+    for entity in entities + ['spell']:
+        entity_lists = [helpers.extract_rel_list_by_type(rels[0], 'lists', 'end', label=entity),
+                        helpers.extract_rel_list_by_type(rels[1], 'lists', 'end', label=entity)]
+        shared_list[entity] = intersection(entity_lists[0], entity_lists[1])
+
+    # grimoires (for spells or entities that are being compared)
+    books = [helpers.extract_rel_list_by_type(rels[0], 'lists', 'start', label='parent:book'),
+             helpers.extract_rel_list_by_type(rels[1], 'lists', 'start', label='parent:book')]
+    shared_list['grimoire'] = intersection(books[0], books[1])
+
+    title = '"%s" vs "%s"' % (nodes[0]['properties']['identifier'],
+                              nodes[1]['properties']['identifier'])
+
+    # ----- compare remaining relationships
+    exclude = ['lists']
+    rels = [helpers.exclude_rels(rel_list, exclude) for rel_list in rels]
+    # make a dictionary for each relationship type with an empty array value
+    # ie: {'wrote': [[], []], 'influenced': [[], []]}
+    types = {t: [[], []] for t in list(set([r['type'] for r in rels[0] + rels[1]]))}
+
+    # populate types dictionary with every relationship of that type
+    for (i, rel_list) in enumerate(rels):
+        for rel in rel_list:
+            types[rel['type']][i] += [rel]
+
+    # remove types that only exist for one item or the other
+    types = {k:v for (k, v) in types.items() if v[0] and v[1]}
+
+    same = []
+    different = []
+
+    for rel_type in types:
+        relset = types[rel_type]
+        direction = 'end' if \
+                    relset[0][0]['start']['properties']['uid'] == nodes[0]['properties']['uid'] \
+                    else 'start'
+        subjects = [[rel[direction] for rel in r] for r in relset]
+        same_uids = [i['properties']['uid'] for i in intersection(subjects[0], subjects[1])]
+        same += [[rel for rel in r if rel[direction]['properties']['uid'] in same_uids] for r in relset][0]
+
+    return render_template(request.url, 'compare.html', title=title, same=same, different=different,
+                           shared_lists=shared_list, item_1=nodes[0], item_2=nodes[1],
+                           default_collapse=False)
+
+
+def difference(nodes_1, nodes_2):
+    ''' find all the shared nodes between two lists '''
+    keys = [[n['properties']['uid'] for n in nodes_1],
+            [n['properties']['uid'] for n in nodes_2]]
+    shared_uids = list(set(keys[0]) & set(keys[1]))
+    return [n for n in nodes_1 + nodes_2 if not n['properties']['uid'] in shared_uids]
+
+
+def intersection(nodes_1, nodes_2):
+    ''' find all the shared nodes between two lists '''
+    keys = [[n['properties']['uid'] for n in nodes_1],
+            [n['properties']['uid'] for n in nodes_2]]
+    shared_uids = list(set(keys[0]) & set(keys[1]))
+    return [n for n in nodes_1 if n['properties']['uid'] in shared_uids]
+
+
 @app.route('/feedback', methods=['POST'])
 def feedback():
     ''' email out user feedback
@@ -165,10 +242,10 @@ def feedback():
 
     message = '\n'.join([k + ': ' + v for (k, v) in request.form.items()])
     msg = MIMEText(message)
-    msg["To"] = "mouse.reeve@gmail.com"
-    msg["From"] = "feedback@grimoire.org"
-    msg["Subject"] = 'Feedback: %s' % referer
-    p = Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+    msg['To'] = 'mouse.reeve@gmail.com'
+    msg['From'] = 'feedback@grimoire.org'
+    msg['Subject'] = 'Feedback: %s' % referer
+    p = Popen(['/usr/sbin/sendmail', '-t', '-oi'], stdin=PIPE)
     p.communicate(msg.as_string())
 
     return redirect(referer)
@@ -177,7 +254,7 @@ def feedback():
 @app.route('/updates')
 def updates():
     ''' Simple page of updates I've posted '''
-    return render_template(request.url, 'updates.html', title="News & Updates")
+    return render_template(request.url, 'updates.html', title='News & Updates')
 
 
 @app.route('/timeline')

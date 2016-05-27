@@ -1,0 +1,53 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="medium-12 columns">
+    <div class="flag" data-open="feedback"><i class="fa fa-comment"></i> Leave feedback on this page</div>
+
+    <h2>
+        {{ title }}
+    </h2>
+</div>
+
+<div id="content" class="medium-12 columns">
+
+    <!-- Graph connections -->
+    {% if same %}
+    <h3>Samesies</h3>
+    <div class="card">
+        {% for rel in same | sort(attribute="type") %}
+        <p>
+           Each {{ item_1.label }}
+
+            {{ rel.type | format }}
+
+            {% if not rel.end.label in ['person', 'author'] %}
+            the {{ rel.end.label | format }}
+            {% endif %}
+            <span><strong><a href="/{{ rel.end.label }}/{{ rel.end.properties.uid }}">{{ rel.end.properties.identifier | unthe }}</a></strong></span>
+        </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- lists -->
+    {% if shared_lists %}
+    <div id="item-lists">
+        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
+            {% for (section, items) in shared_lists.items() %}
+            {% if items | count %}
+            <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
+                <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} that appear in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
+                <div class="accordion-content" data-tab-content>
+                    {{ macros.rel_list(items) }}
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

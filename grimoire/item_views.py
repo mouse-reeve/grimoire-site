@@ -119,7 +119,7 @@ def generic_item(node, rels):
             excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
         except AttributeError:
             pass
-    rels = exclude_rels(rels, ['excerpt'])
+    rels = helpers.exclude_rels(rels, ['excerpt'])
 
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
                k not in ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
@@ -149,7 +149,7 @@ def grimoire_item(node, rels):
     '''
     data = generic_item(node, rels)
 
-    data['relationships'] = exclude_rels(data['relationships'], [
+    data['relationships'] = helpers.exclude_rels(data['relationships'], [
         'lists', 'has', 'includes', 'wrote', 'was_written_in'])
 
     data['details']['date'] = [{'text': helpers.grimoire_date(node['properties'])}]
@@ -208,7 +208,7 @@ def entity_item(node, rels):
     # removes duplication of two-way sister relationships
     rels = [r for r in rels if r['type'] != 'is_a_sister_of' or r['end']['id'] != node['id']]
 
-    data['relationships'] = exclude_rels(data['relationships'], [
+    data['relationships'] = helpers.exclude_rels(data['relationships'], [
         'lists', 'teaches', 'skilled_in', 'serves', 'facilitates', 'appears_like', 'can', 'for'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start') + \
                 helpers.extract_rel_list(rels, 'book', 'start')
@@ -260,7 +260,7 @@ def art_item(node, rels):
                 'data': items,
                 'many': True
             })
-    data['relationships'] = exclude_rels(data['relationships'], ['teaches', 'skilled_in'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['teaches', 'skilled_in'])
     return data
 
 
@@ -271,7 +271,7 @@ def language_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(data['relationships'], ['was_written_in'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['was_written_in'])
     grimoires = helpers.extract_rel_list(rels, 'grimoire', 'start')
     data['main'].append({
         'title': 'Grimoires Written in this Langage',
@@ -287,7 +287,7 @@ def edition_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(data['relationships'], ['published', 'edited', 'has'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['published', 'edited', 'has'])
     publisher = helpers.extract_rel_list(rels, 'publisher', 'start')
     if publisher:
         data['details']['publisher'] = extract_details(publisher)
@@ -314,7 +314,7 @@ def publisher_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(data['relationships'], ['published'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['published'])
     books = helpers.extract_rel_list(rels, 'edition', 'end')
     if books:
         data['main'].append({'title': 'Books', 'data': books})
@@ -328,7 +328,7 @@ def editor_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(data['relationships'], ['edited'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['edited'])
     editions = helpers.extract_rel_list(rels, 'edition', 'end')
     if editions:
         data['main'].append({'title': 'Editions', 'data': editions})
@@ -342,7 +342,7 @@ def spell_item(node, rels):
     :return: customized data for this label
     '''
     data = generic_item(node, rels)
-    data['relationships'] = exclude_rels(data['relationships'], ['for', 'uses'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['for', 'uses'])
     try:
         del data['details']['grimoire']
     except KeyError:
@@ -401,7 +401,7 @@ def ingredient_item(node, rels):
         if items:
             data['main'].append({'title': helpers.pluralize(entity), 'data': items})
 
-    data['relationships'] = exclude_rels(data['relationships'], ['uses'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['uses'])
 
     return data
 
@@ -423,18 +423,9 @@ def outcome_item(node, rels):
         if items:
             data['main'].append({'title': helpers.pluralize(entity), 'data': items})
 
-    data['relationships'] = exclude_rels(data['relationships'], ['for'])
+    data['relationships'] = helpers.exclude_rels(data['relationships'], ['for'])
 
     return data
-
-
-def exclude_rels(rels, exclusions):
-    ''' remove relationships for a list of types
-    :param rels: default relationship list
-    :param exclusions:
-    :return: customized data for this label
-    '''
-    return [r for r in rels if not r['type'] in exclusions]
 
 
 def get_others(rels, node):

@@ -174,3 +174,12 @@ def get_node(uid):
         'node': result['nodes'][0],
         'relationships': result['relationships']
     }
+
+
+def exclude_rels(rels, exclusions):
+    ''' remove relationships for a list of types
+    :param rels: default relationship list
+    :param exclusions:
+    :return: customized data for this label
+    '''
+    return [r for r in rels if not r['type'] in exclusions]
