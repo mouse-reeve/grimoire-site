@@ -173,18 +173,21 @@ def grimoire_item(node, rels):
     for entity in entities:
         items = helpers.extract_rel_list_by_type(rels, 'lists', 'end', label=entity)
         if len(items):
-            data['main'].append({
+            item_json = {
                 'title': helpers.pluralize(entity),
                 'data': items,
-                'many': True
-            })
+                'many': True,
+                'compare': get_comparison(node, entity)
+            }
+            data['main'].append(item_json)
 
     spells = helpers.extract_rel_list(rels, 'spell', 'end')
     if len(spells):
         data['main'].append({
             'title': 'Spells',
             'data': spells,
-            'many': False
+            'many': False,
+            'compare': get_comparison(node, 'spell')
         })
 
     talisman = helpers.extract_rel_list(rels, 'talisman', 'end')
@@ -193,6 +196,20 @@ def grimoire_item(node, rels):
             'title': 'Talismans',
             'data': talisman,
             'many': False
+        })
+    return data
+
+
+def get_comparison(node, label):
+    ''' format comparison data for a node '''
+    data = []
+    grim_compare = graph.get_comparisons(node['properties']['uid'], label)
+    for grim in zip(grim_compare['nodes'], grim_compare['lists']):
+        data.append({
+            'count': len(grim[1]),
+            'grimoire': grim[0],
+            'link': '/compare/%s/%s' % (node['properties']['uid'],
+                                        grim[0]['properties']['uid'])
         })
     return data
 

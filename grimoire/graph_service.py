@@ -232,6 +232,7 @@ class GraphService(object):
         self.timeline_data = self.query(query)
         return self.timeline_data
 
+
     @serialize
     def get_frontpage_random(self):
         ''' get a random node to display on the front page
@@ -243,3 +244,13 @@ class GraphService(object):
                 'RETURN n ORDER BY rand() LIMIT 1'
 
         return self.query(query)
+
+
+    @serialize
+    def get_comparisons(self, grimoire, label):
+        ''' get a list of grimoires that share nodes '''
+        query = 'MATCH (n:grimoire)--(d:%s)--(g:grimoire) ' \
+                'WHERE n.uid={grimoire} ' \
+                'WITH g, COLLECT(d) as cd ' \
+                'RETURN g, cd ORDER BY SIZE(cd) DESC LIMIT 1' % label
+        return self.query(query, grimoire=grimoire)
