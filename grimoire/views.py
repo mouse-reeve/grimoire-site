@@ -164,24 +164,18 @@ def compare(uid_1, uid_2):
     nodes = [d['node'] for d in data]
     rels = [d['relationships'] for d in data]
 
-    # ----- check that item 1 and item 2 are of the same type
-    if not nodes[0]['label'] == nodes[1]['label']:
+    # ----- check that item 1 and item 2 are both grimoires
+    if not nodes[0]['label'] == nodes[1]['label'] and nodes[0]['label'] == 'grimoire':
         return render_template(request.url, 'compare-failure.html',
                                title='Oops: Invalid Comparison')
 
     # ----- get all shared items to list out
     shared_list = {}
 
-    # entities (demon/angel/fairy/whatever)
     for entity in entities + ['spell']:
-        entity_lists = [helpers.extract_rel_list_by_type(rels[0], 'lists', 'end', label=entity),
-                        helpers.extract_rel_list_by_type(rels[1], 'lists', 'end', label=entity)]
+        entity_lists = [helpers.extract_rel_list_by_type(rel_list, 'lists', 'end', label=entity)
+                        for rel_list in rels]
         shared_list[entity] = intersection(entity_lists[0], entity_lists[1])
-
-    # grimoires (for spells or entities that are being compared)
-    books = [helpers.extract_rel_list_by_type(rels[0], 'lists', 'start', label='parent:book'),
-             helpers.extract_rel_list_by_type(rels[1], 'lists', 'start', label='parent:book')]
-    shared_list['grimoire'] = intersection(books[0], books[1])
 
     title = '"%s" vs "%s"' % (nodes[0]['properties']['identifier'],
                               nodes[1]['properties']['identifier'])
