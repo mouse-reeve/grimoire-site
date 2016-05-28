@@ -4,6 +4,7 @@
 
 <div class="medium-12 columns">
     <h2>
+        {% if item_1 %}
         Comparing
         <a href="{{ item_1.link }}">
             <em>{{ item_1.properties.identifier | unthe }}</em>
@@ -12,11 +13,14 @@
         <a href="{{ item_2.link }}">
             <em>{{ item_2.properties.identifier | unthe }}</em>
         </a>
+        {% else %}
+        Compare Grimoires
+        {% endif %}
     </h2>
 </div>
 
 <div id="content" class="medium-12 columns">
-
+    {% if item_1 %}
     <!-- Graph connections -->
     <div class="card">
         <p>
@@ -108,7 +112,29 @@
             {% endfor %}
         </table>
     </div>
+    {% endif %}
 
+    <div class="divider"></div>
+
+    {% if grimoires %}
+    <h3>Select Grimoires to Compare</h3>
+    <form method="post" action="/compare">
+        <select name='grim1' required>
+            <option></option>
+            {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
+            <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+            {% endfor %}
+        </select>
+        and
+        <select name='grim2' required>
+            <option></option>
+            {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
+            <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+            {% endfor %}
+        </select>
+        <input class="button" type="submit" value="Compare">
+    </form>
+    {% endif %}
 </div>
 {% endblock %}
 

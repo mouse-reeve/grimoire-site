@@ -446,13 +446,34 @@ def outcome_item(node, rels):
     return data
 
 
+@app.route('/compare')
+def compare_start():
+    ''' load form for comparing grimoires '''
+    grimoires = graph.get_all('grimoire')['nodes']
+    return render_template(request.url, 'compare.html', grimoires=grimoires)
+
+
+@app.route('/compare', methods=['POST'])
+def run_comparison():
+    ''' redirect a comparison request
+    :return: redirect to comparison page
+    '''
+
+    try:
+        item1 = helpers.sanitize(request.values['grim1'])
+        item2 = helpers.sanitize(request.values['grim2'])
+    except KeyError:
+        return redirect('/compare')
+    return redirect('/compare/%s/%s' % (item1, item2))
+
+
 @app.route('/compare/<uid_1>/<uid_2>')
-def compare(uid_1, uid_2):
+def compare_grimoires(uid_1, uid_2):
     ''' compare two items of the same type '''
     try:
         data = (helpers.get_node(uid_1), helpers.get_node(uid_2))
     except NameError:
-        return redirect('/')
+        return redirect('/compare')
 
     nodes = [d['node'] for d in data]
     rels = [d['relationships'] for d in data]
@@ -525,9 +546,10 @@ def compare(uid_1, uid_2):
     same = {'start': same_start, 'end': same_end}
 
     default_collapse = max_list_size > 20
+    grimoires = graph.get_all('grimoire')['nodes']
     return render_template(request.url, 'compare.html', title=title, same=same, props=props,
                            shared_lists=shared_list, item_1=nodes[0], item_2=nodes[1],
-                           default_collapse=default_collapse)
+                           default_collapse=default_collapse, grimoires=grimoires)
 
 
 def get_others(rels, node):
