@@ -152,7 +152,12 @@
         <h3>{{ section.title }}</h3>
         <ul>
             {% for item in section.data %}
-            <li><a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a></li>
+            <li>
+                <a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a>
+                {% if section.title == 'Similar Grimoires' %}
+                (<a href="/compare/{{ data.properties.uid }}/{{ item.properties.uid }}">Compare</a>)
+                {% endif %}
+            </li>
             {% endfor %}
         </ul>
     </div>
