@@ -5,6 +5,7 @@ import os
 from grimoire.graph_service import GraphService
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['PSQL_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
