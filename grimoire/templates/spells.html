@@ -13,11 +13,28 @@
 
 
 <div id="content" class="medium-12 columns">
-    <h3><a href="/table/spell">Table of which spells appear in which grimoires</a></h3>
+    <div class="filter row">
+        <form method="get" action="spell">
+            <div class="columns medium-2">
+                <h3>
+                    Sort by:
+                </h3>
+            </div>
+            <div class="columns medium-6">
+                <select name="sort">
+                    <option selected value="outcome">outcome</option>
+                    <option value="grimoire">grimoire</option>
+                    <option value="alphabetical">alphabetically</option>
+                </select>
+            </div>
+            <div class="columns medium-4">
+                <input class="button" type="submit" value="Sort">
+            </div>
+        </form>
+    </div>
+    <p><a href="/table/spell">Table of which spells appear in which grimoires</a></p>
 
-    <div class="divider"></div>
 
-    <h2>Spells by outcome</h2>
     <div id="item-lists">
         <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
         {% for outcome, spell_list in spells.items() | sort %}
