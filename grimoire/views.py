@@ -3,7 +3,7 @@ import copy
 from datetime import date
 from email.mime.text import MIMEText
 from flask import redirect, request, render_template as flask_render_template
-import markdown
+from markdown import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
@@ -36,7 +36,7 @@ def index():
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
-    excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
+    excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
     return flask_render_template('home.html', grimoires=grimoires,
                                  title='Grimoire Encyclopedia', excerpt=excerpt)
 

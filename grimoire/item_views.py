@@ -2,7 +2,7 @@
 import logging
 
 from flask import redirect, request
-import markdown
+from markdown import markdown
 
 import grimoire.helpers as helpers
 from grimoire.helpers import render_template
@@ -109,14 +109,14 @@ def generic_item(node, rels):
         return [{'text': field}]
 
     try:
-        content = markdown.markdown(node['properties']['content'])
+        content = markdown(node['properties']['content'])
     except AttributeError:
         content = ''
 
     excerpts = helpers.extract_rel_list(rels, 'excerpt', 'end')
     for excerpt in excerpts:
         try:
-            excerpt['properties']['content'] = markdown.markdown(excerpt['properties']['content'])
+            excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
         except AttributeError:
             pass
     rels = helpers.exclude_rels(rels, ['excerpt'])
@@ -257,7 +257,7 @@ def entity_item(node, rels):
                   (helpers.format_filter(node['label']),
                    node['properties']['identifier'],
                    format_list(grimoires))
-        data['content'] = markdown.markdown(content)
+        data['content'] = markdown(content)
     return data
 
 
@@ -397,7 +397,7 @@ def spell_item(node, rels):
                            format_list(ingredients, italics=False, show_label=False).lower()
             content += '. '
 
-        data['content'] = markdown.markdown(content)
+        data['content'] = markdown(content)
     return data
 
 
