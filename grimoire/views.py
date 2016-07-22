@@ -94,16 +94,32 @@ def table(entity='demon'):
     isolates_data = graph.get_single_grimoire_entities(entity)
     isolates = zip(isolates_data['nodes'], isolates_data['lists'])
 
-    return render_template(request.url, 'table.html', entity=entity, grimoires=grimoires,
-                           entities=entity_list, isolates=isolates, table=True)
+    return render_template(request.url, 'table.html', entity=entity,
+                           grimoires=grimoires, entities=entity_list,
+                           isolates=isolates, table=True)
 
 
 @app.route('/spell')
 def spell():
     ''' custom page for spells '''
-    data = graph.get_spells_by_outcome()
-    spells = {k['properties']['identifier']: v for k, v in zip(data['nodes'], data['lists'])}
-    return render_template(request.url, 'spells.html', spells=spells, title='List of Spells')
+    sort = 'outcome'
+    try:
+        sort = helpers.sanitize(request.values['sort'], allow_spaces=True)
+    except BadRequestKeyError:
+        pass
+
+    if sort == 'outcome':
+        data = graph.get_spells_by_outcome()
+    elif sort == 'grimoire':
+        data = graph.get_spells_by_grimoire()
+    else:
+        return redirect('/spell')
+
+    spells = {k['properties']['identifier']: v \
+              for k, v in zip(data['nodes'], data['lists'])}
+    return render_template(request.url, 'spells.html',
+                           spells=spells, sort=sort,
+                           title='List of Spells')
 
 @app.route('/<label>')
 def category(label):

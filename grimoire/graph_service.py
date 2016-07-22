@@ -218,6 +218,15 @@ class GraphService(object):
 
 
     @serialize
+    def get_spells_by_grimoire(self):
+        ''' get a list of spells organized by outcome
+        :return: serialized list of outcomes and spells
+        '''
+        query = 'MATCH (n:grimoire)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
+        return self.query(query)
+
+
+    @serialize
     def timeline(self):
         ''' get all the requested items to populate the timeline
         :return: an array of nodes with date params

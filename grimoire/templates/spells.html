@@ -5,7 +5,7 @@
 <div class="medium-12 columns">
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
-        <li class="current"><a href="/spell">Spells</a></li>
+        <li class="current">Spells</li>
     </ul>
 
     <h2>Spells</h2>
@@ -22,9 +22,8 @@
             </div>
             <div class="columns medium-6">
                 <select name="sort">
-                    <option selected value="outcome">outcome</option>
-                    <option value="grimoire">grimoire</option>
-                    <option value="alphabetical">alphabetically</option>
+                    <option {% if sort == 'outcome' %}selected{% endif %} value="outcome">outcome</option>
+                    <option {% if sort == 'grimoire' %}selected{% endif %} value="grimoire">grimoire</option>
                 </select>
             </div>
             <div class="columns medium-4">
