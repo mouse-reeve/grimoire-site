@@ -1,5 +1,9 @@
 {% macro update_content(show_all=False) %}
 
+    {% call update("2016-07-22", "display") %}
+    The <a href="/spell">Spells</a> list page can now be sorted by either outcome or grimoire.
+    {% endcall %}
+
     {% call update("2016-05-23", "grimoires") %}
     Added the <a href="/grimoire/cambridge-book-of-magic"><em>Cambridge Book of Magic</em></a>, along with some of the spells it shares with other grimoires. Unfortunately, I don't have access to the full text; if you'd like to see more, consider <a href="/support">supporting</a> my research.
     {% endcall %}
@@ -8,13 +12,13 @@
     Added <a href="/grimoire/egyptian-secrets-of-albertus-magnus"><em>The Egyptian Secrets of Albertus Magnus</em></a>, along with the first 217 of the numerous spells it includes.
     {% endcall %}
 
+{% if show_all %}
     {% call update("2016-05-13", "connections") %}
     The <a href="/magic_object/pentagram-of-solomon">Pentragram of Solomon</a>, which is used in the <a href="/spell/goetia-summoning-ritual">summoning ritual</a>
     found in the <a href="/grimoire/lesser-key"><em>Lesser Key of Solomon</em></a>, is also described in the 14th century epic poem
     <a href="/book/sir-gawain-the-green-knight">Sir Gawain and the Green Knight</a>.
     {% endcall %}
 
-{% if show_all %}
     {% call update("2016-05-11", "events") %}
     I've been in Berlin, giving a talk about grimoires as data for <a href="http://csvconf.com/" target="_blank">CSV Conference</a>.
     Slides are <a href="https://www.mousereeve.com/static/csvconf-2016-grimoires.pdf" target="_blank">available online</a> and video is TBA.
