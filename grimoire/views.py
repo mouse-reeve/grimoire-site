@@ -12,13 +12,6 @@ from grimoire.helpers import render_template
 from grimoire import app, graph, entities, date_params, templates
 
 
-@app.before_request
-def before_request():
-    ''' check rendered template cache '''
-    url = request.url
-    if url in templates:
-        return templates[url]
-
 
 @app.route('/')
 def index():
