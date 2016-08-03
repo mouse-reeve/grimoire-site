@@ -119,7 +119,7 @@ def generic_item(node, rels):
             excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
         except AttributeError:
             pass
-    rels = helpers.exclude_rels(rels, ['excerpt'])
+    rels = helpers.exclude_rels(rels, ['excerpt', 'event'])
 
     details = {k: format_field(node['properties'][k]) for k in node['properties'] if
                k not in ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}

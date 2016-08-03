@@ -243,6 +243,8 @@ def add_to_timeline(timeline, node, year, date_precision, note=None):
     :param note: display text to go along with the node (if available)
     :return: updated timeline object
     '''
+    if node['label'] == 'event':
+        return timeline
     new_node = copy.copy(node)
     if note:
         new_node['note'] = note
