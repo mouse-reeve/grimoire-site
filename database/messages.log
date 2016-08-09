@@ -31302,3 +31302,747 @@ Storage files: (filename : modification date - size)
 2016-08-09 16:25:10.740+0000 INFO  [o.n.k.NeoStoreDataSource] NeoStores closed
 2016-08-09 16:25:10.740+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics START ---
 2016-08-09 16:25:10.740+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics END ---
+2016-08-09 16:25:35.435+0000 INFO  [o.n.k.i.f.CommunityFacadeFactory] No locking implementation specified, defaulting to 'community'
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.AvailabilityGuard] Requirement makes database unavailable: Database available
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] --- INITIALIZED diagnostics START ---
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] Neo4j Kernel properties:
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] org.neo4j.server.db.tuning.properties=/Users/mouse/Projects/grimoire-site/database/neo4j.properties
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] org.neo4j.server.database.location=/Users/mouse/Projects/grimoire-site/database
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] dbms.querylog.filename=data/log/queries.log
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] dbms.security.auth_store.location=/Users/mouse/Projects/grimoire-site/database/./dbms/auth
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] dbms.security.tls_certificate_file=/Users/mouse/Projects/grimoire-site/database/./dbms/ssl/snakeoil.cert
+2016-08-09 16:25:35.438+0000 INFO  [o.n.k.i.DiagnosticsManager] remote_shell_enabled=true
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] edition=Community
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] dbms.security.tls_key_file=/Users/mouse/Projects/grimoire-site/database/./dbms/ssl/snakeoil.key
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Diagnostics providers:
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] org.neo4j.kernel.configuration.Config
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] org.neo4j.kernel.info.DiagnosticsManager
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] SYSTEM_MEMORY
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] JAVA_MEMORY
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] OPERATING_SYSTEM
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] JAVA_VIRTUAL_MACHINE
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] CLASSPATH
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] LIBRARY_PATH
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] SYSTEM_PROPERTIES
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] NETWORK
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] System memory information:
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Total Physical memory: 8.00 GB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Free Physical memory: 112.45 MB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Committed virtual memory: 4.91 GB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Total swap space: 2.00 GB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Free swap space: 995.50 MB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] JVM memory information:
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Free  memory: 76.56 MB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Total memory: 222.50 MB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Max   memory: 1.78 GB
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+2016-08-09 16:25:35.439+0000 INFO  [o.n.k.i.DiagnosticsManager] Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen, PS Perm Gen]
+2016-08-09 16:25:35.441+0000 INFO  [o.n.k.i.DiagnosticsManager] Memory Pool: Code Cache (Non-heap memory): committed=6.00 MB, used=5.84 MB, max=48.00 MB, threshold=0.00 B
+2016-08-09 16:25:35.441+0000 INFO  [o.n.k.i.DiagnosticsManager] Memory Pool: PS Eden Space (Heap memory): committed=103.00 MB, used=64.11 MB, max=673.50 MB, threshold=?
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Memory Pool: PS Survivor Space (Heap memory): committed=512.00 kB, used=320.00 kB, max=512.00 kB, threshold=?
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Memory Pool: PS Old Gen (Heap memory): committed=119.00 MB, used=81.52 MB, max=1.33 GB, threshold=0.00 B
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Memory Pool: PS Perm Gen (Non-heap memory): committed=63.00 MB, used=62.84 MB, max=82.00 MB, threshold=0.00 B
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Operating system information:
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Operating System: Mac OS X; version: 10.11.5; arch: x86_64; cpus: 4
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Max number of file descriptors: 10.00 kB
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Number of open file descriptors: 46.00 B
+2016-08-09 16:25:35.442+0000 INFO  [o.n.k.i.DiagnosticsManager] Process id: 45861@Mouses-MBP
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] Byte order: LITTLE_ENDIAN
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] Local timezone: America/Los_Angeles
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] JVM information:
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] VM Name: Java HotSpot(TM) 64-Bit Server VM
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] VM Vendor: Oracle Corporation
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] VM Version: 24.80-b11
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] JIT compiler: HotSpot 64-Bit Tiered Compilers
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] VM Arguments: [-Dfile.encoding=UTF-8, -Dinstall4j.launcherId=24, -Dinstall4j.swt=false, -Dexe4j.moduleName=/Applications/Neo4j Community Edition.app, -Di4j.ownBundlePath=/Applications/Neo4j Community Edition.app, -Di4j.jreBundle=/Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle]
+2016-08-09 16:25:35.443+0000 INFO  [o.n.k.i.DiagnosticsManager] Java classpath:
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/localedata.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/sunrsasign.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/jce.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.0] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/app/.install4j/i4jruntime.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/rt.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [classpath] /Applications/Neo4j Community Edition.app/Contents/Resources/app/bin/neo4j-desktop-2.3.1.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/System/Library/Java/Extensions/MRJToolkit.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/sunjce_provider.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/dnsns.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/sunec.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.0] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/app/bin/neo4j-desktop-2.3.1.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/zipfs.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [loader.1] file:/Applications/Neo4j%20Community%20Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/ext/sunpkcs11.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [classpath] /Applications/Neo4j Community Edition.app/Contents/Resources/app/.install4j/i4jruntime.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/classes
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/jsse.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/charsets.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/resources.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager]  [bootstrap] /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib/jfr.jar
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] Library path:
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /Users/mouse/Library/Java/Extensions
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /Library/Java/Extensions
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /Network/Library/Java/Extensions
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /System/Library/Java/Extensions
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /usr/lib/java
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] /Applications/Neo4j Community Edition.app/Contents/Resources/app/bin
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] System.properties:
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] exe4j.moduleName = /Applications/Neo4j Community Edition.app
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.boot.library.path = /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle/Contents/Home/jre/lib
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] i4j.jreBundle = /Applications/Neo4j Community Edition.app/Contents/Resources/jre.bundle
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] gopherProxySet = false
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] path.separator = :
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] file.encoding.pkg = sun.io
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] user.country = US
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.java.launcher = SUN_STANDARD
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.os.patch.level = unknown
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] install4j.exeDir = /Applications/
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] user.dir = /Applications/Neo4j Community Edition.app/Contents/Resources/app/bin
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] neo4j.ext.udc.source = desktop
+2016-08-09 16:25:35.444+0000 INFO  [o.n.k.i.DiagnosticsManager] i4j.ownBundlePath = /Applications/Neo4j Community Edition.app
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.jnu.encoding = UTF-8
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.awt.enableExtraMouseButtons = true
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] install4j.launcherId = 24
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] install4j.swt = false
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] apple.awt.fileDialogForDirectories = false
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] user.home = /Users/mouse
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] user.timezone = America/Los_Angeles
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] file.encoding = UTF-8
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] user.name = mouse
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.java.command = com.install4j.runtime.launcher.MacLauncher
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.arch.data.model = 64
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] user.language = en
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] awt.toolkit = sun.lwawt.macosx.LWCToolkit
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] install4j.appDir = /Applications/Neo4j Community Edition.app/Contents/Resources/app/
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] file.separator = /
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.font.fontmanager = sun.font.CFontManager
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.io.unicode.encoding = UnicodeBig
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.cpu.endian = little
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] sun.cpu.isalist = 
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] Network information:
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] Interface awdl0:
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: fe80:0:0:0:6c92:63ff:fe5e:1f0f%8
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager] Interface en0:
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: 2602:302:d1c8:8630:a012:aa0f:6808:716a
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: 2602:302:d1c8:8630:a65e:60ff:fec7:de27
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: fe80:0:0:0:a65e:60ff:fec7:de27%4
+2016-08-09 16:25:35.445+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: 192.168.1.66
+2016-08-09 16:25:35.446+0000 INFO  [o.n.k.i.DiagnosticsManager] Interface lo0:
+2016-08-09 16:25:35.446+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: fe80:0:0:0:0:0:0:1%1
+2016-08-09 16:25:35.446+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: 0:0:0:0:0:0:0:1
+2016-08-09 16:25:35.446+0000 INFO  [o.n.k.i.DiagnosticsManager]     address: 127.0.0.1
+2016-08-09 16:25:35.446+0000 INFO  [o.n.k.i.DiagnosticsManager] --- INITIALIZED diagnostics END ---
+2016-08-09 16:25:35.595+0000 INFO  [o.n.k.KernelHealth] Kernel health set to OK
+2016-08-09 16:25:35.602+0000 INFO  [o.n.k.AvailabilityGuard] Fulfilling of requirement makes database available: Database available
+2016-08-09 16:25:35.602+0000 INFO  [o.n.k.i.f.CommunityFacadeFactory] Database is now ready
+2016-08-09 16:25:35.602+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for KernelDiagnostics:Versions START ---
+2016-08-09 16:25:35.602+0000 INFO  [o.n.k.i.DiagnosticsManager] Graph Database: Community StoreId{creationTime=1448066006310, randomId=-6539690622916557721, storeVersion=15250506225055238, upgradeTime=1448066006310, upgradeId=1}
+2016-08-09 16:25:35.602+0000 INFO  [o.n.k.i.DiagnosticsManager] Kernel version: 2.3.1
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for KernelDiagnostics:Versions END ---
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_VERSIONS START ---
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] Store versions:
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] Store versions:
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] ArrayPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] NodeStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] StringPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] PropertyIndexStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] StringPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] ArrayPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] PropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] RelationshipStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] StringPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] RelationshipTypeStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] StringPropertyStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] LabelTokenStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] SchemaStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] RelationshipGroupStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] NeoStore v0.A.6
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_VERSIONS END ---
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_ID_USAGE START ---
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] Id usage:
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager] Id usage:
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager]   ArrayPropertyStore v0.A.6: used=1 high=0
+2016-08-09 16:25:35.603+0000 INFO  [o.n.k.i.DiagnosticsManager]   NodeStore v0.A.6: used=3918 high=3917
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   StringPropertyStore v0.A.6: used=57 high=56
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   PropertyIndexStore v0.A.6: used=56 high=55
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   StringPropertyStore v0.A.6: used=8764 high=8764
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   ArrayPropertyStore v0.A.6: used=2210 high=3445
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   PropertyStore v0.A.6: used=10508 high=10507
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   RelationshipStore v0.A.6: used=10042 high=10042
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   StringPropertyStore v0.A.6: used=175 high=174
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   RelationshipTypeStore v0.A.6: used=174 high=173
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   StringPropertyStore v0.A.6: used=61 high=60
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   LabelTokenStore v0.A.6: used=60 high=59
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   SchemaStore v0.A.6: used=1 high=0
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   RelationshipGroupStore v0.A.6: used=126 high=125
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager]   NeoStore v0.A.6: used=13 high=12
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_ID_USAGE END ---
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_RECORDS START ---
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager] Neostore records:
+2016-08-09 16:25:35.604+0000 INFO  [o.n.k.i.DiagnosticsManager] TIME (Creation time): 1448066006310
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] RANDOM_NUMBER (Random number for store id): -6539690622916557721
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LOG_VERSION (Current log version): 0
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LAST_TRANSACTION_ID (Last committed transaction): 11127
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] STORE_VERSION (Store format version): 15250506225055238
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] FIRST_GRAPH_PROPERTY (First property record containing graph properties): -1
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LAST_CONSTRAINT_TRANSACTION (Last committed transaction containing constraint changes): 0
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] UPGRADE_TRANSACTION_ID (Transaction id most recent upgrade was performed at): 1
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] UPGRADE_TIME (Time of last upgrade): 1448066006310
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LAST_TRANSACTION_CHECKSUM (Checksum of last committed transaction): -162314063786
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] UPGRADE_TRANSACTION_CHECKSUM (Checksum of transaction id the most recent upgrade was performed at): 0
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_VERSION (Log version where the last transaction commit entry has been written into): 0
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_BYTE_OFFSET (Byte offset in the log file where the last transaction commit entry has been written into): 14698707
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for NEO_STORE_RECORDS END ---
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for TRANSACTION_RANGE START ---
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] Transaction log:
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] Oldest transaction 2 found in log with version 0
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for TRANSACTION_RANGE END ---
+2016-08-09 16:25:35.605+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for KernelDiagnostics:StoreFiles START ---
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager] Disk space on partition (Total / Free / Free %): 249779060736 / 149308796928 / 59
+Storage files: (filename : modification date - size)
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]   dbms:
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]     auth: 2016-08-09T09:14:27-0700 - 113.00 B
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]     ssl:
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]       snakeoil.cert: 2016-08-09T09:14:27-0700 - 630.00 B
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]       snakeoil.key: 2016-08-09T09:14:27-0700 - 910.00 B
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]     - Total: 2016-08-09T09:14:27-0700 - 1.50 kB
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]   - Total: 2016-08-09T09:14:27-0700 - 1.61 kB
+2016-08-09 16:25:35.606+0000 INFO  [o.n.k.i.DiagnosticsManager]   index:
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   - Total: 2016-08-09T09:14:39-0700 - 0.00 B
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   messages.log: 2016-08-09T09:25:35-0700 - 3.82 MB
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   messages.log.1: 2016-08-09T09:14:27-0700 - 20.00 MB
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   messages.log.2: 2016-08-09T09:14:27-0700 - 20.00 MB
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   neo4j.properties: 2016-08-09T09:14:27-0700 - 1.27 kB
+2016-08-09 16:25:35.607+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore: 2016-08-09T09:24:46-0700 - 8.00 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.counts.db.a: 2016-08-09T09:19:44-0700 - 21.00 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.counts.db.b: 2016-08-09T09:24:46-0700 - 21.00 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.labeltokenstore.db: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.labeltokenstore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.labeltokenstore.db.names: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.labeltokenstore.db.names.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.nodestore.db: 2016-08-09T09:24:46-0700 - 63.98 kB
+2016-08-09 16:25:35.608+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.nodestore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.nodestore.db.labels: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.nodestore.db.labels.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db: 2016-08-09T09:14:30-0700 - 422.29 kB
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.arrays: 2016-08-09T09:14:30-0700 - 432.00 kB
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.arrays.id: 2016-08-09T09:25:35-0700 - 9.67 kB
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.index: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.609+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.index.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.index.keys: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.index.keys.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.strings: 2016-08-09T09:14:30-0700 - 1.07 MB
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.propertystore.db.strings.id: 2016-08-09T09:25:35-0700 - 17.00 B
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshipgroupstore.db: 2016-08-09T09:14:30-0700 - 8.00 kB
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshipgroupstore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshipstore.db: 2016-08-09T09:24:46-0700 - 334.69 kB
+2016-08-09 16:25:35.610+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshipstore.db.id: 2016-08-09T09:25:35-0700 - 17.00 B
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshiptypestore.db: 2016-08-09T09:14:30-0700 - 8.00 kB
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshiptypestore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshiptypestore.db.names: 2016-08-09T09:14:30-0700 - 8.00 kB
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.relationshiptypestore.db.names.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.schemastore.db: 2016-08-09T09:14:27-0700 - 8.00 kB
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.schemastore.db.id: 2016-08-09T09:25:35-0700 - 9.00 B
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   neostore.transaction.db.0: 2016-08-09T09:25:10-0700 - 14.02 MB
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]   schema:
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]     label:
+2016-08-09 16:25:35.611+0000 INFO  [o.n.k.i.DiagnosticsManager]       lucene:
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]         _5nx.cfs: 2016-08-09T09:14:30-0700 - 7.27 kB
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]         segments.gen: 2016-08-09T09:14:30-0700 - 20.00 B
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]         segments_jw: 2016-08-09T09:14:30-0700 - 260.00 B
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]         write.lock: 2016-08-09T09:25:35-0700 - 0.00 B
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]       - Total: 2016-08-09T09:25:35-0700 - 7.55 kB
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]     - Total: 2016-08-09T09:14:27-0700 - 7.55 kB
+2016-08-09 16:25:35.612+0000 INFO  [o.n.k.i.DiagnosticsManager]   - Total: 2016-08-09T09:14:27-0700 - 7.55 kB
+2016-08-09 16:25:35.613+0000 INFO  [o.n.k.i.DiagnosticsManager]   store_lock: 2016-08-09T09:14:27-0700 - 0.00 B
+2016-08-09 16:25:35.613+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STARTED diagnostics for KernelDiagnostics:StoreFiles END ---
+2016-08-09 16:25:35.624+0000 INFO  [o.n.k.i.DiagnosticsManager] --- SERVER STARTED START ---
+2016-08-09 16:25:36.241+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 437ms.
+2016-08-09 16:25:36.765+0000 INFO  [o.n.k.i.DiagnosticsManager] --- SERVER STARTED END ---
+2016-08-09 16:26:32.069+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 543ms.
+2016-08-09 16:26:32.498+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 328ms.
+2016-08-09 16:26:36.909+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4310ms.
+2016-08-09 16:26:38.268+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1258ms.
+2016-08-09 16:26:40.271+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1900ms.
+2016-08-09 16:26:41.377+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1005ms.
+2016-08-09 16:26:43.415+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1938ms.
+2016-08-09 16:26:45.464+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1948ms.
+2016-08-09 16:26:45.919+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 354ms.
+2016-08-09 16:26:53.555+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7535ms.
+2016-08-09 16:26:55.004+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1348ms.
+2016-08-09 16:26:55.797+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 692ms.
+2016-08-09 16:26:56.864+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 965ms.
+2016-08-09 16:26:57.912+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 948ms.
+2016-08-09 16:26:59.533+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1520ms.
+2016-08-09 16:27:33.140+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1208ms.
+2016-08-09 16:27:37.773+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4531ms.
+2016-08-09 16:27:44.456+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6196ms.
+2016-08-09 16:27:47.048+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2490ms.
+2016-08-09 16:27:51.030+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3882ms.
+2016-08-09 16:27:53.790+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2651ms.
+2016-08-09 16:27:54.600+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 704ms.
+2016-08-09 16:27:55.684+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 981ms.
+2016-08-09 16:27:56.354+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 568ms.
+2016-08-09 16:27:58.289+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1834ms.
+2016-08-09 16:27:59.872+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1483ms.
+2016-08-09 16:28:34.493+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2953ms.
+2016-08-09 16:28:34.814+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 220ms.
+2016-08-09 16:28:36.849+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1934ms.
+2016-08-09 16:28:37.686+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 735ms.
+2016-08-09 16:28:38.928+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1141ms.
+2016-08-09 16:28:41.020+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1990ms.
+2016-08-09 16:28:42.416+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1296ms.
+2016-08-09 16:28:43.346+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 829ms.
+2016-08-09 16:28:44.446+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 999ms.
+2016-08-09 16:28:49.716+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5169ms.
+2016-08-09 16:28:51.352+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1535ms.
+2016-08-09 16:28:51.968+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 515ms.
+2016-08-09 16:28:57.310+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5241ms.
+2016-08-09 16:28:58.275+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 864ms.
+2016-08-09 16:28:59.023+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 647ms.
+2016-08-09 16:29:02.292+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3168ms.
+2016-08-09 16:29:05.405+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3013ms.
+2016-08-09 16:29:11.010+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5504ms.
+2016-08-09 16:29:11.680+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 569ms.
+2016-08-09 16:29:19.153+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7373ms.
+2016-08-09 16:29:24.445+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5191ms.
+2016-08-09 16:29:27.809+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3263ms.
+2016-08-09 16:29:31.170+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3260ms.
+2016-08-09 16:29:33.956+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2685ms.
+2016-08-09 16:29:38.563+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4507ms.
+2016-08-09 16:29:42.156+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3492ms.
+2016-08-09 16:29:47.240+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4983ms.
+2016-08-09 16:29:51.682+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4342ms.
+2016-08-09 16:29:52.040+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 257ms.
+2016-08-09 16:29:54.008+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1865ms.
+2016-08-09 16:29:55.803+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1694ms.
+2016-08-09 16:29:57.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1230ms.
+2016-08-09 16:30:02.566+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5333ms.
+2016-08-09 16:30:03.723+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1055ms.
+2016-08-09 16:30:05.179+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1355ms.
+2016-08-09 16:30:06.570+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1290ms.
+2016-08-09 16:30:11.042+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4371ms.
+2016-08-09 16:30:12.782+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1639ms.
+2016-08-09 16:30:20.611+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7728ms.
+2016-08-09 16:30:21.820+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 753ms.
+2016-08-09 16:30:31.920+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2016-08-09 16:30:35.545+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Starting check pointing...
+2016-08-09 16:30:35.545+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Starting store flush...
+2016-08-09 16:30:35.546+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11128 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:30:35.558+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11128 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:30:35.588+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Store flush completed
+2016-08-09 16:30:35.588+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Starting appending check point entry into the tx log...
+2016-08-09 16:30:35.593+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Appending check point entry into the tx log completed
+2016-08-09 16:30:35.593+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11128]:  Check pointing completed
+2016-08-09 16:30:35.593+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:30:35.593+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:30:40.564+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8543ms.
+2016-08-09 16:30:41.778+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1111ms.
+2016-08-09 16:30:42.879+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 999ms.
+2016-08-09 16:30:47.560+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4580ms.
+2016-08-09 16:30:50.455+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2794ms.
+2016-08-09 16:30:52.979+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2424ms.
+2016-08-09 16:30:55.094+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2014ms.
+2016-08-09 16:30:58.743+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3548ms.
+2016-08-09 16:31:00.006+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1162ms.
+2016-08-09 16:31:34.348+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2156ms.
+2016-08-09 16:31:36.121+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1671ms.
+2016-08-09 16:31:37.674+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1452ms.
+2016-08-09 16:31:38.112+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 337ms.
+2016-08-09 16:31:39.643+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1429ms.
+2016-08-09 16:31:46.996+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7252ms.
+2016-08-09 16:31:47.964+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 868ms.
+2016-08-09 16:31:49.496+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1431ms.
+2016-08-09 16:31:50.510+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 913ms.
+2016-08-09 16:31:51.275+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 564ms.
+2016-08-09 16:31:52.605+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1228ms.
+2016-08-09 16:31:53.836+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1130ms.
+2016-08-09 16:31:54.547+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 611ms.
+2016-08-09 16:31:56.266+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1618ms.
+2016-08-09 16:31:57.338+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 972ms.
+2016-08-09 16:31:59.166+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1727ms.
+2016-08-09 16:32:00.007+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 740ms.
+2016-08-09 16:32:11.543+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:32:11.545+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:33:05.537+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3138ms.
+2016-08-09 16:33:07.133+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1494ms.
+2016-08-09 16:33:08.165+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 831ms.
+2016-08-09 16:33:09.458+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1192ms.
+2016-08-09 16:33:12.272+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2714ms.
+2016-08-09 16:33:15.687+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3214ms.
+2016-08-09 16:33:15.834+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:33:15.835+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:33:17.126+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1338ms.
+2016-08-09 16:33:18.578+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1351ms.
+2016-08-09 16:33:19.172+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 493ms.
+2016-08-09 16:33:20.056+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 782ms.
+2016-08-09 16:33:21.564+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1408ms.
+2016-08-09 16:33:24.980+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3315ms.
+2016-08-09 16:33:27.676+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2596ms.
+2016-08-09 16:33:30.035+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2257ms.
+2016-08-09 16:33:32.026+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1891ms.
+2016-08-09 16:33:33.416+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1290ms.
+2016-08-09 16:33:36.222+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2705ms.
+2016-08-09 16:33:38.933+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2610ms.
+2016-08-09 16:33:40.416+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1382ms.
+2016-08-09 16:33:41.334+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 817ms.
+2016-08-09 16:33:42.118+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 683ms.
+2016-08-09 16:33:43.217+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 998ms.
+2016-08-09 16:33:49.884+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6566ms.
+2016-08-09 16:33:53.930+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3945ms.
+2016-08-09 16:33:57.381+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3350ms.
+2016-08-09 16:33:58.248+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 766ms.
+2016-08-09 16:33:59.766+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1417ms.
+2016-08-09 16:34:37.761+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 355ms.
+2016-08-09 16:34:38.571+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 709ms.
+2016-08-09 16:34:39.976+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1304ms.
+2016-08-09 16:34:41.559+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1481ms.
+2016-08-09 16:34:42.359+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 699ms.
+2016-08-09 16:34:43.507+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1048ms.
+2016-08-09 16:34:44.194+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 585ms.
+2016-08-09 16:34:54.295+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2016-08-09 16:35:00.007+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5612ms.
+2016-08-09 16:35:39.906+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Starting check pointing...
+2016-08-09 16:35:39.908+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Starting store flush...
+2016-08-09 16:35:39.913+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11131 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:35:39.920+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11131 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:35:39.935+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Store flush completed
+2016-08-09 16:35:39.935+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Starting appending check point entry into the tx log...
+2016-08-09 16:35:39.936+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Appending check point entry into the tx log completed
+2016-08-09 16:35:39.936+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11131]:  Check pointing completed
+2016-08-09 16:35:39.936+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:35:39.938+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:36:07.533+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 264ms.
+2016-08-09 16:36:09.401+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1048ms.
+2016-08-09 16:36:11.547+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 710ms.
+2016-08-09 16:36:13.774+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1930ms.
+2016-08-09 16:36:21.476+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7601ms.
+2016-08-09 16:36:23.257+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1680ms.
+2016-08-09 16:36:23.737+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 378ms.
+2016-08-09 16:36:26.832+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2994ms.
+2016-08-09 16:36:27.504+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 571ms.
+2016-08-09 16:36:31.188+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3584ms.
+2016-08-09 16:36:32.568+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1278ms.
+2016-08-09 16:36:34.374+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1705ms.
+2016-08-09 16:36:34.786+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 312ms.
+2016-08-09 16:36:36.920+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1893ms.
+2016-08-09 16:36:37.932+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 811ms.
+2016-08-09 16:36:39.826+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1793ms.
+2016-08-09 16:36:41.784+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1857ms.
+2016-08-09 16:36:43.478+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1594ms.
+2016-08-09 16:36:44.035+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 456ms.
+2016-08-09 16:36:49.707+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5572ms.
+2016-08-09 16:36:51.364+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1555ms.
+2016-08-09 16:36:52.866+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1397ms.
+2016-08-09 16:36:57.547+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4580ms.
+2016-08-09 16:36:58.526+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 877ms.
+2016-08-09 16:36:59.665+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1038ms.
+2016-08-09 16:37:00.707+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 941ms.
+2016-08-09 16:37:00.872+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:37:00.873+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:37:04.328+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3520ms.
+2016-08-09 16:37:05.613+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1184ms.
+2016-08-09 16:37:07.835+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2121ms.
+2016-08-09 16:37:09.897+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1697ms.
+2016-08-09 16:37:14.665+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4667ms.
+2016-08-09 16:37:20.101+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5335ms.
+2016-08-09 16:37:23.044+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2841ms.
+2016-08-09 16:37:23.927+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 782ms.
+2016-08-09 16:37:27.724+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 264ms.
+2016-08-09 16:37:28.882+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1052ms.
+2016-08-09 16:37:32.151+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3168ms.
+2016-08-09 16:37:33.307+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1055ms.
+2016-08-09 16:37:34.356+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 947ms.
+2016-08-09 16:37:36.502+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2045ms.
+2016-08-09 16:37:38.320+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1717ms.
+2016-08-09 16:37:39.200+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 779ms.
+2016-08-09 16:37:41.109+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1807ms.
+2016-08-09 16:37:42.333+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1123ms.
+2016-08-09 16:37:52.434+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2016-08-09 16:37:56.422+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3887ms.
+2016-08-09 16:37:57.027+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 504ms.
+2016-08-09 16:37:58.589+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1461ms.
+2016-08-09 16:37:59.349+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 659ms.
+2016-08-09 16:38:00.007+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 557ms.
+2016-08-09 16:38:40.316+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2414ms.
+2016-08-09 16:38:42.630+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2212ms.
+2016-08-09 16:38:43.658+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 927ms.
+2016-08-09 16:38:45.294+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1535ms.
+2016-08-09 16:38:46.396+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:38:46.397+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:38:47.452+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2057ms.
+2016-08-09 16:38:49.846+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2293ms.
+2016-08-09 16:38:52.068+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2121ms.
+2016-08-09 16:38:55.183+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2843ms.
+2016-08-09 16:38:56.547+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:38:56.549+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:38:56.582+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:38:56.584+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:38:57.712+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2428ms.
+2016-08-09 16:38:58.504+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 692ms.
+2016-08-09 16:38:59.632+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 926ms.
+2016-08-09 16:39:00.008+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 275ms.
+2016-08-09 16:39:00.538+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:00.539+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:00.562+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:00.563+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:02.073+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:02.074+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:02.095+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:02.096+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:03.677+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:03.678+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:03.701+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:03.702+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:05.662+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:05.663+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:05.684+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:05.685+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:07.401+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:07.402+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:07.424+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:07.425+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:09.493+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:09.493+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:09.515+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:09.515+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:12.270+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:12.271+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:12.292+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:book)-[r]->(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:12.292+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,OUTGOING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(book)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID95)))),None,None,None,Some(Where(Identifier(  FRESHID95)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:40.901+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2302ms.
+2016-08-09 16:39:41.996+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 994ms.
+2016-08-09 16:39:43.625+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1528ms.
+2016-08-09 16:39:44.206+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 480ms.
+2016-08-09 16:39:45.817+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1510ms.
+2016-08-09 16:39:47.142+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1224ms.
+2016-08-09 16:39:48.499+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1256ms.
+2016-08-09 16:39:49.399+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 799ms.
+2016-08-09 16:39:50.546+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1046ms.
+2016-08-09 16:39:50.889+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:39:50.890+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:39:54.725+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4078ms.
+2016-08-09 16:39:56.208+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1383ms.
+2016-08-09 16:39:57.373+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1064ms.
+2016-08-09 16:40:00.008+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2533ms.
+2016-08-09 16:40:39.240+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 474ms.
+2016-08-09 16:40:42.326+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2885ms.
+2016-08-09 16:40:49.315+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6888ms.
+2016-08-09 16:40:49.315+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Starting check pointing...
+2016-08-09 16:40:49.316+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Starting store flush...
+2016-08-09 16:40:49.316+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11142 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:40:49.327+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11142 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:40:49.337+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Store flush completed
+2016-08-09 16:40:49.338+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Starting appending check point entry into the tx log...
+2016-08-09 16:40:49.339+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Appending check point entry into the tx log completed
+2016-08-09 16:40:49.339+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11142]:  Check pointing completed
+2016-08-09 16:40:49.339+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:40:49.339+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:40:54.778+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5362ms.
+2016-08-09 16:40:55.892+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1013ms.
+2016-08-09 16:40:56.868+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 875ms.
+2016-08-09 16:41:00.006+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3038ms.
+2016-08-09 16:41:41.269+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3523ms.
+2016-08-09 16:41:42.492+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1122ms.
+2016-08-09 16:41:43.514+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 921ms.
+2016-08-09 16:41:46.630+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3015ms.
+2016-08-09 16:41:47.662+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 930ms.
+2016-08-09 16:41:48.681+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 918ms.
+2016-08-09 16:41:51.483+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2701ms.
+2016-08-09 16:41:51.813+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 229ms.
+2016-08-09 16:41:53.266+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1352ms.
+2016-08-09 16:41:54.794+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1427ms.
+2016-08-09 16:41:56.381+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1486ms.
+2016-08-09 16:41:57.720+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1238ms.
+2016-08-09 16:42:00.005+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2185ms.
+2016-08-09 16:42:29.295+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:42:29.296+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:42:38.610+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 388ms.
+2016-08-09 16:42:38.777+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:42:38.778+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:42:40.122+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1412ms.
+2016-08-09 16:42:41.011+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 788ms.
+2016-08-09 16:42:42.244+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1132ms.
+2016-08-09 16:42:44.970+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2625ms.
+2016-08-09 16:42:46.708+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1638ms.
+2016-08-09 16:42:47.308+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 499ms.
+2016-08-09 16:42:48.545+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1137ms.
+2016-08-09 16:42:51.608+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2962ms.
+2016-08-09 16:42:52.498+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 789ms.
+2016-08-09 16:42:53.202+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 603ms.
+2016-08-09 16:42:54.652+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1349ms.
+2016-08-09 16:42:57.552+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2799ms.
+2016-08-09 16:42:58.844+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 862ms.
+2016-08-09 16:43:00.007+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1062ms.
+2016-08-09 16:43:38.762+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 242ms.
+2016-08-09 16:43:39.547+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 684ms.
+2016-08-09 16:43:41.379+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1731ms.
+2016-08-09 16:43:43.362+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1882ms.
+2016-08-09 16:43:47.032+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3569ms.
+2016-08-09 16:43:48.224+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1090ms.
+2016-08-09 16:43:49.273+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 948ms.
+2016-08-09 16:43:52.091+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2717ms.
+2016-08-09 16:43:53.383+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1191ms.
+2016-08-09 16:43:54.474+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 990ms.
+2016-08-09 16:43:55.035+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 460ms.
+2016-08-09 16:43:56.101+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 965ms.
+2016-08-09 16:44:00.032+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3830ms.
+2016-08-09 16:44:01.126+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 994ms.
+2016-08-09 16:44:07.639+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6412ms.
+2016-08-09 16:44:09.180+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1440ms.
+2016-08-09 16:44:10.067+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 786ms.
+2016-08-09 16:44:13.779+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3611ms.
+2016-08-09 16:44:16.502+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2623ms.
+2016-08-09 16:44:17.325+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 721ms.
+2016-08-09 16:44:18.070+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 544ms.
+2016-08-09 16:44:20.500+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2026ms.
+2016-08-09 16:44:21.284+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 684ms.
+2016-08-09 16:44:31.384+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2016-08-09 16:44:36.077+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4592ms.
+2016-08-09 16:44:36.588+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 410ms.
+2016-08-09 16:44:37.746+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1056ms.
+2016-08-09 16:44:40.292+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2445ms.
+2016-08-09 16:44:41.185+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 793ms.
+2016-08-09 16:44:43.849+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2562ms.
+2016-08-09 16:44:47.073+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3124ms.
+2016-08-09 16:44:57.174+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 10000ms.
+2016-08-09 16:45:03.340+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 6065ms.
+2016-08-09 16:45:05.481+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2040ms.
+2016-08-09 16:45:06.563+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 981ms.
+2016-08-09 16:45:08.673+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2009ms.
+2016-08-09 16:45:11.177+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2404ms.
+2016-08-09 16:45:15.349+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3971ms.
+2016-08-09 16:45:15.920+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 470ms.
+2016-08-09 16:45:16.685+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 662ms.
+2016-08-09 16:45:18.395+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1610ms.
+2016-08-09 16:45:20.285+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1789ms.
+2016-08-09 16:45:22.005+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1619ms.
+2016-08-09 16:45:24.170+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2065ms.
+2016-08-09 16:45:24.856+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 585ms.
+2016-08-09 16:45:27.041+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2084ms.
+2016-08-09 16:45:53.348+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Starting check pointing...
+2016-08-09 16:45:53.348+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Starting store flush...
+2016-08-09 16:45:53.352+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11146 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:45:53.360+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11146 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:45:53.362+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Store flush completed
+2016-08-09 16:45:53.362+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Starting appending check point entry into the tx log...
+2016-08-09 16:45:53.363+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Appending check point entry into the tx log completed
+2016-08-09 16:45:53.363+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11146]:  Check pointing completed
+2016-08-09 16:45:53.363+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:45:53.364+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:46:08.980+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 424ms.
+2016-08-09 16:46:10.600+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1519ms.
+2016-08-09 16:46:12.053+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1353ms.
+2016-08-09 16:46:13.633+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1479ms.
+2016-08-09 16:46:13.822+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:46:13.823+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:46:15.295+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1557ms.
+2016-08-09 16:46:16.514+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1118ms.
+2016-08-09 16:46:24.255+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7640ms.
+2016-08-09 16:46:25.861+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1505ms.
+2016-08-09 16:46:26.901+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 939ms.
+2016-08-09 16:46:28.431+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1430ms.
+2016-08-09 16:46:31.475+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2943ms.
+2016-08-09 16:46:34.701+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3124ms.
+2016-08-09 16:46:36.771+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1970ms.
+2016-08-09 16:46:38.499+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1626ms.
+2016-08-09 16:46:41.227+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2628ms.
+2016-08-09 16:46:41.754+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 426ms.
+2016-08-09 16:46:42.888+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1032ms.
+2016-08-09 16:46:50.692+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 7703ms.
+2016-08-09 16:46:51.476+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 684ms.
+2016-08-09 16:46:52.501+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 824ms.
+2016-08-09 16:46:54.066+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1464ms.
+2016-08-09 16:46:54.270+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:46:54.270+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:46:54.785+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 618ms.
+2016-08-09 16:46:55.878+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 992ms.
+2016-08-09 16:46:58.159+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2181ms.
+2016-08-09 16:46:59.344+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1084ms.
+2016-08-09 16:47:00.007+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 563ms.
+2016-08-09 16:47:41.034+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2678ms.
+2016-08-09 16:47:43.395+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2259ms.
+2016-08-09 16:47:44.578+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1082ms.
+2016-08-09 16:47:46.334+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1654ms.
+2016-08-09 16:47:51.853+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5131ms.
+2016-08-09 16:47:54.198+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2244ms.
+2016-08-09 16:47:54.892+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 593ms.
+2016-08-09 16:48:00.006+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5013ms.
+2016-08-09 16:49:06.851+0000 INFO  [o.n.c.i.ServerExecutionEngine] Discarded stale query from the query cache: CYPHER 2.3 MATCH (n:angelic_order)<-[r]-(m) WITH COLLECT(r) AS cr, TYPE(r) AS rs, LABELS(m) AS lm WHERE LENGTH(cr) > 1 RETURN DISTINCT rs, lm
+2016-08-09 16:49:06.852+0000 INFO  [o.n.c.i.CypherCompiler] Discarded stale query from the query cache: Query(None,SingleQuery(List(Match(false,Pattern(List(EveryPath(RelationshipChain(NodePattern(Some(Identifier(n)),List(),None,false),RelationshipPattern(Some(Identifier(r)),false,List(),None,None,INCOMING),NodePattern(Some(Identifier(m)),List(),None,false))))),List(),Some(Where(HasLabels(Identifier(n),List(LabelName(angelic_order)))))), With(false,ReturnItems(false,Vector(AliasedReturnItem(FunctionInvocation(FunctionName(COLLECT),false,Vector(Identifier(r))),Identifier(cr)), AliasedReturnItem(FunctionInvocation(FunctionName(TYPE),false,Vector(Identifier(r))),Identifier(rs)), AliasedReturnItem(FunctionInvocation(FunctionName(LABELS),false,Vector(Identifier(m))),Identifier(lm)))),None,None,None,None), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(GreaterThan(FunctionInvocation(FunctionName(LENGTH),false,Vector(Identifier(cr))),Parameter(  AUTOINT0)),Identifier(  FRESHID104)))),None,None,None,Some(Where(Identifier(  FRESHID104)))), With(false,ReturnItems(false,Vector(AliasedReturnItem(Identifier(cr),Identifier(cr)), AliasedReturnItem(Identifier(lm),Identifier(lm)), AliasedReturnItem(Identifier(rs),Identifier(rs)))),None,None,None,None), Return(true,ReturnItems(false,List(AliasedReturnItem(Identifier(rs),Identifier(rs)), AliasedReturnItem(Identifier(lm),Identifier(lm)))),None,None,None))))
+2016-08-09 16:49:09.619+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1478ms.
+2016-08-09 16:49:10.813+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1094ms.
+2016-08-09 16:49:12.134+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1220ms.
+2016-08-09 16:49:13.003+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 501ms.
+2016-08-09 16:49:15.549+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2446ms.
+2016-08-09 16:49:23.858+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8108ms.
+2016-08-09 16:49:25.109+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1150ms.
+2016-08-09 16:49:26.160+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 950ms.
+2016-08-09 16:49:30.003+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3742ms.
+2016-08-09 16:49:31.964+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1860ms.
+2016-08-09 16:49:35.756+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3690ms.
+2016-08-09 16:49:38.184+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2328ms.
+2016-08-09 16:49:41.252+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2967ms.
+2016-08-09 16:49:46.195+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4842ms.
+2016-08-09 16:49:47.724+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1428ms.
+2016-08-09 16:49:48.658+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 833ms.
+2016-08-09 16:49:54.179+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5420ms.
+2016-08-09 16:49:56.870+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2590ms.
+2016-08-09 16:49:57.573+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 601ms.
+2016-08-09 16:49:58.715+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1041ms.
+2016-08-09 16:50:01.381+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2565ms.
+2016-08-09 16:50:04.867+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3386ms.
+2016-08-09 16:50:05.680+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 712ms.
+2016-08-09 16:50:15.717+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 9936ms.
+2016-08-09 16:50:17.395+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1286ms.
+2016-08-09 16:50:18.564+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 969ms.
+2016-08-09 16:50:19.605+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 940ms.
+2016-08-09 16:50:20.937+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1231ms.
+2016-08-09 16:50:21.747+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 709ms.
+2016-08-09 16:50:24.486+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2638ms.
+2016-08-09 16:50:26.072+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1486ms.
+2016-08-09 16:50:27.471+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1297ms.
+2016-08-09 16:50:32.849+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 5278ms.
+2016-08-09 16:50:36.887+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3937ms.
+2016-08-09 16:50:38.881+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1793ms.
+2016-08-09 16:50:40.014+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1032ms.
+2016-08-09 16:50:41.047+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 933ms.
+2016-08-09 16:50:42.138+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 990ms.
+2016-08-09 16:50:43.850+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1611ms.
+2016-08-09 16:50:44.618+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 667ms.
+2016-08-09 16:50:47.753+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 3035ms.
+2016-08-09 16:50:56.235+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 8381ms.
+2016-08-09 16:50:56.758+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 421ms.
+2016-08-09 16:50:57.754+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Starting check pointing...
+2016-08-09 16:50:57.754+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Starting store flush...
+2016-08-09 16:50:57.758+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11152 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:50:57.770+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11152 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b].
+2016-08-09 16:50:57.776+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Store flush completed
+2016-08-09 16:50:57.777+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Starting appending check point entry into the tx log...
+2016-08-09 16:50:57.778+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Appending check point entry into the tx log completed
+2016-08-09 16:50:57.778+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by scheduler for time threshold [11152]:  Check pointing completed
+2016-08-09 16:50:57.778+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:50:57.778+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:50:59.533+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 2675ms.
+2016-08-09 16:51:38.691+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 338ms.
+2016-08-09 16:51:39.318+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 527ms.
+2016-08-09 16:51:40.761+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 1342ms.
+2016-08-09 16:51:44.890+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4028ms.
+2016-08-09 16:51:49.660+0000 WARN  [o.n.k.i.c.MonitorGc] GC Monitor: Application threads blocked for 4669ms.
+2016-08-09 16:51:50.830+0000 INFO  [o.n.k.i.f.GraphDatabaseFacade] Shutdown started
+2016-08-09 16:51:50.830+0000 INFO  [o.n.k.i.f.CommunityFacadeFactory] Database is now unavailable
+2016-08-09 16:51:50.831+0000 INFO  [o.n.k.i.s.c.CountsTracker] About to rotate counts store at transaction 11153 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:51:50.836+0000 INFO  [o.n.k.i.s.c.CountsTracker] Successfully rotated counts store at transaction 11153 to [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.b], from [/Users/mouse/Projects/grimoire-site/database/neostore.counts.db.a].
+2016-08-09 16:51:50.841+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Starting check pointing...
+2016-08-09 16:51:50.841+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Starting store flush...
+2016-08-09 16:51:50.842+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Store flush completed
+2016-08-09 16:51:50.842+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Starting appending check point entry into the tx log...
+2016-08-09 16:51:50.843+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Appending check point entry into the tx log completed
+2016-08-09 16:51:50.843+0000 INFO  [o.n.k.i.t.l.c.CheckPointerImpl] Check Pointing triggered by database shutdown [11153]:  Check pointing completed
+2016-08-09 16:51:50.843+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Starting log pruning.
+2016-08-09 16:51:50.843+0000 INFO  [o.n.k.i.t.l.p.LogPruningImpl] Log Rotation [0]:  Log pruning complete.
+2016-08-09 16:51:50.862+0000 INFO  [o.n.k.NeoStoreDataSource] NeoStores closed
+2016-08-09 16:51:50.863+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics START ---
+2016-08-09 16:51:50.863+0000 INFO  [o.n.k.i.DiagnosticsManager] --- STOPPING diagnostics END ---
