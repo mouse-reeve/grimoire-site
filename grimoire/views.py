@@ -3,7 +3,6 @@ import copy
 from datetime import date
 from email.mime.text import MIMEText
 from flask import redirect, request, render_template as flask_render_template
-from markdown import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
@@ -22,28 +21,20 @@ def before_request():
 @app.route('/')
 def index():
     ''' render the basic template for angular '''
-    data = graph.get_all('grimoire')
-    grimoires = []
-    for g in data['nodes']:
-        g = g['properties']
-        year = helpers.grimoire_date(g)
+    events = graph.get_all('event')['nodes']
 
-        grimoires.append({
-            'uid': g['uid'],
-            'identifier': g['identifier'],
-            'date': year
-        })
-        grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
-    excerpt = graph.get_frontpage_random()['nodes'][0]
-    excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
-    return flask_render_template('home.html', grimoires=grimoires,
-                                 title='Grimoire Encyclopedia', excerpt=excerpt)
+    template_data = {
+        'title': 'Grimoire Encyclopedia',
+        'events': events
+    }
+    return flask_render_template('home.html', **template_data)
 
 
 @app.route('/support')
 def support():
     ''' the "give me money" page '''
-    return render_template(request.url, 'support.html', title='Support Grimoire dot org')
+    return render_template(request.url, 'support.html',
+                           title='Support Grimoire dot org')
 
 
 @app.route('/search')
@@ -62,7 +53,11 @@ def search():
     if len(data['nodes']) == 1:
         item = data['nodes'][0]
         return redirect('/%s/%s' % (item['label'], item['properties']['uid']))
-    return render_template(request.url, 'search.html', results=data['nodes'], term=term)
+    template_data = {
+        'results': data['nodes'],
+        'temp': term
+    }
+    return render_template(request.url, 'search.html', **template_data)
 
 
 @app.route('/table')
