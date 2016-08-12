@@ -1,0 +1,62 @@
+{% import 'updates-macro.html' as updates %}
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="content">
+    <section class="map-slider row">
+        <div class="small-10 columns">
+            <div>
+                <label>3rd Century</label>
+                <label>1850</label>
+            </div>
+            <input type="range" id="date-slider" min="200" max="1850" onchange="setDate()" step="10">
+        </div>
+        <div class="small-2 columns">
+              <input type="number" id="date-input" min="200" max="1850" step="1" onchange="setDateSlider()">
+        </div>
+    </section>
+    <section class="map-container">
+        <div id="map"></div>
+    </section>
+</div>
+
+<div id="feedback" class="reveal" data-reveal>
+    <h2>Feedback</h2>
+    <form action="/feedback" method="post">
+        <label for="comments">Comments</label>
+        <textarea name="comments" required></textarea>
+        <label for="email">Email (optional - include if you would like a response)</label>
+        <input type="text" name="email">
+        <input type="submit" value="Submit">
+
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </form>
+</div>
+
+<script>
+    var events = [
+    {% for event in events | sort(attribute="properties.date", reverse=true) %}
+        {
+            identifier: "{{ event.properties.identifier }}",
+            year: {{ event.properties.date }},
+            place: "{{ event.properties.location }}",
+            radius: 10,
+            latitude: {{ event.properties.latitude }},
+            longitude: {{ event.properties.longitude }},
+            fillKey: "{{ event.properties.event }}"
+        },
+    {% endfor %}
+    ];
+</script>
+
+
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="/static/js/vendor/datamaps.world.min.js"></script>
+<script src="/static/js/temporospatial.js"></script>
+
+{% endblock %}
