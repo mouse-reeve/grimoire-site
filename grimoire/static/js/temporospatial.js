@@ -5,6 +5,8 @@ var map = new Datamap({
         publication: '#f2b632',
         birth: '#677077',
         death: '#181b2c',
+        trial: '#2c181b',
+        era: '#fefefe',
     },
     setProjection: function(element) {
         var projection = d3.geo.mercator()
@@ -18,15 +20,57 @@ var map = new Datamap({
     },
     geographyConfig: {
         highlightOnHover: false,
-        popupOnHover: false,
+        popupOnHover: true,
     },
 });
 
-map.bubbles(events, {
-    popupTemplate: function (geo, data) {
-        return ['<div class="hoverinfo">',
-            data.identifier,
-            '<br>' + data.place + ', ' + data.year,
-        '</div>'].join('');
+var populateMap = function (eventset) {
+    map.bubbles(eventset, {
+        popupTemplate: function (geo, data) {
+            return ['<div class="hoverinfo">',
+                data.identifier,
+                '<br>' + data.place + ', ' + data.year,
+            '</div>'].join('');
+        }
+    });
+};
+
+var setDate = function () {
+    var year = $('#date-slider').val();
+    $('#date-input').val(year);
+    setEvents(parseInt(year));
+};
+
+var setDateSlider = function () {
+    var year = $('#date-input').val();
+    $('#date-slider').val(year);
+    setEvents(parseInt(year));
+};
+
+var setEvents = function (year) {
+    // grab the 3+ events that in or before this decade
+    var eventset = [];
+    var daterange = 20;
+    $.each(events, function (index, item) {
+        if (item.year < year + daterange && item.year > year - daterange) {
+            eventset.push(item);
+        }
+    });
+    if (eventset.length < 4) {
+        $.each(events, function (index, item) {
+            if (item.year < year + 10) {
+                eventset.push(item);
+            }
+            if (eventset.length > 3) {
+                return false;
+            }
+        });
     }
-});
+        
+    populateMap(eventset);
+};
+
+var year = 1580;
+$('#date-input').val(year);
+$('#date-slider').val(year);
+setEvents(year);

@@ -4,6 +4,18 @@
 {% block body %}
 
 <div id="content">
+    <section class="map-slider row">
+        <div class="small-10 columns">
+            <div>
+                <label>3rd Century</label>
+                <label>1850</label>
+            </div>
+            <input type="range" id="date-slider" min="200" max="1850" onchange="setDate()" step="10">
+        </div>
+        <div class="small-2 columns">
+              <input type="number" id="date-input" min="200" max="1850" step="1" onchange="setDateSlider()">
+        </div>
+    </section>
     <section class="map-container">
         <div id="map"></div>
     </section>
@@ -26,7 +38,7 @@
 
 <script>
     var events = [
-    {% for event in events %}
+    {% for event in events | sort(attribute="properties.date", reverse=true) %}
         {
             identifier: "{{ event.properties.identifier }}",
             year: {{ event.properties.date }},

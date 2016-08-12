@@ -3,6 +3,7 @@
 .DS_Store
 .Python
 pip-selfcheck.json
+*.sass-cache
 
 # virtualenv
 bin/

@@ -107,6 +107,15 @@ h2, h3, h4, h5, h6 {
   width: 100%;
   height: 20em; }
 
+.map-slider label:first-child {
+  float: left; }
+
+.map-slider label:last-child {
+  float: right; }
+
+#date-slider {
+  width: 100%; }
+
 .timeline {
   margin-left: 5em;
   padding-left: 1em;
