@@ -3,6 +3,7 @@ import copy
 from datetime import date
 from email.mime.text import MIMEText
 from flask import redirect, request, render_template as flask_render_template
+from markdown import markdown
 from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
@@ -21,13 +22,33 @@ def before_request():
 @app.route('/')
 def index():
     ''' render the basic template for angular '''
+    data = graph.get_all('grimoire')
+    grimoires = []
+    for g in data['nodes']:
+        g = g['properties']
+        year = helpers.grimoire_date(g)
+
+        grimoires.append({
+            'uid': g['uid'],
+            'identifier': g['identifier'],
+            'date': year
+        })
+        grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
+    excerpt = graph.get_frontpage_random()['nodes'][0]
+    excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
+    return flask_render_template('home.html', grimoires=grimoires,
+                                 title='Grimoire Encyclopedia', excerpt=excerpt)
+
+@app.route('/map')
+def temporospatial():
+    ''' render the basic template for angular '''
     events = graph.get_all('event')['nodes']
 
     template_data = {
         'title': 'Grimoire Encyclopedia',
         'events': events
     }
-    return flask_render_template('home.html', **template_data)
+    return flask_render_template('map.html', **template_data)
 
 
 @app.route('/support')
