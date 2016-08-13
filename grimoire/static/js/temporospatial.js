@@ -10,7 +10,7 @@ var map = new Datamap({
     },
     setProjection: function(element) {
         var projection = d3.geo.mercator()
-            .center([-15, 44])
+            .center([-15, 50])
             .rotate([4.4, 0])
             .scale(400)
             .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
@@ -30,6 +30,7 @@ var populateMap = function (eventset) {
             return ['<div class="hoverinfo">',
                 data.identifier,
                 '<br>' + data.place + ', ' + data.display_date,
+                (data.end_year ? ' - ' + data.end_year : ''),
                 '</div>'].join('');
         }
     });
@@ -52,8 +53,16 @@ var setEvents = function (year) {
     var eventset = [];
     var daterange = 20;
     $.each(events, function (index, item) {
-        if (item.year < year + daterange && item.year > year - daterange) {
-            eventset.push(item);
+        if (item.year && !item.end_year) {
+            if (item.year < year + daterange && item.year > year - daterange) {
+                eventset.push(item);
+            }
+        } else if (item.year && item.end_year) {
+            if ((item.year < year + daterange && item.year > year - daterange) ||
+                    (item.end_year < year + daterange && item.end_year > year - daterange) ||
+                    (item.year < year - daterange && item.end_year > year + daterange )) {
+                eventset.push(item);
+            }
         }
     });
     if (eventset.length < 4) {
