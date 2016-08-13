@@ -6,23 +6,32 @@ import logging
 from grimoire import app, graph, templates
 
 
-def grimoire_date(props):
+def grimoire_date(props, date_key='date'):
     '''
     get a nicely formatted year for a grimoire
     :param props: all the properties for a grimoire node
     :return: a string formatted date ("2015", "2010s", or "20th century")
     '''
     try:
-        date = int(props['date'])
+        date = int(props[date_key])
     except ValueError:
-        return date
+        return props[date_key]
+    except KeyError:
+        return None
 
     precision = props['date_precision']
 
     if precision == 'decade':
         return '%ds' % date
     elif precision == 'century':
-        return '%dth century' % (date / 100 + 1)
+        century = date / 100 + 1
+        if century == 1:
+            return '1st century'
+        elif century == 2:
+            return '2nd century'
+        elif century == 3:
+            return '3rd century'
+        return '%dth century' % century
 
     return date
 

@@ -44,6 +44,8 @@ def temporospatial():
     ''' render the basic template for angular '''
     events = graph.get_all('event')['nodes']
 
+    for event in events:
+        event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
     template_data = {
         'title': 'Grimoire Encyclopedia',
         'events': events

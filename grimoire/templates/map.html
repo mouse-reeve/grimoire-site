@@ -42,11 +42,14 @@
         {
             identifier: "{{ event.properties.identifier }}",
             year: {{ event.properties.date }},
+            {% if event.properties.end_date %}end_year: {{ event.properties.end_date }},{% endif %}
             place: "{{ event.properties.location }}",
-            radius: 10,
+            radius: {% if event.properties.location_precision == 'continent' %}40{% elif event.properties.location_procision == 'country' %}20{% else %}10{% endif%},
+            fillOpacity: {% if event.properties.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
             latitude: {{ event.properties.latitude }},
             longitude: {{ event.properties.longitude }},
-            fillKey: "{{ event.properties.event }}"
+            fillKey: "{{ event.properties.event }}",
+            display_date: "{{ event.properties.display_date }}"
         },
     {% endfor %}
     ];
