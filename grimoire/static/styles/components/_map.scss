@@ -4,11 +4,14 @@
     position: relative;
 }
 
+.map-slider label {
+    text-align: center;
+}
 .map-slider label:first-child {
-    float: left;
+    text-align: left;
 }
 .map-slider label:last-child {
-    float: right;
+    text-align: right;
 }
 #date-slider {
     width: 100%;

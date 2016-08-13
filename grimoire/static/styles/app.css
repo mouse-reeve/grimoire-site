@@ -108,11 +108,14 @@ h2, h3, h4, h5, h6 {
   height: 25em;
   position: relative; }
 
+.map-slider label {
+  text-align: center; }
+
 .map-slider label:first-child {
-  float: left; }
+  text-align: left; }
 
 .map-slider label:last-child {
-  float: right; }
+  text-align: right; }
 
 #date-slider {
   width: 100%; }

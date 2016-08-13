@@ -1,3 +1,5 @@
+var daterange = 20;
+
 var map = new Datamap({
     element: document.getElementById('map'),
     fills: {
@@ -49,18 +51,20 @@ var setDateSlider = function () {
 };
 
 var setEvents = function (year) {
-    // grab the 3+ events that in or before this decade
     var eventset = [];
-    var daterange = 20;
+
+    var coords = {};
     $.each(events, function (index, item) {
         if (item.year && !item.end_year) {
             if (item.year < year + daterange && item.year > year - daterange) {
+                coords[item.latitude + ',' + item.longitude] = coords[item.latitude + ',' + item.longitude] ? coords[item.latitude + ',' + item.longitude] + 1 : 1;
                 eventset.push(item);
             }
         } else if (item.year && item.end_year) {
             if ((item.year < year + daterange && item.year > year - daterange) ||
-                    (item.end_year < year + daterange && item.end_year > year - daterange) ||
-                    (item.year < year - daterange && item.end_year > year + daterange )) {
+                (item.end_year < year + daterange && item.end_year > year - daterange) ||
+                (item.year < year - daterange && item.end_year > year + daterange )) {
+                coords[item.latitude + ',' + item.longitude] = coords[item.latitude + ',' + item.longitude] ? coords[item.latitude + ',' + item.longitude] + 1 : 1;
                 eventset.push(item);
             }
         }
@@ -75,11 +79,21 @@ var setEvents = function (year) {
             }
         });
     }
-        
+
+    // shuffle nodes that are on top of each other
+    $.each(eventset, function (index, item) {
+        var key = item.latitude + ',' + item.longitude;
+        if (coords[key] > 1) {
+            coords[key] -= 1;
+            item.latitude += coords[key] / 2;
+            item.longitude += coords[key] / 2;
+        }
+    });
+    $('#current-dates').html(year-daterange + ' - ' + (year+daterange));
     populateMap(eventset);
 };
 
-var year = 1580;
+var year = 1590;
 $('#date-input').val(year);
 $('#date-slider').val(year);
 setEvents(year);
