@@ -12,7 +12,7 @@ var map = new Datamap({
     },
     setProjection: function(element) {
         var projection = d3.geo.mercator()
-            .center([-15, 50])
+            .center([-20, 50])
             .rotate([4.4, 0])
             .scale(400)
             .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
