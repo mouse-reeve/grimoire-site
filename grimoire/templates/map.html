@@ -20,6 +20,10 @@
     <section class="map-container">
         <div id="map"></div>
     </section>
+    <div class="divider"></div>
+    <h3>Events shown here</h3>
+    <section id="map-links">
+    </section>
 </div>
 
 <div id="feedback" class="reveal" data-reveal>
@@ -42,6 +46,7 @@
     {% for event in events | sort(attribute="properties.date", reverse=true) %}
         {
             identifier: "{{ event.properties.identifier }}",
+            link: "{{ event.link }}",
             year: {{ event.properties.date }},
             {% if event.properties.end_date %}end_year: {{ event.properties.end_date }},{% endif %}
             place: "{{ event.properties.location }}",

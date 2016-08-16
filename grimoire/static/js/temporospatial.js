@@ -27,6 +27,16 @@ var map = new Datamap({
 });
 
 var populateMap = function (eventset) {
+    eventlinks = [];
+    $.each(eventset, function (index, item) {
+        eventlinks.push(['<div>',
+                item.display_date + ': ',
+                '<a href="' + item.link + '">',
+                item.identifier,
+                '</a>',
+            '</div>'].join(''));
+    });
+    $('#map-links').html(eventlinks.join(''));
     map.bubbles(eventset, {
         popupTemplate: function (geo, data) {
             return ['<div class="hoverinfo">',
