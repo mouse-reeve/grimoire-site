@@ -69,16 +69,6 @@ var setEvents = function (year) {
             }
         }
     });
-    if (eventset.length < 4) {
-        $.each(events, function (index, item) {
-            if (item.year < year + daterange) {
-                eventset.push(item);
-            }
-            if (eventset.length > 3) {
-                return false;
-            }
-        });
-    }
 
     // shuffle nodes that are on top of each other
     $.each(eventset, function (index, item) {
