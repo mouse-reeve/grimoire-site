@@ -8,6 +8,7 @@ import grimoire.helpers as helpers
 from grimoire.helpers import render_template
 from grimoire import app, graph, entities
 
+@app.route('/event/<uid>')
 @app.route('/excerpt/<uid>')
 def redirect_excerpts(uid):
     ''' Re-route anyone who lands on an excerpt page to the proper node
@@ -16,7 +17,9 @@ def redirect_excerpts(uid):
     '''
 
     data = graph.get_node(uid)
-    source = helpers.extract_rel_list_by_type(data['relationships'], 'excerpt', 'start')
+    source = helpers.extract_rel_list_by_type(data['relationships'], 'event', 'start')
+    if not source:
+        source = helpers.extract_rel_list_by_type(data['relationships'], 'excerpt', 'start')
     try:
         source = source[0]
     except IndexError:
