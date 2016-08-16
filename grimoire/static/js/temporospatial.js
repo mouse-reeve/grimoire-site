@@ -1,4 +1,4 @@
-var daterange = 20;
+var daterange = 25;
 
 var map = new Datamap({
     element: document.getElementById('map'),
@@ -103,7 +103,7 @@ var setEvents = function (year) {
     populateMap(eventset);
 };
 
-var year = 1590;
+var year = 1585;
 $('#date-input').val(year);
 $('#date-slider').val(year);
 setEvents(year);
