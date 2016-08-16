@@ -11,11 +11,11 @@
     The <a href="/spell">Spells</a> list page can now be sorted by either outcome or grimoire.
     {% endcall %}
 
+{% if show_all %}
     {% call update("2016-05-23", "grimoires") %}
     Added the <a href="/grimoire/cambridge-book-of-magic"><em>Cambridge Book of Magic</em></a>, along with some of the spells it shares with other grimoires. Unfortunately, I don't have access to the full text; if you'd like to see more, consider <a href="/support">supporting</a> my research.
     {% endcall %}
 
-{% if show_all %}
     {% call update("2016-05-15", "grimoires") %}
     Added <a href="/grimoire/egyptian-secrets-of-albertus-magnus"><em>The Egyptian Secrets of Albertus Magnus</em></a>, along with the first 217 of the numerous spells it includes.
     {% endcall %}
