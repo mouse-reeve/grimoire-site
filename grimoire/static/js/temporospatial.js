@@ -1,31 +1,3 @@
-var daterange = 25;
-
-var map = new Datamap({
-    element: document.getElementById('map'),
-    fills: {
-        defaultFill: '#677077',
-        publication: '#f2b632',
-        birth: '#677077',
-        death: '#181b2c',
-        trial: '#2c181b',
-        era: '#fefefe',
-    },
-    setProjection: function(element) {
-        var projection = d3.geo.mercator()
-            .center([-20, 50])
-            .rotate([4.4, 0])
-            .scale(400)
-            .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
-        var path = d3.geo.path()
-            .projection(projection);
-        return {path: path, projection: projection};
-    },
-    geographyConfig: {
-        highlightOnHover: false,
-        popupOnHover: true,
-    },
-});
-
 var populateMap = function (eventset) {
     eventlinks = [];
     $.each(eventset, function (index, item) {
@@ -37,6 +9,7 @@ var populateMap = function (eventset) {
             '</div>'].join(''));
     });
     $('#map-links').html(eventlinks.join(''));
+    $('#map-count').html('(' + eventlinks.length + ')');
     map.bubbles(eventset, {
         popupTemplate: function (geo, data) {
             return ['<div class="hoverinfo">',
@@ -103,7 +76,37 @@ var setEvents = function (year) {
     populateMap(eventset);
 };
 
-var year = 1585;
-$('#date-input').val(year);
-$('#date-slider').val(year);
-setEvents(year);
+if (window.events) {
+    var daterange = 25;
+
+    var map = new Datamap({
+        element: document.getElementById('map'),
+        fills: {
+            defaultFill: '#677077',
+            publication: '#f2b632',
+            birth: '#677077',
+            death: '#181b2c',
+            trial: '#2c181b',
+            era: '#fefefe',
+        },
+        setProjection: function(element) {
+            var projection = d3.geo.mercator()
+                .center([-20, 50])
+                .rotate([4.4, 0])
+                .scale(400)
+                .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+            var path = d3.geo.path()
+                .projection(projection);
+            return {path: path, projection: projection};
+        },
+        geographyConfig: {
+            highlightOnHover: false,
+            popupOnHover: true,
+        },
+    });
+
+    var year = 1585;
+    $('#date-input').val(year);
+    $('#date-slider').val(year);
+    setEvents(year);
+}

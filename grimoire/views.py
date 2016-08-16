@@ -36,8 +36,24 @@ def index():
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
     excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
-    return flask_render_template('home.html', grimoires=grimoires,
-                                 title='Grimoire Encyclopedia', excerpt=excerpt)
+
+    # --- map
+    events = graph.get_all('event')['nodes']
+    events = sorted(events,
+                    key=lambda k: int(k['properties']['date']),
+                    reverse=True)
+
+    for event in events:
+        event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
+
+    # --- render template
+    template_data = {
+        'title': 'Grimoire Encyclopedia',
+        'grimoires': grimoires,
+        'excerpt': excerpt,
+        'events': events
+    }
+    return flask_render_template('home.html', **template_data)
 
 @app.route('/map')
 def temporospatial():

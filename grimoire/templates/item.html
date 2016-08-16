@@ -93,7 +93,7 @@
     <!-- lists -->
     {% if data.main %}
     <div id="item-lists">
-        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
+        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
             {% for section in data.main %}
             <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
                 <a class="accordion-title"><h3>{{ section.title | capitalize }} ({{ section.data | count }})</h3></a>
