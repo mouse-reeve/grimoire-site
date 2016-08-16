@@ -33,7 +33,7 @@ var populateMap = function (eventset) {
                 item.display_date + ': ',
                 '<a href="' + item.link + '">',
                 item.identifier,
-                '</a>',
+                '</a> (' + item.place + ')',
             '</div>'].join(''));
     });
     $('#map-links').html(eventlinks.join(''));
@@ -42,7 +42,6 @@ var populateMap = function (eventset) {
             return ['<div class="hoverinfo">',
                 data.identifier,
                 '<br>' + data.place + ', ' + data.display_date,
-                (data.end_year ? ' - ' + data.end_year : ''),
                 '</div>'].join('');
         }
     });
@@ -79,6 +78,17 @@ var setEvents = function (year) {
             }
         }
     });
+
+   if (eventset.length < 4) {
+        $.each(events, function (index, item) {
+            if (item.year < year + daterange) {
+                eventset.push(item);
+            }
+            if (eventset.length > 3) {
+                return false;
+            }
+        });
+    }
 
     // shuffle nodes that are on top of each other
     $.each(eventset, function (index, item) {

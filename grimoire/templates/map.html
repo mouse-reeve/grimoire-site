@@ -43,7 +43,7 @@
 
 <script>
     var events = [
-    {% for event in events | sort(attribute="properties.date", reverse=true) %}
+    {% for event in events %}
         {
             identifier: "{{ event.properties.identifier }}",
             link: "{{ event.link }}",
@@ -55,7 +55,7 @@
             latitude: {{ event.properties.latitude }},
             longitude: {{ event.properties.longitude }},
             fillKey: "{{ event.properties.event }}",
-            display_date: "{{ event.properties.display_date }}"
+            display_date: "{% if event.properties.end_date %}{{ event.properties.date }} - {{event.properties.end_date }} {% else %}{{ event.properties.display_date }}{% endif %}"
         },
     {% endfor %}
     ];

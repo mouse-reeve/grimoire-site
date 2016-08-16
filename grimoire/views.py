@@ -43,6 +43,9 @@ def index():
 def temporospatial():
     ''' render the basic template for angular '''
     events = graph.get_all('event')['nodes']
+    events = sorted(events,
+                    key=lambda k: int(k['properties']['date']),
+                    reverse=True)
 
     for event in events:
         event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
