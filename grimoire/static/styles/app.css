@@ -120,6 +120,34 @@ h2, h3, h4, h5, h6 {
 #date-slider {
   width: 100%; }
 
+.survey {
+  padding: 0.6em;
+  text-align: center;
+  background-color: #eee; }
+
+.survey div {
+  width: 80%;
+  margin: 0.2em auto;
+  padding: 0.4em 1.5em;
+  background-color: #677077;
+  border-radius: 1.5em;
+  position: relative; }
+
+.survey div::before, .survey div::after {
+  content: '\f005';
+  font-family: fontawesome;
+  position: absolute;
+  top: 23%; }
+
+.survey div::before {
+  left: 0.5em; }
+
+.survey div::after {
+  right: 0.5em; }
+
+.survey a {
+  color: #f2b632; }
+
 .timeline {
   margin-left: 5em;
   padding-left: 1em;
