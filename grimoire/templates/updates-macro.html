@@ -1,8 +1,17 @@
 {% macro update_content(show_all=False) %}
+    {% call update("2016-09-23", "grimoires") %}
+    Added <a href="/grimoire/clavis-inferni"><em>Clavis Inferni</em></a>, an illustrated 18th century demonic text.
+    {% endcall %}
+
+    {% call update("2016-09-17", "blog") %}
+    I wrote an introductory overview to the use of <a href="https://blog.mousereeve.com/uses-of-a-birds-tongue/" target="_blank">bird tongues in 18th and 19th century spells</a> on my personal blog.
+    {% endcall %}
+
     {% call update("2016-08-16", "display") %}
     There's a fancy map which you can interact with on the homepage, as well as on its own <a href="/map">dedicated page</a>.
     {% endcall %}
 
+{% if show_all %}
     {% call update("2016-08-01", "grimoires") %}
     Added <a href="/grimoire/romanus-buchlein"><em>Romanus-Büchlein</em></a>, an 18th century German spellbook, along with 73 spells that appear in the text.
     {% endcall %}
@@ -11,7 +20,6 @@
     The <a href="/spell">Spells</a> list page can now be sorted by either outcome or grimoire.
     {% endcall %}
 
-{% if show_all %}
     {% call update("2016-05-23", "grimoires") %}
     Added the <a href="/grimoire/cambridge-book-of-magic"><em>Cambridge Book of Magic</em></a>, along with some of the spells it shares with other grimoires. Unfortunately, I don't have access to the full text; if you'd like to see more, consider <a href="/support">supporting</a> my research.
     {% endcall %}
