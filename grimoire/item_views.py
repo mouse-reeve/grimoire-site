@@ -511,8 +511,20 @@ def compare_grimoires(uid_1, uid_2):
     props = {k: [details[0][k], details[1][k]] for k in keys}
 
     # ----- compare remaining relationships
-    exclude = ['lists', 'wrote', 'was_written_in']
+    exclude = ['lists']
     rels = [helpers.exclude_rels(rel_list, exclude) for rel_list in rels]
+
+    # pull out relationships between the two grimoires
+    self_rels = []
+    for rel in rels[0]:
+        if rel['start']['properties']['uid'] in [uid_1, uid_2] and \
+           rel['end']['properties']['uid'] in [uid_1, uid_2]:
+            self_rels.append(rel)
+
+    exclude_ids = [r['id'] for r in self_rels]
+    rels[0] = [r for r in rels[0] if not r['id'] in exclude_ids]
+    rels[1] = [r for r in rels[1] if not r['id'] in exclude_ids]
+
     # make a dictionary for each relationship type with an empty array value
     # ie: {'wrote': [[], []], 'influenced': [[], []]}
     types = {t: [[], []] for t in list(set([r['type'] for r in rels[0] + rels[1]]))}
@@ -525,34 +537,39 @@ def compare_grimoires(uid_1, uid_2):
     # remove types that only exist for one item or the other
     types = {k:v for (k, v) in types.items() if v[0] and v[1]}
 
-    same = []
-
+    same = {'start': [], 'end': []}
     for rel_type in types:
         relset = types[rel_type]
         direction = 'end' if \
-                    relset[0][0]['start']['properties']['uid'] == nodes[0]['properties']['uid'] \
+                    relset[0][0]['start']['properties']['uid'] == uid_1 \
                     else 'start'
         origin = 'start' if direction == 'end' else 'end'
 
         subjects = [[rel[direction] for rel in r] for r in relset]
-        same_uids = [i['properties']['uid'] for i in intersection(subjects[0], subjects[1])]
+        same_uids = [
+            i['properties']['uid'] for i in intersection(subjects[0], subjects[1])
+        ]
         same_rels = [rel for rel in relset[0] if rel[direction]['properties']['uid'] in same_uids]
 
-        # mark which end of the relationship is one of the two "origin" nodes for formatting
-        for rel in same_rels:
-            rel[origin]['id'] = -1
-        same += same_rels
+        same[origin] += same_rels
 
-    same = helpers.combine_rels(same)
-    same_start = [s for s in same if s['start'][0]['id'] == -1]
-    same_end = [s for s in same if s['end'][0]['id'] == -1]
-    same = {'start': same_start, 'end': same_end}
+    same = {'start': helpers.combine_rels(same['start']),
+            'end': helpers.combine_rels(same['end'])}
 
-    default_collapse = max_list_size > 20
     grimoires = graph.get_all('grimoire')['nodes']
-    return render_template(request.url, 'compare.html', title=title, same=same, props=props,
-                           shared_lists=shared_list, item_1=nodes[0], item_2=nodes[1],
-                           default_collapse=default_collapse, grimoires=grimoires)
+
+    props = {
+        'title': title,
+        'same': same,
+        'self_rels': self_rels,
+        'props': props,
+        'shared_lists': shared_list,
+        'item_1': nodes[0],
+        'item_2': nodes[1],
+        'default_collapse': max_list_size > 20,
+        'grimoires': grimoires
+    }
+    return render_template(request.url, 'compare.html', **props)
 
 
 def get_others(rels, node):

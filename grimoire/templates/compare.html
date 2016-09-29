@@ -24,41 +24,48 @@
     <!-- Graph connections -->
     <div class="card">
         <p>
+        {% for rel in self_rels %}
+            {{ rel['start']['properties']['identifier'] | unthe }}
+            {{ rel['type'] }}
+            {{ rel['end']['properties']['identifier'] | unthe }}.
+        {% endfor %}
+        </p>
+
         {% set rels = same['start'] %}
-        {% if rels and rels[0]['start'][0].id == -1 %}
+        {% if rels %}
+        <p>
             Each {{ rels[0]['start'][0].label | format }}
-        {% endif %}
-        {% if rels and rels[0]['start'][0].id == -1 %}
             <span class="comma-separated comma-and">
             {% for rel in rels | sort(attribute="type") %}
-                <span>
+            <span>
                 {{ rel.type | format }}
+                <span>
                 {% if not rel['end'].label in ['person', 'author'] %}the{% endif %}
                 {% if rel['end'] | count > 1 %}{{ rel['end'][0].label | pluralize }}{% else %}{{ rel['end'][0].label | format }}{% endif %}
                 <span class="comma-separated comma-and">
-                {% for s in rel['end'] %}<span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>{% endfor %}</span></span>{% endfor %}</span>
-        {% endif %}
+                    {% for s in rel['end'] %}<span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>{% endfor %}</span></span></span>{% endfor %}.</span>
         </p>
+        {% endif %}
 
-        <p>
         {% set rels = same['end'] %}
-        {% if rels and rels[0]['end'][0].id == -1 %}
+        {% if rels %}
+        <p>
             <span class="comma-separated comma-and">
             {% for rel in rels | sort(attribute="type") %}
                 <span>
-                {% if not rel['end'].label in ['person', 'author'] %}The{% endif %}
-                {% if rel['start'] | count > 1 %}{{ rel['start'][0].label | pluralize }}{% else %}{{ rel['start'][0].label | format }}{% endif %}
+                {% if not rel['start'][0].label in ['person', 'author'] %}
+                    The
+                    {% if rel['start'] | count > 1 %}{{ rel['start'][0].label | pluralize }}{% else %}{{ rel['start'][0].label | format }}{% endif %}
+                {% endif %}
                 <span class="comma-separated comma-and">
                 {% for s in rel['start'] %}
                     <span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>
                 {% endfor %}
                 </span>
                 {{ rel.type | format }}</span>{% endfor %}</span>
-        {% endif %}
-        {% if rels and rels[0]['end'][0].id == -1 %}
-            each {{ rels[0]['end'][0].label | format }}
-        {% endif %}
+            both {{ rels[0]['end'][0].label | format | pluralize }}.
         </p>
+        {% endif %}
     </div>
 
     <div class="divider"></div>
