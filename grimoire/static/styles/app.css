@@ -400,6 +400,9 @@ input, select {
   margin: 0.2em 0;
   line-height: 1.2em; }
 
+.sidebar-image small {
+  display: block; }
+
 footer {
   text-align: center;
   margin: 1em 5em; }
