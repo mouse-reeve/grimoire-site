@@ -58,6 +58,7 @@ h2, h3, h4, h5, h6 {
   content: "(show)"; }
 
 .divider {
+  clear: both;
   margin-right: auto;
   margin-left: auto;
   text-align: center;

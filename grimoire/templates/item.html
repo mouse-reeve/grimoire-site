@@ -110,7 +110,6 @@
         </ul>
     </div>
     {% endif %}
-
 </div>
 
 <div id="sidebar" class="medium-4 columns">
@@ -188,4 +187,61 @@
         </button>
     </form>
 </div>
+
+{% if data.events %}
+<div class="divider"></div>
+
+<section class="map-slider row">
+    <div class="small-10 columns">
+        <div class="row">
+            <label class="columns medium-4">{{ data.events_start }}</label>
+            <label class="columns medium-4"><strong id="current-dates"></strong></label>
+            <label class="columns medium-4">{{ data.events_end }}</label>
+        </div>
+        <input type="range" id="date-slider" min="{{ data.events_start }}" max="{{ data.events_end }}" onchange="setDate()" step="5">
+    </div>
+    <div class="small-2 columns">
+        <input type="number" id="date-input" min="{{ data.events_start }}" max="{{ data.events_end }}" step="1" onchange="setDateSlider()">
+    </div>
+</section>
+<section class="map-container">
+    <div id="map"></div>
+</section>
+<div class="divider-minor"></div>
+<section id="item-lists">
+    <ul class="card accordion" data-accordion data-allow-all-closed="true">
+        <li class="accordion-item" data-accordion-item>
+            <a class="accordion-title"><h3>Events shown here <span id="map-count"></span></h3></a>
+            <div id="map-links" class="accordion-content" data-tab-content></div>
+        </li>
+    </ul>
+</section>
+{% endif %}
+
+<script>
+    var start_year = {{ data.events_initial }};
+    var events = [
+    {% for event in data.events %}
+        {
+            identifier: "{{ event.properties.identifier }}",
+            link: "{{ event.link }}",
+            year: {{ event.properties.date }},
+            {% if event.properties.end_date %}end_year: {{ event.properties.end_date }},{% endif %}
+            place: "{{ event.properties.location }}",
+            radius: {% if event.properties.relevant %}15{% else %}8{% endif %},
+            fillOpacity: {% if event.properties.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
+            latitude: {{ event.properties.latitude }},
+            longitude: {{ event.properties.longitude }},
+            fillKey: "{{ 'publication' if event.properties.relevant else 'none'}}",
+            display_date: "{% if event.properties.end_date %}{{ event.properties.date }} - {{event.properties.end_date }} {% else %}{{ event.properties.display_date }}{% endif %}"
+        },
+    {% endfor %}
+    ];
+</script>
+
+
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="/static/js/vendor/datamaps.world.min.js"></script>
 {% endblock %}

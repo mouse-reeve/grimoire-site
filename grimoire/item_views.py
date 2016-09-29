@@ -116,6 +116,35 @@ def generic_item(node, rels):
     except AttributeError:
         content = ''
 
+    events = helpers.extract_rel_list(rels, 'event', 'end')
+    if events:
+        try:
+            dates = [int(e['properties']['date']) for e in events]
+        except ValueError:
+            pass
+        else:
+            event_keys = [e['properties']['uid'] for e in events]
+            events_initial = min(dates)
+            events_start = events_initial - (events_initial % 10) - 50
+            events_end = max(dates)
+            events_end = events_end - (events_end % 10) + 50
+
+            # but we want to show other events, too
+            events = graph.get_all('event')['nodes']
+            events = [e for e in events if e['properties']['date'] >= events_start and \
+                      e['properties']['date'] <= events_end]
+
+            for event in events:
+                event['properties']['relevant'] = event['properties']['uid'] in event_keys
+                event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
+
+            events = sorted(events,
+                            key=lambda k: int(k['properties']['date']),
+                            reverse=True)
+
+    else:
+        events_initial = events_start = events_end = 0
+
     excerpts = helpers.extract_rel_list(rels, 'excerpt', 'end')
     for excerpt in excerpts:
         try:
@@ -124,8 +153,9 @@ def generic_item(node, rels):
             pass
     rels = helpers.exclude_rels(rels, ['excerpt', 'event'])
 
-    details = {k: format_field(node['properties'][k]) for k in node['properties'] if
-               k not in ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
+    details = {k: format_field(node['properties'][k]) for k in \
+            node['properties'] if k not in \
+            ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
     details['Name'] = [{'text': node['properties']['identifier']}]
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None
@@ -134,6 +164,10 @@ def generic_item(node, rels):
         'id': node['id'],
         'content': content,
         'excerpts': excerpts,
+        'events': events,
+        'events_start': events_start,
+        'events_initial': events_initial,
+        'events_end': events_end,
         'details': details,
         'properties': node['properties'],
         'relationships': rels,

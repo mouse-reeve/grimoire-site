@@ -105,7 +105,11 @@ if (window.events) {
         },
     });
 
-    var year = 1585;
+    try {
+        var year = start_year;
+    } catch (e) {
+        var year = 1585;
+    }
     $('#date-input').val(year);
     $('#date-slider').val(year);
     setEvents(year);

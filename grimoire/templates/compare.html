@@ -25,9 +25,9 @@
     <div class="card">
         <p>
         {% for rel in self_rels %}
-            {{ rel['start']['properties']['identifier'] | unthe }}
+            <em>{{ rel['start']['properties']['identifier'] | unthe }}</em>
             {{ rel['type'] | format }}
-            {{ rel['end']['properties']['identifier'] | unthe }}.
+            <em>{{ rel['end']['properties']['identifier'] | unthe }}</em>.
         {% endfor %}
         </p>
 
