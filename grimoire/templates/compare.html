@@ -71,7 +71,7 @@
             {% for (section, items) in shared_lists.items() %}
                 {% if items | count %}
                 <li class="accordion-item medium-5 columns {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
-                    <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} that appear in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
+                    <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
                     <div class="accordion-content" data-tab-content>
                         {{ macros.rel_list(items) }}
                     </div>
