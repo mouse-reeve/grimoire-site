@@ -10,4 +10,6 @@ bin/
 include/
 lib/
 
+grimoire/static/images/content/
+
 export.*

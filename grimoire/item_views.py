@@ -151,12 +151,15 @@ def generic_item(node, rels):
             excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
         except AttributeError:
             pass
-    rels = helpers.exclude_rels(rels, ['excerpt', 'event'])
+
+    images = helpers.extract_rel_list(rels, 'image', 'end')
+
+    # remove special node types from relationship lists
+    rels = helpers.exclude_rels(rels, ['excerpt', 'event', 'image'])
 
     details = {k: format_field(node['properties'][k]) for k in \
             node['properties'] if k not in \
             ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
-    details['Name'] = [{'text': node['properties']['identifier']}]
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None
 
@@ -168,6 +171,7 @@ def generic_item(node, rels):
         'events_start': events_start,
         'events_initial': events_initial,
         'events_end': events_end,
+        'images': images,
         'details': details,
         'properties': node['properties'],
         'relationships': rels,
