@@ -152,10 +152,10 @@ def generic_item(node, rels):
         except AttributeError:
             pass
 
-    images = helpers.extract_rel_list(rels, 'image', 'end')
+    images = helpers.extract_rel_list_by_type(rels, 'image', 'end', label='image')
 
     # remove special node types from relationship lists
-    rels = helpers.exclude_rels(rels, ['excerpt', 'event', 'image'])
+    rels = helpers.exclude_rels(rels, ['excerpt', 'event', 'image', 'contains_illustration'])
 
     details = {k: format_field(node['properties'][k]) for k in \
             node['properties'] if k not in \

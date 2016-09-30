@@ -113,7 +113,7 @@ class GraphService(object):
             return []
         query = 'MATCH n WHERE (n.identifier =~ {term} OR ' \
                 'n.alternate_names =~ {term}) ' \
-                'AND NOT n:excerpt RETURN n'
+                'AND NOT n:excerpt AND NOT n:image RETURN n'
 
         return self.query(query, term='(?i)(?s).*%s.*' % term)
 
