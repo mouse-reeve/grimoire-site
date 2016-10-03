@@ -1,0 +1,48 @@
+{% macro timeline(data, start=0, end=2000) %}
+<div class="timeline">
+    {% for century in range(start, end+1, 100) %}
+    <div class="century">
+        {% if century in data %}
+        <h3 class="date">{{ century }}</h3>
+        {% if century in data and data[century]['items'] %}
+        <div class="imprecise">
+            <em>In this century:</em>
+                {{ item(data[century]['items']) }}
+        </div>
+        {% endif %}
+        {% for decade in range(century, century + 100, 10) %}
+        <div class="decade">
+            {% if century in data and decade in data[century].decades and data[century].decades[decade]['items'] %}
+            <p class="date">{{ decade }}</p>
+            <div class="imprecise">
+                <em>In this decade:</em>
+                {{ item(data[century].decades[decade]['items']) }}
+            </div>
+            {% endif %}
+
+            {% for year in range(decade, decade + 10) %}
+            <div class="year">
+                {% if century in data and decade in data[century].decades and year in data[century].decades[decade].years and data[century].decades[decade].years[year]['items'] %}
+                <p class="date">{{ year }}</p>
+                {{ item(data[century].decades[decade].years[year]['items']) }}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endmacro %}
+
+{% macro item(nodes) %}
+<span class="comma-separated">
+    {% for item in nodes %}
+    <span>
+        
+        <a href="{{item.link}}" class="{% if item.properties.relevant %}relevant{% endif %}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+    {% endfor %}
+</span>
+{% endmacro %}

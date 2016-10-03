@@ -17,7 +17,7 @@ class GraphService(object):
             user = os.environ['NEO4J_USER']
             password = os.environ['NEO4J_PASS']
         except KeyError:
-            logging.error('Environment variables for database authentication unavailable')
+            logging.error('Environment vars for database auth unavailable')
         else:
             authenticate('localhost:7474', user, password)
 
@@ -32,7 +32,8 @@ class GraphService(object):
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
         self.labels = [l[0][0] for l in labels if not 'parent' in l[0][0]]
-        self.date_params = ['born', 'died', 'crowned', 'date', 'year', 'began', 'ended']
+        self.date_params = ['born', 'died', 'crowned', 'date',
+                            'year', 'began', 'ended']
         self.timeline_labels = []
         self.timeline_data = []
 
@@ -57,7 +58,8 @@ class GraphService(object):
         ''' get a list of all the supernatural entities
         :return: a list of labels under the parent label "entity"
         '''
-        labels = self.query('MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)')
+        query = 'MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)'
+        labels = self.query(query)
         return [l[0][0] for l in labels if not 'parent' in l[0][0]]
 
 
@@ -93,14 +95,6 @@ class GraphService(object):
         query = 'MATCH n WHERE n.uid = {uid} ' \
                 'OPTIONAL MATCH (n)-[r]-() RETURN n, r'
         return self.query(query, uid=uid)
-
-
-    @serialize
-    def random(self):
-        ''' select one random node
-        :return: the serialized neo4j nodelist
-        '''
-        return self.query('MATCH n RETURN n, rand() as random ORDER BY random LIMIT 1')
 
 
     @serialize
@@ -188,7 +182,7 @@ class GraphService(object):
     def get_single_grimoire_entities(self, entity):
         ''' get a list of entities that only appear in one grimoire, by grimoire
         :param entity: the type of entity being assesses
-        :return: a list of supernatural entities of the given type that only appear in 1 grimoire
+        :return: a list of supernatural entities of the given type in 1 grimoire
         '''
         query = 'MATCH (n:grimoire)-[r:lists]->(m:%s), (p:grimoire) ' \
                 'WITH m, COUNT(r) AS cr, p ' \
@@ -213,7 +207,8 @@ class GraphService(object):
         ''' get a list of spells organized by outcome
         :return: serialized list of outcomes and spells
         '''
-        query = 'MATCH (n:outcome)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
+        query = 'MATCH (n:outcome)--(m:spell) ' \
+                'WITH n, COLLECT(m) AS spells RETURN n, spells'
         return self.query(query)
 
 
@@ -222,7 +217,8 @@ class GraphService(object):
         ''' get a list of spells organized by outcome
         :return: serialized list of outcomes and spells
         '''
-        query = 'MATCH (n:grimoire)--(m:spell) WITH n, COLLECT(m) AS spells RETURN n, spells'
+        query = 'MATCH (n:grimoire)--(m:spell) ' \
+                'WITH n, COLLECT(m) AS spells RETURN n, spells'
         return self.query(query)
 
 
@@ -263,3 +259,23 @@ class GraphService(object):
                 'WITH g, COLLECT(d) as cd ' \
                 'RETURN g, cd ORDER BY SIZE(cd) DESC LIMIT 1' % label
         return self.query(query, grimoire=grimoire)
+
+    @serialize
+    def get_events(self, start, end):
+        ''' get all events within a time range '''
+        query = 'MATCH (n:event) ' \
+                'WHERE (toInt(n.date) >= {start} and toInt(n.date) <= {end}) ' \
+                'AND (NOT has(n.end_date) OR toInt(n.date) <= {end}) ' \
+                'RETURN DISTINCT n'
+        return self.query(query, start=start, end=end)
+
+
+    @serialize
+    def get_entity_events(self, entity):
+        ''' get all grimoire publication events for grimoires
+        that list an entity '''
+        query = 'MATCH (e:event)--(:`parent:book`)--(n:`parent:entity`) ' \
+                'WHERE n.uid={entity} AND e.event="publication" ' \
+                'RETURN e'
+        return self.query(query, entity=entity)
+

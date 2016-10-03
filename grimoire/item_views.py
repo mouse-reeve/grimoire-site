@@ -1,5 +1,6 @@
 ''' views for the item type pages '''
 import logging
+import math
 
 from flask import redirect, request
 from markdown import markdown
@@ -116,34 +117,9 @@ def generic_item(node, rels):
     except AttributeError:
         content = ''
 
+    # -- build timeline
     events = helpers.extract_rel_list(rels, 'event', 'end')
-    if events:
-        try:
-            dates = [int(e['properties']['date']) for e in events]
-        except ValueError:
-            pass
-        else:
-            event_keys = [e['properties']['uid'] for e in events]
-            events_initial = min(dates)
-            events_start = events_initial - (events_initial % 10) - 50
-            events_end = max(dates)
-            events_end = events_end - (events_end % 10) + 50
-
-            # but we want to show other events, too
-            events = graph.get_all('event')['nodes']
-            events = [e for e in events if e['properties']['date'] >= events_start and \
-                      e['properties']['date'] <= events_end]
-
-            for event in events:
-                event['properties']['relevant'] = event['properties']['uid'] in event_keys
-                event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
-
-            events = sorted(events,
-                            key=lambda k: int(k['properties']['date']),
-                            reverse=True)
-
-    else:
-        events_initial = events_start = events_end = 0
+    timeline, timeline_min, timeline_max = build_timeline(events)
 
     excerpts = helpers.extract_rel_list(rels, 'excerpt', 'end')
     for excerpt in excerpts:
@@ -155,7 +131,8 @@ def generic_item(node, rels):
     images = helpers.extract_rel_list_by_type(rels, 'image', 'end', label='image')
 
     # remove special node types from relationship lists
-    rels = helpers.exclude_rels(rels, ['excerpt', 'event', 'image', 'contains_illustration'])
+    remove = ['excerpt', 'event', 'image', 'contains_illustration']
+    rels = helpers.exclude_rels(rels, remove)
 
     details = {k: format_field(node['properties'][k]) for k in \
             node['properties'] if k not in \
@@ -167,10 +144,9 @@ def generic_item(node, rels):
         'id': node['id'],
         'content': content,
         'excerpts': excerpts,
-        'events': events,
-        'events_start': events_start,
-        'events_initial': events_initial,
-        'events_end': events_end,
+        'timeline': timeline,
+        'start_date': timeline_min,
+        'end_date': timeline_max,
         'images': images,
         'details': details,
         'properties': node['properties'],
@@ -292,6 +268,16 @@ def entity_item(node, rels):
                 not s['properties']['uid'] == node['properties']['uid']]
     if servants:
         data['main'].append({'title': 'Servants', 'data': servants})
+
+    # --- timeline of grimoire appearances
+    events = graph.get_entity_events(node['properties']['uid'])['nodes']
+    note = "(lists the %s %s)" % (helpers.format_filter(node['label']), node['properties']['identifier'])
+    timeline, timeline_min, timeline_max = build_timeline(events, relevant_note=note)
+
+    data['timeline'] = timeline
+    data['start_date'] = timeline_min
+    data['end_date'] = timeline_max
+
 
     if not data['content']:
         content = 'The %s %s appears in %s' % \
@@ -687,3 +673,38 @@ def intersection(nodes_1, nodes_2):
             [n['properties']['uid'] for n in nodes_2]]
     shared_uids = list(set(keys[0]) & set(keys[1]))
     return [n for n in nodes_1 if n['properties']['uid'] in shared_uids]
+
+
+def build_timeline(events, relevant_note=None):
+    timeline = {}
+    timeline_min = 0
+    timeline_max = 0
+    if events:
+        try:
+            dates = [int(e['properties']['date']) for e in events]
+        except ValueError:
+            logging.error('Failed to parse event dates')
+        else:
+            event_keys = [e['properties']['uid'] for e in events]
+            events_start = min(dates)
+            events_end = max(dates)
+
+            # but we want to show other events, too
+            offset = 10 # +/- some number of years
+            timeline_min = (events_start - offset) / 100 * 100
+            timeline_max = (events_end + offset) / 100 * 100
+            events = graph.get_events(events_start - offset, events_end + offset)['nodes']
+
+            for event in events:
+                event['properties']['relevant'] = event['properties']['uid'] in event_keys
+                event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
+
+                note = relevant_note if event['properties']['relevant'] else None
+                timeline = helpers.add_to_timeline(
+                    timeline, event,
+                    event['properties']['date'],
+                    event['properties']['date_precision'],
+                    note=note,
+                    allow_events=True)
+    return (timeline, timeline_min, timeline_max)
+

@@ -1,4 +1,5 @@
 ''' data formatting helper functions '''
+import copy
 import re
 from flask import render_template as flask_render_template
 import logging
@@ -212,3 +213,45 @@ def combine_rels(rels):
             'type': rels[0]['type']
         })
     return result
+
+
+def add_to_timeline(timeline, node, year, date_precision, note=None, allow_events=False):
+    ''' put a date on it
+    :param timeline: the existing timeline object
+    :param year: the year/decade/century of origin
+    :param date_precision: how precide the date is (year/decade/century)
+    :param node: the node
+    :param note: display text to go along with the node (if available)
+    :return: updated timeline object
+    '''
+    if not allow_events and node['label'] == 'event':
+        return timeline
+    new_node = copy.copy(node)
+    if note:
+        new_node['note'] = note
+
+    try:
+        year = int(year)
+    except ValueError:
+        return timeline
+
+    century = year / 100 * 100
+    decade = year / 10 * 10 if date_precision != 'century' else None
+    year = year if date_precision == 'year' else None
+
+    if century not in timeline:
+        timeline[century] = {'decades': {}, 'items': []}
+    if decade and decade not in timeline[century]['decades']:
+        timeline[century]['decades'][decade] = {'years': {}, 'items': []}
+    if year and year not in timeline[century]['decades'][decade]['years']:
+        timeline[century]['decades'][decade]['years'][year] = {'items': []}
+
+    if year:
+        timeline[century]['decades'][decade]['years'][year]['items'] += [new_node]
+
+    elif decade:
+        timeline[century]['decades'][decade]['items'] += [new_node]
+    else:
+        timeline[century]['items'] += [new_node]
+
+    return timeline
