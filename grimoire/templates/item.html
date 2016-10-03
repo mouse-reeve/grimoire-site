@@ -90,6 +90,23 @@
     </div>
     {% endif %}
 
+    <!-- illustrations -->
+    {% if data.images %}
+    {% for image in data.images %}
+    {% if image.properties.type == 'illustration' %}
+    <div class="illustration card">
+        <h3>{{ image.properties.identifier }}</h3>
+        <a href="/static/images/content/{{ image.properties.filename }}" target="_blank"><img src="/static/images/content/{{ image.properties.filename }}" alt="{{image.properties.identifier }}"></a>
+        {% if image.properties.source %}
+        <small class="image-source"><a href="{{ image.properties.source }}">source: {{ image.properties.source | shortlink }}</a></small>
+    {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    <div class="divider"></div>
+
     <!-- lists -->
     {% if data.main %}
     <div id="item-lists">
@@ -142,10 +159,12 @@
     {% if data.images %}
     <div class="detail-box sidebar-image">
         {% for image in data.images %}
+        {% if image.properties.type != 'illustration' %}
         <h3>{{ image.properties.identifier }}</h3>
         <a href="/static/images/content/{{ image.properties.filename }}" target="_blank"><img src="/static/images/content/{{ image.properties.filename }}" alt="{{image.properties.identifier }}"></a>
         {% if image.properties.source %}
-        <small><a href="{{ image.properties.source }}">source: {{ image.properties.source | shortlink }}</a></small>
+        <small class="image-source"><a href="{{ image.properties.source }}">source: {{ image.properties.source | shortlink }}</a></small>
+        {% endif %}
         {% endif %}
         {% endfor %}
     </div>

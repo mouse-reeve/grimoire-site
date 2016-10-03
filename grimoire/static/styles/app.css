@@ -370,6 +370,9 @@ input, select {
   background-color: #677077;
   padding: 0.5em 1em; }
 
+.image-source {
+  display: block; }
+
 #sidebar {
   border: 1px solid #aaa;
   background: #eee;
@@ -399,9 +402,6 @@ input, select {
   vertical-align: top;
   margin: 0.2em 0;
   line-height: 1.2em; }
-
-.sidebar-image small {
-  display: block; }
 
 footer {
   text-align: center;
