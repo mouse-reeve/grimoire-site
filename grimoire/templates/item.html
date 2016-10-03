@@ -120,7 +120,7 @@
             </li>
             {% if section.compare %}
             {% for c in section.compare %}
-            <p>This grimoire shares {{ c.count }} {{ section.title }} with {{ c.grimoire.properties.identifier | unthe }}. <a href="{{ c.link }}">Compare.</a></p>
+            <p>This grimoire shares {{ c.count }} {{ section.title }} with <em>{{ c.grimoire.properties.identifier | unthe }}</em>. <a href="{{ c.link }}">Compare.</a></p>
             {% endfor %}
             {% endif %}
             {% endfor %}
