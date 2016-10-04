@@ -50,10 +50,10 @@
     </div>
 
 
-    <div class="divider"></div>
-
     <!-- Graph connections -->
     {% if data.relationships %}
+    <div class="divider"></div>
+
     <div class="card">
         {% for rel in data.relationships | sort(attribute="type") %}
         <p>
@@ -106,10 +106,10 @@
     {% endfor %}
     {% endif %}
 
-    <div class="divider"></div>
-
     <!-- lists -->
     {% if data.main %}
+    <div class="divider"></div>
+
     <div id="item-lists">
         <ul class="card accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
             {% for section in data.main %}
@@ -129,9 +129,9 @@
     </div>
     {% endif %}
 
+    {% if data.timeline %}
     <div class="divider"></div>
 
-    {% if data.timeline %}
     <div class="card">
         <h3>Timeline</h3>
         {{ timeline.timeline(data.timeline, start=data.start_date, end=data.end_date) }}
