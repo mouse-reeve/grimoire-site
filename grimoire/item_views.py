@@ -125,7 +125,7 @@ def generic_item(node, rels):
     related = zip(related['nodes'], related['relationships'])
     for rel_item in related:
         event = rel_item[0]
-        this = 'this %s' % node['label']
+        this = 'this %s' % helpers.format_filter(node['label'])
         rel_type = helpers.format_filter(rel_item[1]['type'])
         if rel_item[1]['start']['properties']['uid'] == node['properties']['uid']:
             note = '(%s %s %s)' % (this, rel_type, helpers.unthe(rel_item[1]['end']['properties']['identifier']))
