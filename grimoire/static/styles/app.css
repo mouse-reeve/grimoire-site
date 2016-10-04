@@ -162,6 +162,9 @@ h2, h3, h4, h5, h6 {
   clear: left;
   margin: 0; }
 
+.timeline .century {
+  min-height: 3em; }
+
 .timeline div {
   min-height: 0.1em; }
 

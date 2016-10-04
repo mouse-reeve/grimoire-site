@@ -119,7 +119,7 @@ def generic_item(node, rels):
 
     # -- build timeline
     events = helpers.extract_rel_list(rels, 'event', 'end')
-    timeline, timeline_min, timeline_max = build_timeline(events)
+    timeline, timeline_min, timeline_max = build_timeline(events, show_everything=True)
 
     excerpts = helpers.extract_rel_list(rels, 'excerpt', 'end')
     for excerpt in excerpts:
@@ -270,9 +270,9 @@ def entity_item(node, rels):
         data['main'].append({'title': 'Servants', 'data': servants})
 
     # --- timeline of grimoire appearances
-    events = graph.get_entity_events(node['properties']['uid'])['nodes']
-    note = "(lists the %s %s)" % (helpers.format_filter(node['label']), node['properties']['identifier'])
-    timeline, timeline_min, timeline_max = build_timeline(events, relevant_note=note)
+    events = graph.get_grimoire_events(node['properties']['uid'])['nodes']
+    note = "(lists this %s)" % helpers.format_filter(node['label'])
+    timeline, timeline_min, timeline_max = build_timeline(events, note=note)
 
     data['timeline'] = timeline
     data['start_date'] = timeline_min
@@ -407,6 +407,15 @@ def spell_item(node, rels):
     outcomes = helpers.extract_rel_list_by_type(rels, 'for', 'end')
     if outcomes:
         data['details']['Outcome'] = extract_details(outcomes)
+
+    # --- timeline of grimoire appearances
+    events = graph.get_grimoire_events(node['properties']['uid'])['nodes']
+    note = "(lists this %s)" % helpers.format_filter(node['label'])
+    timeline, timeline_min, timeline_max = build_timeline(events, note=note)
+
+    data['timeline'] = timeline
+    data['start_date'] = timeline_min
+    data['end_date'] = timeline_max
 
     if not data['content'] and not data['excerpts']:
         grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
@@ -675,7 +684,7 @@ def intersection(nodes_1, nodes_2):
     return [n for n in nodes_1 if n['properties']['uid'] in shared_uids]
 
 
-def build_timeline(events, relevant_note=None):
+def build_timeline(events, note=None, show_everything=False):
     timeline = {}
     timeline_min = 0
     timeline_max = 0
@@ -685,21 +694,21 @@ def build_timeline(events, relevant_note=None):
         except ValueError:
             logging.error('Failed to parse event dates')
         else:
-            event_keys = [e['properties']['uid'] for e in events]
             events_start = min(dates)
             events_end = max(dates)
 
-            # but we want to show other events, too
             offset = 10 # +/- some number of years
             timeline_min = (events_start - offset) / 100 * 100
             timeline_max = (events_end + offset) / 100 * 100
-            events = graph.get_events(events_start - offset, events_end + offset)['nodes']
+
+            event_keys = []
+            if show_everything:
+                event_keys = [e['properties']['uid'] for e in events]
+                events = graph.get_events(events_start - offset, events_end + offset)['nodes']
 
             for event in events:
-                event['properties']['relevant'] = event['properties']['uid'] in event_keys
-                event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
-
-                note = relevant_note if event['properties']['relevant'] else None
+                event['properties']['relevant'] = event['properties']['uid'] in event_keys and show_everything
+                note = note if not show_everything or event['properties']['relevant'] else None
                 timeline = helpers.add_to_timeline(
                     timeline, event,
                     event['properties']['date'],

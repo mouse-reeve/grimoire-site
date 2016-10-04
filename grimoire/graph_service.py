@@ -271,10 +271,10 @@ class GraphService(object):
 
 
     @serialize
-    def get_entity_events(self, entity):
+    def get_grimoire_events(self, entity):
         ''' get all grimoire publication events for grimoires
         that list an entity '''
-        query = 'MATCH (e:event)--(:`parent:book`)--(n:`parent:entity`) ' \
+        query = 'MATCH (e:event)--(:`parent:book`)--(n) ' \
                 'WHERE n.uid={entity} AND e.event="publication" ' \
                 'RETURN e'
         return self.query(query, entity=entity)

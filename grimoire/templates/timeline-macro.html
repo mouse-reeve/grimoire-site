@@ -4,7 +4,8 @@
     <div class="century">
         {% if century in data %}
         <h3 class="date">{{ century }}</h3>
-        {% if century in data and data[century]['items'] %}
+        {% if century in data or (century > start and century < end) %}
+        {% if data[century]['items']  %}
         <div class="imprecise">
             <em>In this century:</em>
                 {{ item(data[century]['items']) }}
@@ -31,6 +32,9 @@
         </div>
         {% endfor %}
         {% endif %}
+        {% elif century > start and century < end %}
+        <h3 class="date minor">{{ century }}</h3>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
@@ -41,7 +45,6 @@
 <span class="comma-separated">
     {% for item in nodes %}
     <span>
-        
         <a href="{{item.link}}" class="{% if item.properties.relevant %}relevant{% endif %}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
     {% endfor %}
 </span>
