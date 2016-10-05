@@ -150,7 +150,7 @@ def alphabuckets(items):
     ''' sort items into letter "buckets" for alphabetizing '''
     buckets = {}
     for node in items:
-        letter = node['properties']['identifier'][0].upper()
+        letter = node['props']['identifier'][0].upper()
         buckets[letter] = [node] if letter not in buckets else buckets[letter] + [node]
 
     return buckets
@@ -187,7 +187,7 @@ def get_node(uid):
 
     return {
         'node': result['nodes'][0],
-        'relationships': result['relationships']
+        'rels': result['rels']
     }
 
 

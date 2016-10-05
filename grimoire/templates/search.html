@@ -9,7 +9,7 @@
     <ul>
         {% for result in results %}
         <li>
-            <a href="{{ result.link }}">{{ result.properties.identifier }}</a> ({{ result.label | format }})
+            <a href="{{ result.link }}">{{ result.props.identifier }}</a> ({{ result.label | format }})
         </li>
         {% endfor %}
     </ul>

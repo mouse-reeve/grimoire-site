@@ -45,17 +45,17 @@
     var events = [
     {% for event in events %}
         {
-            identifier: "{{ event.properties.identifier }}",
+            identifier: "{{ event.props.identifier }}",
             link: "{{ event.link }}",
-            year: {{ event.properties.date }},
-            {% if event.properties.end_date %}end_year: {{ event.properties.end_date }},{% endif %}
-            place: "{{ event.properties.location }}",
+            year: {{ event.props.date }},
+            {% if event.props.end_date %}end_year: {{ event.props.end_date }},{% endif %}
+            place: "{{ event.props.location }}",
             radius: 10,
-            fillOpacity: {% if event.properties.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
-            latitude: {{ event.properties.latitude }},
-            longitude: {{ event.properties.longitude }},
-            fillKey: "{{ event.properties.event }}",
-            display_date: "{% if event.properties.end_date %}{{ event.properties.date }} - {{event.properties.end_date }} {% else %}{{ event.properties.display_date }}{% endif %}"
+            fillOpacity: {% if event.props.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
+            latitude: {{ event.props.latitude }},
+            longitude: {{ event.props.longitude }},
+            fillKey: "{{ event.props.event }}",
+            display_date: "{% if event.props.end_date %}{{ event.props.date }} - {{event.props.end_date }} {% else %}{{ event.props.display_date }}{% endif %}"
         },
     {% endfor %}
     ];

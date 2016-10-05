@@ -41,8 +41,8 @@
                 <a class="accordion-title"><h3>{{outcome}} ({{ spell_list | count }})</h3></a>
                 <div class="accordion-content" data-tab-content>
                     <ul>
-                        {% for spell in spell_list | sort(attribute='properties.identifier') %}
-                        <li><a href="{{ spell.link }}">{{ spell.properties.identifier }}</a>{% if spell.properties.grimoire %} (<span class="comma-separated">{% for grim in spell.properties.grimoire %}<span>{{ grim | unthe }}</span>{% endfor %}</span>){% endif %}</li>
+                        {% for spell in spell_list | sort(attribute='props.identifier') %}
+                        <li><a href="{{ spell.link }}">{{ spell.props.identifier }}</a>{% if spell.props.grimoire %} (<span class="comma-separated">{% for grim in spell.props.grimoire %}<span>{{ grim | unthe }}</span>{% endfor %}</span>){% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>

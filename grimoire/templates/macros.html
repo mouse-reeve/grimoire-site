@@ -1,10 +1,10 @@
 {% macro rel_list(data, many='') %}
 <div class="card">
     <ul class="rel-list {% if many %} many{% endif %}">
-        {% for rel in data | sort(attribute="properties.identifier")%}
+        {% for rel in data | sort(attribute="props.identifier")%}
         <li>
-            <a href="/{{ rel.label }}/{{ rel.properties.uid }}">{{ rel.properties.identifier }}</a>
-            {% if rel.properties.editor %}({{ rel.properties.editor | unthe }}){% endif %}
+            <a href="/{{ rel.label }}/{{ rel.props.uid }}">{{ rel.props.identifier }}</a>
+            {% if rel.props.editor %}({{ rel.props.editor | unthe }}){% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -18,10 +18,10 @@
     <div class="card {{many}}">
         <h4>{{ letter }}</h4>
         <ul>
-            {% for item in list | sort(attribute="properties.identifier") %}
+            {% for item in list | sort(attribute="props.identifier") %}
             <li>
-                <a href="{{ item.link }}">{{ item.properties.identifier | capitalize }}</a>
-                {% if item.properties.alternate_names %}({{ item.properties.alternate_names }}){% endif %}
+                <a href="{{ item.link }}">{{ item.props.identifier | capitalize }}</a>
+                {% if item.props.alternate_names %}({{ item.props.alternate_names }}){% endif %}
             </li>
             {% endfor %}
         </ul>
@@ -33,11 +33,11 @@
 
 {% macro excerpt(excerpt) %}
 <p>
-    From {% if excerpt.properties.source_url and not excerpt.properties.editor %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}
-    <em>{{ excerpt.properties.source_title }}</em>{% if excerpt.properties.source_url and not excerpt.properties.editor %}</a>{% endif %}{% if excerpt.properties.editor %}, {% if excerpt.properties.source_url %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}{{ excerpt.properties.editor }}{% if excerpt.properties.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.properties.source_year %} ({{ excerpt.properties.source_year }}){% endif %}:
+    From {% if excerpt.props.source_url and not excerpt.props.editor %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}
+    <em>{{ excerpt.props.source_title }}</em>{% if excerpt.props.source_url and not excerpt.props.editor %}</a>{% endif %}{% if excerpt.props.editor %}, {% if excerpt.props.source_url %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}{{ excerpt.props.editor }}{% if excerpt.props.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.props.source_year %} ({{ excerpt.props.source_year }}){% endif %}:
     <blockquote class="excerpt">
-        <p><strong>{{ excerpt.properties.identifier }}</strong></p>
-        <p>{{ excerpt.properties.content | safe }}</p>
+        <p><strong>{{ excerpt.props.identifier }}</strong></p>
+        <p>{{ excerpt.props.content | safe }}</p>
     </blockquote>
 </p>
 {% endmacro %}

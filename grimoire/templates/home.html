@@ -59,13 +59,13 @@
         <div class="column medium-4">
             <h3>Random Spell</h3>
             <p>
-                <a href="{{excerpt.link}}"><strong>{{ excerpt.properties.identifier }}</strong></a>
+                <a href="{{excerpt.link}}"><strong>{{ excerpt.props.identifier }}</strong></a>
                 <blockquote>
-                    <p>{{ excerpt.properties.content | safe }}</p>
+                    <p>{{ excerpt.props.content | safe }}</p>
                 </blockquote>
             </p>
-                From {% if excerpt.properties.source_url and not excerpt.properties.editor %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}
-                <em>{{ excerpt.properties.source_title }}</em>{% if excerpt.properties.source_url and not excerpt.properties.editor %}</a>{% endif %}{% if excerpt.properties.editor %}, {% if excerpt.properties.source_url %}<a href="{{ excerpt.properties.source_url }}" target="_blank">{% endif %}{{ excerpt.properties.editor }}{% if excerpt.properties.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.properties.source_year %} ({{ excerpt.properties.source_year }}){% endif %}:
+                From {% if excerpt.props.source_url and not excerpt.props.editor %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}
+                <em>{{ excerpt.props.source_title }}</em>{% if excerpt.props.source_url and not excerpt.props.editor %}</a>{% endif %}{% if excerpt.props.editor %}, {% if excerpt.props.source_url %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}{{ excerpt.props.editor }}{% if excerpt.props.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.props.source_year %} ({{ excerpt.props.source_year }}){% endif %}:
             <a href="/spell">More spells</a>
         </div>
         <div class="column medium-4">
@@ -121,17 +121,17 @@
     var events = [
     {% for event in events %}
         {
-            identifier: "{{ event.properties.identifier }}",
+            identifier: "{{ event.props.identifier }}",
             link: "{{ event.link }}",
-            year: {{ event.properties.date }},
-            {% if event.properties.end_date %}end_year: {{ event.properties.end_date }},{% endif %}
-            place: "{{ event.properties.location }}",
+            year: {{ event.props.date }},
+            {% if event.props.end_date %}end_year: {{ event.props.end_date }},{% endif %}
+            place: "{{ event.props.location }}",
             radius: 10,
-            fillOpacity: {% if event.properties.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
-            latitude: {{ event.properties.latitude }},
-            longitude: {{ event.properties.longitude }},
-            fillKey: "{{ event.properties.event }}",
-            display_date: "{% if event.properties.end_date %}{{ event.properties.date }} - {{event.properties.end_date }} {% else %}{{ event.properties.display_date }}{% endif %}"
+            fillOpacity: {% if event.props.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
+            latitude: {{ event.props.latitude }},
+            longitude: {{ event.props.longitude }},
+            fillKey: "{{ event.props.event }}",
+            display_date: "{% if event.props.end_date %}{{ event.props.date }} - {{event.props.end_date }} {% else %}{{ event.props.display_date }}{% endif %}"
         },
     {% endfor %}
     ];

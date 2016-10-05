@@ -13,7 +13,7 @@ def serialize(func):
         except SocketError:
             return {}
 
-        response = {'nodes': [], 'relationships': [], 'lists': []}
+        response = {'nodes': [], 'rels': [], 'lists': []}
 
         for row in data:
             for column in data.columns:
@@ -21,7 +21,7 @@ def serialize(func):
                 if isinstance(item, Node):
                     response['nodes'].append(serialize_node(item))
                 elif isinstance(item, Relationship):
-                    response['relationships'].append(serialize_relationship(item))
+                    response['rels'].append(serialize_relationship(item))
                 elif isinstance(item, list) and isinstance(item[0], Node):
                     response['lists'].append([serialize_node(n) for n in item])
 
@@ -45,7 +45,7 @@ def serialize_node(node):
         'parent_label': parent_label,
         'label': main_label,
         'link': link,
-        'properties': node.properties
+        'props': node.properties
     }
 
 
@@ -59,5 +59,5 @@ def serialize_relationship(rel):
         'start': serialize_node(rel.start_node),
         'end': serialize_node(rel.end_node),
         'type': rel.type,
-        'properties': rel.properties
+        'props': rel.properties
     }

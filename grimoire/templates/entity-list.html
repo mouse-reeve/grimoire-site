@@ -23,8 +23,8 @@
     <form method="get" action="{{ label }}">
         <select name="i" required>
             <option></option>
-            {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
-            <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+            {% for grimoire in grimoires | sort(attribute="props.identifier") %}
+            <option value="{{ grimoire.props.uid }}">{{ grimoire.props.identifier }}</option>
             {% endfor %}
         </select>
 
@@ -36,8 +36,8 @@
 
         <select name="j">
             <option></option>
-            {% for grimoire in grimoires | sort(attribute="properties.identifier") %}
-            <option value="{{ grimoire.properties.uid }}">{{ grimoire.properties.identifier }}</option>
+            {% for grimoire in grimoires | sort(attribute="props.identifier") %}
+            <option value="{{ grimoire.props.uid }}">{{ grimoire.props.identifier }}</option>
             {% endfor %}
         </select>
 
@@ -48,14 +48,14 @@
     {% if filtered %}
     <h3>
         {{ label | pluralize | capitalize }} in
-        <a href="{{ filtered.item1.link }}">{{ filtered.item1.properties.identifier }}</a>
+        <a href="{{ filtered.item1.link }}">{{ filtered.item1.props.identifier }}</a>
         {% if filtered.operator and filtered.item2 %}
             {% if filtered.operator == 'and' %}
             and
             {% else %}
             and not
             {% endif %}
-            <a href="{{ filtered.item2.link }}">{{ filtered.item2.properties.identifier }}</a>
+            <a href="{{ filtered.item2.link }}">{{ filtered.item2.props.identifier }}</a>
         {% endif %}
     </h3>
     <a href="{{ label }}">Clear filter</a>

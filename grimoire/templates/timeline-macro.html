@@ -45,7 +45,7 @@
 <span class="comma-separated">
     {% for item in nodes %}
     <span>
-        <a href="{{item.link}}" class="{% if item.properties.relevant %}relevant{% endif %}">{{ item.properties.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+        <a href="{{item.link}}" class="{% if item.props.relevant %}relevant{% endif %}">{{ item.props.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
     {% endfor %}
 </span>
 {% endmacro %}

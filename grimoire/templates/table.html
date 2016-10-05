@@ -9,14 +9,14 @@
         <tr>
             <th></th>
             {% for grimoire in grimoires %}
-            <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a> ({{ grimoire.properties.date }})</th>
+            <th><a href="{{ grimoire.link }}">{{ grimoire.props.identifier }}</a> ({{ grimoire.props.date }})</th>
             {% endfor %}
         </tr>
         {% for item in entities %}
         <tr>
-            <th><a href="{{ item.link }}">{{ item.properties.identifier }}</a></th>
+            <th><a href="{{ item.link }}">{{ item.props.identifier }}</a></th>
             {% for grimoire in grimoires %}
-            {% if grimoire.properties.uid in item.grimoires %}
+            {% if grimoire.props.uid in item.grimoires %}
             <td class="yes">
                 <i class="fa fa-check"></i>
             </td>
@@ -29,7 +29,7 @@
         <tr>
             <th></th>
             {% for grimoire in grimoires %}
-            <th><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></th>
+            <th><a href="{{ grimoire.link }}">{{ grimoire.props.identifier }}</a></th>
             {% endfor %}
         </tr>
     </table>
@@ -38,10 +38,10 @@
 
     {% for grimoire, entities in isolates %}
     <div class="card">
-        <h3><a href="{{ grimoire.link }}">{{ grimoire.properties.identifier }}</a></h3>
+        <h3><a href="{{ grimoire.link }}">{{ grimoire.props.identifier }}</a></h3>
         <ul class="many">
             {% for entity in entities %}
-            <li><a href="{{ entity.link }}">{{ entity.properties.identifier }}</a></li>
+            <li><a href="{{ entity.link }}">{{ entity.props.identifier }}</a></li>
             {% endfor %}
         </ul>
     </div>

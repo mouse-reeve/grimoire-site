@@ -26,7 +26,7 @@ def index():
     data = graph.get_all('grimoire')
     grimoires = []
     for g in data['nodes']:
-        g = g['properties']
+        g = g['props']
         year = helpers.grimoire_date(g)
 
         grimoires.append({
@@ -36,16 +36,16 @@ def index():
         })
         grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
-    excerpt['properties']['content'] = markdown(excerpt['properties']['content'])
+    excerpt['props']['content'] = markdown(excerpt['props']['content'])
 
     # --- map
     events = graph.get_all('event')['nodes']
     events = sorted(events,
-                    key=lambda k: int(k['properties']['date']),
+                    key=lambda k: int(k['props']['date']),
                     reverse=True)
 
     for event in events:
-        event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
+        event['props']['display_date'] = helpers.grimoire_date(event['props'])
 
     # --- render template
     template_data = {
@@ -62,11 +62,11 @@ def temporospatial():
     ''' render the basic template for angular '''
     events = graph.get_all('event')['nodes']
     events = sorted(events,
-                    key=lambda k: int(k['properties']['date']),
+                    key=lambda k: int(k['props']['date']),
                     reverse=True)
 
     for event in events:
-        event['properties']['display_date'] = helpers.grimoire_date(event['properties'])
+        event['props']['display_date'] = helpers.grimoire_date(event['props'])
     template_data = {
         'title': 'Grimoire Encyclopedia',
         'events': events
@@ -96,10 +96,10 @@ def search():
     # if there's only one result, redirect
     if len(data['nodes']) == 1:
         item = data['nodes'][0]
-        return redirect('/%s/%s' % (item['label'], item['properties']['uid']))
+        return redirect('/%s/%s' % (item['label'], item['props']['uid']))
     template_data = {
         'results': data['nodes'],
-        'temp': term
+        'term': term
     }
     return render_template(request.url, 'search.html', **template_data)
 
@@ -119,7 +119,8 @@ def table(entity='demon'):
 
     all_grimoires = []
     for i, grimoire_list in enumerate(data['lists']):
-        entity_list[i]['grimoires'] = {g['properties']['uid']: g for g in grimoire_list}
+        entity_list[i]['grimoires'] = \
+                {g['props']['uid']: g for g in grimoire_list}
         all_grimoires.append(entity_list[i]['grimoires'])
 
     grimoires = {}
@@ -127,7 +128,7 @@ def table(entity='demon'):
         for key, value in d.items():
             grimoires[key] = value
     grimoires = grimoires.values()
-    grimoires = sorted(grimoires, key=lambda g: g['properties']['date'])
+    grimoires = sorted(grimoires, key=lambda g: g['props']['date'])
 
     isolates_data = graph.get_single_grimoire_entities(entity)
     isolates = zip(isolates_data['nodes'], isolates_data['lists'])
@@ -154,7 +155,7 @@ def spell():
     else:
         return redirect('/spell')
 
-    spells = {k['properties']['identifier']: v
+    spells = {k['props']['identifier']: v
               for k, v in zip(data['nodes'], data['lists'])}
     return render_template(request.url, 'spells.html',
                            spells=spells, sort=sort,
@@ -204,7 +205,8 @@ def category(label):
     grimoires = []
     if label in entities:
         template = 'entity-list.html'
-        grimoires = graph.get_all('grimoire', with_connection_label=label)['nodes']
+        grimoires = graph.get_all('grimoire',
+                                  with_connection_label=label)['nodes']
         if len(grimoires) < 2:
             grimoires = None
 
@@ -257,17 +259,18 @@ def timeline_page():
     timeline = {}
     for node in nodes:
         for event in date_params:
-            if event not in node['properties']:
+            if event not in node['props']:
                 continue
             try:
-                year = int(node['properties'][event])
+                year = int(node['props'][event])
             except ValueError:
                 continue
 
-            date_precision = node['properties'].get(['date_precision'], 'year')
+            date_precision = node['props'].get('date_precision', 'year')
 
             note = event if event not in ['year', 'date'] else None
-            timeline = helpers.add_to_timeline(timeline, node, year, date_precision, note=note)
+            timeline = helpers.add_to_timeline(timeline, node, year,
+                                               date_precision, note=note)
 
     end = date.today().year
     return render_template(request.url, 'timeline.html', data=timeline, end=end,

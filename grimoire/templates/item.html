@@ -10,7 +10,7 @@
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
         {% if data.parent_label %}
-        <li><a href="{{ data.parent_label.link }}">{{ data.parent_label.properties.identifier | unthe }}</a></li>
+        <li><a href="{{ data.parent_label.link }}">{{ data.parent_label.props.identifier | unthe }}</a></li>
         {% else %}
         <li><a href="/{{ label }}">{{ label | pluralize }}</a></li>
         {% endif %}
@@ -51,11 +51,11 @@
 
 
     <!-- Graph connections -->
-    {% if data.relationships %}
+    {% if data.rels %}
     <div class="divider"></div>
 
     <div class="card">
-        {% for rel in data.relationships | sort(attribute="type") %}
+        {% for rel in data.rels | sort(attribute="type") %}
         <p>
         {% if rel.start[0].id == data.id %}
             This {{ rel.start[0].label | format }}
@@ -66,7 +66,7 @@
             {% endif %}
             <span class="comma-separated comma-and">
             {% for s in rel.start %}
-                <span><strong><a href="/{{ s.label }}/{{ s.properties.uid }}">{{ s.properties.identifier | unthe }}</a></strong></span>
+                <span><strong><a href="/{{ s.label }}/{{ s.props.uid }}">{{ s.props.identifier | unthe }}</a></strong></span>
             {% endfor %}
             </span>
         {% endif %}
@@ -82,7 +82,7 @@
             {% endif %}
             <span class="comma-separated comma-and">
             {% for e in rel.end %}
-                <span><strong><a href="/{{ e.label }}/{{ e.properties.uid }}">{{ e.properties.identifier | unthe }}</a></strong></span>
+                <span><strong><a href="/{{ e.label }}/{{ e.props.uid }}">{{ e.props.identifier | unthe }}</a></strong></span>
             {% endfor %}
             </span>
         {% endif %}
@@ -94,12 +94,12 @@
     <!-- illustrations -->
     {% if data.images %}
     {% for image in data.images %}
-    {% if image.properties.type == 'illustration' %}
+    {% if image.props.type == 'illustration' %}
     <div class="illustration card">
-        <h3>{{ image.properties.identifier }}</h3>
-        <a href="/static/images/content/{{ image.properties.filename }}" target="_blank"><img src="/static/images/content/{{ image.properties.filename }}" alt="{{image.properties.identifier }}"></a>
-        {% if image.properties.source %}
-        <small class="image-source"><a href="{{ image.properties.source }}">source: {{ image.properties.source | shortlink }}</a></small>
+        <h3>{{ image.props.identifier }}</h3>
+        <a href="/static/images/content/{{ image.props.filename }}" target="_blank"><img src="/static/images/content/{{ image.props.filename }}" alt="{{image.props.identifier }}"></a>
+        {% if image.props.source %}
+        <small class="image-source"><a href="{{ image.props.source }}">source: {{ image.props.source | shortlink }}</a></small>
     {% endif %}
     </div>
     {% endif %}
@@ -121,7 +121,7 @@
             </li>
             {% if section.compare %}
             {% for c in section.compare %}
-            <p>This grimoire shares {{ c.count }} {{ section.title }} with <em>{{ c.grimoire.properties.identifier | unthe }}</em>. <a href="{{ c.link }}">Compare.</a></p>
+            <p>This grimoire shares {{ c.count }} {{ section.title }} with <em>{{ c.grimoire.props.identifier | unthe }}</em>. <a href="{{ c.link }}">Compare.</a></p>
             {% endfor %}
             {% endif %}
             {% endfor %}
@@ -169,11 +169,11 @@
     {% if data.images %}
     <div class="detail-box sidebar-image">
         {% for image in data.images %}
-        {% if image.properties.type != 'illustration' %}
-        <h3>{{ image.properties.identifier }}</h3>
-        <a href="/static/images/content/{{ image.properties.filename }}" target="_blank"><img src="/static/images/content/{{ image.properties.filename }}" alt="{{image.properties.identifier }}"></a>
-        {% if image.properties.source %}
-        <small class="image-source"><a href="{{ image.properties.source }}">source: {{ image.properties.source | shortlink }}</a></small>
+        {% if image.props.type != 'illustration' %}
+        <h3>{{ image.props.identifier }}</h3>
+        <a href="/static/images/content/{{ image.props.filename }}" target="_blank"><img src="/static/images/content/{{ image.props.filename }}" alt="{{image.props.identifier }}"></a>
+        {% if image.props.source %}
+        <small class="image-source"><a href="{{ image.props.source }}">source: {{ image.props.source | shortlink }}</a></small>
         {% endif %}
         {% endif %}
         {% endfor %}
@@ -193,9 +193,9 @@
         <ul>
             {% for item in section.data %}
             <li>
-                <a href="{{ item.link }}">{{ item.properties.identifier | unthe }}</a>
+                <a href="{{ item.link }}">{{ item.props.identifier | unthe }}</a>
                 {% if section.title == 'Similar Grimoires' %}
-                (<a href="/compare/{{ data.properties.uid }}/{{ item.properties.uid }}">Compare</a>)
+                (<a href="/compare/{{ data.props.uid }}/{{ item.props.uid }}">Compare</a>)
                 {% endif %}
             </li>
             {% endfor %}
