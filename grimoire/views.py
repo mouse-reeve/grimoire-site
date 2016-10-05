@@ -1,14 +1,16 @@
 ''' misc views '''
 from datetime import date
 from email.mime.text import MIMEText
+from subprocess import Popen, PIPE
+
 from flask import redirect, request, render_template as flask_render_template
 from markdown import markdown
-from subprocess import Popen, PIPE
 from werkzeug.exceptions import BadRequestKeyError
 
 import grimoire.helpers as helpers
-from grimoire.helpers import render_template
 from grimoire import app, graph, entities, date_params, templates
+from grimoire.helpers import render_template
+
 
 @app.before_request
 def before_request():
@@ -53,6 +55,7 @@ def index():
         'events': events
     }
     return flask_render_template('home.html', **template_data)
+
 
 @app.route('/map')
 def temporospatial():
@@ -136,7 +139,8 @@ def table(entity='demon'):
 
 @app.route('/spell')
 def spell():
-    ''' custom page for spells '''
+    ''' custom page for spells
+    :return: rendered spell page template '''
     sort = 'outcome'
     try:
         sort = helpers.sanitize(request.values['sort'], allow_spaces=True)
@@ -150,11 +154,12 @@ def spell():
     else:
         return redirect('/spell')
 
-    spells = {k['properties']['identifier']: v \
+    spells = {k['properties']['identifier']: v
               for k, v in zip(data['nodes'], data['lists'])}
     return render_template(request.url, 'spells.html',
                            spells=spells, sort=sort,
                            title='List of Spells')
+
 
 @app.route('/<label>')
 def category(label):
@@ -238,11 +243,11 @@ def timeline_page():
     '''
 
     nodes = graph.timeline()['nodes']
-    if graph.timeline_labels == []:
+    if not graph.timeline_labels:
         graph.timeline_labels = set([n['label'] for n in nodes])
 
-    show = [l for l in graph.timeline_labels \
-            if request.args.has_key(l) and request.values[l] == 'on']
+    show = [l for l in graph.timeline_labels
+            if l in request.args and request.values[l] == 'on']
 
     if show:
         nodes = [n for n in nodes if n['label'] in show]
@@ -252,17 +257,16 @@ def timeline_page():
     timeline = {}
     for node in nodes:
         for event in date_params:
-            if not event in node['properties']:
+            if event not in node['properties']:
                 continue
             try:
                 year = int(node['properties'][event])
             except ValueError:
                 continue
 
-            date_precision = node['properties']['date_precision'] \
-                             if 'date_precision' in node['properties'] else 'year'
-            note = event if not event in ['year', 'date'] else None
+            date_precision = node['properties'].get(['date_precision'], 'year')
 
+            note = event if event not in ['year', 'date'] else None
             timeline = helpers.add_to_timeline(timeline, node, year, date_precision, note=note)
 
     end = date.today().year

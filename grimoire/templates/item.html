@@ -208,7 +208,7 @@
     <h2>Provide feedback on "{{ title | unthe }}"</h2>
     <form action="/feedback" method="post">
         <label for="topic">Topic</label>
-        <select name="topic" required>
+        <select name="topic" id="topic" required>
             <option></option>
             <option value="comment">Comment or question</option>
             <option value="incomplete">This page is incomplete</option>
@@ -218,9 +218,9 @@
             <option value="other">Other</option>
         </select>
         <label for="comments">Comments</label>
-        <textarea name="comments" required></textarea>
+        <textarea name="comments" id="comments" required></textarea>
         <label for="email">Email (optional - include if you would like a response)</label>
-        <input type="text" name="email">
+        <input type="text" name="email" id="email">
         <input type="submit" value="Submit">
 
         <button class="close-button" data-close aria-label="Close reveal" type="button">

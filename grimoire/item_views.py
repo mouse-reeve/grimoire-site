@@ -1,6 +1,5 @@
 ''' views for the item type pages '''
 import logging
-import math
 
 from flask import redirect, request
 from markdown import markdown
@@ -8,6 +7,7 @@ from markdown import markdown
 import grimoire.helpers as helpers
 from grimoire.helpers import render_template
 from grimoire import app, graph, entities
+
 
 @app.route('/event/<uid>')
 @app.route('/excerpt/<uid>')
@@ -41,14 +41,18 @@ def item(label, uid):
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
-        return render_template(request.url, 'label-404.html', labels=graph.get_labels())
+        return render_template(request.url,
+                               'label-404.html',
+                               labels=graph.get_labels())
 
     try:
         data = helpers.get_node(uid)
     except NameError:
         items = graph.get_all(label)
-        return render_template(request.url, 'item-404.html', items=items['nodes'],
-                               search=graph.search(uid)['nodes'], label=label)
+        return render_template(request.url, 'item-404.html',
+                               items=items['nodes'],
+                               search=graph.search(uid)['nodes'],
+                               label=label)
 
     node = data['node']
     rels = data['relationships']
@@ -148,9 +152,9 @@ def generic_item(node, rels):
     remove = ['excerpt', 'event', 'image', 'contains_illustration']
     rels = helpers.exclude_rels(rels, remove)
 
-    details = {k: format_field(node['properties'][k]) for k in \
-            node['properties'] if k not in \
-            ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
+    details = {k: format_field(node['properties'][k]) for k in
+               node['properties'] if k not in
+               ['content', 'uid', 'identifier', 'owned', 'buy', 'date_precision']}
 
     buy = node['properties']['buy'] if 'buy' in node['properties'] else None
 
@@ -283,7 +287,6 @@ def entity_item(node, rels):
     if servants:
         data['main'].append({'title': 'Servants', 'data': servants})
 
-
     if not data['content']:
         content = 'The %s %s appears in %s' % \
                   (helpers.format_filter(node['label']),
@@ -414,14 +417,9 @@ def spell_item(node, rels):
         data['details']['Outcome'] = extract_details(outcomes)
 
     if not data['content'] and not data['excerpts']:
-        grimoire_names = [helpers.unthe(g['properties']['identifier']) for g in grimoires]
-        if len(grimoire_names) > 1:
-            grimoire_names = '_%s_, and _%s_' % \
-                    ('_, _'.join(grimoire_names[0:-1]), grimoire_names[-1])
-        else:
-            grimoire_names = '_%s_' % grimoire_names[0]
-        content = 'This %s appears in %s, and you can find the full text there. ' % \
-                (node['label'], format_list(grimoires))
+        content = 'This %s appears in %s, ' \
+                  'and you can find the full text there. ' % \
+                  (node['label'], format_list(grimoires))
         if outcomes:
             content += 'It is used for %s' % format_list(outcomes, italics=False).lower()
             if ingredients:
@@ -449,7 +447,8 @@ def ingredient_item(node, rels):
     for entity in entities:
         items = helpers.extract_rel_list(rels, entity, 'start')
         if items:
-            data['main'].append({'title': helpers.pluralize(entity), 'data': items})
+            data['main'].append({'title': helpers.pluralize(entity),
+                                 'data': items})
 
     data['relationships'] = helpers.exclude_rels(data['relationships'], ['uses'])
 
@@ -471,7 +470,8 @@ def outcome_item(node, rels):
     for entity in entities:
         items = helpers.extract_rel_list(rels, entity, 'start')
         if items:
-            data['main'].append({'title': helpers.pluralize(entity), 'data': items})
+            data['main'].append({'title': helpers.pluralize(entity),
+                                 'data': items})
 
     data['relationships'] = helpers.exclude_rels(data['relationships'], ['for'])
 
@@ -511,7 +511,7 @@ def compare_grimoires(uid_1, uid_2):
     rels = [d['relationships'] for d in data]
 
     # ----- check that item 1 and item 2 are both grimoires
-    if not nodes[0]['label'] == nodes[1]['label'] and nodes[0]['label'] == 'grimoire':
+    if nodes[0]['label'] != 'grimoire' or nodes[0]['label'] != 'grimoire':
         return render_template(request.url, 'compare-failure.html',
                                title='Oops: Invalid Comparison')
 
@@ -521,10 +521,15 @@ def compare_grimoires(uid_1, uid_2):
     shared_list = {}
 
     for entity in entities + ['spell']:
-        entity_lists = [helpers.extract_rel_list_by_type(rel_list, 'lists', 'end', label=entity)
-                        for rel_list in rels]
+        entity_lists = [
+            helpers.extract_rel_list_by_type(rel_list,
+                                             'lists',
+                                             'end',
+                                             label=entity)
+            for rel_list in rels]
         shared_list[entity] = intersection(entity_lists[0], entity_lists[1])
-        max_list_size = max_list_size if len(shared_list[entity]) < max_list_size \
+        max_list_size = max_list_size \
+                        if len(shared_list[entity]) < max_list_size \
                         else len(shared_list[entity])
 
     title = '"%s" vs "%s"' % (nodes[0]['properties']['identifier'],
@@ -534,9 +539,9 @@ def compare_grimoires(uid_1, uid_2):
     grim_items = [grimoire_item(nodes[i], rels[i]) for i in range(2)]
     details = [g['details'] for g in grim_items]
     for d in details:
-        d['author'] = [{'text': 'Unknown'}] if not 'author' in d else d['author']
+        d['author'] = d.get('author', [{'text': 'Unknown'}])
     keys = list(set(details[0].keys()) & set(details[1].keys()))
-    keys = [k for k in keys if not k in ['Name', 'online_edition']]
+    keys = [k for k in keys if k not in ['Name', 'online_edition']]
     props = {k: [details[0][k], details[1][k]] for k in keys}
 
     # ----- compare remaining relationships
@@ -564,7 +569,7 @@ def compare_grimoires(uid_1, uid_2):
             types[rel['type']][i] += [rel]
 
     # remove types that only exist for one item or the other
-    types = {k:v for (k, v) in types.items() if v[0] and v[1]}
+    types = {k: v for (k, v) in types.items() if v[0] and v[1]}
 
     same = {'start': [], 'end': []}
     for rel_type in types:
@@ -625,7 +630,8 @@ def get_others(rels, node):
             if other_items['nodes']:
                 others.append({
                     'title': 'Other %s related to the %s %s' %
-                             (helpers.pluralize(label), helpers.format_filter(other['label']),
+                             (helpers.pluralize(label),
+                              helpers.format_filter(other['label']),
                               other['properties']['identifier']),
                     'data': other_items['nodes']
                 })
@@ -635,7 +641,8 @@ def get_others(rels, node):
 def extract_details(items):
     ''' format the details object
     :param items: the extracted rel list for the category
-    :return: array in the format [{'text': 'John Constantine', 'link': '/person/constantine'}]
+    :return: array in the format:
+    [{'text': 'John Constantine', 'link': '/person/constantine'}]
     '''
     return [{'text': i['properties']['identifier'], 'link': i['link']}
             for i in items]
@@ -651,11 +658,9 @@ def format_list(nodes, italics=True, show_label=True):
             result = '%s and %s' % (items[0], items[1])
     elif len(items) > 1:
         if italics:
-            result = '_%s_, and _%s_' % \
-                    ('_, _'.join(items[0:-1]), items[-1])
+            result = '_%s_, and _%s_' % ('_, _'.join(items[0:-1]), items[-1])
         else:
-            result = '%s, and %s' % \
-                    (', '.join(items[0:-1]), items[-1])
+            result = '%s, and %s' % (', '.join(items[0:-1]), items[-1])
     else:
         result = '_%s_' % items[0] if italics else '%s' % items[0]
 
@@ -680,7 +685,7 @@ def intersection(nodes_1, nodes_2):
     return [n for n in nodes_1 if n['properties']['uid'] in shared_uids]
 
 
-def build_timeline(events, note=None):
+def build_timeline(events):
     ''' helper function for item page timelines '''
     timeline = {}
     timeline_min = 0
@@ -694,7 +699,7 @@ def build_timeline(events, note=None):
             events_start = min(dates)
             events_end = max(dates)
 
-            offset = 10 # +/- some number of years
+            offset = 10  # +/- some number of years
             timeline_min = (events_start - offset) / 100 * 100
             timeline_max = (events_end + offset) / 100 * 100
 
@@ -706,5 +711,4 @@ def build_timeline(events, note=None):
                     event['properties']['date_precision'],
                     note=note,
                     allow_events=True)
-    return (timeline, timeline_min, timeline_max)
-
+    return timeline, timeline_min, timeline_max

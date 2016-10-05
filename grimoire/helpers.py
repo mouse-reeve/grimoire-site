@@ -1,8 +1,9 @@
 ''' data formatting helper functions '''
 import copy
-import re
-from flask import render_template as flask_render_template
 import logging
+import re
+
+from flask import render_template as flask_render_template
 
 from grimoire import app, graph, templates
 
@@ -11,6 +12,7 @@ def grimoire_date(props, date_key='date'):
     '''
     get a nicely formatted year for a grimoire
     :param props: all the properties for a grimoire node
+    :param date_key: the name of the property that represents the date (ie "born")
     :return: a string formatted date ("2015", "2010s", or "20th century")
     '''
     try:
@@ -129,6 +131,7 @@ def unthe(text):
 
     return '%s %s' % (pieces[1], pieces[0])
 
+
 @app.template_filter('shortlink')
 def shortlink(url):
     ''' create shorter text for parsed urls in templates '''
@@ -141,6 +144,7 @@ def shortlink(url):
     except IndexError:
         return url
 
+
 @app.template_filter('alphabuckets')
 def alphabuckets(items):
     ''' sort items into letter "buckets" for alphabetizing '''
@@ -150,6 +154,7 @@ def alphabuckets(items):
         buckets[letter] = [node] if letter not in buckets else buckets[letter] + [node]
 
     return buckets
+
 
 @app.template_filter('trim')
 def trim_filter(text):
@@ -222,6 +227,7 @@ def add_to_timeline(timeline, node, year, date_precision, note=None, allow_event
     :param date_precision: how precide the date is (year/decade/century)
     :param node: the node
     :param note: display text to go along with the node (if available)
+    :param allow_events: if nodes of type "event" should appear in timeline
     :return: updated timeline object
     '''
     if not allow_events and node['label'] == 'event':
