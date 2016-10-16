@@ -77,7 +77,7 @@
             <ul class="card accordion" data-accordion data-allow-all-closed="true" data-accordion data-multi-expand="true">
             {% for (section, items) in shared_list.items() %}
                 {% if items | count %}
-                <li class="accordion-item medium-5 columns {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
+                <li class="accordion-item listcard {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
                     <a class="accordion-title"><h3>{{ section | pluralize | capitalize }} in both {{ item_1.label | pluralize }} ({{ items | count }})</h3></a>
                     <div class="accordion-content" data-tab-content>
                         {{ macros.rel_list(items) }}
