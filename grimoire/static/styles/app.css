@@ -155,12 +155,13 @@ h2, h3, h4, h5, h6 {
   border-left: 1px solid black; }
 
 .timeline .date {
-  height: 0;
+  height: 1em;
   overflow: visible;
   position: relative;
   right: 4em;
   clear: left;
-  margin: 0; }
+  margin: 0;
+  top: 0.8em; }
 
 .timeline .century {
   min-height: 3em; }

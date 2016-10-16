@@ -5,12 +5,13 @@
 }
 
 .timeline .date {
-    height: 0;
+    height: 1em;
     overflow: visible;
     position: relative;
     right: 4em;
     clear: left;
     margin: 0;
+    top: 0.8em;
 }
 
 .timeline .century {
