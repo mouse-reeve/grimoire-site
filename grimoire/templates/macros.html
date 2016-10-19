@@ -34,7 +34,7 @@
 {% macro excerpt(excerpt) %}
 <p>
     From {% if excerpt.props.source_url and not excerpt.props.editor %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}
-    <em>{{ excerpt.props.source_title }}</em>{% if excerpt.props.source_url and not excerpt.props.editor %}</a>{% endif %}{% if excerpt.props.editor %}, {% if excerpt.props.source_url %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}{{ excerpt.props.editor }}{% if excerpt.props.source_url %}</a>{% endif %} edition{% endif %}:
+        <em>{{ excerpt.props.source_title }}</em>{% if excerpt.props.source_url and not excerpt.props.editor %}</a>{% endif %}{% if excerpt.props.editor %}, {% if excerpt.props.source_url %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}{{ excerpt.props.editor }}{% if excerpt.props.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.props.translator %}, translated by {{ excerpt.props.translator }}{% endif %}:
     <blockquote class="excerpt">
         <p><strong>{{ excerpt.props.identifier }}</strong></p>
         <p>{{ excerpt.props.content | safe }}</p>
