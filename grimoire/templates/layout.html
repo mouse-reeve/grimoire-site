@@ -12,13 +12,14 @@
     <meta name="og:description" content="An index of information on grimoires, magical texts, and their historical contexts.">
     <meta name="twitter:creator" content="@tripofmice">
     <meta name="twitter:site" content="@tripofmice">
-    {% if not data.images %}
+    {% if data is defined and data.images %}
+    <meta name="twitter:image" content="https://www.grimoire.org/static/images/content/{{ data.images[0].props.filename }}">
+    <meta name="og:image" content="https://www.grimoire.org/static/images/content/{{ data.images[0].props.filename }}">
+    <meta name="twitter:image:alt" content="{{ data.images[0].props.identifier }}">
+    {% else %}
     <meta name="twitter:image" content="https://www.grimoire.org/static/images/icon.png">
     <meta name="og:image" content="https://www.grimoire.org/static/images/icon.png">
     <meta name="twitter:image:alt" content="Letter G in blackletter style">
-    {% else %}
-    <meta name="twitter:image" content="https://www.grimoire.org/static/images/content/{{ data.images[0].props.filename }}">
-    <meta name="og:image" content="https://www.grimoire.org/static/images/content/{{ data.images[0].props.filename }}">
     {% endif %}
 
     <meta name="robots" content="index, follow">
