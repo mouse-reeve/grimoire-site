@@ -18,9 +18,18 @@
     </ul>
     {% endif %}
 
-    <h2>
-        {{ title | unthe }}{% if label %} ({{ label | capitalize }}){% endif%}
-    </h2>
+    <div class="row">
+        <div class="medium-8 columns">
+            <h2>
+                {{ title | unthe }}{% if label %} ({{ label | capitalize }}){% endif%}
+            </h2>
+        </div>
+        <div class="medium-4 columns social">
+            Share on
+            <a href="https://twitter.com/intent/tweet?text=The {{ label | format }} {{ title | unthe }}&url=https://www.grimoire.org{{ data.link }}" target="_blank"><i class="fa fa-twitter"></i> twitter</a> or
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.grimoire.org{{ data.link }}" target="_blank"><i class="fa fa-facebook"></i> facebook</a>
+        </div>
+    </div>
 </div>
 
 <div id="content" class="medium-8 columns">

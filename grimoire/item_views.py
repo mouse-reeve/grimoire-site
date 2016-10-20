@@ -176,6 +176,7 @@ def generic_item(node, rels):
     data['main'] = []
     data['has_details'] = len([d for d in data['details'] if \
                               data['details'][d]]) > 0
+    data['link'] = node['link']
 
     return data
 

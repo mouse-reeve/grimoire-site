@@ -385,6 +385,10 @@ input, select {
 .image-source {
   display: block; }
 
+.social {
+  padding-top: 1em;
+  font-weight: bold; }
+
 #sidebar {
   border: 1px solid #aaa;
   background: #eee;
