@@ -12,6 +12,7 @@ from grimoire import app, graph, entities
 
 @app.route('/event/<uid>')
 @app.route('/excerpt/<uid>')
+@app.route('/image/<uid>')
 def redirect_excerpts(uid):
     ''' Re-route anyone who lands on an excerpt page to the proper node
     :param uid: the excerpt's identifier
@@ -19,9 +20,9 @@ def redirect_excerpts(uid):
     '''
 
     data = graph.get_node(uid)
-    source = extract_rel_list_by_type(data['rels'], 'event', 'start')
-    if not source:
-        source = extract_rel_list_by_type(data['rels'], 'excerpt', 'start')
+    source = extract_rel_list_by_type(data['rels'], 'event', 'start') + \
+             extract_rel_list_by_type(data['rels'], 'excerpt', 'start') + \
+             extract_rel_list_by_type(data['rels'], 'image', 'start')
     try:
         source = source[0]
     except IndexError:

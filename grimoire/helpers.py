@@ -67,8 +67,8 @@ def extract_rel_list_by_type(rels, rel_type, position, label=None):
     ''' get all relationships to a node for a given label and type
     :param rels: the serialized rels object from neo4j
     :param rel_type: specify a rel type ([r:lists], for example)
-    :param label: the neo4j label string of the desired items
     :param position: "start" or "end" - the position in the relationship
+    :param label: the neo4j label string of the desired items
     :return: a list of nodes
     '''
     return [r[position] for r in rels if
