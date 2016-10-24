@@ -1,5 +1,5 @@
 ''' developer API '''
-from flask import request
+from flask import Response, request
 import json
 import logging
 
@@ -14,11 +14,10 @@ def api_docs():
     ''' API documentation page '''
     return render_template(request.url, 'api.html', title='API Documentation')
 
-
 @app.route('/api/v1/label')
 def api_labels():
     ''' get a list of labels '''
-    return json.dumps(graph.get_labels())
+    return api_response(graph.get_labels())
 
 
 @app.route('/api/v1/label/<label>')
@@ -51,7 +50,7 @@ def api_label(label):
         data = data['lists']
     else:
         data = data['nodes']
-    return json.dumps(data)
+    return api_response(data)
 
 
 @app.route('/api/v1/node/<uid_raw>')
@@ -71,4 +70,9 @@ def api_node(uid_raw):
     if rels:
         node['relationships'] = data['rels']
 
-    return json.dumps(node)
+    return api_response(node)
+
+def api_response(data):
+    ''' format response and headers '''
+    data = json.dumps(data)
+    return Response(data, mimetype="application/json")
