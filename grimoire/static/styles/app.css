@@ -96,6 +96,34 @@ h2, h3, h4, h5, h6 {
 .info ul.labels li {
   background: none; }
 
+.api .about h4 {
+  font-size: 1em;
+  font-weight: bold;
+  color: black;
+  padding-top: 1em; }
+
+.api .about {
+  margin-bottom: 2em; }
+
+.api .about blockquote {
+  margin: 0;
+  padding: 0; }
+
+.api .about blockquote code {
+  font-family: monospace;
+  font-size: 1.2em;
+  white-space: pre;
+  width: 80%;
+  overflow-x: scroll;
+  display: block;
+  background-color: #eee; }
+
+.api #menu li {
+  margin: 0.2em; }
+
+.api #menu > li > a {
+  font-weight: bold; }
+
 .divider {
   clear: both;
   margin-right: auto;

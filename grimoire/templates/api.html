@@ -3,58 +3,189 @@
 
 <div id="content">
     <div class="card api">
-        <h2>API Documentation</h2>
-        <div class="endpoint">
-            <h3><span class="method">GET</span> /api/v1/label</h3>
-            <div class="info">
-                <p>Get a list of <code>label</code>s.
-                <h4>Example</h4>
-                <p class="example"><a target="_blank" href="/api/v1/label">/api/v1/label</a></p>
+
+        <div class="row">
+            <h2 class="medium-offset-3 columns">API Documentation</h2>
+        </div>
+        <div class="row" data-sticky-container id="api-nav">
+            <div class="columns medium-3 sticky hide-for-small-only" data-sticky data-sticky-on="medium" data-top-anchor="api-nav">
+                <ul class="menu vertical" id="menu" data-magellan>
+                    <li>
+                        <a href="#about">About</a>
+                        <ul>
+                            <li><a href="#nodes">Anatomy of a Node</a></li>
+                            <li><a href="#rels">Relationships</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#endpoints">Endpoints</a>
+                        <ul>
+                            <li><a href="#labels">/api/v1/labels</a></li>
+                            <li><a href="#label">/api/v1/label/label</a></li>
+                            <li><a href="#node">/api/v1/node/uid</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="columns medium-9">
+                <div class="about" id="about" data-magellan-target="about">
+                    <p>
+                        Grimoire.org runs on a Neo4j graph database backend. This means
+                        that each piece of data in the database is a <em>node</em>, and
+                        pieces of data are connected by <em>relationships</em>. For
+                        example, the grimoire <em>Grimorium Verum</em> and the demon
+                        Sugat are both nodes, and their relationship is that
+                        <em>Grimorium Verum</em> <code>lists</code> the demon Sugat.
+                    </p>
+
+                    <h3 id="nodes" data-magellan-target="nodes">Anatomy of a node</h3>
+                    <p>
+                        Each node is represented as a json object. Bold keys (props,
+                        identifier, uid, link, id, and label) are present on all nodes, and
+                        unbolded keys are arbitrary across different nodes.
+                    </p>
+
+                    <blockquote>
+                        <h4>Grimorium Verum</h4>
+                        <code>{
+    "<strong>props</strong>": {
+        "buy": "http://www.amazon.com/gp/product/1434811166?ie=UTF8&camp=1789&creativeASIN=1434811166&linkCode=xm2&tag=grimoireorg-20",
+        "<strong>uid</strong>": "grimorium-verum",
+        "date": 1817,
+        "<strong>identifier</strong>": "Grimorium Verum",
+        "online_edition": "http://www.hermetics.org/pdf/grimoire/Grimoirum_Verum.pdf",
+        "date_precision": "year"
+    },
+    "parent_label": "parent:book",
+    "<strong>link</strong>": "/grimoire/grimorium-verum",
+    "<strong>id</strong>": 2,
+    "<strong>label</strong>": "grimoire"
+}</code>
+                    </blockquote>
+
+                    <h4>Meanings of the Keys</h4>
+                    <table class="fields">
+                        <tr>
+                            <td>props</td>
+                            <td>information fields about the node</td>
+                            <td><code>{"uid": "...", "identifier": "...", ...}</code></td>
+                        </tr>
+                        <tr>
+                            <td>uid</td>
+                            <td>unique human-readable id, used in urls</td>
+                            <td><code>grimorium-verum</code></td>
+                        </tr>
+                        <tr>
+                            <td>identifier</td>
+                            <td>display title for the node</td>
+                            <td><code>Grimorium Verum</code></td>
+                        </tr>
+                        <tr>
+                            <td>link</td>
+                            <td>formatted link to node (/label/uid)</td>
+                            <td><code>/grimoire/grimorium-verum</code></td>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>Neo4j internal id</td>
+                            <td><code>2</code></td>
+                        </tr>
+                        <tr>
+                            <td>label</td>
+                            <td>the type of data represented by the node</td>
+                            <td><code>grimoire</code></td>
+                        </tr>
+                    </table>
+                    <p>
+                        The optional key <code>parent_label</code> is an additional
+                        label used to group related labels. For example, <code>grimoire</code>
+                        and <code>book</code> are both under the parent label <code>parent:book</code>.
+                    </p>
+                    <p>
+                        Each page on grimoire.org corresponds to a single node, and its url is
+                        defined by the uid of that node. However, the a page may include
+                        additional related nodes, such as <code>excerpt</code>s, <code>image</code>s,
+                        or <code>event</code>s.
+                    </p>
+
+
+                    <h4 id="rels" data-magellan-target="rels">Relationships</h4>
+                    <p>
+                        Nodes are connected to each other by relationships.
+                        All relationships are <em>directional</em>, which means they have a
+                        <code>start</code>, <code>end</code>, and <code>type</code>
+                        (as well as a relationship id). For example, <em>Grimorium Verum</em>
+                        and Surgat have the following relationship:
+                    </p>
+                    <blockquote>
+                        <code>{
+    "<strong>start</strong>": "grimorium-verum",
+    "<strong>end</strong>": "surgat",
+    "<strong>type</strong>": "lists"
+    "<strong>id</strong>": 1511,
+}</code>
+                    </blockquote>
+                    <p>This relationship can be read as "the grimoire <em>Grimorium Verum</em> lists the demon Surgat."</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3 id="endpoints" data-magellan-target="endpoints">Endpoints</h3>
+                <p>This is a very short list, and represents only a tiny portion of the kind of queries that could be run on the database. If you have questions or requests, please email me at <a href="mailto:mousereeve@riseup.net">mousereeve@riseup.net</a>, and I will be happy to see what I can do.</p>
+
+                <div class="endpoint" id="labels" data-magellan-target="labels">
+                    <h3><span class="method">GET</span> /api/v1/label</h3>
+                    <div class="info">
+                        <p>Get a list of <code>label</code>s.
+                        <h4>Example</h4>
+                        <p class="example"><a target="_blank" href="/api/v1/label">/api/v1/label</a></p>
+                    </div>
+                </div>
+
+                <div class="endpoint" id="label" data-magellan-target="label">
+                    <h3><span class="method">GET</span> /api/v1/label/<code>label</code></h3>
+                    <div class="info">
+                        <p>Get a list of nodes for a given <code>label</code>.
+
+                        <h4>Params</h4>
+                        <table class="fields">
+                            <tr>
+                                <td>limit</td>
+                                <td>maximum values returned (default: 25, maximum: 100)</td>
+                            </tr>
+                            <tr>
+                                <td>offset</td>
+                                <td>a positive integer (default: 0)</td>
+                            </tr>
+                            <tr>
+                                <td>uids_only</td>
+                                <td>return a list only containing uids (default: False)</td>
+                            </tr>
+                        </table>
+                        <h4>Example</h4>
+                        <p class="example"><a target="_blank" href="/api/v1/label/grimoire?limit=10">/api/v1/label/grimoire?limit=10</a></p>
+                    </div>
+                </div>
+
+                <div class="endpoint" id="node" data-magellan-target="node">
+                    <h3><span class="method">GET</span> /api/v1/node/<code>uid</code></h3>
+                    <div class="info">
+                        <p>Get a node based on the node's <code>uid</code>.
+
+                        <h4>Params</h4>
+                        <table class="fields">
+                            <tr>
+                                <td>relationships</td>
+                                <td>include relationships to the node (default: False)</td>
+                            </tr>
+                        </table>
+                        <h4>Example</h4>
+                        <p class="example"><a target="_blank" href="/api/v1/node/grimorium-verum">/api/v1/node/grimorium-verum</a></p>
+                        <p class="example"><a target="_blank" href="/api/v1/node/grimorium-verum?relationships=True">/api/v1/node/grimorium-verum?relationships=True</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="endpoint">
-            <h3><span class="method">GET</span> /api/v1/label/<code>label</code></h3>
-            <div class="info">
-                <p>Get a list of nodes for a given <code>label</code>.
-
-                <h4>Fields</h4>
-                <table class="fields">
-                    <tr>
-                        <td>limit</td>
-                        <td>maximum values returned (default: 25, maximum: 100)</td>
-                    </tr>
-                    <tr>
-                        <td>offset</td>
-                        <td>a positive integer (default: 0)</td>
-                    </tr>
-                    <tr>
-                        <td>uids_only</td>
-                        <td>return a list only containing uids (default: False)</td>
-                    </tr>
-                </table>
-                <h4>Example</h4>
-                <p class="example"><a target="_blank" href="/api/v1/label/grimoire">/api/v1/label/grimoire</a></p>
-            </div>
-        </div>
-
-        <div class="endpoint">
-            <h3><span class="method">GET</span> /api/v1/node/<code>uid</code></h3>
-            <div class="info">
-                <p>Get a node based on the node's <code>uid</code>.
-
-                <h4>Fields</h4>
-                <table class="fields">
-                    <tr>
-                        <td>relationships</td>
-                        <td>include relationships to the node (default: False)</td>
-                    </tr>
-                </table>
-                <h4>Example</h4>
-                <p class="example"><a target="_blank" href="/api/v1/node/grimorium-verum">/api/v1/node/grimorium-verum</a></p>
-            </div>
-        </div>
-
     </div>
 </div>
 
