@@ -57,6 +57,45 @@ h2, h3, h4, h5, h6 {
   font-size: 1em;
   content: "(show)"; }
 
+.endpoint {
+  margin-bottom: 2em; }
+
+.api .fields {
+  max-width: 40em; }
+
+.api h3 {
+  font-family: sans-serif; }
+
+.api .method {
+  color: #b5b5b7;
+  font-family: monospace;
+  font-size: 1.2em;
+  padding-right: 0.5em; }
+
+.api code {
+  background: none;
+  border: 0;
+  padding: 0; }
+
+.fields td {
+  text-align: left; }
+
+.fields td:first-child {
+  font-family: monospace;
+  width: 8em; }
+
+.info {
+  border-left: 1px solid #b5b5b7;
+  margin-left: 1em;
+  padding-left: 1em; }
+
+.info h4 {
+  font-size: 1em;
+  font-weight: bold; }
+
+.info ul.labels li {
+  background: none; }
+
 .divider {
   clear: both;
   margin-right: auto;

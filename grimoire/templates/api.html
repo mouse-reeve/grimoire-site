@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="content">
+    <div class="card api">
+        <h2>API Documentation</h2>
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/v1/label</h3>
+            <div class="info">
+                <p>Get a list of <code>label</code>s.
+                <h4>Example</h4>
+                <p class="example"><a target="_blank" href="/api/v1/label">/api/v1/label</a></p>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/v1/label/<code>label</code></h3>
+            <div class="info">
+                <p>Get a list of nodes for a given <code>label</code>.
+
+                <h4>Fields</h4>
+                <table class="fields">
+                    <tr>
+                        <td>limit</td>
+                        <td>maximum values returned (default: 25, maximum: 100)</td>
+                    </tr>
+                    <tr>
+                        <td>offset</td>
+                        <td>a positive integer (default: 0)</td>
+                    </tr>
+                    <tr>
+                        <td>uids_only</td>
+                        <td>return a list only containing uids (default: False)</td>
+                    </tr>
+                </table>
+                <h4>Example</h4>
+                <p class="example"><a target="_blank" href="/api/v1/label/grimoire">/api/v1/label/grimoire</a></p>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method">GET</span> /api/v1/node/<code>uid</code></h3>
+            <div class="info">
+                <p>Get a node based on the node's <code>uid</code>.
+
+                <h4>Fields</h4>
+                <table class="fields">
+                    <tr>
+                        <td>relationships</td>
+                        <td>include relationships to the node (default: False)</td>
+                    </tr>
+                </table>
+                <h4>Example</h4>
+                <p class="example"><a target="_blank" href="/api/v1/node/grimorium-verum">/api/v1/node/grimorium-verum</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

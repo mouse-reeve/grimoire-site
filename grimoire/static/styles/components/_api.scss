@@ -1,0 +1,43 @@
+.endpoint {
+    margin-bottom: 2em;
+}
+
+.api .fields {
+    max-width: 40em;
+}
+.api h3 {
+    font-family: sans-serif;
+}
+.api .method {
+    color: $method-color;
+    font-family: monospace;
+    font-size: 1.2em;
+    padding-right: 0.5em;
+}
+.api code {
+    background: none;
+    border: 0;
+    padding: 0;
+}
+.fields td {
+    text-align: left;
+}
+.fields td:first-child {
+    font-family: monospace;
+    width: 8em;
+}
+
+.info {
+    border-left: 1px solid $method-color;
+    margin-left: 1em;
+    padding-left: 1em;
+}
+.info h4 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.info ul.labels li {
+    background: none;
+}
+
