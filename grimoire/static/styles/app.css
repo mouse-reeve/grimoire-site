@@ -57,6 +57,9 @@ h2, h3, h4, h5, h6 {
   font-size: 1em;
   content: "(show)"; }
 
+.card.api {
+  overflow: hidden; }
+
 .endpoint {
   margin-bottom: 2em; }
 
