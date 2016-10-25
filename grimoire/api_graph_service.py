@@ -11,7 +11,7 @@ class APIGraphService(object):
 
 
     @serialize
-    def get_label(self, label, offset, limit, uids_only):
+    def get_label(self, label, **kwargs):
         ''' load all nodes with a given label
         :param label: the label for the type of node desired
         :param limit: result limit (max 100)
@@ -19,12 +19,19 @@ class APIGraphService(object):
         :return: a serialized list of relevent nodes
         '''
         query = 'MATCH (n:%s) ' % label
-        if uids_only:
-            query += 'RETURN DISTINCT n.uid '
+        if kwargs.get('uids_only'):
+            query += 'RETURN n.uid '
         else:
-            query += 'RETURN DISTINCT n '
+            query += 'RETURN n '
+
+        if kwargs.get('sort'):
+            query += 'ORDER BY n.%s %s ' % \
+                     (kwargs.get('sort'),
+                      kwargs.get('sort_direction'))
         query += 'SKIP {offset} LIMIT {limit}'
-        return self.query(query, offset=offset, limit=limit)
+        return self.query(query,
+                          offset=kwargs.get('offset'),
+                          limit=kwargs.get('limit'))
 
 
     @serialize

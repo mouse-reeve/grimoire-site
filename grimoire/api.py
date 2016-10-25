@@ -1,5 +1,6 @@
 ''' developer API '''
 from flask import Response, request
+from flask_restful import reqparse
 import json
 import logging
 
@@ -28,25 +29,29 @@ def api_label(label):
         logging.warn(error)
         return error, 404
 
-    uids_only = request.args.get('uids_only', False)
-    if uids_only:
-        uids_only = uids_only not in falsey
 
-    try:
-        limit = int(request.args.get('limit', 25))
-        offset = int(request.args.get('offset', 0))
+    parser = reqparse.RequestParser()
+    parser.add_argument('limit', type=int, default=25)
+    parser.add_argument('offset', type=int, default=0)
+    parser.add_argument('sort', type=str, case_sensitive=False)
+    parser.add_argument('sort_direction', choices=['asc', 'desc'],
+                        case_sensitive=False, default='asc')
+    parser.add_argument('uids_only', type=bool, default=False)
 
-        if limit < 1 or offset < 0:
-            raise ValueError
-    except ValueError:
+    args = parser.parse_args()
+
+    if args.sort:
+        args.sort = helpers.sanitize(args.sort)
+
+    if args.limit < 1 or args.offset < 0:
         return 'Invalid limit or offset', 403
 
-    max_limit = 100
-    if limit > max_limit:
-        return 'Max limit is %d' % max_limit, 403
+    if args.limit > 100:
+        return 'Max limit is 100', 403
 
-    data = api_graph.get_label(label, offset, limit, uids_only)
-    if uids_only:
+    # --- load data
+    data = api_graph.get_label(label, **args)
+    if args.uids_only:
         data = data['lists']
     else:
         data = data['nodes']
