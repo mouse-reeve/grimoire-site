@@ -500,6 +500,15 @@ footer a {
   text-transform: uppercase;
   font-size: 0.8em; }
 
+footer span:after {
+  font-family: "fontawesome";
+  font-weight: normal;
+  margin: 1em;
+  content: "\f06e"; }
+
+footer span:last-child:after {
+  content: none; }
+
 .infopanel h3 {
   text-align: center;
   border-bottom: 1px solid #b5b5b7;

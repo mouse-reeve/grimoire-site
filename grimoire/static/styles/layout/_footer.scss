@@ -11,3 +11,13 @@ footer a {
     font-size: 0.8em;
 }
 
+footer span:after {
+    font-family: $icon;
+    font-weight: normal;
+    margin: 1em;
+    content: "\f06e";
+}
+
+footer span:last-child:after {
+    content: none;
+}
