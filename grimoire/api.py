@@ -7,7 +7,7 @@ import logging
 from grimoire import app, graph, api_graph, helpers
 from grimoire.helpers import render_template
 
-falsey = ['False', 'false', '0']
+falsey = ['false', '0']
 
 @app.route('/api')
 @app.route('/api/v1')
@@ -29,16 +29,18 @@ def api_label(label):
         logging.warn(error)
         return error, 404
 
-
     parser = reqparse.RequestParser()
     parser.add_argument('limit', type=int, default=25)
     parser.add_argument('offset', type=int, default=0)
     parser.add_argument('sort', type=str, case_sensitive=False)
     parser.add_argument('sort_direction', choices=['asc', 'desc'],
                         case_sensitive=False, default='asc')
-    parser.add_argument('uids_only', type=bool, default=False)
+    parser.add_argument('uids_only', case_sensitive=False, default=False)
 
     args = parser.parse_args()
+
+    if args.uids_only:
+        args.uids_only = args.uids_only not in falsey
 
     if args.sort:
         args.sort = helpers.sanitize(args.sort)
@@ -62,17 +64,20 @@ def api_label(label):
 def api_node(uid_raw):
     ''' get a list of items for a given label '''
     uid = helpers.sanitize(uid_raw)
-    rels = request.args.get('relationships', False)
-    if rels:
-        rels = rels not in falsey
+    parser = reqparse.RequestParser()
+    parser.add_argument('relationships', case_sensitive=False, default=False)
+    args = parser.parse_args()
 
-    data = api_graph.get_node(uid, rels)
+    if args.relationships:
+        args.relationships = args.relationships not in falsey
+
+    data = api_graph.get_node(uid, args.relationships)
     try:
         node = data['nodes'][0]
     except IndexError:
         return 'Invalid uid %s' % uid_raw, 404
 
-    if rels:
+    if args.relationships:
         node['relationships'] = data['rels']
 
     return api_response(node)
