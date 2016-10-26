@@ -3,6 +3,9 @@ from flask import Response, request
 from flask_restful import reqparse
 import json
 import logging
+import random
+import urllib
+import urllib2
 
 from grimoire import app, graph, api_graph, helpers
 from grimoire.helpers import render_template
@@ -115,5 +118,17 @@ def api_connected_nodes(uid_raw, label):
 
 def api_response(data):
     ''' format response and headers '''
+    # ping piwik
+    if not app.debug:
+        url = urllib.quote_plus(request.url)
+        try:
+            referrer = urllib.quote_plus(request.referrer)
+        except TypeError:
+            referrer = ''
+        rand = int(random.random()*100000)
+        piwik = 'https://piwik.grimoire.org/piwik/piwik.php?'\
+                'idsite=1&rec=1&url=%s&urlref=%s&rand=%d' % (url, referrer, rand)
+
+        urllib2.urlopen(piwik)
     data = json.dumps(data)
     return Response(data, mimetype="application/json")
