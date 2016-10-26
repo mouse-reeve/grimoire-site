@@ -62,7 +62,7 @@ def api_label(label):
 
 @app.route('/api/v1/node/<uid_raw>')
 def api_node(uid_raw):
-    ''' get a list of items for a given label '''
+    ''' get a particular node by uid '''
     uid = helpers.sanitize(uid_raw)
     parser = reqparse.RequestParser()
     parser.add_argument('relationships', case_sensitive=False, default=False)
@@ -81,6 +81,37 @@ def api_node(uid_raw):
         node['relationships'] = data['rels']
 
     return api_response(node)
+
+
+@app.route('/api/v1/node/<uid_raw>/<label>')
+def api_connected_nodes(uid_raw, label):
+    ''' get a list of items for a given label for a given node'''
+    uid = helpers.sanitize(uid_raw)
+    if not graph.validate_label(label):
+        error = 'invalid label "%s"' % label
+        logging.warn(error)
+        return error, 404
+
+    parser = reqparse.RequestParser()
+    parser.add_argument('limit', type=int, default=25)
+    parser.add_argument('offset', type=int, default=0)
+    args = parser.parse_args()
+
+    if args.limit < 1 or args.offset < 0:
+        return 'Invalid limit or offset', 403
+
+    if args.limit > 100:
+        return 'Max limit is 100', 403
+
+
+    data = api_graph.get_connected_nodes(uid, label, **args)
+    try:
+        node = data['nodes']
+    except IndexError:
+        return 'Invalid uid %s' % uid_raw, 404
+
+    return api_response(node)
+
 
 def api_response(data):
     ''' format response and headers '''

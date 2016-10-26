@@ -23,6 +23,7 @@
                             <li><a href="#labels">/api/v1/labels</a></li>
                             <li><a href="#label">/api/v1/label/label</a></li>
                             <li><a href="#node">/api/v1/node/uid</a></li>
+                            <li><a href="#node-label">/api/v1/node/uid/label</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -192,6 +193,28 @@
                         <p class="example"><a target="_blank" href="/api/v1/node/grimorium-verum?relationships=True">/api/v1/node/grimorium-verum?relationships=True</a></p>
                     </div>
                 </div>
+
+                <div class="endpoint" id="node-label" data-magellan-target="node-label">
+                    <h3><span class="method">GET</span> /api/v1/node/<code>uid</code>/<code>label</code></h3>
+                    <div class="info">
+                        <p>Get a list of nodes in the given <code>label</code> that are connecte to a given node.
+
+                        <h4>Params</h4>
+                        <table class="fields">
+                            <tr>
+                                <td>limit</td>
+                                <td>maximum values returned (default: 25, maximum: 100)</td>
+                            </tr>
+                            <tr>
+                                <td>offset</td>
+                                <td>a positive integer (default: 0)</td>
+                            </tr>
+                        </table>
+                        <h4>Example</h4>
+                        <p class="example"><a target="_blank" href="/api/v1/node/lesser-key/excerpt">/api/v1/node/lesser-key/excerpt</a></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

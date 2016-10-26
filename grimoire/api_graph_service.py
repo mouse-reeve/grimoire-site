@@ -44,3 +44,13 @@ class APIGraphService(object):
             query = 'MATCH (n) WHERE n.uid={uid} ' \
                     'RETURN n'
         return self.query(query, uid=uid)
+
+
+    @serialize
+    def get_connected_nodes(self, uid, label, **kwargs):
+        ''' get data for a specific node '''
+        query = 'MATCH (n)--(m:%s) WHERE n.uid={uid} ' \
+                'RETURN m' % label
+        return self.query(query, uid=uid,
+                          offset=kwargs.get('offset'),
+                          limit=kwargs.get('limit'))
