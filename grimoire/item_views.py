@@ -150,7 +150,7 @@ def generic_item(node, rels):
     data['timeline'], data['start_date'], \
             data['end_date'] = build_timeline(events)
 
-    excerpts = extract_rel_list(rels, 'excerpt', 'end')
+    excerpts = extract_rel_list_by_type(rels, 'excerpt', 'end')
     for excerpt in excerpts:
         try:
             excerpt['props']['content'] = markdown(excerpt['props']['content'])
