@@ -15,9 +15,10 @@ from grimoire.helpers import render_template
 @app.before_request
 def before_request():
     ''' check rendered template cache '''
-    url = request.url
-    if url in templates:
-        return templates[url]
+    if not app.debug:
+        url = request.url
+        if url in templates:
+            return templates[url]
 
 
 @app.route('/')
