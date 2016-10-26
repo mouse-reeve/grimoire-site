@@ -162,7 +162,7 @@ def generic_item(node, rels):
                                               'end', label='image')
 
     # remove special node types from relationship lists
-    remove = ['excerpt', 'event', 'image', 'contains_illustration']
+    remove = ['excerpt', 'event', 'image', 'contains_item']
     data['rels'] = helpers.exclude_rels(rels, remove)
 
     data['details'] = {k: format_field(node['props'][k]) for k in
