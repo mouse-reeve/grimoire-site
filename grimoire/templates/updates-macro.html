@@ -1,4 +1,8 @@
 {% macro update_content(show_all=False) %}
+    {% call update("2016-10-28", "blog") %}
+    A reflection on some <a href="https://blog.mousereeve.com/questionable-love-spells-from-history/" target="_blank">inadvisible love spells</a> is up on my personal blog.
+    {% endcall %}
+
     {% call update("2016-10-21", "display") %}
     Images are going up all over grimoire.org. Keep your eyes open, and have patience, as I put up sigils, illustrations, and scans of manuscripts.
     {% endcall %}
@@ -7,11 +11,11 @@
     Added <a href="/grimoire/secrets-of-solomon-rabidmadar"><em>Secrets of Solomon</em></a>, a 16th or 17th century diabolical grimoire similar to <em><a href="/grimoire/grimorium-verum">Grimorium Verum</a></em>.
     {% endcall %}
 
+{% if show_all %}
     {% call update("2016-09-23", "grimoires") %}
     Added <a href="/grimoire/clavis-inferni"><em>Clavis Inferni</em></a>, an illustrated 18th century demonic text.
     {% endcall %}
 
-{% if show_all %}
     {% call update("2016-09-17", "blog") %}
     I wrote an introductory overview to the use of <a href="https://blog.mousereeve.com/uses-of-a-birds-tongue/" target="_blank">bird tongues in 18th and 19th century spells</a> on my personal blog.
     {% endcall %}
