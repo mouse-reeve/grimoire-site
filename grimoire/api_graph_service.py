@@ -20,7 +20,7 @@ class APIGraphService(object):
         '''
         start = 'MATCH (n:%s) ' % label
         middle = ''
-        return_string = 'RETURN n '
+        return_str = 'RETURN n '
         order = ''
 
         if kwargs.get('random'):
@@ -28,16 +28,17 @@ class APIGraphService(object):
             order = 'ORDER BY r '
 
         if kwargs.get('uids_only'):
-            return_string = 'RETURN n.uid '
+            return_str = 'RETURN n.uid '
 
         # only sort non-randomized queries
         if kwargs.get('sort') and not kwargs.get('random'):
             order = 'ORDER BY n.%s %s ' % \
                      (kwargs.get('sort'),
                       kwargs.get('sort_direction'))
+
         order += 'SKIP {offset} LIMIT {limit}'
 
-        query = start + middle + return_string + order
+        query = start + middle + return_str + order
         return self.query(query,
                           offset=kwargs.get('offset'),
                           limit=kwargs.get('limit'))
@@ -58,8 +59,17 @@ class APIGraphService(object):
     @serialize
     def get_connected_nodes(self, uid, label, **kwargs):
         ''' get data for a specific node '''
-        query = 'MATCH (n)--(m:%s) WHERE n.uid={uid} ' \
-                'RETURN m' % label
+        start = 'MATCH (n)--(m:%s) WHERE n.uid={uid} ' % label
+        middle = ''
+        return_str = 'RETURN m '
+        order = ''
+
+        if kwargs.get('random'):
+            middle = 'WITH m, rand() AS r '
+            order = 'ORDER BY r '
+
+        order += 'SKIP {offset} LIMIT {limit} '
+        query = start + middle + return_str + order
         return self.query(query, uid=uid,
                           offset=kwargs.get('offset'),
                           limit=kwargs.get('limit'))

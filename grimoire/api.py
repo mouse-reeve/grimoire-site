@@ -102,6 +102,7 @@ def api_connected_nodes(uid_raw, label):
     parser = reqparse.RequestParser()
     parser.add_argument('limit', type=int, default=25)
     parser.add_argument('offset', type=int, default=0)
+    parser.add_argument('random', case_sensitive=False, default=False)
     args = parser.parse_args()
 
     if args.limit < 1 or args.offset < 0:
@@ -110,6 +111,8 @@ def api_connected_nodes(uid_raw, label):
     if args.limit > 100:
         return 'Max limit is 100', 403
 
+    if args.random:
+        args.random = args.random not in falsey
 
     data = api_graph.get_connected_nodes(uid, label, **args)
     try:
