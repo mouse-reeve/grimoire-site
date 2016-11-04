@@ -39,11 +39,15 @@ def api_label(label):
     parser.add_argument('sort_direction', choices=['asc', 'desc'],
                         case_sensitive=False, default='asc')
     parser.add_argument('uids_only', case_sensitive=False, default=False)
+    parser.add_argument('random', case_sensitive=False, default=False)
 
     args = parser.parse_args()
 
     if args.uids_only:
         args.uids_only = args.uids_only not in falsey
+
+    if args.random:
+        args.random = args.random not in falsey
 
     if args.sort:
         args.sort = helpers.sanitize(args.sort)

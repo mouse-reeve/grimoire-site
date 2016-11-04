@@ -18,17 +18,26 @@ class APIGraphService(object):
         :param offset: offset results
         :return: a serialized list of relevent nodes
         '''
-        query = 'MATCH (n:%s) ' % label
-        if kwargs.get('uids_only'):
-            query += 'RETURN n.uid '
-        else:
-            query += 'RETURN n '
+        start = 'MATCH (n:%s) ' % label
+        middle = ''
+        return_string = 'RETURN n '
+        order = ''
 
-        if kwargs.get('sort'):
-            query += 'ORDER BY n.%s %s ' % \
+        if kwargs.get('random'):
+            middle = 'WITH n, rand() AS r '
+            order = 'ORDER BY r '
+
+        if kwargs.get('uids_only'):
+            return_string = 'RETURN n.uid '
+
+        # only sort non-randomized queries
+        if kwargs.get('sort') and not kwargs.get('random'):
+            order = 'ORDER BY n.%s %s ' % \
                      (kwargs.get('sort'),
                       kwargs.get('sort_direction'))
-        query += 'SKIP {offset} LIMIT {limit}'
+        order += 'SKIP {offset} LIMIT {limit}'
+
+        query = start + middle + return_string + order
         return self.query(query,
                           offset=kwargs.get('offset'),
                           limit=kwargs.get('limit'))
