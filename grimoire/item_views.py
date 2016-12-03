@@ -657,6 +657,9 @@ def extract_details(items):
 def format_list(nodes, italics=True, show_label=True):
     ''' add "and" and commas to a list '''
     items = [helpers.unthe(n['props']['identifier']) for n in nodes]
+    if not items:
+        return ''
+
     if len(items) == 2:
         if italics:
             result = '_%s_ and _%s_' % (items[0], items[1])
