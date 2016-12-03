@@ -1,0 +1,31 @@
+ERROR: The referenced relationship record is not in use.
+	Node[587,used=true,rel=2042,prop=2879,labels=Inline(0x1000000026:[38]),light]
+	Inconsistent with: Relationship[2042,used=false,source=659,target=4239,type=182,sCount=4,sNext=11882,tCount=2,tNext=10584,prop=-1, sFirst, tFirst]
+ERROR: The next record in the target chain is a relationship between two other nodes.
+	Relationship[2351,used=true,source=3,target=4235,type=182,sCount=15,sNext=11894,tCount=2,tNext=2042,prop=-1, sFirst, tFirst]
+	Inconsistent with: Relationship[2042,used=false,source=659,target=4239,type=182,sCount=4,sNext=11882,tCount=2,tNext=10584,prop=-1, sFirst, tFirst]
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[(:label=38)-[:type=177]->()]: 2]
+	Inconsistent with: 1
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[(:label=38)-->()]: 4993]
+	Inconsistent with: 4992
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[()-[:type=177]->(:label=61)]: 89]
+	Inconsistent with: 88
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[()-[:type=177]->()]: 89]
+	Inconsistent with: 88
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[()-->(:label=61)]: 150]
+	Inconsistent with: 149
+ERROR: The relationship count does not correspond with the expected count.
+	CountsEntry[RelationshipKey[()-->()]: 10812]
+	Inconsistent with: 10811
+WARN : Inconsistencies found: ConsistencySummaryStatistics{
+	Number of errors: 8
+	Number of warnings: 0
+	Number of inconsistent NODE records: 1
+	Number of inconsistent RELATIONSHIP records: 1
+	Number of inconsistent COUNTS records: 6
+}
