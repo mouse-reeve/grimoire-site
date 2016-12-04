@@ -31,7 +31,7 @@ class GraphService(object):
             self.query_method = lambda x: {}
 
         labels = self.query('MATCH n RETURN DISTINCT LABELS(n)')
-        self.labels = [l[0][0] for l in labels if 'parent' not in l[0][0]]
+        self.labels = [[m for m in list(l)[0] if not 'parent' in m][0] for l in labels]
         self.date_params = ['born', 'died', 'crowned', 'date',
                             'year', 'began', 'ended']
         self.timeline_labels = []
@@ -60,7 +60,8 @@ class GraphService(object):
         '''
         query = 'MATCH (n:`parent:entity`) RETURN DISTINCT LABELS(n)'
         labels = self.query(query)
-        return [l[0][0] for l in labels if 'parent' not in l[0][0]]
+
+        return [[m for m in list(l)[0] if not 'parent' in m][0] for l in labels]
 
 
     def validate_label(self, label):
