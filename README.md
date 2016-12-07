@@ -22,17 +22,6 @@ $ pip install -r requirements.txt
 - [Install Neo4j](http://neo4j.com/download/) version 2.3.1 (later versions may work, but I haven't tested them)
 - Open Neo4j and select the `grimoire-site/database/` directory as your database
 - Set the environment variables `NEO4J_USER` and `NEO4J_PASS` to the Neo4j user and password
-- Install Postgres and create a `temporospatial` database based on the models.py schemas
-```python
-from grimoire import models, app
-with app.app_context():
-    models.db.create_all()
-```
-- Load the postgres data from the `temporospatial` dump file
-```bash
-$ psql temporospatial < temporospatial
-```
-- Set the environment variable `PSQL_URI` to the postgres database location
 - Run the application
 ```bash
 $ python runserver.py
