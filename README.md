@@ -19,7 +19,7 @@ $ source bin/activate
 $ pip install -r requirements.txt
 ```
 
-- [Install Neo4j](http://neo4j.com/download/) version 2.3.1 (later versions may work, but I haven't tested them)
+- [Install Neo4j](http://neo4j.com/download/) version 2.3.8
 - Open Neo4j and select the `grimoire-site/database/` directory as your database
 - Set the environment variables `NEO4J_USER` and `NEO4J_PASS` to the Neo4j user and password
 - Run the application
