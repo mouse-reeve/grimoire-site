@@ -255,7 +255,7 @@ class GraphService(object):
     @serialize
     def get_comparisons(self, grimoire, label):
         ''' get a list of grimoires that share nodes '''
-        query = 'MATCH (n:grimoire)--(d:%s)--(g:grimoire) ' \
+        query = 'MATCH (n:`parent:book`)--(d:%s)--(g:`parent:book`) ' \
                 'WHERE n.uid={grimoire} ' \
                 'WITH g, COLLECT(d) as cd ' \
                 'RETURN g, cd ORDER BY SIZE(cd) DESC LIMIT 1' % label

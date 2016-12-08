@@ -528,9 +528,8 @@ def compare_grimoires(uid_1, uid_2):
     }
 
     # ----- check that item 1 and item 2 are both grimoires
-    if nodes[0]['label'] != 'grimoire' or nodes[0]['label'] != 'grimoire':
-        return render_template(request.url, 'compare-failure.html',
-                               title='Oops: Invalid Comparison')
+    if nodes[0]['parent_label'] != 'parent:book' or nodes[1]['parent_label'] != 'parent:book':
+        return redirect(nodes[0]['link'])
 
     # ----- get all shared items to list out
     max_list_size = 0
