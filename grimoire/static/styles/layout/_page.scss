@@ -143,3 +143,23 @@ input, select {
     padding-top: 1em;
     font-weight: bold;
 }
+
+#main .readlinks {
+    a {
+        background-color: $link-hover-color;
+        color: $text-color;
+        font-weight: bold;
+    }
+    a:first-child {
+        border-radius: 0.6em 0 0 0.6em;
+    }
+    a:last-child {
+        border-radius: 0 0.6em 0.6em 0
+    }
+    a:only-child {
+        border-radius: 0.6em;
+    }
+    a:hover {
+        background-color: $text-highlight;
+    }
+}

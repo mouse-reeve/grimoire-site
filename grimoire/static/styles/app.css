@@ -459,6 +459,19 @@ input, select {
   padding-top: 1em;
   font-weight: bold; }
 
+#main .readlinks a {
+  background-color: #b5b5b7;
+  color: #000;
+  font-weight: bold; }
+#main .readlinks a:first-child {
+  border-radius: 0.6em 0 0 0.6em; }
+#main .readlinks a:last-child {
+  border-radius: 0 0.6em 0.6em 0; }
+#main .readlinks a:only-child {
+  border-radius: 0.6em; }
+#main .readlinks a:hover {
+  background-color: #f2b632; }
+
 #sidebar {
   border: 1px solid #aaa;
   background: #eee;

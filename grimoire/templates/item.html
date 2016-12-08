@@ -7,6 +7,7 @@
     <div class="flag" data-open="feedback"><i class="fa fa-comment"></i> Leave feedback on this page</div>
 
     {% if label %}
+    <!-- BREADCUMBS -->
     <ul class="breadcrumbs">
         <li><a href="/">Home</a></li>
         {% if data.parent_label %}
@@ -18,10 +19,16 @@
     </ul>
     {% endif %}
 
+    <!-- HEADING -->
     <div class="row">
         <div class="medium-8 columns">
             <h2>
-                {{ title | unthe }}{% if label %} ({{ label | capitalize }}){% endif%}
+            {% if label != 'spell' %}
+                {{ title | unthe }}
+            {% else %}
+                {{ title }}
+            {% endif %}
+                {% if label %} ({{ label | capitalize }}){% endif %}
             </h2>
         </div>
         <div class="medium-4 columns social">
@@ -32,7 +39,26 @@
     </div>
 </div>
 
+
+<!-- CONTENT -->
+
 <div id="content" class="medium-8 columns">
+
+    <!-- Outlinks to read grimoires -->
+    {% if data.buy or data.props.online_edition or data.props.online_facsimile or data.props.isbn %}
+    <div class="card readlinks buttongroup">
+        {% if data.props.online_edition %}
+            {% if data.props.online_edition is string %}
+            <a class="button" href="{{ data.props.online_edition }}" target="_blank">Read online</a>
+            {% else %}
+            <a class="button" href="{{ data.props.online_edition[0] }}" target="_blank">Read online</a>
+            {% endif %}
+        {% endif %}
+        {% if data.props.online_facsimile %}<a class="button" href="{{ data.props.online_facsimile }}" target="_blank">View original</a>{% endif %}
+        {% if data.buy %}<a class="button" href="{{ data.buy }}" target="_blank">Purchase</a>{% endif %}
+        {% if data.props.isbn %}<a class="button" href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ data.props.isbn }}" target="_blank">Search libraries</a>{% endif %}
+    </div>
+    {% endif %}
 
     <!-- Text description, if available -->
     <div class="card item-content">
@@ -44,20 +70,7 @@
         {{ macros.excerpt(excerpt) }}
         {% endfor %}
         {% endif %}
-
-        <div class="find-book">
-            {% if data.buy %}
-            <strong><a href="{{ data.buy }}" target="_blank">Purchase this {{ label }}</a></strong>
-            {% endif %}
-
-            {% if data.buy and label in ['book', 'grimoire', 'edition'] %} <em>- or -</em> {% endif %}
-
-            {% if label in ['book', 'grimoire', 'edition'] %}
-            Find a library copy on <strong><a href="https://www.worldcat.org/search?qt=worldcat_org_all&q={{ title }}" target="_blank">WorldCat</a></strong>
-            {% endif %}
-        </div>
     </div>
-
 
     <!-- Graph connections -->
     {% if data.rels %}
