@@ -4,7 +4,6 @@
 {% block body %}
 
 <div class="medium-12 columns">
-    <div class="flag" data-open="feedback"><i class="fa fa-comment"></i> Leave feedback on this page</div>
 
     {% if label %}
     <!-- BREADCUMBS -->
@@ -224,31 +223,6 @@
         </ul>
     </div>
     {% endfor %}
-</div>
-
-<div id="feedback" class="reveal" data-reveal>
-    <h2>Provide feedback on "{{ title | unthe }}"</h2>
-    <form action="/feedback" method="post">
-        <label for="topic">Topic</label>
-        <select name="topic" id="topic" required>
-            <option></option>
-            <option value="comment">Comment or question</option>
-            <option value="incomplete">This page is incomplete</option>
-            <option value="wrong">There are error on this page</option>
-            <option value="typo">There are spelling or grammar errors</option>
-            <option value="great">This page is great</option>
-            <option value="other">Other</option>
-        </select>
-        <label for="comments">Comments</label>
-        <textarea name="comments" id="comments" required></textarea>
-        <label for="email">Email (optional - include if you would like a response)</label>
-        <input type="text" name="email" id="email">
-        <input type="submit" value="Submit">
-
-        <button class="close-button" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </form>
 </div>
 
 {% endblock %}

@@ -216,23 +216,6 @@ def category(label):
                            grimoires=grimoires, filtered=filtered)
 
 
-@app.route('/feedback', methods=['POST'])
-def feedback():
-    ''' email out user feedback
-    :return: sends user back to the page they were on '''
-    referer = request.headers.get('Referer')
-
-    message = '\n'.join([k + ': ' + v for (k, v) in request.form.items()])
-    msg = MIMEText(message)
-    msg['To'] = 'mouse.reeve@gmail.com'
-    msg['From'] = 'feedback@grimoire.org'
-    msg['Subject'] = 'Feedback: %s' % referer
-    p = Popen(['/usr/sbin/sendmail', '-t', '-oi'], stdin=PIPE)
-    p.communicate(msg.as_string())
-
-    return redirect(referer)
-
-
 @app.route('/updates')
 def updates():
     ''' Simple page of updates I've posted '''

@@ -26,21 +26,6 @@
     </section>
 </div>
 
-<div id="feedback" class="reveal" data-reveal>
-    <h2>Feedback</h2>
-    <form action="/feedback" method="post">
-        <label for="comments">Comments</label>
-        <textarea name="comments" id="comments" required></textarea>
-        <label for="email">Email (optional - include if you would like a response)</label>
-        <input type="email" id="email" name="email">
-        <input type="submit" value="Submit">
-
-        <button class="close-button" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </form>
-</div>
-
 <script>
     var events = [
     {% for event in events %}

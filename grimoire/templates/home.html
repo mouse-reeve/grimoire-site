@@ -70,7 +70,7 @@
         </div>
         <div class="column medium-4">
             <h3>Resources</h3>
-            <p>If you can't find what you are looking for here, leave <span class="link" data-open="feedback">feedback</span>, or try some of these sites:</p>
+            <p>If you can't find what you are looking for here, try some of these sites:</p>
             <p>
                 <a href="http://esotericarchives.com/" target="_blank">Twilit Grotto</a>:
                 the best resource for full texts of grimoires, with excellent scholarship.
@@ -100,21 +100,6 @@
     {% else %}
     <p>Sorry, we're unable to access the database at this time.</p>
     {% endif %}
-</div>
-
-<div id="feedback" class="reveal" data-reveal>
-    <h2>Feedback</h2>
-    <form action="/feedback" method="post">
-        <label for="comments">Comments</label>
-        <textarea name="comments" id="comments" required></textarea>
-        <label for="email">Email (optional - include if you would like a response)</label>
-        <input type="text" id="email" name="email">
-        <input type="submit" value="Submit">
-
-        <button class="close-button" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </form>
 </div>
 
 <script>
