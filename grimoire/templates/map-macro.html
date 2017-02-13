@@ -1,0 +1,53 @@
+{% macro map(events, start=200, start_display="3rd Century", end=1950, initial=1585, unfurl_events=false) %}
+<section class="map-slider row">
+    <div class="small-10 columns">
+        <div class="row">
+            <label class="columns medium-4">{{ start_display }}</label>
+            <label class="columns medium-4"><strong id="current-dates"></strong></label>
+            <label class="columns medium-4">{{ end }}</label>
+        </div>
+        <input type="range" id="date-slider" min="{{ start }}" max="{{ end }}" onchange="setDate()" step="10">
+    </div>
+    <div class="small-2 columns">
+        <input type="number" id="date-input" min="{{ start }}" max="{{ end }}" step="1" onchange="setDateSlider()">
+    </div>
+</section>
+
+<section class="map-container">
+    <div id="map"></div>
+</section>
+
+<div class="divider-minor"></div>
+
+<section id="item-lists">
+    <ul class="card accordion" data-accordion data-allow-all-closed="true">
+        <li class="accordion-item{% if unfurl_events %} is-active{% endif %}" data-accordion-item>
+            <a class="accordion-title"><h3>Events shown here <span id="map-count"></span></h3></a>
+            <div id="map-links" class="accordion-content" data-tab-content></div>
+        </li>
+    </ul>
+</section>
+
+<script>
+    var events = [
+    {% for event in events %}
+        {
+            identifier: "{{ event.props.identifier }}",
+            link: "{{ event.link }}",
+            year: {{ event.props.date }},
+            {% if event.props.end_date %}end_year: {{ event.props.end_date }},{% endif %}
+            place: "{{ event.props.location }}",
+            radius: 10,
+            fillOpacity: {% if event.props.location_precision == 'continent' %}0.40{% else %}0.75{% endif %},
+            latitude: {{ event.props.latitude }},
+            longitude: {{ event.props.longitude }},
+            fillKey: "{{ event.props.event }}",
+            display_date: "{% if event.props.end_date %}{{ event.props.date }} - {{event.props.end_date }} {% else %}{{ event.props.display_date }}{% endif %}"
+        },
+    {% endfor %}
+    ];
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="/static/js/vendor/datamaps.world.min.js"></script>
+{% endmacro %}
