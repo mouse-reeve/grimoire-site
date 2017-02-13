@@ -1,7 +1,5 @@
 ''' misc views '''
 from datetime import date
-from email.mime.text import MIMEText
-from subprocess import Popen, PIPE
 
 from flask import redirect, request, render_template as flask_render_template
 from markdown import markdown
@@ -33,9 +31,10 @@ def index():
         grimoires.append({
             'uid': g['uid'],
             'identifier': g['identifier'],
-            'date': year
+            'date': year,
+            'timestamp': g['date']
         })
-        grimoires = sorted(grimoires, key=lambda grim: grim['identifier'])
+        grimoires = sorted(grimoires, key=lambda grim: grim['timestamp'])
     excerpt = graph.get_frontpage_random()['nodes'][0]
     excerpt['props']['content'] = markdown(excerpt['props']['content'])
 
