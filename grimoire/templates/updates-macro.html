@@ -1,4 +1,8 @@
 {% macro update_content(show_all=False) %}
+    {% call update("2017-02-12", "social media") %}
+    Grimoire.org has a brand new shiny <a href="https://www.facebook.com/grimoire.org" target="_blank">Facebook page</a>. Like it, comment on it, live out your dreams.
+    {% endcall %}
+
     {% call update("2017-01-24", "grimoires") %}
     Added John Harries' <a href="/grimoire/book-of-incantations"><em>Book of Incantations</em></a>, a 19th century notebook of a practicing cunning man.
     {% endcall %}
@@ -7,11 +11,11 @@
     Added <a href="/grimoire/book-of-forbidden-knowledge"><em>The Book of Forbidden Knowledge</em></a>, an American novelty book published in the 20th century that copies extensively from <em><a href="/grimoire/egyptian-secrets-of-albertus-magnus">Egyptian Secrets of Albertus Magnus</a></em>.
     {% endcall %}
 
+{% if show_all %}
     {% call update("2016-10-28", "blog") %}
     A reflection on some <a href="https://blog.mousereeve.com/questionable-love-spells-from-history/" target="_blank">inadvisible love spells</a> is up on my personal blog.
     {% endcall %}
 
-{% if show_all %}
     {% call update("2016-10-21", "display") %}
     Images are going up all over grimoire.org. Keep your eyes open, and have patience, as I put up sigils, illustrations, and scans of manuscripts.
     {% endcall %}
