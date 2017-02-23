@@ -11,5 +11,7 @@ include/
 lib/
 
 grimoire/static/images/content/
+_site/
+redirects
 
 export.*

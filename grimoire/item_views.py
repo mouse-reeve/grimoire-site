@@ -168,7 +168,7 @@ def generic_item(node, rels):
     data['details'] = {k: format_field(node['props'][k]) for k in
                        node['props'] if k not in
                        ['content', 'uid', 'identifier', 'owned',
-                        'buy', 'date_precision', 'isbn']}
+                        'buy', 'date_precision', 'isbn', 'full_version']}
 
     data['buy'] = node['props']['buy'] if 'buy' in node['props'] else None
 

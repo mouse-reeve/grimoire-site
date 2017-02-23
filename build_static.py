@@ -34,17 +34,25 @@ for label in labels:
     nodes = query('MATCH (n:%s) RETURN n.uid' % label)
     urls += ['/%s/%s' % (label, n[0]) for n in nodes]
 
+redirects = open('redirects', 'w')
 urls = list(set(urls))
 for url in urls:
-    if re.match('^/(excerpt|image|event)', url):
+    page = requests.get('http://localhost:4080%s' % url, allow_redirects=False)
+    if page.is_redirect:
+        print 'redirecting %s' % url
+        path = re.sub('http://localhost:4080', '', page.headers['Location'])
+        redirects.write('''
+    location = %s {
+        return 301 %s;
+    }''' % (url, path))
         continue
+
+    print 'loading %s' % url
     try:
         os.makedirs('_site%s' % url)
     except OSError:
         pass
 
-    print 'loading %s' % url
-    page = requests.get('http://localhost:4080%s' % url)
     rendered = open('_site%s/index.html' % url, 'w')
     rendered.write(page.text.encode('utf8'))
 
