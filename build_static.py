@@ -32,6 +32,7 @@ urls = [r.rule for r in rules if \
 # get every page for each category
 for label in labels:
     nodes = query('MATCH (n:%s) RETURN n.uid' % label)
+    urls.append('/%s' % label) # ensures index pages are added
     urls += ['/%s/%s' % (label, n[0]) for n in nodes]
 
 redirects = open('redirects', 'w')
@@ -55,5 +56,3 @@ for url in urls:
 
     rendered = open('_site%s/index.html' % url, 'w')
     rendered.write(page.text.encode('utf8'))
-
-shutil.copytree('grimoire/static', '_site/static')
