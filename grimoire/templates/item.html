@@ -140,11 +140,6 @@
                     {{ macros.rel_list(section.data, section.many) }}
                 </div>
             </li>
-            {% if section.compare %}
-            {% for c in section.compare %}
-            <p>This grimoire shares {{ c.count }} {{ section.title }} with <em>{{ c.grimoire.props.identifier | unthe }}</em>. <a href="{{ c.link }}">Compare.</a></p>
-            {% endfor %}
-            {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -215,9 +210,6 @@
             {% for item in section.data %}
             <li>
                 <a href="{{ item.link }}">{{ item.props.identifier | unthe }}</a>
-                {% if section.title == 'Similar Grimoires' %}
-                (<a href="/compare/{{ data.props.uid }}/{{ item.props.uid }}">Compare</a>)
-                {% endif %}
             </li>
             {% endfor %}
         </ul>
