@@ -170,6 +170,11 @@ def generic_item(node, rels):
                        ['content', 'uid', 'identifier', 'owned',
                         'buy', 'date_precision', 'isbn', 'full_version']}
 
+    if 'full_version' in node['props']:
+        filepath = app.static_folder + \
+                   '/grimoires/' + node['props']['full_version']
+        data['full_version'] = open(filepath, 'r').read().decode('utf8')
+
     data['buy'] = node['props']['buy'] if 'buy' in node['props'] else None
 
     data['props'] = node['props']
@@ -528,7 +533,8 @@ def compare_grimoires(uid_1, uid_2):
     }
 
     # ----- check that item 1 and item 2 are both grimoires
-    if nodes[0]['parent_label'] != 'parent:book' or nodes[1]['parent_label'] != 'parent:book':
+    if nodes[0]['parent_label'] != 'parent:book' or \
+            nodes[1]['parent_label'] != 'parent:book':
         return redirect(nodes[0]['link'])
 
     # ----- get all shared items to list out

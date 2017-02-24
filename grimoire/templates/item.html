@@ -47,7 +47,7 @@
     {% if data.buy or data.props.online_edition or data.props.online_facsimile or data.props.isbn %}
     <div class="card readlinks buttongroup">
         {% if data.props.online_edition %}
-            {% if data.props.online_edition is string %}
+            {% if data.props.online_edition is string and not data.props.full_version %}
             <a class="button" href="{{ data.props.online_edition }}" target="_blank">Read online</a>
             {% else %}
             <a class="button" href="{{ data.props.online_edition[0] }}" target="_blank">Read online</a>
@@ -71,86 +71,99 @@
         {% endif %}
     </div>
 
-    <!-- Graph connections -->
-    {% if data.rels %}
-    <div class="divider"></div>
+    {% if data.props.full_version %}
+    <ul class="tabs" data-tabs id="fulltext-tabs">
+        <li class="tabs-title is-active"><a href="#fulltext" aria-selected="true">Text of {{ data.props.identifier | unthe }}</a></li>
+        <li class="tabs-title"><a href="#info">More about this text</a></li>
+    </ul>
+    <div class="tabs-content" data-tabs-content="fulltext-tabs">
+        <div class="tabs-panel is-active" id="fulltext">
+            {{ data.full_version | markdown | safe }}
+        </div>
+        <div class="tabs-panel" id="info">
+    {% endif %}
+            <!-- Graph connections -->
+            {% if data.rels %}
+            <div class="card">
+                {% for rel in data.rels | sort(attribute="type") %}
+                <p>
+                {% if rel.start[0].id == data.id %}
+                    This {{ rel.start[0].label | format }}
+                {% else %}
+                    {% if not rel.start[0].label in ['person', 'author'] %}
+                    The
+                    {% if rel.start | count > 1 %}{{ rel.start[0].label | pluralize }}{% else %}{{ rel.start[0].label | format }}{% endif %}
+                    {% endif %}
+                    <span class="comma-separated comma-and">
+                    {% for s in rel.start %}
+                        <span><strong><a href="/{{ s.label }}/{{ s.props.uid }}">{{ s.props.identifier | unthe }}</a></strong></span>
+                    {% endfor %}
+                    </span>
+                {% endif %}
 
-    <div class="card">
-        {% for rel in data.rels | sort(attribute="type") %}
-        <p>
-        {% if rel.start[0].id == data.id %}
-            This {{ rel.start[0].label | format }}
-        {% else %}
-            {% if not rel.start[0].label in ['person', 'author'] %}
-            The
-            {% if rel.start | count > 1 %}{{ rel.start[0].label | pluralize }}{% else %}{{ rel.start[0].label | format }}{% endif %}
+                    {{ rel.type | format }}
+
+                {% if rel.end[0].id == data.id %}
+                    this {{ rel.end[0].label | format }}.
+                {% else %}
+                    {% if not rel.end[0].label in ['person', 'author'] %}
+                    the
+                    {% if rel.end | count > 1 %}{{ rel.end[0].label | pluralize }}{% else %}{{ rel.end[0].label | format }}{% endif %}
+                    {% endif %}
+                    <span class="comma-separated comma-and">
+                    {% for e in rel.end %}
+                        <span><strong><a href="/{{ e.label }}/{{ e.props.uid }}">{{ e.props.identifier | unthe }}</a></strong></span>
+                    {% endfor %}
+                    </span>
+                {% endif %}
+                </p>
+                {% endfor %}
+            </div>
             {% endif %}
-            <span class="comma-separated comma-and">
-            {% for s in rel.start %}
-                <span><strong><a href="/{{ s.label }}/{{ s.props.uid }}">{{ s.props.identifier | unthe }}</a></strong></span>
-            {% endfor %}
-            </span>
-        {% endif %}
 
-            {{ rel.type | format }}
-
-        {% if rel.end[0].id == data.id %}
-            this {{ rel.end[0].label | format }}.
-        {% else %}
-            {% if not rel.end[0].label in ['person', 'author'] %}
-            the
-            {% if rel.end | count > 1 %}{{ rel.end[0].label | pluralize }}{% else %}{{ rel.end[0].label | format }}{% endif %}
+            <!-- illustrations -->
+            {% if data.images %}
+            {% for image in data.images %}
+            {% if image.props.type == 'illustration' %}
+            <div class="illustration card">
+                <h3>{{ image.props.identifier }}</h3>
+                <a href="/static/images/content/{{ image.props.filename }}" target="_blank"><img src="/static/images/content/{{ image.props.filename }}" alt="{{image.props.identifier }}"></a>
+                {% if image.props.source %}
+                <small class="image-source"><a href="{{ image.props.source }}">source: {{ image.props.source | shortlink }}</a></small>
             {% endif %}
-            <span class="comma-separated comma-and">
-            {% for e in rel.end %}
-                <span><strong><a href="/{{ e.label }}/{{ e.props.uid }}">{{ e.props.identifier | unthe }}</a></strong></span>
+            </div>
+            {% endif %}
             {% endfor %}
-            </span>
-        {% endif %}
-        </p>
-        {% endfor %}
-    </div>
-    {% endif %}
+            {% endif %}
 
-    <!-- illustrations -->
-    {% if data.images %}
-    {% for image in data.images %}
-    {% if image.props.type == 'illustration' %}
-    <div class="illustration card">
-        <h3>{{ image.props.identifier }}</h3>
-        <a href="/static/images/content/{{ image.props.filename }}" target="_blank"><img src="/static/images/content/{{ image.props.filename }}" alt="{{image.props.identifier }}"></a>
-        {% if image.props.source %}
-        <small class="image-source"><a href="{{ image.props.source }}">source: {{ image.props.source | shortlink }}</a></small>
-    {% endif %}
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
+            <!-- lists -->
+            {% if data.main %}
+            <div class="divider"></div>
 
-    <!-- lists -->
-    {% if data.main %}
-    <div class="divider"></div>
+            <div id="item-lists">
+                <ul class="card accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
+                    {% for section in data.main %}
+                    <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
+                        <a class="accordion-title"><h3>{{ section.title | capitalize }} ({{ section.data | count }})</h3></a>
+                        <div class="accordion-content" data-tab-content>
+                            {{ macros.rel_list(section.data, section.many) }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
 
-    <div id="item-lists">
-        <ul class="card accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
-            {% for section in data.main %}
-            <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
-                <a class="accordion-title"><h3>{{ section.title | capitalize }} ({{ section.data | count }})</h3></a>
-                <div class="accordion-content" data-tab-content>
-                    {{ macros.rel_list(section.data, section.many) }}
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+            {% if data.timeline %}
+            <div class="divider"></div>
 
-    {% if data.timeline %}
-    <div class="divider"></div>
-
-    <div class="card">
-        <h3>Timeline of related events</h3>
-        {{ timeline.timeline(data.timeline, start=data.start_date, end=data.end_date) }}
+            <div class="card">
+                <h3>Timeline of related events</h3>
+                {{ timeline.timeline(data.timeline, start=data.start_date, end=data.end_date) }}
+            </div>
+            {% endif %}
+    {% if data.props.full_version %}
+        </div>
     </div>
     {% endif %}
 </div>

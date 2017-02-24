@@ -19,12 +19,20 @@ def before_request():
             return templates[url]
 
 
-# @app.after_request
-# def after_request(response):
-#     ''' save rendered page '''
-#     import os
-#     rendered = open('%s/_site%s/index.html' % (os.getcwd(), request.path), 'w')
-#     rendered.write(response.text)
+@app.after_request
+def after_request(response):
+    ''' save rendered page '''
+    from htmlmin.main import minify
+    import os
+    if response.content_type == u'text/html; charset=utf-8':
+        # minify
+        response.set_data(minify(response.get_data(as_text=True)))
+
+        # update static dir
+        rendered = open('%s/_site%s/index.html' % \
+                        (os.getcwd(), request.path), 'w')
+        rendered.write(response.data)
+    return response
 
 
 @app.route('/')

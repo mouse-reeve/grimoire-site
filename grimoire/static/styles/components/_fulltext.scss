@@ -1,0 +1,54 @@
+.tabs {
+    border: 0;
+    border-bottom: 1px solid $link-hover-color;
+    margin-bottom: 1em;
+}
+
+#content .tabs-title {
+    margin: 0;
+}
+
+#content .tabs-title a {
+    margin: 0 0.5em;
+    font-size: 1em;
+    color: $text-color;
+    border-radius: 8px 8px 0 0;
+    padding: 1em;
+}
+
+.tabs-title.is-active a {
+    border: 1px solid $link-hover-color;
+    border-bottom: 1px solid #fefefe;
+    position: relative;
+    bottom: -1px;
+    background-color: #fefefe;
+}
+
+.tabs-content {
+    border: 0;
+}
+
+#fulltext {
+    background: white;
+    font-size: 1.1em;
+    border: 1px solid #333;
+    padding: 1.5em;
+}
+
+#fulltext h1 {
+    font-family: $font-stack;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    margin: 1em;
+}
+
+#fulltext h2 {
+    font-family: $font-stack;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#fulltext a {
+    text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 ''' data formatting helper functions '''
 import copy
 import logging
+from markdown import markdown
 import re
 
 from flask import render_template as flask_render_template
@@ -162,6 +163,11 @@ def trim_filter(text):
     shorter = ' '.join(text.split(' ')[:4])
     shorter += '...' if len(shorter) < len(text) else ''
     return shorter
+
+
+@app.template_filter('markdown')
+def mardown_filter(text):
+    return markdown(text)
 
 
 def load_cached_template(url):
