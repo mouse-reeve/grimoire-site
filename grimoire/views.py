@@ -19,6 +19,14 @@ def before_request():
             return templates[url]
 
 
+# @app.after_request
+# def after_request(response):
+#     ''' save rendered page '''
+#     import os
+#     rendered = open('%s/_site%s/index.html' % (os.getcwd(), request.path), 'w')
+#     rendered.write(response.text)
+
+
 @app.route('/')
 def index():
     ''' render the basic template for angular '''
