@@ -29,6 +29,10 @@ def after_request(response):
         response.set_data(minify(response.get_data(as_text=True)))
 
         # update static dir
+        try:
+            os.makedirs('%s/_site%s' % (os.getcwd(), request.path))
+        except OSError:
+            pass
         rendered = open('%s/_site%s/index.html' % \
                         (os.getcwd(), request.path), 'w')
         rendered.write(response.data)
