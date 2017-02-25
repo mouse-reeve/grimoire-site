@@ -33,24 +33,12 @@
     <div class="divider"></div>
 
     <div class="row infopanel">
-        <div class="column medium-4">
+        <div class="column medium-6">
             <h3>Site Updates</h3>
             {{ updates.update_content() }}
             <a href="/updates">Full history</a>
         </div>
-        <div class="column medium-4">
-            <h3>Random Spell</h3>
-            <p>
-                <a href="{{excerpt.link}}"><strong>{{ excerpt.props.identifier }}</strong></a>
-                <blockquote>
-                    <p>{{ excerpt.props.content | safe }}</p>
-                </blockquote>
-            </p>
-                From {% if excerpt.props.source_url and not excerpt.props.editor %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}
-                <em>{{ excerpt.props.source_title }}</em>{% if excerpt.props.source_url and not excerpt.props.editor %}</a>{% endif %}{% if excerpt.props.editor %}, {% if excerpt.props.source_url %}<a href="{{ excerpt.props.source_url }}" target="_blank">{% endif %}{{ excerpt.props.editor }}{% if excerpt.props.source_url %}</a>{% endif %} edition{% endif %}{% if excerpt.props.source_year %} ({{ excerpt.props.source_year }}){% endif %}:
-            <a href="/spell">More spells</a>
-        </div>
-        <div class="column medium-4">
+        <div class="column medium-6">
             <h3>Resources</h3>
             <p>If you can't find what you are looking for here, try some of these sites:</p>
             <p>
