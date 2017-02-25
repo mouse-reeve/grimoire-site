@@ -14,10 +14,6 @@
 </div>
 
 <div id="content" class="medium-12 columns">
-    {% if label == "demon" or label == "angel" %}
-    <h3><a href="/table/{{label}}">Table of which {{ label | pluralize }} appear in which grimoires</a></h3>
-    {% endif %}
-
     {% if grimoires %}
     Show {{ label | pluralize }} listed in
     <form method="get" action="{{ label }}">
