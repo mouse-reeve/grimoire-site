@@ -74,6 +74,7 @@
     {% if data.props.full_version %}
     <ul class="tabs" data-tabs id="fulltext-tabs">
         <li class="tabs-title is-active"><a href="#fulltext" aria-selected="true">Text of {{ data.props.identifier | unthe }}</a></li>
+        <li class="tabs-title"><a href="#timeline">Timeline</a></li>
         <li class="tabs-title"><a href="#info">More about this text</a></li>
     </ul>
     <div class="tabs-content" data-tabs-content="fulltext-tabs">
@@ -143,7 +144,7 @@
             <div id="item-lists">
                 <ul class="card accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
                     {% for section in data.main %}
-                    <li class="accordion-item {% if not default_collapse %}is-active{% endif %}" data-accordion-item>
+                    <li class="accordion-item is-active" data-accordion-item>
                         <a class="accordion-title"><h3>{{ section.title | capitalize }} ({{ section.data | count }})</h3></a>
                         <div class="accordion-content" data-tab-content>
                             {{ macros.rel_list(section.data, section.many) }}
@@ -154,6 +155,10 @@
             </div>
             {% endif %}
 
+    {% if data.props.full_version %}
+        </div>
+        <div class="tabs-panel" id="timeline">
+    {% endif %}
             {% if data.timeline %}
             <div class="divider"></div>
 
