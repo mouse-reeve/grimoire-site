@@ -742,7 +742,7 @@ repeated the supplication three times, snuff the tapers, and leave the room unti
 day. Return the next morning, and you will find the answer written on the virgin [parchment](/ingredient/parchment), if
 it has not been revealed to you in the night.
 
-### Divination by the Egg.
+### [Divination by the Egg.](/spell/divination-by-egg)
 
 The operation of the [Egg](/ingredient/eggs) is to know what will happen to anyone who is present at the
 experiment.
@@ -766,7 +766,7 @@ ordinary occupations.
 If one wishes to see if a boy or a girl is a virgin, the germ will fall to the bottom; and if he (or
 she) is not, it will be as usual.
 
-### To See Spirits of the Air.
+### [To See Spirits of the Air.](/spell/to-see-spirits)
 
 Take the brain of a [cock](/ingredient/rooster-1), the [powder from the grave of a dead man](/ingredient/grave-earth/) (which touches the coffin),
 [walnut oil](/ingredient/walnut-oil) and virgin [wax](/ingredient/wax-ingredient). Make all [this] into a mixture, wrapped in virgin [parchment](/ingredient/parchment), on
@@ -777,7 +777,7 @@ GOMERT KAILOETH, with the character of [Khil](/demon/khil).
 Burn it all, and you will see prodigious things. But this experiment should be done only by
 those who fear nothing.
 
-### To make 3 Girls or 3 Gentlemen appear in your Room, after Supper.
+### [To make 3 Girls or 3 Gentlemen appear in your Room, after Supper.](/spell/three-ladies-or-gentlemen)
 
 It is necessary to be three days chaste, and you will be elevated.
 
@@ -820,7 +820,7 @@ at gambling. If you place it on the finger of any woman or girl, you will be abl
 obtain your will of her. Note: The window is to be left open. You can do this experiment as
 often as you please.
 
-### To Make a Girl come to You, however Modest she may Be.
+### [To Make a Girl come to You, however Modest she may Be.](/spell/a-woman-seek-you)
 
 Experiment of a marvelous power of the superior intelligences.
 
@@ -854,7 +854,7 @@ next day, take the [parchment](/ingredient/parchment), put it in your left shoe,
 you have called comes to seek you out. In the conjuration you must say the date that she is to
 come, and she will not be absent.
 
-### To Make oneself Invisible.
+### [To Make oneself Invisible.](/spell/for-invisiblity)
 
 Collect seven black beans. Start the rite on a [Wednesday](/day_of_the_week/wednesday), before sunrise. Then take the head of
 a dead man, and put one of the black beans in his mouth, two in his eyes and two in his ears.
@@ -880,7 +880,7 @@ and put them in your mouth, and look at yourself in the [mirror](/ingredient/mir
 well. Test the others in the same way, either in your own mouth, or in that of a [child](/creature/child). Those
 which do not confer invisibility are to be reburied with the head.
 
-### To Have Gold and Silver, or the [Hand of Glory](/magic_object/hand-of-glory)
+### [To Have Gold and Silver, or the Hand of Glory](/spell/gold-silver-hand-of-glory)
 
 Tear out the hair of a mare in heat, by the roots, closest to the nature, saying DRAGNE,
 DRAGNE, DRAGNE. Then tie them into a knot. Now go out and buy, without dispute over
@@ -908,7 +908,7 @@ If you want to kill the creature, place in the box instead of its daily husks, s
 which has been used fo the consecration in the first Mass said by the priest. After eating this it
 will die. Above all, do not omit anything, because this is not intended as a joke!
 
-### Garters for Distances
+### [Garters for Distances](/spell/garters-for-traveling)
 
 Go out of the house, fasting; march to your left untilyou find a ribbon-seller. Buy one ell of
 white [ribbon](/ingredient/ribbon). Pay what is asked, and drop a farthing (un liard) into the box.
@@ -940,7 +940,7 @@ the spirits TERLY, ERLY, BALTAZARD, IRLY, MELCHIOR, GASPARD, LET US GO.
 
 Then make your trip.
 
-### To Make a Girl Dance in the Nude
+### [To Make a Girl Dance in the Nude](/spell/a-woman-dance-nude)
 
 Write on virgin [parchment](/ingredient/parchment) the Character of [FRUTIMIERE](/demon/frutimiere) with the [blood of a bat](/ingredient/bat-blood). Then put it
 on a blessed stone, over which a Mass has been said. After this when you want to use it, place
@@ -950,14 +950,14 @@ When she comes past, she will come in. She will undress and be completely naked,
 dance increasingly until death, if one does not remove the character; with grimaces and
 contortions which will cause more pity than desire.
 
-### To See in a Vision Anything from the Past or Future
+### [To See in a Vision Anything from the Past or Future](/spell/see-past-or-future)
 
 The two N N which you see in the second small circle mark the place where you put your name
 [see To Make a Girl Come to You...]. To know what you will, write the names in the circle
 on virgin [parchment](/ingredient/parchment), before sleeping, and put it under your right ear on retiring, saying the
 following orison:
 
-### Orison
+#### Orison
 
 O Glorious Name of Great God the ever-living, to whom all things are present, I am Thy
 servant N. . . . Father Eternal, I beg You to send me Thy Holy Angels, who are written in the
@@ -965,7 +965,7 @@ Circle and that they shall show me what I want to know, by Jesus Christ our Lord
 Having completed the orison, lie down on your right side, and you will see in a dream that
 which you desire to know.
 
-### To Nail (an Enemy)
+### [To Nail (an Enemy)](/spell/for-nailing)
 Go to a cemetery, remove a nail from an old coffin, saying:  
 Nails, I take you, so that you may serve to turn aside and cause evil to all persons whom I will.
 
