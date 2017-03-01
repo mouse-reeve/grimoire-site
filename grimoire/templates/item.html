@@ -47,7 +47,7 @@
     {% if data.buy or data.props.online_edition or data.props.online_facsimile or data.props.isbn %}
     <div class="card readlinks buttongroup">
         {% if data.props.online_edition %}
-            {% if data.props.online_edition is string and not data.props.full_version %}
+            {% if data.props.online_edition is string %}
             <a class="button" href="{{ data.props.online_edition }}" target="_blank">Read online</a>
             {% else %}
             <a class="button" href="{{ data.props.online_edition[0] }}" target="_blank">Read online</a>

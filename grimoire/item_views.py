@@ -5,8 +5,10 @@ from flask import redirect, request
 from markdown import markdown
 
 import grimoire.helpers as helpers
-from grimoire.helpers import extract_rel_list, extract_rel_list_by_type
-from grimoire.helpers import render_template
+from grimoire.helpers import extract_rel_list,\
+                             extract_rel_list_by_type,\
+                             build_timeline,\
+                             render_template
 from grimoire import app, graph, entities
 
 
@@ -125,7 +127,8 @@ def generic_item(node, rels):
     data = {'id': node['id']}
 
     try:
-        data['content'] = markdown(node['props']['content'])
+        content = node['props']['content'].encode('ascii', 'xmlcharrefreplace')
+        data['content'] = markdown(content)
     except AttributeError:
         data['content'] = ''
 
@@ -699,32 +702,3 @@ def intersection(nodes_1, nodes_2):
             [n['props']['uid'] for n in nodes_2]]
     shared_uids = list(set(keys[0]) & set(keys[1]))
     return [n for n in nodes_1 if n['props']['uid'] in shared_uids]
-
-
-def build_timeline(events):
-    ''' helper function for item page timelines '''
-    timeline = {}
-    timeline_min = 0
-    timeline_max = 0
-    if events:
-        try:
-            dates = [int(e['props']['date']) for e in events]
-        except ValueError:
-            logging.error('Failed to parse event dates')
-        else:
-            events_start = min(dates)
-            events_end = max(dates)
-
-            offset = 10  # +/- some number of years
-            timeline_min = (events_start - offset) / 100 * 100
-            timeline_max = (events_end + offset) / 100 * 100
-
-            for event in events:
-                note = event['note'] if 'note' in event else None
-                timeline = helpers.add_to_timeline(
-                    timeline, event,
-                    event['props']['date'],
-                    event['props']['date_precision'],
-                    note=note,
-                    allow_events=True)
-    return timeline, timeline_min, timeline_max

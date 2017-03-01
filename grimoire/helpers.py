@@ -226,6 +226,35 @@ def combine_rels(rels):
     return result
 
 
+def build_timeline(events):
+    ''' helper function for item page timelines '''
+    timeline = {}
+    timeline_min = 0
+    timeline_max = 0
+    if events:
+        try:
+            dates = [int(e['props']['date']) for e in events]
+        except ValueError:
+            logging.error('Failed to parse event dates')
+        else:
+            events_start = min(dates)
+            events_end = max(dates)
+
+            offset = 10  # +/- some number of years
+            timeline_min = (events_start - offset) / 100 * 100
+            timeline_max = (events_end + offset) / 100 * 100
+
+            for event in events:
+                note = event['note'] if 'note' in event else None
+                timeline = add_to_timeline(
+                    timeline, event,
+                    event['props']['date'],
+                    event['props']['date_precision'],
+                    note=note,
+                    allow_events=True)
+    return timeline, timeline_min, timeline_max
+
+
 def add_to_timeline(timeline, node, year, date_precision, note=None, allow_events=False):
     ''' put a date on it
     :param timeline: the existing timeline object

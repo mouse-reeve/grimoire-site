@@ -1,4 +1,5 @@
 {% macro timeline(data, start=0, end=2000) %}
+{% set timelineFilters = True %}
 <div class="timeline">
     {% for century in range(start, end+1, 100) %}
     <div class="century">
@@ -44,8 +45,8 @@
 {% macro item(nodes) %}
 <span class="comma-separated">
     {% for item in nodes %}
-    <span>
-        <a href="{{item.link}}" class="{% if item.props.relevant %}relevant{% endif %}">{{ item.props.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
+    <span class="timeline-item {{ item.props.type }}">
+        <a href="{{ item.link }}" id="{{ item.props.uid }}" class="{% if item.props.relevant %}relevant{% endif %}">{{ item.props.identifier | unthe }}</a>{% if item.note %} {{ item.note }}{% endif %}</span>
     {% endfor %}
 </span>
 {% endmacro %}

@@ -743,3 +743,5 @@ Find a means of procuring three strands of that person’s hair, which you will 
 Dry well in the oven, and wrap them in bay and myrtle leaves. Have a well trusted person put the apple under the young woman’s pillow without her noticing. In a few days you will notice the appearance of her love.
 
 # Fin
+
+<small>Adapted from [hermetics.org (PDF)](http://www.hermetics.org/pdf/grimoire/The%20Grand%20Grimoire%20-%20Dark%20Lodge%20version.pdf).</small>

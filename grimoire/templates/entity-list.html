@@ -14,49 +14,6 @@
 </div>
 
 <div id="content" class="medium-12 columns">
-    {% if grimoires %}
-    Show {{ label | pluralize }} listed in
-    <form method="get" action="{{ label }}">
-        <select name="i" required>
-            <option></option>
-            {% for grimoire in grimoires | sort(attribute="props.identifier") %}
-            <option value="{{ grimoire.props.uid }}">{{ grimoire.props.identifier }}</option>
-            {% endfor %}
-        </select>
-
-        <select name="op">
-            <option selected></option>
-            <option value="and">AND</option>
-            <option value="not">AND NOT</option>
-        </select>
-
-        <select name="j">
-            <option></option>
-            {% for grimoire in grimoires | sort(attribute="props.identifier") %}
-            <option value="{{ grimoire.props.uid }}">{{ grimoire.props.identifier }}</option>
-            {% endfor %}
-        </select>
-
-        <input class="button" type="submit" value="Go">
-    </form>
-    {% endif %}
-
-    {% if filtered %}
-    <h3>
-        {{ label | pluralize | capitalize }} in
-        <a href="{{ filtered.item1.link }}">{{ filtered.item1.props.identifier }}</a>
-        {% if filtered.operator and filtered.item2 %}
-            {% if filtered.operator == 'and' %}
-            and
-            {% else %}
-            and not
-            {% endif %}
-            <a href="{{ filtered.item2.link }}">{{ filtered.item2.props.identifier }}</a>
-        {% endif %}
-    </h3>
-    <a href="{{ label }}">Clear filter</a>
-    {% endif %}
-
     {% if items %}
     {{ macros.alpha_list(items) }}
     {% else %}

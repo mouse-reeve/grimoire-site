@@ -34,8 +34,6 @@ class GraphService(object):
         self.labels = [[m for m in list(l)[0] if not 'parent' in m][0] for l in labels]
         self.date_params = ['born', 'died', 'crowned', 'date',
                             'year', 'began', 'ended']
-        self.timeline_labels = []
-        self.timeline_data = []
 
 
     def query(self, query_string, **kwargs):
@@ -221,22 +219,6 @@ class GraphService(object):
         query = 'MATCH (n:grimoire)--(m:spell) ' \
                 'WITH n, COLLECT(m) AS spells RETURN n, spells'
         return self.query(query)
-
-
-    @serialize
-    def timeline(self):
-        ''' get all the requested items to populate the timeline
-        :return: an array of nodes with date params
-        '''
-        if len(self.timeline_data):
-            return self.timeline_data
-
-        query = 'MATCH n WHERE '
-        checks = ['HAS(n.%s)' % param for param in self.date_params]
-        query += ' OR '.join(checks) + ' RETURN n'
-
-        self.timeline_data = self.query(query)
-        return self.timeline_data
 
 
     @serialize

@@ -1,13 +1,11 @@
 ''' misc views '''
-from datetime import date
-
 from flask import redirect, request, render_template as flask_render_template
 from markdown import markdown
 from werkzeug.exceptions import BadRequestKeyError
 
 import grimoire.helpers as helpers
-from grimoire import app, graph, entities, date_params, templates
-from grimoire.helpers import render_template
+from grimoire import app, graph, entities, templates
+from grimoire.helpers import render_template, build_timeline
 
 
 @app.before_request
@@ -246,35 +244,14 @@ def timeline_page():
     ''' timeline data display
     :return: rendered timeline page
     '''
+    events = graph.get_all('event')['nodes']
+    for event in events:
+        if event['props']['type'] == 'grimoire':
+            event['props']['relevant'] = True
 
-    nodes = graph.timeline()['nodes']
-    if not graph.timeline_labels:
-        graph.timeline_labels = set([n['label'] for n in nodes])
-
-    show = [l for l in graph.timeline_labels
-            if l in request.args and request.values[l] == 'on']
-
-    if show:
-        nodes = [n for n in nodes if n['label'] in show]
-    else:
-        show = graph.timeline_labels
-
-    timeline = {}
-    for node in nodes:
-        for event in date_params:
-            if event not in node['props']:
-                continue
-            try:
-                year = int(node['props'][event])
-            except ValueError:
-                continue
-
-            date_precision = node['props'].get('date_precision', 'year')
-
-            note = event if event not in ['year', 'date'] else None
-            timeline = helpers.add_to_timeline(timeline, node, year,
-                                               date_precision, note=note)
-
-    end = date.today().year
-    return render_template(request.url, 'timeline.html', data=timeline, end=end,
-                           labels=graph.timeline_labels, show=show)
+    timeline, start, end = build_timeline(events)
+    return render_template(request.url,
+                           'timeline.html',
+                           data=timeline,
+                           start=start,
+                           end=end)

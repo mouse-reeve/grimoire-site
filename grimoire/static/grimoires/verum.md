@@ -987,3 +987,6 @@ Then take the nail out, and efface the characters: not with the same hand as you
 with the other. Thus it will be without danger.
 
 ## FIN
+
+<small>Adapted from [hermetics.org (PDF)](http://www.hermetics.org/pdf/grimoire/Grimoirum_Verum.pdf).</small>
+

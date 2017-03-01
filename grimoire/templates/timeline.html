@@ -1,7 +1,7 @@
 {% import 'timeline-macro.html' as timeline %}
 {% extends "layout.html" %}
 {% block body %}
-
+{% set timelineFilters = True %}
 
 <div class="medium-12 columns">
     <ul class="breadcrumbs">
@@ -13,21 +13,7 @@
 </div>
 
 <div id="content" class="medium-12 columns">
-    <div class="filter row">
-        <h3>Show only events related to:</h3>
-        <form method="get" action="/timeline">
-        {% for label in labels %}
-            <label for="{{ label }}-checkbox">
-                <input type="checkbox" name="{{ label }}" id="{{ label }}-checkbox" {% if label in show %}checked{% endif %}>
-                {{ label | pluralize }}
-            </label>
-        {% endfor %}
-            <input class="button" type="submit" value="Filter">
-            <a href="/timeline">Clear filter</a>
-        </form>
-    </div>
-
-    {{ timeline.timeline(data) }}
+    {{ timeline.timeline(data, start=start, end=end) }}
 </div>
 {% endblock %}
 
