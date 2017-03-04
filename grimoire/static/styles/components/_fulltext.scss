@@ -4,6 +4,15 @@
     margin-bottom: 1em;
 }
 
+#table-of-contents li {
+    margin: 0 0.5em !important;
+}
+
+#table-of-contents > ol > li > ol > li {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
 #content .tabs-title {
     margin: 0;
 }
@@ -51,4 +60,28 @@
 
 #fulltext a {
     text-decoration: underline;
+}
+
+#back-to-top {
+    float: right;
+    width: 6em;
+}
+#main #back-to-top a {
+    border-radius: 0.6em;
+    background-color: #b5b5b7;
+    color: black;
+    text-decoration: none;
+}
+#main #back-to-top a:hover {
+    background-color: #f2b632;
+}
+
+.sticky.is-anchored {
+    /* nightmare bug fix for huge scrolls at footer */
+    top: 0 !important;
+}
+
+img.embed {
+    float: left;
+    padding-right: 1em;
 }

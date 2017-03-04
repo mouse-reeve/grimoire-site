@@ -174,9 +174,7 @@ def generic_item(node, rels):
                         'buy', 'date_precision', 'isbn', 'full_version']}
 
     if 'full_version' in node['props']:
-        filepath = app.static_folder + \
-                   '/grimoires/' + node['props']['full_version']
-        data['full_version'] = open(filepath, 'r').read().decode('utf8')
+        data['full_version'] = node['props']['full_version']
 
     data['buy'] = node['props']['buy'] if 'buy' in node['props'] else None
 

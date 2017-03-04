@@ -38,11 +38,9 @@
     </div>
 </div>
 
-
 <!-- CONTENT -->
 
 <div id="content" class="medium-8 columns">
-
     <!-- Outlinks to read grimoires -->
     {% if data.buy or data.props.online_edition or data.props.online_facsimile or data.props.isbn %}
     <div class="card readlinks buttongroup">
@@ -77,9 +75,17 @@
         <li class="tabs-title"><a href="#timeline">Timeline</a></li>
         <li class="tabs-title"><a href="#info">More about this text</a></li>
     </ul>
-    <div class="tabs-content" data-tabs-content="fulltext-tabs">
+    <div class="tabs-content" data-tabs-content="fulltext-tabs" id="tabs-top">
         <div class="tabs-panel is-active" id="fulltext">
-            {{ data.full_version | markdown | safe }}
+            {% include 'grimoires/' + data.full_version %}
+            <div id="back-to-top">
+                <div data-sticky-container>
+                    <div class="sticky" data-sticky data-stick-to="bottom" data-anchor="fulltext-content">
+                        <a class="button" href="#tabs-top">Back to top</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="tabs-panel" id="info">
     {% endif %}
