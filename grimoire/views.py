@@ -155,6 +155,10 @@ def table(entity='demon'):
                            grimoires=grimoires, entities=entity_list,
                            isolates=isolates, table=True)
 
+@app.route('/teacup')
+def teacups():
+    data = graph.get_all('teacup')['nodes']
+    return render_template(request.url, 'teacups.html', cups=data)
 
 @app.route('/spell')
 def spell():

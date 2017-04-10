@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="medium-12 columns">
+    <!-- BREADCUMBS -->
+    <ul class="breadcrumbs">
+        <li><a href="/">Home</a></li>
+        <li class="current">Fortune Telling Teacups</li>
+    </ul>
+
+    <!-- HEADING -->
+    <div class="row">
+        <div class="medium-8 columns">
+            <h2>Fortune Telling Teacups</h2>
+        </div>
+
+        <div class="medium-4 columns social">
+            Share on
+            <a href="https://twitter.com/intent/tweet?text=Fortune Telling Teacups&url=https://www.grimoire.org/teacups" target="_blank"><i class="fa fa-twitter"></i> twitter</a> or
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.grimoire.org/teacups" target="_blank"><i class="fa fa-facebook"></i> facebook</a>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+
+<div id="content" class="medium-12 columns">
+    <p>Fortune telling teacups are decorated with tasseomantic divination guides and imagery. They depict zodiac symbols, tea leaf patterns, or playing cards. This list is not comprehensive; <a href="http://www.mystictearoom.com/museum-of-fortune-telling-teacups.html">The Mystic Tea Room</a> has an excellent and more complete list, although without images.</p>
+    <p>Some of these cups depict racial stereotypes and slurs which were commonplace for their time, which we present here because they are, however regrettably, a part of history.</p>
+
+    <div class="divider"></div>
+
+    {% for cup in cups %}
+    <div class="card teacup" id="{{ cup.props.uid }}">
+        <h3>{{ cup.props.identifier }}</h3>
+        <div class="row images">
+            {% if cup.props.main_image %}
+            <a href="/static/images/teacups/{{ cup.props.main_image }}" target="_blank"><img src="/static/images/teacups/{{ cup.props.main_image }}" alt="{{ cup.identifier }} Teacup"></a>
+            {% endif %}
+
+            {% if cup.props.cup_image %}
+            <a href="/static/images/teacups/{{ cup.props.cup_image }}" target="_blank"><img src="/static/images/teacups/{{ cup.props.cup_image }}" alt="{{ cup.identifier }} Cup"></a>
+            {% endif %}
+
+            {% if cup.props.saucer_image %}
+            <a href="/static/images/teacups/{{ cup.props.saucer_image }}" target="_blank"><img src="/static/images/teacups/{{ cup.props.saucer_image }}" alt="{{ cup.identifier }} Saucer"></a>
+            {% endif %}
+
+            {% if cup.props.mark_image %}
+            <a href="/static/images/teacups/{{ cup.props.mark_image }}" target="_blank"><img src="/static/images/teacups/{{ cup.props.mark_image }}" alt="{{ cup.identifier }} Mark"></a>
+            {% endif %}
+
+        </div>
+        {% if cup.props.content %}<p>{{ cup.props.content | safe }}</p>{% endif %}
+        <dl>
+            <dt>Name</dt><dd>{{ cup.props.name }}</dd>
+            <dt>Maker</dt><dd>{{ cup.props.maker }}</dd>
+            <dt>Year</dt><dd>{{ cup.props.year }}</dd>
+        </dl>
+    </div>
+    {% if cup.props.source %}<p class="small">(<a href="{{ cup.props.source }}">Source</a>)</p>{% endif %}
+
+    <div class="divider"></div>
+    {% endfor %}
+</div>
+{% endblock %}
+

@@ -285,6 +285,18 @@ img.embed {
 .survey a {
   color: #f2b632; }
 
+.teacup img {
+  max-height: 13em;
+  width: auto; }
+
+.teacup dt {
+  float: left;
+  clear: both;
+  width: 5em; }
+
+.teacup dd {
+  height: 2em; }
+
 .timeline {
   margin-left: 5em;
   padding-left: 1em;
