@@ -28,7 +28,7 @@ def redirect_excerpts(uid):
     try:
         source = source[0]
     except IndexError:
-        return render_template(request.url, 'label-404.html',
+        return render_template(request.url, '404.html',
                                labels=graph.get_labels())
 
     return redirect(source['link'])
@@ -47,14 +47,14 @@ def item(label, uid):
     if not graph.validate_label(label):
         logging.error('Invalid label %s', label)
         return render_template(request.url,
-                               'label-404.html',
+                               '404.html',
                                labels=graph.get_labels())
 
     try:
         data = helpers.get_node(uid)
     except NameError:
         items = graph.get_all(label)
-        return render_template(request.url, 'item-404.html',
+        return render_template(request.url, '404.html',
                                items=items['nodes'],
                                search=graph.search(uid)['nodes'],
                                label=label)

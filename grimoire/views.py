@@ -193,7 +193,7 @@ def category(label):
     label = helpers.sanitize(label)
     if not graph.validate_label(label):
         labels = graph.get_labels()
-        return render_template(request.url, 'label-404.html', labels=labels)
+        return render_template(request.url, '404.html', labels=labels)
 
     filtered = None
     try:
