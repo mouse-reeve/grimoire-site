@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 source bin/activate
 python build_static.py
 
